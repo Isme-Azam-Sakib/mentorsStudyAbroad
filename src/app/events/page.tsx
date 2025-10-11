@@ -71,12 +71,12 @@ const transformApiEventToFilterableEvent = (apiEvent: ApiEvent, currentTime: num
     const eventDate = new Date(apiEvent.date);
     const isUpcoming = currentTime ? eventDate.getTime() >= currentTime : false;
 
-    // Format date and time
-    const formattedDate = eventDate.toLocaleDateString('en-GB', {
-        day: '2-digit',
-        month: 'short',
-        year: 'numeric'
-    });
+    // Format date consistently (no locale dependencies)
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    const day = String(eventDate.getDate()).padStart(2, '0');
+    const month = months[eventDate.getMonth()];
+    const year = eventDate.getFullYear();
+    const formattedDate = `${day} ${month} ${year}`;
     const formattedTime = apiEvent.time;
     const datetime = `${formattedDate}, ${formattedTime}`;
 

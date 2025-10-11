@@ -48,17 +48,34 @@ const fetchEvents = async (): Promise<ApiEvent[]> => {
     }
 };
 
+// Helper function to format date consistently (no locale issues)
+const formatDate = (dateString: string): string => {
+    const date = new Date(dateString);
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const year = date.getFullYear();
+    return `${day}/${month}/${year}`;
+};
+
+// Helper function to format time consistently (no locale issues)
+const formatTime = (dateString: string): string => {
+    const date = new Date(dateString);
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    return `${hours}:${minutes}`;
+};
+
 // Helper function to transform API data to component format
 const transformApiEventToEventDetails = (apiEvent: ApiEvent): EventDetails => {
     const eventDate = new Date(apiEvent.date);
     const datetimeISO = eventDate.toISOString();
     
-    // Format date and time for display
-    const formattedDate = eventDate.toLocaleDateString('en-GB', {
-        day: '2-digit',
-        month: 'short',
-        year: 'numeric'
-    });
+    // Format date consistently (no locale dependencies)
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    const day = String(eventDate.getDate()).padStart(2, '0');
+    const month = months[eventDate.getMonth()];
+    const year = eventDate.getFullYear();
+    const formattedDate = `${day} ${month} ${year}`;
     const datetimeDisplay = `${formattedDate}, ${apiEvent.time}`;
     
     return {
@@ -271,7 +288,7 @@ export default function EventDetailsPage() {
                                     <div className="text-left">
                                         <div className="text-gray-500 text-sm font-medium mb-1">Date</div>
                                         <div className="text-2xl md:text-3xl lg:text-4xl font-bold text-black">
-                                            {new Date(event.datetimeISO).toLocaleDateString(undefined, { day: '2-digit', month: '2-digit', year: 'numeric' })}
+                                            {formatDate(event.datetimeISO)}
                                         </div>
                                     </div>
                                 </div>
@@ -285,7 +302,7 @@ export default function EventDetailsPage() {
                                     <div className="text-left">
                                         <div className="text-gray-500 text-sm font-medium mb-1">Time</div>
                                         <div className="text-2xl md:text-3xl lg:text-4xl font-bold text-black">
-                                            {new Date(event.datetimeISO).toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' })}
+                                            {formatTime(event.datetimeISO)}
                                         </div>
                                     </div>
                                 </div>
