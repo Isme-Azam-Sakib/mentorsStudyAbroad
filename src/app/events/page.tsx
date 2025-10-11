@@ -67,10 +67,9 @@ const fetchEvents = async (): Promise<ApiEvent[]> => {
 };
 
 // Helper function to transform API data to component format
-const transformApiEventToFilterableEvent = (apiEvent: ApiEvent): FilterableEvent => {
+const transformApiEventToFilterableEvent = (apiEvent: ApiEvent, currentTime: number): FilterableEvent => {
     const eventDate = new Date(apiEvent.date);
-    const now = new Date();
-    const isUpcoming = eventDate >= now;
+    const isUpcoming = currentTime ? eventDate.getTime() >= currentTime : false;
 
     // Format date and time
     const formattedDate = eventDate.toLocaleDateString('en-GB', {
@@ -94,12 +93,18 @@ export default function EventsPage() {
     const [activeTab, setActiveTab] = useState<'upcoming' | 'past'>('upcoming');
     const [visibleCount, setVisibleCount] = useState(3);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [currentTime, setCurrentTime] = useState<number>(0);
 
     // API data state
     const [events, setEvents] = useState<ApiEvent[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const [calendarAnimation, setCalendarAnimation] = useState<object | null>(null);
+
+    // Set current time on client mount to avoid hydration mismatch
+    useEffect(() => {
+        setCurrentTime(Date.now());
+    }, []);
 
     // Fetch events data on component mount
     useEffect(() => {
@@ -133,7 +138,7 @@ export default function EventsPage() {
 
     // Transform API data to component formats
     const filterableEventsData: FilterableEvent[] = events
-        .map(transformApiEventToFilterableEvent);
+        .map(event => transformApiEventToFilterableEvent(event, currentTime));
 
     return (
         <>

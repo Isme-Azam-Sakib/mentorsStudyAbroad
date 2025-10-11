@@ -85,24 +85,41 @@ function useCountdown(targetISO: string) {
         return { diff, days, hours, minutes, seconds };
     };
 
-    const [state, setState] = useState(compute());
+    // Initialize with zero values to avoid hydration mismatch
+    const [state, setState] = useState({ diff: 0, days: 0, hours: 0, minutes: 0, seconds: 0 });
+    const [mounted, setMounted] = useState(false);
+
     useEffect(() => {
+        setMounted(true);
+        setState(compute());
         const t = setInterval(() => setState(compute()), 1000);
         return () => clearInterval(t);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [targetISO]);
+
+    // Return zero values on first render (server + initial client)
+    if (!mounted) {
+        return { diff: 0, days: 0, hours: 0, minutes: 0, seconds: 0 };
+    }
+
     return state;
 }
 
 export default function EventDetailsPage() {
     const params = useParams();
     const id = Number(params?.id);
+    const [currentTime, setCurrentTime] = useState<number>(0);
     
     // API data state
     const [events, setEvents] = useState<ApiEvent[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const [calendarAnimation, setCalendarAnimation] = useState<object | null>(null);
+
+    // Set current time on client mount to avoid hydration mismatch
+    useEffect(() => {
+        setCurrentTime(Date.now());
+    }, []);
 
     // Fetch events data on component mount
     useEffect(() => {
@@ -332,7 +349,7 @@ export default function EventDetailsPage() {
                         </h2>
                     </div>
 
-                    {allEvents.filter(e => new Date(e.datetimeISO).getTime() > Date.now()).length === 0 ? (
+                    {allEvents.filter(e => currentTime && new Date(e.datetimeISO).getTime() > currentTime).length === 0 ? (
                         <div className="flex flex-col justify-center items-center py-20">
                             {calendarAnimation && (
                                 <Lottie 
@@ -346,7 +363,7 @@ export default function EventDetailsPage() {
                     ) : (
                         <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                             {allEvents
-                                .filter(e => new Date(e.datetimeISO).getTime() > Date.now())
+                                .filter(e => currentTime && new Date(e.datetimeISO).getTime() > currentTime)
                                 .sort((a, b) => new Date(a.datetimeISO).getTime() - new Date(b.datetimeISO).getTime())
                                 .slice(0, 3)
                                 .map(evt => (

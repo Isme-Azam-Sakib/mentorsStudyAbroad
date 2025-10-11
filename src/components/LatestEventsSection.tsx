@@ -45,10 +45,9 @@ const fetchEvents = async (apiUrl: string): Promise<ApiEvent[]> => {
 };
 
 // Helper function to check if an event is upcoming
-const isEventUpcoming = (dateTimeISO: string): boolean => {
+const isEventUpcoming = (dateTimeISO: string, currentTime: number): boolean => {
     const eventDate = new Date(dateTimeISO);
-    const now = new Date();
-    return eventDate > now;
+    return eventDate.getTime() > currentTime;
 };
 
 // Helper function to transform API data to component format
@@ -79,11 +78,17 @@ export default function LatestEventsSection({
 }: LatestEventsSectionProps) {
     const [activeIdx, setActiveIdx] = useState(0);
     const hoverRef = useRef<HTMLDivElement>(null);
+    const [currentTime, setCurrentTime] = useState<number>(0);
 
     // API data state
     const [events, setEvents] = useState<ApiEvent[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
+
+    // Set current time on client mount to avoid hydration mismatch
+    useEffect(() => {
+        setCurrentTime(Date.now());
+    }, []);
 
     // Fetch events data on component mount
     useEffect(() => {
@@ -193,7 +198,7 @@ export default function LatestEventsSection({
                                     const isActive = idx === activeIdx;
                                     // Check if this event is upcoming by finding the corresponding API event
                                     const apiEvent = events.find(e => e.id === evt.id);
-                                    const isUpcoming = apiEvent ? isEventUpcoming(apiEvent.date) : false;
+                                    const isUpcoming = apiEvent && currentTime ? isEventUpcoming(apiEvent.date, currentTime) : false;
                                     
                                     return (
                                         <button

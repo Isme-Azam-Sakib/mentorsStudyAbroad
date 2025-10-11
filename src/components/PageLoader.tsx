@@ -22,7 +22,7 @@ export default function PageLoader({ onComplete }: PageLoaderProps) {
           }, 500);
           return 100;
         }
-        return prev + Math.random() * 15;
+        return prev + 10; // Fixed increment instead of random
       });
     }, 100);
 
