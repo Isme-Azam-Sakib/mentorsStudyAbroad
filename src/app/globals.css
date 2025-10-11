@@ -1,0 +1,56 @@
+@import "tailwindcss";
+@import "@flaticon/flaticon-uicons/css/all/all.css";
+
+:root {
+  --white: #ffffff;
+  --white2: #f2f2f2;
+  --accent : #D82329;
+  --black : #000000;
+  --gray : #00000099;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-onest), Arial, Helvetica, sans-serif;
+  --font-mono: var(--font-geist-mono);
+  --color-my-white: var(--white);
+  --color-my-white2: var(--white2);
+  --color-my-accent: var(--accent);
+  --color-my-black: var(--black);
+  --color-my-gray: var(--gray);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #fff;
+    --foreground: #0d0d0d;
+  }
+}
+
+
+
+body {
+  background: var(--white);
+  color: var(--foreground);
+  font-family: var(--font-onest), Arial, Helvetica, sans-serif;
+  /* margin: 0 10%; */
+}
+
+.btn-std {
+  background: var(--white);
+  color: var(--black);
+  border: 1px solid var(--gray);
+  border-radius: 50px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  &:hover {
+    background: var(--black);
+    color: var(--white);
+    font-weight: 600;
+  }
+}
+
