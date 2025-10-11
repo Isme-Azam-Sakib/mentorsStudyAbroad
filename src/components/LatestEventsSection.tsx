@@ -71,7 +71,7 @@ interface LatestEventsSectionProps {
 
 export default function LatestEventsSection({
     apiUrl,
-    title = "What's latest right now",
+    title = "What&apos;s latest right now",
     maxEvents = 3,
     autoRotateInterval = 3000,
     className = ""

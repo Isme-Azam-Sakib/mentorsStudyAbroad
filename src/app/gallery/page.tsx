@@ -76,7 +76,7 @@ export default function GalleryPage() {
                 </div>
             </section>
 
-            {/* Mentors' Videos Section */}
+            {/* Mentors&apos; Videos Section */}
             <VideoSection />
 
 

@@ -244,7 +244,7 @@ export function VideoSection({
         }
     };
 
-    // Don't render if no videos for the specified country
+    // Don&apos;t render if no videos for the specified country
     if (filteredVideos.length === 0) {
         return null;
     }

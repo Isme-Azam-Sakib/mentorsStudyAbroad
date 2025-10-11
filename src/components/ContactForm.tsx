@@ -43,7 +43,7 @@ export function ContactForm({ countryName, countryValue }: ContactFormProps) {
     }));
   };
 
-  const handleApiSuccess = (response: any) => {
+  const handleApiSuccess = (response: unknown) => {
     console.log('Form submitted successfully:', response);
     setSubmitStatus('success');
     setErrorMessage('');
@@ -59,7 +59,7 @@ export function ContactForm({ countryName, countryValue }: ContactFormProps) {
     });
   };
 
-  const handleApiError = (error: any) => {
+  const handleApiError = (error: unknown) => {
     console.error('Form submission failed:', error);
     setSubmitStatus('error');
     setErrorMessage('Failed to submit your request. Please try again.');

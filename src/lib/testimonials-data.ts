@@ -23,7 +23,7 @@ export const testimonialsData: Testimonial[] = [
   },
   {
     id: 2,
-    text: "I am currently pursuing the BSc (Hons) in Computing Systems program at Ulster University in the UK. Thanks to Mentors' Study Abroad for guiding me through the whole process of admission and visa. They were consistently available whenever I needed to reach out to them. They have really made my dreams of studying abroad into reality.",
+    text: "I am currently pursuing the BSc (Hons) in Computing Systems program at Ulster University in the UK. Thanks to Mentors&apos; Study Abroad for guiding me through the whole process of admission and visa. They were consistently available whenever I needed to reach out to them. They have really made my dreams of studying abroad into reality.",
     name: "Samiha Nazifa Ahasan",
     title: "Student",
     company: "Ulster University, UK",
@@ -33,7 +33,7 @@ export const testimonialsData: Testimonial[] = [
   },
   {
     id: 3,
-    text: "My journey to study Bachelor of Information Technology (Cyber Security) at Macquarie University was made possible by Mentors' Study Abroad. From IELTS preparation to visa lodging, they provided a one-stop solution. Their expert guidance helped me achieve my dream of studying in Australia.",
+    text: "My journey to study Bachelor of Information Technology (Cyber Security) at Macquarie University was made possible by Mentors&apos; Study Abroad. From IELTS preparation to visa lodging, they provided a one-stop solution. Their expert guidance helped me achieve my dream of studying in Australia.",
     name: "Ayman Fayyaz",
     title: "Student",
     company: "Macquarie University, Australia",
@@ -53,7 +53,7 @@ export const testimonialsData: Testimonial[] = [
   },  
   {
     id: 5,
-    text: "I’m thrilled to share that I’ve received my Australian Student Visa and will be heading to Charles Darwin University to pursue my Bachelor’s degree! This journey wouldn’t have been possible without the constant support and dedication of Mentors' Study Abroad. A special thanks to Sifat Vai, my amazing counselor, who guided me through every step — from selecting the right university to successfully getting my visa. If you’re planning to study abroad, I highly recommend Mentors' Study Abroad. Their expertise, care, and professionalism truly make dreams come true.",
+    text: "I&apos;m thrilled to share that I&apos;ve received my Australian Student Visa and will be heading to Charles Darwin University to pursue my Bachelor&apos;s degree! This journey wouldn&apos;t have been possible without the constant support and dedication of Mentors&apos; Study Abroad. A special thanks to Sifat Vai, my amazing counselor, who guided me through every step — from selecting the right university to successfully getting my visa. If you&apos;re planning to study abroad, I highly recommend Mentors&apos; Study Abroad. Their expertise, care, and professionalism truly make dreams come true.",
     name: "Saad Ullah Sami ",
     title: "Student",
     company: "Charles Darwin University, Australia",

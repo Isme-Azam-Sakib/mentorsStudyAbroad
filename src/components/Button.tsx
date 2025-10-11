@@ -4,7 +4,7 @@ interface ApiConfig {
     url: string;
     method?: 'GET' | 'POST' | 'PUT' | 'DELETE';
     headers?: Record<string, string>;
-    body?: any;
+    body?: unknown;
 }
 
 interface ButtonProps {
@@ -17,8 +17,8 @@ interface ButtonProps {
     disabled?: boolean;
     openModal?: boolean;
     apiConfig?: ApiConfig;
-    onApiSuccess?: (response: any) => void;
-    onApiError?: (error: any) => void;
+    onApiSuccess?: (response: unknown) => void;
+    onApiError?: (error: unknown) => void;
     loadingText?: string;
 }
 
