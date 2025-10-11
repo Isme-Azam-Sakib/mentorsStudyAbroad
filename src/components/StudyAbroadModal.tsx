@@ -389,7 +389,7 @@ export const StudyAbroadModal: React.FC<StudyAbroadModalProps> = ({ isOpen, onCl
                                 <i className="fi fi-rr-check text-2xl text-green-600"></i>
                             </div>
                             <h3 className="text-xl font-bold text-green-600 mb-2">Success!</h3>
-                            <p className="text-gray-600">Your consultation request has been submitted successfully. We'll get back to you soon!</p>
+                            <p className="text-gray-600">Your consultation request has been submitted successfully. We&apos;ll get back to you soon!</p>
                         </div>
                     )}
                     

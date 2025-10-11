@@ -164,7 +164,7 @@ export default function ContactPage() {
                                 Get in <span className="text-my-accent relative">Touch</span> with Us
                             </h2>
                             <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-                                Send us a message or visit our office. We're here to help you every step of the way.
+                                Send us a message or visit our office. We&apos;re here to help you every step of the way.
                             </p>
                         </div>
 

@@ -71,9 +71,9 @@ export default function GalleryLightbox({ images, children }: GalleryLightboxPro
                 {React.Children.map(children, (child, childIndex) => {
                     if (React.isValidElement(child)) {
                         return React.cloneElement(child, {
-                            onClick: () => handleImageClick(childIndex),
-                            style: { cursor: 'pointer' },
-                        } as any);
+                        onClick: () => handleImageClick(childIndex),
+                        style: { cursor: 'pointer' },
+                    } as React.HTMLAttributes<HTMLElement>);
                     }
                     return child;
                 })}
