@@ -182,6 +182,9 @@ export function VideoSection({
     }, [country]);
 
     useEffect(() => {
+        // Only run on client side to avoid hydration mismatch
+        if (typeof window === 'undefined') return;
+
         const checkScreenSize = () => {
             const width = window.innerWidth;
             if (width < 768) {

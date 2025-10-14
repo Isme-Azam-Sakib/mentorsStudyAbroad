@@ -87,7 +87,10 @@ export default function LatestEventsSection({
 
     // Set current time on client mount to avoid hydration mismatch
     useEffect(() => {
-        setCurrentTime(Date.now());
+        // Only set time on client side to avoid hydration mismatch
+        if (typeof window !== 'undefined') {
+            setCurrentTime(Date.now());
+        }
     }, []);
 
     // Fetch events data on component mount

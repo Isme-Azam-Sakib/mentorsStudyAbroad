@@ -5,6 +5,7 @@ import { CustomInput } from './CustomInput';
 import { Button } from './Button';
 import { getSessionBookingsApiUrl } from '@/lib/config';
 import { validateFormData, sanitizeInput, secureLog } from '@/lib/security';
+import { useBrowserExtensionFix } from '@/hooks/useBrowserExtensionFix';
 
 interface ContactFormProps {
   countryName?: string;
@@ -23,6 +24,9 @@ const countries = [
 ];
 
 export function ContactForm({ countryName, countryValue }: ContactFormProps) {
+  // Use the custom hook to handle browser extension attributes
+  useBrowserExtensionFix();
+
   // Form state management
   const [formData, setFormData] = useState({
     fullName: '',
@@ -69,11 +73,12 @@ export function ContactForm({ countryName, countryValue }: ContactFormProps) {
   };
 
   const getApiPayload = () => {
-    // Only validate if we have actual form data (not during SSR)
-    if (typeof window !== 'undefined' && formData.fullName) {
+    // Only validate if we have actual form data and are on client side
+    if (typeof window !== 'undefined' && formData.fullName && formData.email && formData.mobile) {
       const validation = validateFormData(formData as unknown as { [key: string]: unknown });
       if (!validation.isValid) {
-        throw new Error('Form validation failed');
+        console.error('Form validation errors:', validation.errors);
+        throw new Error(`Form validation failed: ${Object.values(validation.errors).join(', ')}`);
       }
     }
 
@@ -84,6 +89,43 @@ export function ContactForm({ countryName, countryValue }: ContactFormProps) {
       country_name: sanitizeInput(formData.country),
       preferred_course: sanitizeInput(formData.course),
       year: sanitizeInput(formData.year)
+    };
+  };
+
+  // Create a function that returns the API config only when needed
+  const getApiConfig = () => {
+    // Only validate and get payload when actually submitting
+    if (typeof window !== 'undefined' && formData.fullName && formData.email && formData.mobile) {
+      console.log('ContactForm validation data:', formData);
+      console.log('Full name value:', formData.fullName, 'Length:', formData.fullName.length);
+      console.log('Email value:', formData.email);
+      console.log('Mobile value:', formData.mobile);
+      const validation = validateFormData(formData as unknown as { [key: string]: unknown });
+      console.log('ContactForm validation result:', validation);
+      if (!validation.isValid) {
+        console.error('Form validation errors:', validation.errors);
+        throw new Error(`Form validation failed: ${Object.values(validation.errors).join(', ')}`);
+      }
+    }
+
+    const payload = {
+      full_name: sanitizeInput(formData.fullName),
+      email: sanitizeInput(formData.email),
+      mobile_no: sanitizeInput(formData.mobile),
+      country_name: sanitizeInput(formData.country),
+      preferred_course: sanitizeInput(formData.course),
+      year: sanitizeInput(formData.year)
+    };
+
+    console.log('ContactForm API Config:', {
+      url: getSessionBookingsApiUrl(),
+      payload
+    });
+
+    return {
+      url: getSessionBookingsApiUrl(),
+      method: 'POST' as const,
+      body: payload
     };
   };
 
@@ -101,7 +143,7 @@ export function ContactForm({ countryName, countryValue }: ContactFormProps) {
             </div>
           </div>
 
-          <form className="space-y-3 sm:space-y-4">
+          <form className="space-y-3 sm:space-y-4" onSubmit={(e) => e.preventDefault()}>
             {/* Full Name */}
             <CustomInput
               type="text"
@@ -177,15 +219,11 @@ export function ContactForm({ countryName, countryValue }: ContactFormProps) {
 
             {/* Submit Button */}
             <Button
-              type="submit"
+              type="button"
               variant="secondary"
               size="md"
               className="w-full font-bold py-3 sm:py-4 rounded-lg sm:rounded-xl"
-              apiConfig={{
-                url: getSessionBookingsApiUrl(),
-                method: 'POST',
-                body: getApiPayload()
-              }}
+              apiConfig={getApiConfig}
               onApiSuccess={handleApiSuccess}
               onApiError={handleApiError}
               loadingText="Submitting..."

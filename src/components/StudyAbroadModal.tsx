@@ -6,6 +6,7 @@ import { Button } from './Button';
 import { CustomInput } from './CustomInput';
 import { getConsultationRequestApiUrl } from '@/lib/config';
 import { validateFormData, sanitizeInput, secureLog } from '@/lib/security';
+import { useBrowserExtensionFix } from '@/hooks/useBrowserExtensionFix';
 
 interface FormData {
     country: string;
@@ -25,6 +26,9 @@ interface StudyAbroadModalProps {
 }
 
 export const StudyAbroadModal: React.FC<StudyAbroadModalProps> = ({ isOpen, onClose }) => {
+    // Use the custom hook to handle browser extension attributes
+    useBrowserExtensionFix();
+    
     const [currentStep, setCurrentStep] = useState(0);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
@@ -140,7 +144,8 @@ export const StudyAbroadModal: React.FC<StudyAbroadModalProps> = ({ isOpen, onCl
             if (formData.fullName && formData.email) {
                 const validation = validateFormData(formData as unknown as { [key: string]: unknown });
                 if (!validation.isValid) {
-                    setErrorMessage('Please check your input and try again.');
+                    console.error('Form validation errors:', validation.errors);
+                    setErrorMessage(`Please check your input: ${Object.values(validation.errors).join(', ')}`);
                     setSubmitStatus('error');
                     return;
                 }
@@ -174,6 +179,11 @@ export const StudyAbroadModal: React.FC<StudyAbroadModalProps> = ({ isOpen, onCl
             secureLog('Consultation request submission', { 
                 hasData: !!payload.full_name,
                 country: payload.country 
+            });
+            
+            console.log('StudyAbroadModal API call:', {
+                url: getConsultationRequestApiUrl(),
+                payload
             });
             
             const response = await fetch(getConsultationRequestApiUrl(), {

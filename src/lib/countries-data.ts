@@ -123,7 +123,7 @@ export const countriesData: Record<string, Country> = {
     name: "Australia",
     description: "One of the top destinations for international students, offering a world-class education system",
     heroImage: "/country-hero-australia.png",
-    stats: { universities: "40+", annualTuitionFees: "A$26K ", successfulVisas: "353+", postStudyWork: "4+ years" },
+    stats: { universities: "40+", annualTuitionFees: "AUD 26K ", successfulVisas: "353+", postStudyWork: "4+ years" },
     universityLogos: [
       '/universities/australia/Curtin University.png',
       '/universities/australia/Deakin University.png',

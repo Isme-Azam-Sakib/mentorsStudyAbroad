@@ -7,6 +7,8 @@ interface ApiConfig {
     body?: unknown;
 }
 
+type ApiConfigFunction = () => ApiConfig;
+
 interface ButtonProps {
     children: React.ReactNode;
     variant?: 'primary' | 'secondary' | 'outline';
@@ -16,7 +18,7 @@ interface ButtonProps {
     type?: 'button' | 'submit' | 'reset';
     disabled?: boolean;
     openModal?: boolean;
-    apiConfig?: ApiConfig;
+    apiConfig?: ApiConfig | ApiConfigFunction;
     onApiSuccess?: (response: unknown) => void;
     onApiError?: (error: unknown) => void;
     loadingText?: string;
@@ -55,23 +57,35 @@ export const Button: React.FC<ButtonProps> = ({
     const combinedClasses = `${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${className}`;
     
     const handleClick = async () => {
+        console.log('Button clicked, apiConfig:', !!apiConfig);
         if (apiConfig) {
             setIsLoading(true);
             try {
-                const response = await fetch(apiConfig.url, {
-                    method: apiConfig.method || 'GET',
+                // Get the actual config (call function if it's a function)
+                const config = typeof apiConfig === 'function' ? apiConfig() : apiConfig;
+                
+                console.log('Making API call to:', config.url);
+                console.log('Request body:', config.body);
+                
+                const response = await fetch(config.url, {
+                    method: config.method || 'GET',
                     headers: {
                         'Content-Type': 'application/json',
-                        ...apiConfig.headers
+                        ...config.headers
                     },
-                    body: apiConfig.body ? JSON.stringify(apiConfig.body) : undefined
+                    body: config.body ? JSON.stringify(config.body) : undefined
                 });
                 
+                console.log('Response status:', response.status);
+                
                 if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
+                    const errorText = await response.text();
+                    console.error('API Error Response:', errorText);
+                    throw new Error(`HTTP error! status: ${response.status} - ${errorText}`);
                 }
                 
                 const data = await response.json();
+                console.log('API Success Response:', data);
                 onApiSuccess?.(data);
             } catch (error) {
                 console.error('API call failed:', error);
@@ -79,9 +93,10 @@ export const Button: React.FC<ButtonProps> = ({
             } finally {
                 setIsLoading(false);
             }
+        } else {
+            // Only call onClick if there's no API config
+            onClick?.();
         }
-        
-        onClick?.();
     };
     
     return (

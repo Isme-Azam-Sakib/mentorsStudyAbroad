@@ -1,6 +1,7 @@
 "use client";
 
 import { VideoSection } from '@/components/VideoSection';
+import { ClientOnly } from '@/components/ClientOnly';
 
 // Event Gallery Data
 const eventGalleryData = [
@@ -77,7 +78,9 @@ export default function GalleryPage() {
             </section>
 
             {/* Mentors&apos; Videos Section */}
-            <VideoSection />
+            <ClientOnly>
+                <VideoSection />
+            </ClientOnly>
 
 
         </div>

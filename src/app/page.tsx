@@ -6,6 +6,7 @@ import { getEventsApiUrl } from '@/lib/config';
 import { ProcessCard } from '@/components/ProcessCard';
 import { ContactForm } from '@/components/ContactForm';
 import { VideoSection } from '@/components/VideoSection';
+import { ClientOnly } from '@/components/ClientOnly';
 import FAQSection from '@/components/FAQSection';
 import LazySection from '@/components/LazySection';
 import LazyImage from '@/components/LazyImage';
@@ -66,6 +67,9 @@ export default function HomePage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
+    // Only run on client side to avoid hydration mismatch
+    if (typeof window === 'undefined') return;
+
     let ticking = false;
 
     const handleScroll = () => {
@@ -100,6 +104,9 @@ export default function HomePage() {
 
   // Admission process scroll behavior
   useEffect(() => {
+    // Only run on client side to avoid hydration mismatch
+    if (typeof window === 'undefined') return;
+
     const handleAdmissionScroll = () => {
       if (!admissionProcessRef.current) return;
 
@@ -382,21 +389,25 @@ export default function HomePage() {
 
       {/* Latest Events Section */}
       <LazySection delay={0.5}>
-        <LatestEventsSection
-          apiUrl={getEventsApiUrl()}
-          title={
-            <>
-              What&apos;s <span className="text-my-accent relative">latest</span> right now
-            </>
-          }
-          maxEvents={3}
-          autoRotateInterval={3000}
-        />
+        <ClientOnly>
+          <LatestEventsSection
+            apiUrl={getEventsApiUrl()}
+            title={
+              <>
+                What&apos;s <span className="text-my-accent relative">latest</span> right now
+              </>
+            }
+            maxEvents={3}
+            autoRotateInterval={3000}
+          />
+        </ClientOnly>
       </LazySection>
 
       {/* Video Section */}
       <LazySection delay={0.6}>
-        <VideoSection />
+        <ClientOnly>
+          <VideoSection />
+        </ClientOnly>
       </LazySection>
 
       {/* FAQ Section */}

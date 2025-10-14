@@ -1,12 +1,14 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { AdmissionProcess } from '../../../components/AdmissionProcess';
 import { ProcessCard } from '@/components/ProcessCard';
 import { ContactForm } from '@/components/ContactForm';
 import { CountryStats } from '@/components/CountryStats';
 import { UniversitiesSection } from '@/components/UniversitiesSection';
 import { VideoSection } from '@/components/VideoSection';
+import { ClientOnly } from '@/components/ClientOnly';
+import { useBrowserExtensionFix } from '@/hooks/useBrowserExtensionFix';
 import LazySection from '@/components/LazySection';
 import LazyImage from '@/components/LazyImage';
 import PageLoader from '@/components/PageLoader';
@@ -39,6 +41,14 @@ export default function CountryPageClient({ country, countryKey }: CountryPageCl
   const whyChooseItems = country?.whyChoose || [];
   const [, setIsPageLoaded] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  // Use the custom hook to handle browser extension attributes
+  useBrowserExtensionFix();
 
   // Helper function to get the appropriate visa success component
   const getVisaSuccessComponent = () => {
@@ -65,6 +75,11 @@ export default function CountryPageClient({ country, countryKey }: CountryPageCl
     const countryLower = countryKey.toLowerCase();
     return ['australia', 'usa', 'uk', 'canada', 'malaysia'].includes(countryLower);
   };
+
+  // Don't render until mounted to prevent hydration mismatches
+  if (!isMounted) {
+    return null;
+  }
 
   return (
     <>
@@ -170,11 +185,13 @@ export default function CountryPageClient({ country, countryKey }: CountryPageCl
 
       {/* Videos Section - Country-specific videos */}
       <LazySection delay={0.65}>
-        <VideoSection 
-          country={countryKey}
-          title={`${country.name} Study Abroad`}
-          subtitle={`Watch videos from students and experts about studying in ${country.name}`}
-        />
+        <ClientOnly>
+          <VideoSection 
+            country={countryKey}
+            title={`${country.name} Study Abroad`}
+            subtitle={`Watch videos from students and experts about studying in ${country.name}`}
+          />
+        </ClientOnly>
       </LazySection>
 
       {/* Visa Success Stories Section - Conditional Rendering */}
