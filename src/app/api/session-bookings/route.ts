@@ -1,40 +1,53 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getSessionBookingsApiUrl } from '@/lib/config';
+import { validateFormData, sanitizeInput, secureLog } from '@/lib/security';
 
 export async function POST(request: NextRequest) {
   try {
     const formData = await request.json();
     
-    // Validate required fields
-    const { full_name, email, mobile_no, country_name, preferred_course, year } = formData;
-    
-    if (!full_name || !email || !mobile_no) {
+    // Validate and sanitize all input data
+    const validation = validateFormData(formData);
+    if (!validation.isValid) {
+      return NextResponse.json(
+        { error: 'Validation failed', details: validation.errors },
+        { status: 400 }
+      );
+    }
+
+    // Sanitize all inputs
+    const sanitizedData = {
+      full_name: sanitizeInput(formData.full_name || ''),
+      email: sanitizeInput(formData.email || ''),
+      mobile_no: sanitizeInput(formData.mobile_no || ''),
+      country_name: sanitizeInput(formData.country_name || ''),
+      preferred_course: sanitizeInput(formData.preferred_course || ''),
+      year: sanitizeInput(formData.year || '')
+    };
+
+    // Check required fields after sanitization
+    if (!sanitizedData.full_name || !sanitizedData.email || !sanitizedData.mobile_no) {
       return NextResponse.json(
         { error: 'Missing required fields' },
         { status: 400 }
       );
     }
 
-    // Validate email format
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      return NextResponse.json(
-        { error: 'Invalid email format' },
-        { status: 400 }
-      );
-    }
-
     // Transform data to match the external API format
     const apiPayload = {
-      full_name,
-      email,
-      mobile_no,
-      country_name,
-      preferred_course,
-      year
+      full_name: sanitizedData.full_name,
+      email: sanitizedData.email,
+      mobile_no: sanitizedData.mobile_no,
+      country_name: sanitizedData.country_name,
+      preferred_course: sanitizedData.preferred_course,
+      year: sanitizedData.year
     };
 
-    console.log('Form Data:', apiPayload);
+    // Use secure logging instead of console.log
+    secureLog('Session booking request received', { 
+      hasData: !!apiPayload.full_name,
+      country: apiPayload.country_name 
+    });
 
 
     const externalApiUrl = getSessionBookingsApiUrl();
@@ -49,16 +62,25 @@ export async function POST(request: NextRequest) {
 
     if (!response.ok) {
       const errorText = await response.text();
-
+      
+      // Log error securely without exposing sensitive details
+      secureLog('External API error', { 
+        status: response.status,
+        hasErrorText: !!errorText 
+      }, 'error');
       
       return NextResponse.json(
-        { error: 'Failed to submit to external API', details: errorText },
+        { error: 'Failed to submit to external API' },
         { status: response.status }
       );
     }
 
     const responseData = await response.json();
 
+    // Log success securely
+    secureLog('Session booking submitted successfully', { 
+      success: true 
+    });
 
     return NextResponse.json(
       { 

@@ -1,24 +1,33 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { validateFormData, sanitizeInput, secureLog } from '@/lib/security';
 
 export async function POST(request: NextRequest) {
   try {
     const formData = await request.json();
     
-    // Validate required fields
-    const { fullName, email, mobile, country, course, year } = formData;
-    
-    if (!fullName || !email || !mobile) {
+    // Validate and sanitize all input data
+    const validation = validateFormData(formData);
+    if (!validation.isValid) {
       return NextResponse.json(
-        { error: 'Missing required fields' },
+        { error: 'Validation failed', details: validation.errors },
         { status: 400 }
       );
     }
 
-    // Validate email format
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
+    // Sanitize all inputs
+    const sanitizedData = {
+      fullName: sanitizeInput(formData.fullName || ''),
+      email: sanitizeInput(formData.email || ''),
+      mobile: sanitizeInput(formData.mobile || ''),
+      country: sanitizeInput(formData.country || ''),
+      course: sanitizeInput(formData.course || ''),
+      year: sanitizeInput(formData.year || '')
+    };
+
+    // Check required fields after sanitization
+    if (!sanitizedData.fullName || !sanitizedData.email || !sanitizedData.mobile) {
       return NextResponse.json(
-        { error: 'Invalid email format' },
+        { error: 'Missing required fields' },
         { status: 400 }
       );
     }
@@ -29,11 +38,11 @@ export async function POST(request: NextRequest) {
     // 3. Integrate with CRM system
     // 4. Send to external API
     
-    // Example: Log the data (replace with your actual storage logic)
-    console.log('New contact form submission:', {
-      ...formData,
-      submittedAt: new Date().toISOString(),
-      ip: request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'unknown'
+    // Use secure logging instead of console.log
+    secureLog('New contact form submission', {
+      hasData: !!sanitizedData.fullName,
+      country: sanitizedData.country,
+      submittedAt: new Date().toISOString()
     });
 
     // Example: Save to database (uncomment and modify as needed)
@@ -61,7 +70,9 @@ export async function POST(request: NextRequest) {
     );
 
   } catch (error) {
-    console.error('Contact form error:', error);
+    secureLog('Contact form error', { 
+      error: error instanceof Error ? error.message : 'Unknown error' 
+    }, 'error');
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }

@@ -5,6 +5,7 @@ import { CustomRadio } from './CustomRadio';
 import { Button } from './Button';
 import { CustomInput } from './CustomInput';
 import { getConsultationRequestApiUrl } from '@/lib/config';
+import { validateFormData, sanitizeInput, secureLog } from '@/lib/security';
 
 interface FormData {
     country: string;
@@ -135,19 +136,45 @@ export const StudyAbroadModal: React.FC<StudyAbroadModalProps> = ({ isOpen, onCl
         setErrorMessage('');
         
         try {
+            // Validate and sanitize form data (only if we have actual data)
+            if (formData.fullName && formData.email) {
+                const validation = validateFormData(formData as unknown as { [key: string]: unknown });
+                if (!validation.isValid) {
+                    setErrorMessage('Please check your input and try again.');
+                    setSubmitStatus('error');
+                    return;
+                }
+            }
+
+            // Sanitize all inputs
+            const sanitizedData = {
+                country: sanitizeInput(formData.country),
+                intake: sanitizeInput(formData.intake),
+                level: sanitizeInput(formData.level),
+                subject: sanitizeInput(formData.subject),
+                fullName: sanitizeInput(formData.fullName),
+                email: sanitizeInput(formData.email),
+                phone: sanitizeInput(formData.phone),
+                nearestBranch: sanitizeInput(formData.nearestBranch)
+            };
+
             const payload = {
-                country: formData.country.toUpperCase(),
-                intake_month: formData.intake,
-                education_level: formData.level.charAt(0).toUpperCase() + formData.level.slice(1),
-                subject: formData.subject,
-                full_name: formData.fullName,
-                email: formData.email,
-                phone: formData.phone,
-                branch_name: getBranchName(formData.nearestBranch),
+                country: sanitizedData.country.toUpperCase(),
+                intake_month: sanitizedData.intake,
+                education_level: sanitizedData.level.charAt(0).toUpperCase() + sanitizedData.level.slice(1),
+                subject: sanitizedData.subject,
+                full_name: sanitizedData.fullName,
+                email: sanitizedData.email,
+                phone: sanitizedData.phone,
+                branch_name: getBranchName(sanitizedData.nearestBranch),
                 consent: formData.consent
             };
             
-            console.log('Sending payload:', payload);
+            // Use secure logging instead of console.log
+            secureLog('Consultation request submission', { 
+                hasData: !!payload.full_name,
+                country: payload.country 
+            });
             
             const response = await fetch(getConsultationRequestApiUrl(), {
                 method: 'POST',
@@ -162,7 +189,7 @@ export const StudyAbroadModal: React.FC<StudyAbroadModalProps> = ({ isOpen, onCl
             }
 
             const result = await response.json();
-            console.log('Form submitted successfully:', result);
+            secureLog('Consultation request submitted successfully', { success: true });
             setSubmitStatus('success');
             
             // Close modal after a short delay to show success message
@@ -186,7 +213,9 @@ export const StudyAbroadModal: React.FC<StudyAbroadModalProps> = ({ isOpen, onCl
             }, 2000);
 
         } catch (error) {
-            console.error('Form submission failed:', error);
+            secureLog('Form submission failed', { 
+                error: error instanceof Error ? error.message : 'Unknown error' 
+            }, 'error');
             setSubmitStatus('error');
             setErrorMessage(error instanceof Error ? error.message : 'An unexpected error occurred. Please try again.');
         } finally {

@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { CustomInput } from './CustomInput';
 import { Button } from './Button';
 import { getSessionBookingsApiUrl } from '@/lib/config';
+import { validateFormData, sanitizeInput, secureLog } from '@/lib/security';
 
 interface ContactFormProps {
   countryName?: string;
@@ -44,7 +45,7 @@ export function ContactForm({ countryName, countryValue }: ContactFormProps) {
   };
 
   const handleApiSuccess = (response: unknown) => {
-    console.log('Form submitted successfully:', response);
+    secureLog('Form submitted successfully', { success: true });
     setSubmitStatus('success');
     setErrorMessage('');
     
@@ -60,19 +61,31 @@ export function ContactForm({ countryName, countryValue }: ContactFormProps) {
   };
 
   const handleApiError = (error: unknown) => {
-    console.error('Form submission failed:', error);
+    secureLog('Form submission failed', { 
+      error: error instanceof Error ? error.message : 'Unknown error' 
+    }, 'error');
     setSubmitStatus('error');
     setErrorMessage('Failed to submit your request. Please try again.');
   };
 
-  const getApiPayload = () => ({
-    full_name: formData.fullName,
-    email: formData.email,
-    mobile_no: formData.mobile,
-    country_name: formData.country,
-    preferred_course: formData.course,
-    year: formData.year
-  });
+  const getApiPayload = () => {
+    // Only validate if we have actual form data (not during SSR)
+    if (typeof window !== 'undefined' && formData.fullName) {
+      const validation = validateFormData(formData as unknown as { [key: string]: unknown });
+      if (!validation.isValid) {
+        throw new Error('Form validation failed');
+      }
+    }
+
+    return {
+      full_name: sanitizeInput(formData.fullName),
+      email: sanitizeInput(formData.email),
+      mobile_no: sanitizeInput(formData.mobile),
+      country_name: sanitizeInput(formData.country),
+      preferred_course: sanitizeInput(formData.course),
+      year: sanitizeInput(formData.year)
+    };
+  };
 
   return (
     <div className="lg:sticky lg:top-0 lg:h-screen lg:flex lg:items-center ml-0 sm:ml-8 lg:ml-24">
