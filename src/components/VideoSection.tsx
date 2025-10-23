@@ -154,7 +154,7 @@ const videosData = [
 
 interface VideoSectionProps {
   className?: string;
-  title?: string;
+  title?: React.ReactNode;
   subtitle?: string;
   country?: string; 
 }

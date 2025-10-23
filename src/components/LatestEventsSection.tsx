@@ -72,11 +72,12 @@ interface LatestEventsSectionProps {
 export default function LatestEventsSection({
     apiUrl,
     title = "What&apos;s latest right now",
-    maxEvents = 3,
+    maxEvents = 5,
     autoRotateInterval = 3000,
     className = ""
 }: LatestEventsSectionProps) {
     const [activeIdx, setActiveIdx] = useState(0);
+    const [thumbnailStartIdx, setThumbnailStartIdx] = useState(0);
     const hoverRef = useRef<HTMLDivElement>(null);
     const [currentTime, setCurrentTime] = useState<number>(0);
 
@@ -84,6 +85,7 @@ export default function LatestEventsSection({
     const [events, setEvents] = useState<ApiEvent[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
+    const [imagesLoaded, setImagesLoaded] = useState<Set<string>>(new Set());
 
     // Set current time on client mount to avoid hydration mismatch
     useEffect(() => {
@@ -117,6 +119,40 @@ export default function LatestEventsSection({
         .slice(0, maxEvents)
         .map(transformApiEventToEventItem);
 
+    // Preload images when events data changes
+    useEffect(() => {
+        const preloadImages = async () => {
+            const imagePromises = latestEventsData.flatMap((event) => [
+                // Preload main image
+                new Promise<void>((resolve) => {
+                    const img = new Image();
+                    img.onload = () => {
+                        setImagesLoaded(prev => new Set([...prev, event.image]));
+                        resolve();
+                    };
+                    img.onerror = () => resolve();
+                    img.src = event.image;
+                }),
+                // Preload thumbnail
+                new Promise<void>((resolve) => {
+                    const img = new Image();
+                    img.onload = () => {
+                        setImagesLoaded(prev => new Set([...prev, event.thumb]));
+                        resolve();
+                    };
+                    img.onerror = () => resolve();
+                    img.src = event.thumb;
+                })
+            ]);
+            
+            await Promise.all(imagePromises);
+        };
+
+        if (latestEventsData.length > 0) {
+            preloadImages();
+        }
+    }, [latestEventsData]);
+
     // Auto-rotate every 3 seconds; pause when hovering over the section
     useEffect(() => {
         let isHovered = false;
@@ -139,19 +175,19 @@ export default function LatestEventsSection({
     }, [latestEventsData, autoRotateInterval]);
 
     const activeEvent = useMemo(() => latestEventsData[activeIdx] || null, [activeIdx, latestEventsData]);
-    const [textHidden, setTextHidden] = useState(false);
-    const [imageHidden, setImageHidden] = useState(false);
 
-    // Trigger smooth animations on change
-    useEffect(() => {
-        setTextHidden(true);
-        setImageHidden(true);
-        const t = setTimeout(() => {
-            setTextHidden(false);
-            setImageHidden(false);
-        }, 150);
-        return () => clearTimeout(t);
-    }, [activeIdx]);
+    // Navigation functions for active event
+    const nextEvent = () => {
+        setActiveIdx((prev) => (prev + 1) % latestEventsData.length);
+    };
+
+    const prevEvent = () => {
+        setActiveIdx((prev) => (prev - 1 + latestEventsData.length) % latestEventsData.length);
+    };
+
+    const visibleThumbnails = latestEventsData.slice(0, Math.min(5, latestEventsData.length));
+
+    // No transition effects - instant switching
 
     return (
             <div ref={hoverRef} className={`py-12 sm:py-16 lg:py-20 bg-my-white ${className}`}>
@@ -192,68 +228,120 @@ export default function LatestEventsSection({
                 )}
 
                 {!loading && !error && latestEventsData.length > 0 && activeEvent && (
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-12 items-center">
-                        {/* Left: Thumbnails + Content */}
-                        <div className="flex flex-col justify-center space-y-4 sm:space-y-6 order-2 lg:order-1 min-h-[400px] sm:min-h-auto">
-                            {/* Mobile: Single row thumbnails */}
-                            <div className="flex flex-row gap-3 sm:gap-4 lg:gap-6 justify-center sm:justify-start">
-                                {latestEventsData.map((evt, idx) => {
-                                    const isActive = idx === activeIdx;
-                                    // Check if this event is upcoming by finding the corresponding API event
-                                    const apiEvent = events.find(e => e.id === evt.id);
-                                    const isUpcoming = apiEvent && currentTime ? isEventUpcoming(apiEvent.date, currentTime) : false;
-                                    
-                                    return (
-                                        <button
-                                            key={evt.id}
-                                            onClick={() => setActiveIdx(idx)}
-                                            className={`relative group rounded-lg sm:rounded-xl overflow-hidden focus:outline-none transition-all duration-500 ease-in-out transform ${isActive ? 'ring-2 sm:ring-3 ring-red-500 -translate-y-1 sm:-translate-y-2 shadow-lg scale-105' : 'ring-1 ring-gray-200 hover:scale-102 hover:-translate-y-1 hover:shadow-md'} `}
-                                            aria-label={`Show ${evt.title}`}
-                                        >
-                                            <img
-                                                src={evt.thumb}
-                                                alt={evt.title}
-                                                className={`h-20 w-24 sm:h-24 sm:w-32 lg:h-28 lg:w-40 object-cover transition-all duration-500 ease-in-out ${isActive ? 'brightness-100' : 'brightness-75 blur-[1px]'} `}
-                                            />
-                                            {!isActive && (
-                                                <span className="absolute inset-0 bg-black/20 transition-all duration-300 ease-in-out" />
-                                            )}
-                                            {isUpcoming && (
-                                                <div className="absolute top-1 left-1 sm:top-2 sm:left-2 bg-my-black group-hover:bg-my-accent transition-all duration-300 ease-in-out text-white text-xs font-semibold px-1.5 py-0.5 sm:px-2 sm:py-1 rounded-full shadow-md">
-                                                    Upcoming
-                                                </div>
-                                            )}
-                                        </button>
-                                    );
-                                })}
-                            </div>
-
-                            <div className={`space-y-3 sm:space-y-4 transition-opacity duration-500 ease-in-out ${textHidden ? 'opacity-0' : 'opacity-100'}`}>
-                                <h3 className="text-xl sm:text-2xl font-semibold text-my-black leading-tight">
-                                    {activeEvent.title}
-                                </h3>
-                                <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
-                                    {activeEvent.description}
-                                </p>
-                                <Link 
-                                    href={`/events/${activeEvent.id}`} 
-                                    className="inline-block bg-my-white text-my-black border border-my-black px-4 sm:px-6 py-2 sm:py-3 hover:bg-my-black hover:text-my-white rounded-full transition-all duration-300 ease-in-out transform hover:scale-105 text-sm sm:text-base"
+                    <div className="space-y-8 sm:space-y-10 lg:space-y-12">
+                        {/* Thumbnail Carousel Section */}
+                        <div className="flex flex-col items-center space-y-4">
+                            {/* Navigation Arrows + Thumbnails */}
+                            <div className="flex items-center gap-4">
+                                {/* Left Arrow */}
+                                <button
+                                    onClick={prevEvent}
+                                    className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 rounded-full border-2 border-my-black flex items-center justify-center hover:bg-my-black hover:text-my-white transition-all duration-300"
+                                    aria-label="Previous event"
                                 >
-                                    View Details
-                                </Link>
+                                    <i className="fi fi-rr-angle-small-left text-sm sm:text-base"></i>
+                                </button>
+
+                                {/* Thumbnails */}
+                                <div className="flex flex-row gap-3 sm:gap-4 lg:gap-6 justify-center">
+                                    {visibleThumbnails.map((evt, idx) => {
+                                        const isActive = idx === activeIdx;
+                                        // Check if this event is upcoming by finding the corresponding API event
+                                        const apiEvent = events.find(e => e.id === evt.id);
+                                        const isUpcoming = apiEvent && currentTime ? isEventUpcoming(apiEvent.date, currentTime) : false;
+                                        
+                                        return (
+                                            <button
+                                                key={evt.id}
+                                                onClick={() => {
+                                                    if (idx !== activeIdx) {
+                                                        setActiveIdx(idx);
+                                                    }
+                                                }}
+                                                className={`relative group rounded-lg sm:rounded-xl overflow-hidden focus:outline-none transition-all duration-500 ease-in-out transform ${isActive ? 'ring-2 sm:ring-3 ring-red-500 -translate-y-1 sm:-translate-y-2 shadow-lg scale-105' : 'ring-1 ring-gray-200 hover:scale-102 hover:-translate-y-1 hover:shadow-md'} `}
+                                                aria-label={`Show ${evt.title}`}
+                                            >
+                                                <img
+                                                    src={evt.thumb}
+                                                    alt={evt.title}
+                                                    className={`h-20 w-24 sm:h-24 sm:w-32 lg:h-28 lg:w-40 object-cover transition-all duration-500 ease-in-out ${isActive ? 'brightness-100' : 'brightness-75 blur-[1px]'} `}
+                                                    loading="lazy"
+                                                    style={{ 
+                                                        opacity: imagesLoaded.has(evt.thumb) ? 1 : 0.7,
+                                                        transition: 'opacity 0.3s ease-in-out'
+                                                    }}
+                                                />
+                                                {!isActive && (
+                                                    <span className="absolute inset-0 bg-black/20 transition-all duration-300 ease-in-out" />
+                                                )}
+                                                {isUpcoming && (
+                                                    <div className="absolute top-1 left-1 sm:top-2 sm:left-2 bg-my-black group-hover:bg-my-accent transition-all duration-300 ease-in-out text-white text-xs font-semibold px-1.5 py-0.5 sm:px-2 sm:py-1 rounded-full shadow-md">
+                                                        Upcoming
+                                                    </div>
+                                                )}
+                                            </button>
+                                        );
+                                    })}
+                                </div>
+
+                                {/* Right Arrow */}
+                                <button
+                                    onClick={nextEvent}
+                                    className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 rounded-full border-2 border-my-black flex items-center justify-center hover:bg-my-black hover:text-my-white transition-all duration-300"
+                                    aria-label="Next event"
+                                >
+                                    <i className="fi fi-rr-angle-small-right text-sm sm:text-base"></i>
+                                </button>
                             </div>
                         </div>
 
-                        {/* Right: Large Image */}
-                        <div className="flex justify-center lg:justify-end order-1 lg:order-2">
-                            <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl lg:rounded-[48px] w-full max-w-sm sm:max-w-md lg:max-w-xl">
-                                <img
-                                    key={activeEvent.id}
-                                    src={activeEvent.image}
-                                    alt={activeEvent.title}
-                                    className={`w-full h-auto object-cover transition-opacity duration-500 ease-in-out ${imageHidden ? 'opacity-0' : 'opacity-100'}`}
-                                />
+                        {/* Main Content Section */}
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-12 items-center">
+                            {/* Left: Event Details */}
+                            <div className="order-2 lg:order-1">
+                                <div className="space-y-3 sm:space-y-4">
+                                    <h3 className="text-xl sm:text-2xl font-semibold text-my-black leading-tight">
+                                        {activeEvent.title}
+                                    </h3>
+                                    <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
+                                        {activeEvent.description}
+                                    </p>
+                                    <Link 
+                                        href={`/events/${activeEvent.id}`} 
+                                        className="inline-block bg-my-white text-my-black border border-my-black px-4 sm:px-6 py-2 sm:py-3 hover:bg-my-black hover:text-my-white rounded-full transition-all duration-300 ease-in-out transform hover:scale-105 text-sm sm:text-base"
+                                    >
+                                        View Details
+                                    </Link>
+                                </div>
                             </div>
+
+                            {/* Right: Large Image */}
+                            <div className="flex justify-center lg:justify-end order-1 lg:order-2">
+                                <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl lg:rounded-[48px] w-full max-w-sm sm:max-w-md lg:max-w-xl aspect-[16/9]">
+                                    {latestEventsData.map((event, index) => (
+                                        <img
+                                            key={event.id}
+                                            src={event.image}
+                                            alt={event.title}
+                                            className={`w-full h-full object-cover absolute inset-0 ${
+                                                index === activeIdx ? 'opacity-100' : 'opacity-0'
+                                            }`}
+                                            loading="eager"
+                                            style={{ transition: 'opacity 0.2s ease-in-out' }}
+                                        />
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* View All Events Button */}
+                        <div className="flex justify-center">
+                            <Link 
+                                href="/events" 
+                                className="inline-block bg-my-white text-my-black border border-my-black px-6 sm:px-8 py-3 sm:py-4 hover:bg-my-black hover:text-my-white rounded-full transition-all duration-300 ease-in-out transform hover:scale-105 text-sm sm:text-base font-medium"
+                            >
+                                View All Events
+                            </Link>
                         </div>
                     </div>
                 )}

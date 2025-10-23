@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from 'react';
+import Link from 'next/link';
 import LatestEventsSection from '@/components/LatestEventsSection';
 import { getEventsApiUrl } from '@/lib/config';
 import { ProcessCard } from '@/components/ProcessCard';
@@ -14,6 +15,7 @@ import PageLoader from '@/components/PageLoader';
 import { Button } from '@/components/Button';
 import { StudyAbroadModal } from '@/components/StudyAbroadModal';
 import { testimonialsData } from '@/lib/testimonials-data';
+import CTA from '@/components/CTA';
 
 const admissionSteps = [
   {
@@ -104,7 +106,6 @@ export default function HomePage() {
 
   // Admission process scroll behavior
   useEffect(() => {
-    // Only run on client side to avoid hydration mismatch
     if (typeof window === 'undefined') return;
 
     const handleAdmissionScroll = () => {
@@ -142,59 +143,57 @@ export default function HomePage() {
   return (
     <>
       {/* Hero Section */}
-      <LazySection delay={0.2}>
-        <div className="relative">
-          {/* Hero Background */}
-          <div
-            className="absolute inset-0 w-full h-auto bg-cover bg-center bg-no-repeat"
-            style={{
-              backgroundImage: "url('/hero background.png')"
-            }}
-          />
+      <div className="relative">
+        {/* Hero Background */}
+        <div
+          className="absolute inset-0 w-full h-auto bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: "url('/hero background.png')"
+          }}
+        />
 
-          {/* Hero Content */}
-          <div className="relative z-10 flex items-center">
-            <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 pt-20 sm:pt-24 lg:pt-32 my-16 sm:my-24 lg:my-32">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-center">
-                {/* Left Column - Text and Buttons */}
-                <div className="text-center lg:text-left order-2 lg:order-1">
-                  <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-my-black mb-4 sm:mb-5 lg:mb-6 leading-tight">
-                    Achieve your global dreams with <span className="text-my-accent relative">Mentors’ Study Abroad</span>
+        {/* Hero Content */}
+        <div className="relative z-10 flex items-center">
+          <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 pt-20 sm:pt-24 lg:pt-32 my-16 sm:my-24 lg:my-32">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-center">
+              {/* Left Column - Text and Buttons */}
+              <div className="text-center lg:text-left order-2 lg:order-1">
+                <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-my-black mb-4 sm:mb-5 lg:mb-6 leading-tight">
+                  Achieve your global dreams with <span className="text-my-accent relative">Mentors’ Study Abroad</span>
 
-                  </h1>
-                  <p className="text-base sm:text-lg text-gray-600 mb-6 sm:mb-7 lg:mb-8 leading-relaxed">
-                    Expert guidance, top universities, personalized support
-                  </p>
-                  <div className="flex flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
-                    <Button variant="outline" onClick={() => setIsModalOpen(true)} className="text-sm sm:text-base">
-                      Free Expert Consultation <i className="fi fi-sr-meeting-alt"></i>
-                    </Button>
+                </h1>
+                <p className="text-base sm:text-lg text-gray-600 mb-6 sm:mb-7 lg:mb-8 leading-relaxed">
+                  Expert guidance, top universities, personalized support
+                </p>
+                <div className="flex flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
+                  <Button variant="outline" onClick={() => setIsModalOpen(true)} className="text-sm sm:text-base">
+                    Free Expert Consultation <i className="fi fi-sr-meeting-alt"></i>
+                  </Button>
 
-                    <button className="bg-my-black text-my-white border border-my-white px-4 py-3 hover:bg-my-white hover:text-my-black hover:border-my-black hover:border-1 rounded-full transition-all duration-300 text-sm sm:text-base">
-                      Download Brochure <i className="fi fi-sr-file-pdf"></i>
-                    </button>
-                  </div>
+                  <button className="bg-my-black text-my-white border border-my-white px-4 py-3 hover:bg-my-white hover:text-my-black hover:border-my-black hover:border-1 rounded-full transition-all duration-300 text-sm sm:text-base">
+                    Download Brochure <i className="fi fi-sr-file-pdf"></i>
+                  </button>
                 </div>
+              </div>
 
-                {/* Right Column - Hero Image */}
-                <div className="flex justify-center lg:justify-end order-1 lg:order-2">
-                  <div className="relative">
-                    <img
-                      src="/hero-home.png"
-                      alt="Events, workshops and webinars"
-                      className="max-w-full h-auto max-h-[300px] sm:max-h-[400px] lg:max-h-[500px] object-contain"
-                    />
-                  </div>
+              {/* Right Column - Hero Image */}
+              <div className="flex justify-center lg:justify-end order-1 lg:order-2">
+                <div className="relative">
+                  <img
+                    src="/hero-home.png"
+                    alt="Events, workshops and webinars"
+                    className="max-w-full h-auto max-h-[300px] sm:max-h-[400px] lg:max-h-[500px] object-contain"
+                  />
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </LazySection>
+      </div>
 
 
       {/* Why Choose us Section */}
-      <LazySection delay={0.4}>
+      <LazySection delay={0.2}>
         <div className="py-16 bg-my-white">
           <div className="max-w-7xl mx-auto px-4">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -237,10 +236,10 @@ export default function HomePage() {
       </LazySection>
 
       {/* Admission Process Section */}
-      <LazySection delay={0.3}>
-        <div ref={admissionProcessRef} className="w-full bg-white min-h-[120vh] sm:min-h-[140vh] lg:min-h-[150vh] mb-24 sm:mb-32 lg:mb-48">
+      <LazySection delay={0.2}>
+        <div ref={admissionProcessRef} className="w-full bg-white min-h-[120vh] sm:min-h-[140vh] lg:min-h-[150vh] mb-12 sm:mb-16 lg:mb-20">
           <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 w-full">
-            <div className="text-center mb-8 sm:mb-10 lg:mb-12">
+            <div className="text-center">
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-my-black mb-3 sm:mb-4">
                 <span className="text-my-accent relative">Admission</span> Process
               </h2>
@@ -290,8 +289,8 @@ export default function HomePage() {
       </LazySection>
 
       {/* Testimonials Section */}
-      <LazySection delay={0.4}>
-        <div className="py-12 sm:py-14 lg:py-16 bg-my-white relative mt-24 sm:mt-32 lg:mt-48">
+      <LazySection delay={0.2}>
+        <div className="py-12 sm:py-14 lg:py-16 bg-my-white relative">
           <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-12 items-center">
               {/* Left Column - Heading and Navigation */}
@@ -349,7 +348,20 @@ export default function HomePage() {
 
                           {/* Testimonial Text */}
                           <blockquote className="text-lg sm:text-xl lg:text-2xl xl:text-3xl text-my-black leading-relaxed mb-6 sm:mb-7 lg:mb-8 font-light">
-                            {testimonial.text}
+                            {testimonial.text.length > 365
+                              ? (
+                                <>
+                                  {testimonial.text.substring(0, 365)}...
+                                  <Link
+                                    href="/success-stories"
+                                    className="text-my-accent hover:text-my-accent/80 transition-colors duration-300 ml-1"
+                                  >
+                                    View More
+                                  </Link>
+                                </>
+                              )
+                              : testimonial.text
+                            }
                           </blockquote>
 
                           {/* Author Info */}
@@ -387,8 +399,18 @@ export default function HomePage() {
         </div>
       </LazySection>
 
+
+      <LazySection delay={0.2}>
+        <CTA
+          title="1 step away from your study abroad dream"
+          subtitle="Just click the button below, follow the instruction and we’ll take it from there"
+          buttonText="Click to get started"
+          buttonOnClick={() => {/* your action */ }}
+        />
+      </LazySection>
+      {/* Google Tag Manager (noscript) */}
       {/* Latest Events Section */}
-      <LazySection delay={0.5}>
+      <LazySection delay={0.2}>
         <ClientOnly>
           <LatestEventsSection
             apiUrl={getEventsApiUrl()}
@@ -397,22 +419,36 @@ export default function HomePage() {
                 What&apos;s <span className="text-my-accent relative">latest</span> right now
               </>
             }
-            maxEvents={3}
-            autoRotateInterval={3000}
+            maxEvents={5}
+            autoRotateInterval={5000}
           />
         </ClientOnly>
       </LazySection>
 
       {/* Video Section */}
-      <LazySection delay={0.6}>
+      <LazySection delay={0.2}>
         <ClientOnly>
           <VideoSection />
         </ClientOnly>
       </LazySection>
 
       {/* FAQ Section */}
-      <LazySection delay={0.7}>
+      <LazySection delay={0.2}>
         <FAQSection />
+      </LazySection>
+
+      {/* CTA Section */}
+      <LazySection delay={0.2}>
+        <div className="py-16 bg-gray-50">
+          <div className="max-w-7xl mx-auto px-4">
+            <CTA
+              title="1 step away from your study abroad dream"
+              subtitle="Just click the button below, follow the instruction and we'll take it from there"
+              buttonText="Click to get started"
+              buttonOnClick={() => setIsModalOpen(true)}
+            />
+          </div>
+        </div>
       </LazySection>
 
       {/* Study Abroad Modal */}

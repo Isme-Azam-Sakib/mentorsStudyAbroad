@@ -51,9 +51,9 @@ export const AdmissionProcess: React.FC = () => {
   }, []);
 
   return (
-    <div ref={containerRef} className="w-full bg-white min-h-screen mb-96">
+    <div ref={containerRef} className="w-full bg-white min-h-screen mb-60">
       <div className="max-w-7xl mx-auto px-4 w-full">
-        <div className="text-center mb-12">
+        <div className="text-center">
           <h2 className="text-4xl font-bold text-my-black mb-4">
             <span className="text-my-accent relative">Admission</span> Process
           </h2>
@@ -64,7 +64,7 @@ export const AdmissionProcess: React.FC = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           {/* Left Column - Steps */}
-          <div className="space-y-8">
+          <div className="space-y-1">
             {admissionSteps.map((step, index) => (
               <div
                 key={index}
@@ -93,7 +93,7 @@ export const AdmissionProcess: React.FC = () => {
             <div className="relative">
               <div className="w-full h-auto  overflow-hidden">
                 <img
-                  src="/admission-process.png"
+                  src="/services/hero-service.png"
                   alt="Admission process counseling session"
                   className="w-full h-full object-cover"
                 />

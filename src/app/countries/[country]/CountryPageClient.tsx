@@ -188,9 +188,13 @@ export default function CountryPageClient({ country, countryKey }: CountryPageCl
         <ClientOnly>
           <VideoSection 
             country={countryKey}
-            title={`${country.name} Study Abroad`}
+            title={
+              <>
+                <span className="text-my-accent relative">{country.name}</span> Study Abroad Success Stories
+              </>
+            }
             subtitle={`Watch videos from students and experts about studying in ${country.name}`}
-          />
+          />  
         </ClientOnly>
       </LazySection>
 

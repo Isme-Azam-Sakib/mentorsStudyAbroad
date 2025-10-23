@@ -40,7 +40,7 @@ const servicesData = [
         id: 6,
         title: "Post-Admission Support",
         description: "We remain connected with our students and offer any support we can to them, long after they have taken our service and fly away to pursue their dream education abroad. We believe not only in providing services, but also in nurturing lifelong friendships with our students.",
-        image: "/services/service- (6).png"
+        image: "/services/hero-service.png"
     }
 ];
 
@@ -121,7 +121,7 @@ export default function Services() {
                             <div className="flex justify-center lg:justify-end order-1 lg:order-2">
                                 <div className="relative">
                                     <img
-                                        src="/hero-service.png"
+                                        src="/services/service- (6).png"
                                         alt="Events, workshops and webinars"
                                         className="max-w-full h-auto max-h-[300px] sm:max-h-[400px] lg:max-h-[500px] object-contain"
                                     />

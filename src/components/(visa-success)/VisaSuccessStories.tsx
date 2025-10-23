@@ -207,11 +207,11 @@ export default function VisaSuccessStories({
                   {/* Visa Success Card */}
                   <div className="bg-white rounded-4xl border border-my-black/10 shadow-xl max-w-4xl mx-auto relative">
                     {/* Desktop Layout: Two Columns */}
-                    <div className="hidden lg:flex min-h-[200px] mt-32">
+                    <div className="hidden lg:flex min-h-[400px] relative">
                       {/* Left Column - Student Image with Breakout Effect */}
-                      <div className="relative w-[450px] flex-shrink-0 overflow-visible">
-                        {/* Student Photo - Extends above card and anchored to bottom */}
-                        <div className="absolute bottom-0 left-0 h-[450px] overflow-visible rounded-lg">
+                      <div className="relative w-[400px] flex-shrink-0 -mt-16 -mb-16">
+                        {/* Student Photo - Extends beyond card boundaries vertically */}
+                        <div className="absolute -top-20 left-0 h-[700px] w-[400px] overflow-visible">
                           {!imageErrors[story.id] ? (
                             <LazyImage
                               src={story.image}

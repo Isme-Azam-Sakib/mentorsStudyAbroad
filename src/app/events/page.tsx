@@ -179,7 +179,7 @@ export default function EventsPage() {
                             <div className="flex justify-center lg:justify-end order-1 lg:order-2">
                                 <div className="relative">
                                     <img
-                                        src="/event-photographer.png"
+                                        src="/event_page_hero.png"
                                         alt="Events, workshops and webinars"
                                         className="max-w-full h-auto max-h-[300px] sm:max-h-[400px] lg:max-h-[500px] object-contain"
                                     />
@@ -190,7 +190,7 @@ export default function EventsPage() {
                 </div>
             </div>
 
-            <LazySection delay={0.4}>
+            <LazySection delay={0.2}>
                 {/* Latest Events Section */}
                 <LatestEventsSection
                     apiUrl={getEventsApiUrl()}
@@ -199,13 +199,13 @@ export default function EventsPage() {
                             What&apos;s <span className="text-my-accent relative">latest</span> right now
                         </>
                     }
-                    maxEvents={3}
-                    autoRotateInterval={3000}
+                    maxEvents={5}
+                    autoRotateInterval={5000}
                 />
             </LazySection>
 
 
-            <LazySection delay={0.3}>
+            <LazySection delay={0.2}>
                 {/* Filterable Events Section */}
                 <div className="py-12 sm:py-16 lg:py-20 bg-white">
                     <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6">
@@ -331,7 +331,7 @@ export default function EventsPage() {
                 </div>
             </LazySection>
 
-            <LazySection delay={0.4}>
+            <LazySection delay={0.2}>
                 {/* Event Gallery - Masonry Grid */}
                 <div className="py-12 sm:py-16 lg:py-20 bg-my-white">
                     <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6">
