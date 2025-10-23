@@ -437,20 +437,6 @@ export default function HomePage() {
         <FAQSection />
       </LazySection>
 
-      {/* CTA Section */}
-      <LazySection delay={0.2}>
-        <div className="py-16 bg-gray-50">
-          <div className="max-w-7xl mx-auto px-4">
-            <CTA
-              title="1 step away from your study abroad dream"
-              subtitle="Just click the button below, follow the instruction and we'll take it from there"
-              buttonText="Click to get started"
-              buttonOnClick={() => setIsModalOpen(true)}
-            />
-          </div>
-        </div>
-      </LazySection>
-
       {/* Study Abroad Modal */}
       <StudyAbroadModal
         isOpen={isModalOpen}
