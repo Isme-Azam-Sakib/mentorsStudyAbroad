@@ -16,6 +16,10 @@ import { Button } from '@/components/Button';
 import { StudyAbroadModal } from '@/components/StudyAbroadModal';
 import { testimonialsData } from '@/lib/testimonials-data';
 import CTA from '@/components/CTA';
+import ChooseDestination from '@/components/ChooseDestination';
+import FilterableEventsSection from '@/components/FilterableEventsSection';
+import UniversitiesSection from '@/components/UniversitiesSection';
+import { CountryStats } from '@/components/CountryStats';
 
 const admissionSteps = [
   {
@@ -167,7 +171,7 @@ export default function HomePage() {
                 </p>
                 <div className="flex flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
                   <Button variant="outline" onClick={() => setIsModalOpen(true)} className="text-sm sm:text-base">
-                    Free Expert Consultation <i className="fi fi-sr-meeting-alt"></i>
+                    Book A Free Consultation <i className="fi fi-sr-meeting-alt"></i>
                   </Button>
 
                   <button className="bg-my-black text-my-white border border-my-white px-4 py-3 hover:bg-my-white hover:text-my-black hover:border-my-black hover:border-1 rounded-full transition-all duration-300 text-sm sm:text-base">
@@ -190,7 +194,9 @@ export default function HomePage() {
           </div>
         </div>
       </div>
-
+      <LazySection delay={0.2}>
+        <CountryStats isHomepage={true} />
+      </LazySection>
 
       {/* Why Choose us Section */}
       <LazySection delay={0.2}>
@@ -219,7 +225,7 @@ export default function HomePage() {
               </div>
 
               {/* Right Column - Fixed Image */}
-              <div className="lg:sticky lg:top-8 translate-y-50">
+              <div className="lg:sticky lg:top-8 lg:translate-y-50">
                 <div className="relative">
                   <div className="w-full h-auto  overflow-hidden">
                     <img
@@ -235,9 +241,14 @@ export default function HomePage() {
         </div>
       </LazySection>
 
+      {/* Choose Destination Section */}
+      <LazySection delay={0.2}>
+        <ChooseDestination />
+      </LazySection>
+
       {/* Admission Process Section */}
       <LazySection delay={0.2}>
-        <div ref={admissionProcessRef} className="w-full bg-white min-h-[120vh] sm:min-h-[140vh] lg:min-h-[150vh] mb-12 sm:mb-16 lg:mb-20">
+        <div ref={admissionProcessRef} className="w-full bg-white min-h-[120vh] sm:mb-16">
           <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 w-full">
             <div className="text-center">
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-my-black mb-3 sm:mb-4">
@@ -249,20 +260,20 @@ export default function HomePage() {
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-12 items-start">
-              {/* Left Column - Admission Steps */}
+              {/* Left Column - Admission Steps (Commented Out Scrolling Behavior) */}
               <div className="space-y-4 sm:space-y-6 lg:space-y-8">
                 {admissionSteps.map((step, index) => (
                   <div
                     key={index}
-                    className={`transition-all duration-500 ${index <= admissionActiveStep
-                      ? 'opacity-100 transform translate-y-16 sm:translate-y-24 lg:translate-y-32'
-                      : 'opacity-10 transform translate-y-32 sm:translate-y-48 lg:translate-y-64'
-                      }`}
-                    style={{
-                      position: index <= admissionActiveStep ? 'sticky' : 'relative',
-                      top: index <= admissionActiveStep ? `${index * 60}px` : 'auto',
-                      zIndex: index + 1
-                    }}
+                    // className={`transition-all duration-500 ${index <= admissionActiveStep
+                    //   ? 'opacity-100 transform translate-y-16 sm:translate-y-24 lg:translate-y-32'
+                    //   : 'opacity-10 transform translate-y-32 sm:translate-y-48 lg:translate-y-64'
+                    //   }`}
+                    // style={{
+                    //   position: index <= admissionActiveStep ? 'sticky' : 'relative',
+                    //   top: index <= admissionActiveStep ? `${index * 60}px` : 'auto',
+                    //   zIndex: index + 1
+                    // }}
                   >
                     <ProcessCard
                       title={step.title}
@@ -288,13 +299,17 @@ export default function HomePage() {
         </div>
       </LazySection>
 
+      {/* <LazySection delay={0.2}>
+        <UniversitiesSection />
+      </LazySection> */}
+
       {/* Testimonials Section */}
       <LazySection delay={0.2}>
         <div className="py-12 sm:py-14 lg:py-16 bg-my-white relative">
           <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-12 items-center">
               {/* Left Column - Heading and Navigation */}
-              <div className="order-2 lg:order-1">
+              <div className="order-1 lg:order-1">
                 <div className="mb-6 sm:mb-7 lg:mb-8 text-center lg:text-left">
                   <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-my-black mb-3 sm:mb-4">
                     Mentors&apos; Study Abroad <span className="text-my-accent relative">Success Stories</span>
@@ -328,7 +343,7 @@ export default function HomePage() {
               </div>
 
               {/* Right Column - Testimonial Content */}
-              <div className="relative order-1 lg:order-2">
+              <div className="relative order-2 lg:order-2">
                 <div className="absolute -top-8 -left-4 sm:-top-12 sm:-left-6 lg:-top-16 lg:-left-8 z-20 pointer-events-none">
                   <LazyImage
                     src="/quotation.png"
@@ -399,7 +414,7 @@ export default function HomePage() {
         </div>
       </LazySection>
 
-
+      {/* CTA Section */}
       <LazySection delay={0.2}>
         <CTA
           title="1 step away from your study abroad dream"
@@ -408,22 +423,11 @@ export default function HomePage() {
           buttonOnClick={() => {/* your action */ }}
         />
       </LazySection>
-      {/* Google Tag Manager (noscript) */}
-      {/* Latest Events Section */}
+
       <LazySection delay={0.2}>
-        <ClientOnly>
-          <LatestEventsSection
-            apiUrl={getEventsApiUrl()}
-            title={
-              <>
-                What&apos;s <span className="text-my-accent relative">latest</span> right now
-              </>
-            }
-            maxEvents={5}
-            autoRotateInterval={5000}
-          />
-        </ClientOnly>
+        <FilterableEventsSection />
       </LazySection>
+
 
       {/* Video Section */}
       <LazySection delay={0.2}>

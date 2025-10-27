@@ -20,7 +20,7 @@ export const countriesData: Record<string, Country> = {
     name: "United States",
     description: "Known for world-class universities consistently ranked among the best globally",
     heroImage: "/country-hero-usa.png",
-    stats: { universities: "400+", annualTuitionFees: "$10K - $25K", successfulVisas: "600+", postStudyWork: "Up to 3 Years" },
+    stats: { universities: "60+", annualTuitionFees: "$10K - $25K", successfulVisas: "600+", postStudyWork: "Up to 3 Years" },
     universityLogos: [
       '/universities/usa/hofstra.png',
       '/universities/usa/long island university.png',

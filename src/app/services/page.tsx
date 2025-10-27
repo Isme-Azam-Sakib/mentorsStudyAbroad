@@ -108,7 +108,7 @@ export default function Services() {
                                 </p>
                                 <div className="flex flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
                                     <Button variant="outline" onClick={() => setIsModalOpen(true)} className="text-sm sm:text-base">
-                                        Free Expert Consultation <i className="fi fi-sr-meeting-alt"></i>
+                                        Book A Free Consultation <i className="fi fi-sr-meeting-alt"></i>
                                     </Button>
 
                                     <button className="bg-my-black text-my-white border border-my-white px-4 py-3 hover:bg-my-white hover:text-my-black hover:border-my-black hover:border-1 rounded-full transition-all duration-300 text-sm sm:text-base">

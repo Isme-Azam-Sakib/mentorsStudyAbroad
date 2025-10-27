@@ -1,17 +1,17 @@
 "use client";
 
-import { VisaSuccessStories } from '@/components/(visa-success)';
-import LazySection from '@/components/LazySection';
+import { useState } from 'react';
 import { Button } from '@/components/Button';
 import { StudyAbroadModal } from '@/components/StudyAbroadModal';
-import TestimonialsSection from '@/components/TestimonialsSection';
-import { useState } from 'react';
+import ChooseDestination from '@/components/ChooseDestination';
+import PageLoader from '@/components/PageLoader';
 
-export default function SuccessStoriesPage() {
+export default function CountriesPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-my-white">
+    <>
+        
       {/* Hero Section */}
       <div className="relative">
         {/* Hero Background */}
@@ -29,9 +29,11 @@ export default function SuccessStoriesPage() {
               {/* Left Column - Text and Buttons */}
               <div className="text-center lg:text-left order-2 lg:order-1">
                 <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-my-black mb-4 sm:mb-5 lg:mb-6 leading-tight">
-                  Real stories of <span className="text-my-accent relative">success</span> from our students who achieved their dreams of studying abroad.
+                  Choose your dream <span className="text-my-accent relative">destination</span>
                 </h1>
-                
+                <p className="text-base sm:text-lg text-gray-600 mb-6 sm:mb-7 lg:mb-8 leading-relaxed">
+                  Explore study opportunities in top countries around the world. From Australia to Japan, find your perfect study destination with our expert guidance.
+                </p>
                 <div className="flex flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
                   <Button variant="outline" onClick={() => setIsModalOpen(true)} className="text-sm sm:text-base">
                     Book A Free Consultation <i className="fi fi-sr-meeting-alt"></i>
@@ -47,8 +49,8 @@ export default function SuccessStoriesPage() {
               <div className="flex justify-center lg:justify-end order-1 lg:order-2">
                 <div className="relative">
                   <img
-                    src="/hero-success-stories.png"
-                    alt="Success stories and testimonials"
+                    src="/hero-home.png"
+                    alt="Study abroad destinations"
                     className="max-w-full h-auto max-h-[300px] sm:max-h-[400px] lg:max-h-[500px] object-contain"
                   />
                 </div>
@@ -58,21 +60,14 @@ export default function SuccessStoriesPage() {
         </div>
       </div>
 
-      {/* What Students Say About Us Section */}
-      <LazySection delay={0.3}>
-        <TestimonialsSection />
-      </LazySection>
-
-      {/* Visa Success Stories with Filter */}
-      <LazySection delay={0.4}>
-        <VisaSuccessStories showFilter={true} />
-      </LazySection>
+      {/* Choose Destination Section */}
+      <ChooseDestination />
 
       {/* Study Abroad Modal */}
       <StudyAbroadModal 
         isOpen={isModalOpen} 
         onClose={() => setIsModalOpen(false)} 
       />
-    </div>
+    </>
   );
 }
