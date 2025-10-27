@@ -131,8 +131,8 @@ export default function VisaSuccessStories({
   }
 
   return (
-    <div className={`py-16 bg-my-white ${className}`} suppressHydrationWarning>
-      <div className="max-w-7xl mx-auto px-4" suppressHydrationWarning>
+    <div className={`py-16 bg-my-white ${className}`}>
+      <div className="max-w-7xl mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-12">
           <h2 className="text-3xl lg:text-4xl font-bold text-my-black mb-4">
@@ -162,7 +162,7 @@ export default function VisaSuccessStories({
         )}
 
         {/* Stories Carousel */}
-        <div className="relative" suppressHydrationWarning>
+        <div className="relative">
           {/* Navigation Arrows */}
           {filteredStories.length > 1 && (
             <>
@@ -189,13 +189,12 @@ export default function VisaSuccessStories({
           )}
 
           {/* Story Cards Container */}
-          <div className="overflow-hidden" suppressHydrationWarning>
+          <div className="overflow-hidden">
             <div
               className="flex transition-transform duration-500 ease-in-out"
               style={{
                 transform: `translateX(-${currentIndex * 100}%)`
               }}
-              suppressHydrationWarning
             >
               {filteredStories.map((story: VisaSuccessStory, index: number) => (
                 <div

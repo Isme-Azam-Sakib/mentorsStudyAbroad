@@ -10,16 +10,14 @@ export function CountryStats({ countryKey, isHomepage = false }: CountryStatsPro
   const homepageStats = {
     universities: "200+",
     annualTuitionFees: "19+ Years",
-    successfulVisas: "10,000+",
-    postStudyWork: "" // Empty for homepage
+    successfulVisas: "10,000+"
   };
 
   // Homepage labels (only 3 items)
   const homepageLabels = {
     universities: "Partner Universities",
     annualTuitionFees: "Years of Experience",
-    successfulVisas: "Success Stories",
-    postStudyWork: "" // Empty for homepage
+    successfulVisas: "Success Stories"
   };
 
   // Country-specific stats (all 4 items)
@@ -78,10 +76,10 @@ export function CountryStats({ countryKey, isHomepage = false }: CountryStatsPro
                 {!isHomepage && (
                   <div className="text-center">
                     <div className="text-gray-500 text-xs font-medium mb-1">
-                      {labels.postStudyWork}
+                      {countryLabels.postStudyWork}
                     </div>
                     <div className="text-xl font-bold text-black">
-                      {stats.postStudyWork}
+                      {countryStats.postStudyWork}
                     </div>
                   </div>
                 )}
@@ -174,10 +172,10 @@ export function CountryStats({ countryKey, isHomepage = false }: CountryStatsPro
                     {/* Post Study Work */}
                     <div className="text-left">
                       <div className="text-gray-500 text-sm font-medium mb-2">
-                        {labels.postStudyWork}
+                        {countryLabels.postStudyWork}
                       </div>
                       <div className="text-2xl font-bold text-black">
-                        {stats.postStudyWork}
+                        {countryStats.postStudyWork}
                       </div>
                     </div>
                   </div>
@@ -232,10 +230,10 @@ export function CountryStats({ countryKey, isHomepage = false }: CountryStatsPro
                   {/* Post Study Work */}
                   <div className="text-left">
                     <div className="text-gray-500 text-sm font-medium mb-2">
-                      {labels.postStudyWork}
+                      {countryLabels.postStudyWork}
                     </div>
                     <div className="text-3xl xl:text-3xl font-bold text-black">
-                      {stats.postStudyWork}
+                      {countryStats.postStudyWork}
                     </div>
                   </div>
                 </>

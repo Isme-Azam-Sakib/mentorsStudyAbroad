@@ -19,7 +19,7 @@ const onest = Onest({
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning={true}>
       <head>
         {/* Google Tag Manager */}
         <script
@@ -34,54 +34,31 @@ new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.cr
         <script
           dangerouslySetInnerHTML={{
             __html: `
-              // Remove browser extension attributes that cause hydration mismatches
+              // Handle browser extension attributes that cause hydration mismatches
               (function() {
-                const removeExtensionAttributes = () => {
-                  const elements = document.querySelectorAll('[bis_skin_checked]');b
-                  elements.forEach(el => {
-                    el.removeAttribute('bis_skin_checked');
-                  });
+                // Wait for React to hydrate before cleaning up
+                const cleanup = () => {
+                  // Remove problematic attributes that extensions add
+                  if (document.documentElement.hasAttribute('webcrx')) {
+                    document.documentElement.removeAttribute('webcrx');
+                  }
+                  if (document.body.hasAttribute('bis_skin_checked')) {
+                    document.body.removeAttribute('bis_skin_checked');
+                  }
                 };
 
-                // Run immediately when DOM is ready
-                if (document.readyState === 'loading') {
-                  document.addEventListener('DOMContentLoaded', removeExtensionAttributes);
+                // Run cleanup after React hydration
+                if (document.readyState === 'complete') {
+                  setTimeout(cleanup, 200);
                 } else {
-                  removeExtensionAttributes();
-                }
-
-                // Use MutationObserver to watch for new attributes added by extensions
-                const observer = new MutationObserver((mutations) => {
-                  mutations.forEach((mutation) => {
-                    if (mutation.type === 'attributes' && mutation.attributeName === 'bis_skin_checked') {
-                      const target = mutation.target;
-                      if (target.hasAttribute('bis_skin_checked')) {
-                        target.removeAttribute('bis_skin_checked');
-                      }
-                    }
-                  });
-                });
-
-                // Start observing when DOM is ready
-                const startObserver = () => {
-                  observer.observe(document.body, {
-                    attributes: true,
-                    attributeFilter: ['bis_skin_checked'],
-                    subtree: true
-                  });
-                };
-
-                if (document.readyState === 'loading') {
-                  document.addEventListener('DOMContentLoaded', startObserver);
-                } else {
-                  startObserver();
+                  window.addEventListener('load', () => setTimeout(cleanup, 200));
                 }
               })();
             `,
           }}
         />
       </head>
-      <body className={onest.variable} suppressHydrationWarning={true} >
+      <body className={onest.variable} suppressHydrationWarning={true}>
         {/* Google Tag Manager (noscript) */}
         <noscript>
           <iframe
