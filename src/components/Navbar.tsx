@@ -87,7 +87,8 @@ export default function Navbar() {
             {/* Right Side - Button */}
             <div className="w-full sm:w-auto">
               <Link
-                href="/contact"
+                href="https://mentorslearning.com/"
+                target="_blank"
                 className="block w-full sm:w-auto bg-my-black border-my-white text-white border border-1 px-4 sm:px-6 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-medium hover:bg-my-white hover:text-my-black transition-all duration-300 text-center"
               >
                 Claim Free Courses
@@ -284,7 +285,9 @@ export default function Navbar() {
             {/* Claim Free Courses Button */}
             <div className="mb-4">
               <Link
-                href="/contact"
+                href="https://mentorslearning.com/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="block w-full bg-my-black text-white px-6 py-3 rounded-full text-sm font-medium hover:bg-my-accent transition-all duration-300 text-center"
                 onClick={() => setIsMobileMenuOpen(false)}
               >

@@ -147,7 +147,7 @@ export default function CountryPageClient({ country, countryKey }: CountryPageCl
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {/* Left Column - Why Choose Content */}
               <div>
-                <div className="mb-12">
+                <div className="mb-12 text-center">
                   <h2 className="text-3xl lg:text-4xl font-bold text-my-black mb-4">
                     <span className="text-my-accent relative">Why</span> {country.name}?
                   </h2>

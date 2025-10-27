@@ -8,6 +8,7 @@ import Footer from "../components/Footer";
 import { ContactFormSection } from "../components/contactFormSection";
 import type { ReactNode } from "react";
 import { Onest } from "next/font/google";
+import { ContactFormSectionButton } from "../components/ContactFormSectionButton";
 
 
 const onest = Onest({
@@ -95,7 +96,7 @@ new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.cr
         <main className="pt-[120px] sm:pt-[140px]">
           {children}
         </main>
-        <ContactFormSection />
+        <ContactFormSectionButton />
         <Footer />
       </body>
     </html>

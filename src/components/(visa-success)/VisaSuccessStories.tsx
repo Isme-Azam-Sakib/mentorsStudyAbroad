@@ -203,14 +203,10 @@ export default function VisaSuccessStories({
                   className="w-full flex-shrink-0 px-4"
                   style={{ width: '100%' }}
                 >
-                  {/* Visa Success Card */}
-                  <div className="bg-white rounded-4xl border border-my-black/10 shadow-xl max-w-4xl mx-auto relative">
-                    {/* Desktop Layout: Two Columns */}
+                  <div className="bg-white rounded-4xl border border-my-black/10 shadow-xl max-w-4xl md:max-w-2xl lg:max-w-4xl mx-auto relative">
                     <div className="hidden lg:flex min-h-[400px] relative">
-                      {/* Left Column - Student Image with Breakout Effect */}
                       <div className="relative w-[400px] flex-shrink-0 -mt-16 -mb-16">
                       </div>
-                      {/* Student Photo - Extends beyond card boundaries vertically */}
                       <div className="absolute bottom-0 left-0 h-full w-auto overflow-visible">
                         {!imageErrors[story.id] ? (
                           <LazyImage
@@ -228,14 +224,12 @@ export default function VisaSuccessStories({
 
                       {/* Right Column - Content */}
                       <div className="flex-1 p-10">
-                        {/* Description */}
                         <div className="mb-6">
                           <p className="text-lg text-gray-700 leading-relaxed">
                             Meet <span className="text-red-600 font-semibold">{story.name}</span>, {story.description}
                           </p>
                         </div>
 
-                        {/* Student Info with Icons */}
                         <div className="space-y-3">
                           <div className="flex items-center gap-2">
                             <i className="fi fi-sr-building text-my-accent text-sm"></i>
@@ -262,19 +256,18 @@ export default function VisaSuccessStories({
                         </div>
                       </div>
                     </div>
-
-                    {/* Mobile/Tablet Layout: Single Column */}
+                    
+                    {/* Mobile Layout */}
                     <div className="lg:hidden flex flex-col">
                       {/* Top Section - Content */}
                       <div className="flex-shrink-0 p-6 sm:p-8">
-                        {/* Description */}
+
                         <div className="mb-6">
                           <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
                             Meet <span className="text-red-600 font-semibold">{story.name}</span>, {story.description}
                           </p>
                         </div>
 
-                        {/* Student Info with Icons */}
                         <div className="space-y-3">
                           <div className="flex items-center gap-2">
                             <i className="fi fi-sr-building text-my-accent text-sm"></i>
@@ -289,7 +282,7 @@ export default function VisaSuccessStories({
                               <span className="font-semibold">Country:</span> {story.country}
                             </p>
                           </div>
-                          
+
                           {/* 
                           {story.scholarship && (
                             <div className="flex items-center gap-2">
@@ -308,11 +301,11 @@ export default function VisaSuccessStories({
                           <LazyImage
                             src={story.image}
                             alt={story.name}
-                            className="w-full h-auto object-contain "
+                            className="w-full h-auto md:h-[50%] md:w-auto object-contain"
                             onError={() => handleImageError(story.id)}
                           />
                         ) : (
-                          <div className="w-full h-[300px] bg-my-accent text-white flex items-center justify-center font-bold text-lg">
+                          <div className="w-full h-[300px] md:h-[50%] bg-my-accent text-white flex items-center justify-center font-bold text-lg">
                             {getInitials(story.name)}
                           </div>
                         )}
