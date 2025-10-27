@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo } from 'react';
+import Image from 'next/image';
 import { countriesData } from '@/lib/countries-data';
 
 export function UniversitiesSection() {
@@ -65,7 +66,13 @@ function MarqueeRow({ logos, speedMs, reverse = false }: { logos: string[]; spee
             >
                 {items.map((src, idx) => (
                     <div key={`${src}-${idx}`} className="shrink-0 rounded-lg sm:rounded-xl lg:rounded-2xl bg-white border border-gray-200 px-2 py-2 sm:px-6 sm:py-4 lg:px-8 lg:py-6 shadow-[0_1px_0_rgba(0,0,0,0.02)]">
-                        <img src={src} alt="University logo" className="h-10 sm:h-12 md:h-14 lg:h-20 w-auto object-contain" />
+                        <Image 
+                            src={src} 
+                            alt="University logo" 
+                            width={80}
+                            height={80}
+                            className="h-10 sm:h-12 md:h-14 lg:h-20 w-auto object-contain" 
+                        />
                     </div>
                 ))}
             </div>

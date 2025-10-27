@@ -76,10 +76,10 @@ export function CountryStats({ countryKey, isHomepage = false }: CountryStatsPro
                 {!isHomepage && (
                   <div className="text-center">
                     <div className="text-gray-500 text-xs font-medium mb-1">
-                      {labels.postStudyWork}
+                      {countryLabels.postStudyWork}
                     </div>
                     <div className="text-xl font-bold text-black">
-                      {stats.postStudyWork}
+                      {countryStats.postStudyWork}
                     </div>
                   </div>
                 )}
@@ -172,10 +172,10 @@ export function CountryStats({ countryKey, isHomepage = false }: CountryStatsPro
                     {/* Post Study Work */}
                     <div className="text-left">
                       <div className="text-gray-500 text-sm font-medium mb-2">
-                        {labels.postStudyWork}
+                        {countryLabels.postStudyWork}
                       </div>
                       <div className="text-2xl font-bold text-black">
-                        {stats.postStudyWork}
+                        {countryStats.postStudyWork}
                       </div>
                     </div>
                   </div>
@@ -230,10 +230,10 @@ export function CountryStats({ countryKey, isHomepage = false }: CountryStatsPro
                   {/* Post Study Work */}
                   <div className="text-left">
                     <div className="text-gray-500 text-sm font-medium mb-2">
-                      {labels.postStudyWork}
+                      {countryLabels.postStudyWork}
                     </div>
                     <div className="text-3xl xl:text-3xl font-bold text-black">
-                      {stats.postStudyWork}
+                      {countryStats.postStudyWork}
                     </div>
                   </div>
                 </>

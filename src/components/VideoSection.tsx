@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 
 // Helper function to extract YouTube video ID from URL
 const getYouTubeVideoId = (url: string): string => {
@@ -81,14 +82,14 @@ const videosData = [
         country: "australia"
     },
     {
-        id: 6,
-        youtubeUrl: "https://youtu.be/lTr9IHK31BY?si=tzenpX9k3-sF5IV7",
-        country: "australia"
-    },
-    {
         id: 5,
         youtubeUrl: "https://youtube.com/shorts/bLo7eX5WDBM?si=ORJ4_4YJ5iqeZUWn",
         country: "uk"
+    },
+    {
+        id: 6,
+        youtubeUrl: "https://youtu.be/lTr9IHK31BY?si=tzenpX9k3-sF5IV7",
+        country: "australia"
     },
     {
         id: 7,
@@ -241,7 +242,7 @@ export function VideoSection({
         }, 3000); // Auto-scroll every 3 seconds
 
         return () => clearInterval(interval);
-    }, [isAutoScrolling, screenSize, filteredVideos.length, videosPerView]);
+    }, [isAutoScrolling, screenSize, filteredVideos.length, videosPerView, nextVideo]);
 
     // Touch event handlers for swipe functionality
     const handleTouchStart = (e: React.TouchEvent) => {
@@ -324,7 +325,7 @@ export function VideoSection({
                             onTouchMove={handleTouchMove}
                             onTouchEnd={handleTouchEnd}
                         >
-                             {filteredVideos.map((video, index) => (
+                             {filteredVideos.map((video, _index) => (
                                  <div key={video.id} className={`flex-shrink-0 px-2 sm:px-3 group ${
                                      screenSize === 'mobile' ? 'w-1/2' : 
                                      screenSize === 'tablet' ? 'w-1/3' : 
@@ -337,9 +338,11 @@ export function VideoSection({
                                      >
                                          <div className="relative h-full">
                                              {/* Video Thumbnail */}
-                                             <img
+                                             <Image
                                                  src={getVideoThumbnail(video.youtubeUrl)}
                                                  alt={`Video from ${video.country}`}
+                                                 width={300}
+                                                 height={533}
                                                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                                                  onError={(e) => {
                                                      const target = e.target as HTMLImageElement;

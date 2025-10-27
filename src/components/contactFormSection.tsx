@@ -18,7 +18,6 @@ export const ContactFormSection = () => {
         mobile_no: "",
         message: ""
     });
-    const [isAnimating, setIsAnimating] = useState(false);
     const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
     const [errorMessage, setErrorMessage] = useState('');
 
@@ -38,20 +37,16 @@ export const ContactFormSection = () => {
 
     const handleNext = () => {
         if (currentStep < steps.length - 1) {
-            setIsAnimating(true);
             setTimeout(() => {
                 setCurrentStep(prev => prev + 1);
-                setIsAnimating(false);
             }, 150);
         }
     };
 
     const handlePrevious = () => {
         if (currentStep > 0) {
-            setIsAnimating(true);
             setTimeout(() => {
                 setCurrentStep(prev => prev - 1);
-                setIsAnimating(false);
             }, 150);
         }
     };
@@ -118,7 +113,7 @@ export const ContactFormSection = () => {
                                      {/* Form Input Container with Sliding Animation */}
                                      <div className="relative flex transition-transform duration-300 ease-in-out"
                                           style={{ transform: `translateX(-${currentStep * 100}%)` }}>
-                                         {steps.map((step, index) => (
+                                         {steps.map((step, _index) => (
                                              <div key={step.key} className="w-full flex-shrink-0">
                                                  <label htmlFor={`${step.key}-input`} className="sr-only">
                                                      {step.label}
