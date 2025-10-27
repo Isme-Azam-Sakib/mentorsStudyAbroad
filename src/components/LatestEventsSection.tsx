@@ -80,6 +80,7 @@ export default function LatestEventsSection({
     const [thumbnailStartIdx, setThumbnailStartIdx] = useState(0);
     const hoverRef = useRef<HTMLDivElement>(null);
     const [currentTime, setCurrentTime] = useState<number>(0);
+    const [screenSize, setScreenSize] = useState<'mobile' | 'tablet' | 'desktop'>('desktop');
 
     // API data state
     const [events, setEvents] = useState<ApiEvent[]>([]);
@@ -93,6 +94,27 @@ export default function LatestEventsSection({
         if (typeof window !== 'undefined') {
             setCurrentTime(Date.now());
         }
+    }, []);
+
+    // Screen size detection
+    useEffect(() => {
+        if (typeof window === 'undefined') return;
+
+        const checkScreenSize = () => {
+            const width = window.innerWidth;
+            if (width < 768) {
+                setScreenSize('mobile');
+            } else if (width < 1024) {
+                setScreenSize('tablet');
+            } else {
+                setScreenSize('desktop');
+            }
+        };
+        
+        checkScreenSize();
+        window.addEventListener('resize', checkScreenSize);
+        
+        return () => window.removeEventListener('resize', checkScreenSize);
     }, []);
 
     // Fetch events data on component mount
@@ -144,7 +166,7 @@ export default function LatestEventsSection({
                     img.src = event.thumb;
                 })
             ]);
-            
+
             await Promise.all(imagePromises);
         };
 
@@ -185,12 +207,23 @@ export default function LatestEventsSection({
         setActiveIdx((prev) => (prev - 1 + latestEventsData.length) % latestEventsData.length);
     };
 
-    const visibleThumbnails = latestEventsData.slice(0, Math.min(5, latestEventsData.length));
+    // Show different number of thumbnails based on screen size
+    const getThumbnailCount = () => {
+        switch (screenSize) {
+            case 'mobile': return 3;
+            case 'tablet': return 4;
+            case 'desktop': return 5;
+            default: return 5;
+        }
+    };
+
+    const thumbnailCount = getThumbnailCount();
+    const visibleThumbnails = latestEventsData.slice(0, Math.min(thumbnailCount, latestEventsData.length));
 
     // No transition effects - instant switching
 
     return (
-            <div ref={hoverRef} className={`py-12 sm:py-16 lg:py-20 bg-my-white ${className}`}>
+        <div ref={hoverRef} className={`py-12 sm:py-16 lg:py-20 bg-my-white ${className}`}>
             <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6">
                 <div className="text-center mb-8 sm:mb-10 lg:mb-12">
                     <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-my-black mb-3 sm:mb-4">
@@ -249,7 +282,7 @@ export default function LatestEventsSection({
                                         // Check if this event is upcoming by finding the corresponding API event
                                         const apiEvent = events.find(e => e.id === evt.id);
                                         const isUpcoming = apiEvent && currentTime ? isEventUpcoming(apiEvent.date, currentTime) : false;
-                                        
+
                                         return (
                                             <button
                                                 key={evt.id}
@@ -266,7 +299,7 @@ export default function LatestEventsSection({
                                                     alt={evt.title}
                                                     className={`h-20 w-24 sm:h-24 sm:w-32 lg:h-28 lg:w-40 object-cover transition-all duration-500 ease-in-out ${isActive ? 'brightness-100' : 'brightness-75 blur-[1px]'} `}
                                                     loading="lazy"
-                                                    style={{ 
+                                                    style={{
                                                         opacity: imagesLoaded.has(evt.thumb) ? 1 : 0.7,
                                                         transition: 'opacity 0.3s ease-in-out'
                                                     }}
@@ -299,16 +332,75 @@ export default function LatestEventsSection({
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-12 items-center">
                             {/* Left: Event Details */}
                             <div className="order-2 lg:order-1">
-                                <div className="space-y-3 sm:space-y-4">
-                                    <h3 className="text-xl sm:text-2xl font-semibold text-my-black leading-tight">
+                                <div className="space-y-4 sm:space-y-5">
+                                    <h2 className="text-2xl sm:text-2xl lg:text-3xl font-semibold text-my-black leading-tight">
                                         {activeEvent.title}
-                                    </h3>
-                                    <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
-                                        {activeEvent.description}
-                                    </p>
-                                    <Link 
-                                        href={`/events/${activeEvent.id}`} 
-                                        className="inline-block bg-my-white text-my-black border border-my-black px-4 sm:px-6 py-2 sm:py-3 hover:bg-my-black hover:text-my-white rounded-full transition-all duration-300 ease-in-out transform hover:scale-105 text-sm sm:text-base"
+                                    </h2>
+
+                                    {/* Event Details */}
+                                    <div className="space-y-3">
+                                        {/* Date */}
+                                        {(() => {
+                                            const apiEvent = events.find(e => e.id === activeEvent.id);
+                                            if (apiEvent) {
+                                                const eventDate = new Date(apiEvent.date);
+                                                const formattedDate = eventDate.toLocaleDateString('en-US', {
+                                                    weekday: 'long',
+                                                    year: 'numeric',
+                                                    month: 'long',
+                                                    day: 'numeric'
+                                                });
+                                                return (
+                                                    <div className="flex items-center gap-3">
+                                                        <i className="fi fi-sr-calendar-clock text-my-accent text-xl"></i>
+
+                                                        <span className="text-sm sm:text-base text-gray-700 font-medium">
+                                                            {formattedDate}
+                                                        </span>
+                                                    </div>
+                                                );
+                                            }
+                                            return null;
+                                        })()}
+
+                                        {/* Time */}
+                                        {(() => {
+                                            const apiEvent = events.find(e => e.id === activeEvent.id);
+                                            if (apiEvent && apiEvent.time) {
+                                                return (
+                                                    <div className="flex items-center gap-3">
+                                                        <i className="fi fi-sr-time-quarter-to text-my-accent text-xl"></i>
+
+                                                        <span className="text-sm sm:text-base text-gray-700 font-medium">
+                                                            {apiEvent.time}
+                                                        </span>
+                                                    </div>
+                                                );
+                                            }
+                                            return null;
+                                        })()}
+
+                                        {/* Location */}
+                                        {(() => {
+                                            const apiEvent = events.find(e => e.id === activeEvent.id);
+                                            if (apiEvent && apiEvent.location) {
+                                                return (
+                                                    <div className="flex items-center gap-3">
+                                                        <i className="fi fi-ss-marker text-my-accent text-xl"></i>
+
+                                                        <span className="text-sm sm:text-base text-gray-700 font-medium">
+                                                            {apiEvent.location}
+                                                        </span>
+                                                    </div>
+                                                );
+                                            }
+                                            return null;
+                                        })()}
+                                    </div>
+
+                                    <Link
+                                        href={`/events/${activeEvent.id}`}
+                                        className="inline-block bg-my-accent text-white px-6 sm:px-8 py-3 sm:py-4 hover:bg-my-accent/90 rounded-full transition-all duration-300 ease-in-out transform hover:scale-105 text-sm sm:text-base font-semibold"
                                     >
                                         View Details
                                     </Link>
@@ -323,9 +415,8 @@ export default function LatestEventsSection({
                                             key={event.id}
                                             src={event.image}
                                             alt={event.title}
-                                            className={`w-full h-full object-cover absolute inset-0 ${
-                                                index === activeIdx ? 'opacity-100' : 'opacity-0'
-                                            }`}
+                                            className={`w-full h-full object-cover absolute inset-0 ${index === activeIdx ? 'opacity-100' : 'opacity-0'
+                                                }`}
                                             loading="eager"
                                             style={{ transition: 'opacity 0.2s ease-in-out' }}
                                         />
@@ -335,14 +426,14 @@ export default function LatestEventsSection({
                         </div>
 
                         {/* View All Events Button */}
-                        <div className="flex justify-center">
+                        {/* <div className="flex justify-center">
                             <Link 
                                 href="/events" 
                                 className="inline-block bg-my-white text-my-black border border-my-black px-6 sm:px-8 py-3 sm:py-4 hover:bg-my-black hover:text-my-white rounded-full transition-all duration-300 ease-in-out transform hover:scale-105 text-sm sm:text-base font-medium"
                             >
                                 View All Events
                             </Link>
-                        </div>
+                        </div> */}
                     </div>
                 )}
             </div>

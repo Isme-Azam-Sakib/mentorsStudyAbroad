@@ -81,12 +81,12 @@ const videosData = [
         country: "australia"
     },
     {
-        id: 5,
+        id: 6,
         youtubeUrl: "https://youtu.be/lTr9IHK31BY?si=tzenpX9k3-sF5IV7",
         country: "australia"
     },
     {
-        id: 6,
+        id: 5,
         youtubeUrl: "https://youtube.com/shorts/bLo7eX5WDBM?si=ORJ4_4YJ5iqeZUWn",
         country: "uk"
     },
@@ -170,11 +170,12 @@ export function VideoSection({
     const [screenSize, setScreenSize] = useState<'mobile' | 'tablet' | 'desktop'>('desktop');
     const [touchStart, setTouchStart] = useState<number | null>(null);
     const [touchEnd, setTouchEnd] = useState<number | null>(null);
+    const [isAutoScrolling, setIsAutoScrolling] = useState(true);
 
-    // Filter videos based on country
-    const filteredVideos = country 
+    // Filter videos based on country and limit to first 5 videos
+    const filteredVideos = (country 
         ? videosData.filter(video => video.country.toLowerCase() === country.toLowerCase())
-        : videosData;
+        : videosData).slice(0, 5);
 
     // Reset current video index when country changes
     useEffect(() => {
@@ -216,17 +217,38 @@ export function VideoSection({
     const maxIndex = Math.max(0, filteredVideos.length - videosPerView);
 
     const nextVideo = () => {
-        setCurrentVideoIndex((prev) => Math.min(prev + 1, maxIndex));
+        setCurrentVideoIndex((prev) => {
+            const next = prev + 1;
+            // Infinite scroll: if we reach the end, go back to start
+            return next > maxIndex ? 0 : next;
+        });
     };
 
     const prevVideo = () => {
-        setCurrentVideoIndex((prev) => Math.max(prev - 1, 0));
+        setCurrentVideoIndex((prev) => {
+            const prevIndex = prev - 1;
+            // Infinite scroll: if we go below 0, go to the last position
+            return prevIndex < 0 ? maxIndex : prevIndex;
+        });
     };
+
+    // Auto-scroll effect for mobile and tablet
+    useEffect(() => {
+        if (!isAutoScrolling || screenSize === 'desktop' || filteredVideos.length <= videosPerView) return;
+
+        const interval = setInterval(() => {
+            nextVideo();
+        }, 3000); // Auto-scroll every 3 seconds
+
+        return () => clearInterval(interval);
+    }, [isAutoScrolling, screenSize, filteredVideos.length, videosPerView]);
 
     // Touch event handlers for swipe functionality
     const handleTouchStart = (e: React.TouchEvent) => {
         setTouchEnd(null);
         setTouchStart(e.targetTouches[0].clientX);
+        // Pause auto-scroll when user starts touching
+        setIsAutoScrolling(false);
     };
 
     const handleTouchMove = (e: React.TouchEvent) => {
@@ -245,6 +267,11 @@ export function VideoSection({
         } else if (isRightSwipe) {
             prevVideo();
         }
+
+        // Resume auto-scroll after a delay
+        setTimeout(() => {
+            setIsAutoScrolling(true);
+        }, 2000);
     };
 
     // Don&apos;t render if no videos for the specified country
@@ -369,7 +396,14 @@ export function VideoSection({
                              {Array.from({ length: maxIndex + 1 }, (_, index) => (
                                  <button
                                      key={index}
-                                     onClick={() => setCurrentVideoIndex(index)}
+                                     onClick={() => {
+                                         setCurrentVideoIndex(index);
+                                         setIsAutoScrolling(false); // Pause auto-scroll when user clicks
+                                         // Resume auto-scroll after a delay
+                                         setTimeout(() => {
+                                             setIsAutoScrolling(true);
+                                         }, 3000);
+                                     }}
                                      className={`w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full transition-all duration-300 hover:scale-125 transform ${
                                          index === currentVideoIndex 
                                              ? 'bg-my-accent scale-125 shadow-lg' 

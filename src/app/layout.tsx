@@ -3,11 +3,12 @@ export const metadata = {
   description: "Explore study abroad opportunities and services.",
 };
 import "./globals.css";
-import Navbar from "../components/Navbar-sticky";
+import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { ContactFormSection } from "../components/contactFormSection";
 import type { ReactNode } from "react";
 import { Onest } from "next/font/google";
+
 
 const onest = Onest({
   subsets: ["latin"],
@@ -91,7 +92,7 @@ new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.cr
         </noscript>
         {/* End Google Tag Manager (noscript) */}
         <Navbar />
-        <main>
+        <main className="pt-[120px] sm:pt-[140px]">
           {children}
         </main>
         <ContactFormSection />

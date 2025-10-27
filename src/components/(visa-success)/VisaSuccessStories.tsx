@@ -10,10 +10,10 @@ interface VisaSuccessStoriesProps {
   className?: string;
 }
 
-export default function VisaSuccessStories({ 
-  country, 
-  showFilter = false, 
-  className = "" 
+export default function VisaSuccessStories({
+  country,
+  showFilter = false,
+  className = ""
 }: VisaSuccessStoriesProps) {
   const [selectedCountry, setSelectedCountry] = useState(country || 'all');
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -28,10 +28,10 @@ export default function VisaSuccessStories({
   }, []);
 
   const countries = ['all', 'australia', 'usa', 'uk', 'canada', 'malaysia'];
-  
+
   // Filter stories based on selected country
-  const filteredStories = selectedCountry === 'all' 
-    ? visaSuccessData 
+  const filteredStories = selectedCountry === 'all'
+    ? visaSuccessData
     : visaSuccessData.filter((story: VisaSuccessStory) => story.country.toLowerCase() === selectedCountry);
 
   // Auto-rotate stories with proper cleanup
@@ -150,11 +150,10 @@ export default function VisaSuccessStories({
               <button
                 key={countryName}
                 onClick={() => handleCountryChange(countryName)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                  selectedCountry === countryName
-                    ? 'bg-my-black text-white'
-                    : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-200'
-                }`}
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${selectedCountry === countryName
+                  ? 'bg-my-black text-white'
+                  : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-200'
+                  }`}
               >
                 {countryName === 'all' ? 'All Countries' : countryName.charAt(0).toUpperCase() + countryName.slice(1)}
               </button>
@@ -176,7 +175,7 @@ export default function VisaSuccessStories({
               >
                 <i className="fi fi-rr-arrow-small-left text-lg"></i>
               </button>
-              
+
               <button
                 onClick={nextStory}
                 onMouseEnter={() => setIsAutoPlaying(false)}
@@ -191,16 +190,16 @@ export default function VisaSuccessStories({
 
           {/* Story Cards Container */}
           <div className="overflow-hidden" suppressHydrationWarning>
-            <div 
+            <div
               className="flex transition-transform duration-500 ease-in-out"
-              style={{ 
+              style={{
                 transform: `translateX(-${currentIndex * 100}%)`
               }}
               suppressHydrationWarning
             >
               {filteredStories.map((story: VisaSuccessStory, index: number) => (
-                <div 
-                  key={`${story.id}-${index}`} 
+                <div
+                  key={`${story.id}-${index}`}
                   className="w-full flex-shrink-0 px-4"
                   style={{ width: '100%' }}
                 >
@@ -210,21 +209,21 @@ export default function VisaSuccessStories({
                     <div className="hidden lg:flex min-h-[400px] relative">
                       {/* Left Column - Student Image with Breakout Effect */}
                       <div className="relative w-[400px] flex-shrink-0 -mt-16 -mb-16">
-                        {/* Student Photo - Extends beyond card boundaries vertically */}
-                        <div className="absolute -top-20 left-0 h-[700px] w-[400px] overflow-visible">
-                          {!imageErrors[story.id] ? (
-                            <LazyImage
-                              src={story.image}
-                              alt={story.name}
-                              className="w-full h-full object-cover object-top overflow-visible"
-                              onError={() => handleImageError(story.id)}
-                            />
-                          ) : (
-                            <div className="w-full h-full bg-my-accent text-white flex items-center justify-center font-bold text-xl">
-                              {getInitials(story.name)}
-                            </div>
-                          )}
-                        </div>
+                      </div>
+                      {/* Student Photo - Extends beyond card boundaries vertically */}
+                      <div className="absolute bottom-0 left-0 h-full w-auto overflow-visible">
+                        {!imageErrors[story.id] ? (
+                          <LazyImage
+                            src={story.image}
+                            alt={story.name}
+                            className="w-full h-full object-cover object-top overflow-visible"
+                            onError={() => handleImageError(story.id)}
+                          />
+                        ) : (
+                          <div className="w-full h-full bg-my-accent text-white flex items-center justify-center font-bold text-xl">
+                            {getInitials(story.name)}
+                          </div>
+                        )}
                       </div>
 
                       {/* Right Column - Content */}
@@ -244,14 +243,14 @@ export default function VisaSuccessStories({
                               <span className="font-semibold">University:</span> {story.university}
                             </p>
                           </div>
-                          
+
                           <div className="flex items-center gap-2">
                             <i className="fi fi-ss-flag text-my-accent text-sm"></i>
                             <p className="text-base text-gray-700">
                               <span className="font-semibold">Country:</span> {story.country}
                             </p>
                           </div>
-                          
+
                           {story.scholarship && (
                             <div className="flex items-center gap-2">
                               <i className="fi fi-sr-award text-my-accent text-sm"></i>
@@ -283,7 +282,7 @@ export default function VisaSuccessStories({
                               <span className="font-semibold">University:</span> {story.university}
                             </p>
                           </div>
-                          
+
                           <div className="flex items-center gap-2">
                             <i className="fi fi-ss-flag text-my-accent text-sm"></i>
                             <p className="text-sm sm:text-base text-gray-700">
@@ -291,6 +290,7 @@ export default function VisaSuccessStories({
                             </p>
                           </div>
                           
+                          {/* 
                           {story.scholarship && (
                             <div className="flex items-center gap-2">
                               <i className="fi fi-sr-award text-my-accent text-sm"></i>
@@ -298,7 +298,7 @@ export default function VisaSuccessStories({
                                 <span className="font-semibold">Scholarship:</span> {story.scholarship}
                               </p>
                             </div>
-                          )}
+                          )} */}
                         </div>
                       </div>
 
@@ -331,9 +331,8 @@ export default function VisaSuccessStories({
                 <button
                   key={`dot-${index}`}
                   onClick={() => setCurrentIndex(index)}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                    index === currentIndex ? 'bg-my-accent' : 'bg-gray-300'
-                  }`}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentIndex ? 'bg-my-accent' : 'bg-gray-300'
+                    }`}
                   aria-label={`Go to story ${index + 1}`}
                 />
               ))}

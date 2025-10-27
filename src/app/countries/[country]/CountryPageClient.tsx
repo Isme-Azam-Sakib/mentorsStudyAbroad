@@ -14,12 +14,12 @@ import LazyImage from '@/components/LazyImage';
 import PageLoader from '@/components/PageLoader';
 import { Button } from '@/components/Button';
 import { StudyAbroadModal } from '@/components/StudyAbroadModal';
-import { 
-  AustraliaVisaSuccess, 
-  USAVisaSuccess, 
-  UKVisaSuccess, 
-  CanadaVisaSuccess, 
-  MalaysiaVisaSuccess 
+import {
+  AustraliaVisaSuccess,
+  USAVisaSuccess,
+  UKVisaSuccess,
+  CanadaVisaSuccess,
+  MalaysiaVisaSuccess
 } from '@/components/(visa-success)';
 
 interface Country {
@@ -53,7 +53,7 @@ export default function CountryPageClient({ country, countryKey }: CountryPageCl
   // Helper function to get the appropriate visa success component
   const getVisaSuccessComponent = () => {
     const countryLower = countryKey.toLowerCase();
-    
+
     switch (countryLower) {
       case 'australia':
         return <AustraliaVisaSuccess />;
@@ -107,10 +107,10 @@ export default function CountryPageClient({ country, countryKey }: CountryPageCl
                   <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-my-black mb-4 sm:mb-5 lg:mb-6 leading-tight">
                     <span className="text-my-accent relative">{country.name}</span> : {country.description}
                   </h1>
-                  
+
                   <div className="flex flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
                     <Button variant="outline" onClick={() => setIsModalOpen(true)} className="text-sm sm:text-base">
-                      Free Expert Consultation <i className="fi fi-sr-meeting-alt"></i>
+                      Book A Free Consultation <i className="fi fi-sr-meeting-alt"></i>
                     </Button>
 
                     <button className="bg-my-black text-my-white border border-my-white px-4 py-3 hover:bg-my-white hover:text-my-black hover:border-my-black hover:border-1 rounded-full transition-all duration-300 text-sm sm:text-base">
@@ -136,12 +136,12 @@ export default function CountryPageClient({ country, countryKey }: CountryPageCl
       </LazySection>
 
       {/* Country Statistics Section */}
-      <LazySection delay={0.3}>
+      <LazySection delay={0.2}>
         <CountryStats countryKey={countryKey} />
       </LazySection>
 
       {/* Why Choose Country Section */}
-      <LazySection delay={0.4}>
+      <LazySection delay={0.2}>
         <div className="py-16 bg-my-white">
           <div className="max-w-7xl mx-auto px-4">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -173,28 +173,30 @@ export default function CountryPageClient({ country, countryKey }: CountryPageCl
         </div>
       </LazySection>
 
+      {/* Universities Section */}
+      {/* <LazySection delay={0.6}>
+        <UniversitiesSection />
+      </LazySection> */}
+
       {/* Admission Process Section */}
-      <LazySection delay={0.5}>
+      <LazySection delay={0.2}>
         <AdmissionProcess />
       </LazySection>
 
-      {/* Universities Section */}
-      <LazySection delay={0.6}>
-        <UniversitiesSection />
-      </LazySection>
+
 
       {/* Videos Section - Country-specific videos */}
-      <LazySection delay={0.65}>
+      <LazySection delay={0.2}>
         <ClientOnly>
-          <VideoSection 
+          <VideoSection
             country={countryKey}
             title={
               <>
-                <span className="text-my-accent relative">{country.name}</span> Study Abroad Success Stories
+                <span className="text-my-accent relative">Hear</span> From Our Students
               </>
             }
             subtitle={`Watch videos from students and experts about studying in ${country.name}`}
-          />  
+          />
         </ClientOnly>
       </LazySection>
 
