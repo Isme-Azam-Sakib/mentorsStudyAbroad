@@ -10,14 +10,16 @@ export function CountryStats({ countryKey, isHomepage = false }: CountryStatsPro
   const homepageStats = {
     universities: "200+",
     annualTuitionFees: "19+ Years",
-    successfulVisas: "10,000+"
+    successfulVisas: "10,000+",
+    postStudyWork: "" // Empty for homepage
   };
 
   // Homepage labels (only 3 items)
   const homepageLabels = {
     universities: "Partner Universities",
     annualTuitionFees: "Years of Experience",
-    successfulVisas: "Success Stories"
+    successfulVisas: "Success Stories",
+    postStudyWork: "" // Empty for homepage
   };
 
   // Country-specific stats (all 4 items)
