@@ -8,7 +8,7 @@ stages:
   # - deploy-production
   - deploy-production
 
-stage-deploy-staging-local:
+stage-deploy-production:
   stage: deploy-main
   image: node:18.8.0-alpine
   script:
