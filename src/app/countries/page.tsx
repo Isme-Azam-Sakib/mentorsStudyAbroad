@@ -5,13 +5,14 @@ import { Button } from '@/components/Button';
 import { StudyAbroadModal } from '@/components/StudyAbroadModal';
 import ChooseDestination from '@/components/ChooseDestination';
 import PageLoader from '@/components/PageLoader';
+import Link from 'next/link';
 
 export default function CountriesPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     <>
-        
+
       {/* Hero Section */}
       <div className="relative">
         {/* Hero Background */}
@@ -24,7 +25,7 @@ export default function CountriesPage() {
 
         {/* Hero Content */}
         <div className="relative z-10 flex items-center">
-          <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 pt-20 sm:pt-24 lg:pt-32 my-16 sm:my-24 lg:my-32">
+          <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 my-16 sm:my-24 lg:my-32">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-center">
               {/* Left Column - Text and Buttons */}
               <div className="text-center lg:text-left order-2 lg:order-1">
@@ -35,9 +36,11 @@ export default function CountriesPage() {
                   Explore study opportunities in top countries around the world. From Australia to Japan, find your perfect study destination with our expert guidance.
                 </p>
                 <div className="flex flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
-                  <Button variant="outline" onClick={() => setIsModalOpen(true)} className="text-sm sm:text-base">
-                    Book A Free Consultation <i className="fi fi-sr-meeting-alt"></i>
-                  </Button>
+                  <Link href="/contact">
+                    <Button variant="outline" className="text-sm sm:text-base">
+                      Book A Free Consultation <i className="fi fi-sr-meeting-alt"></i>
+                    </Button>
+                  </Link>
 
                   <button className="bg-my-black text-my-white border border-my-white px-4 py-3 hover:bg-my-white hover:text-my-black hover:border-my-black hover:border-1 rounded-full transition-all duration-300 text-sm sm:text-base">
                     Download Brochure <i className="fi fi-sr-file-pdf"></i>
@@ -64,9 +67,9 @@ export default function CountriesPage() {
       <ChooseDestination />
 
       {/* Study Abroad Modal */}
-      <StudyAbroadModal 
-        isOpen={isModalOpen} 
-        onClose={() => setIsModalOpen(false)} 
+      <StudyAbroadModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
       />
     </>
   );

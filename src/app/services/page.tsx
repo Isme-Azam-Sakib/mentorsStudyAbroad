@@ -3,6 +3,7 @@
 import { Button } from '@/components/Button';
 import { useEffect, useRef, useState } from 'react';
 import { StudyAbroadModal } from '@/components/StudyAbroadModal';
+import Link from 'next/link';
 
 // Static services data
 const servicesData = [
@@ -96,7 +97,7 @@ export default function Services() {
 
                 {/* Hero Content */}
                 <div className="relative z-10 flex items-center">
-                    <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 pt-20 sm:pt-24 lg:pt-32 my-16 sm:my-24 lg:my-32">
+                    <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 my-16 sm:my-24 lg:my-32">
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-center">
                             {/* Left Column - Text and Buttons */}
                             <div className="text-center lg:text-left order-2 lg:order-1">
@@ -107,9 +108,11 @@ export default function Services() {
                                     We provide comprehensive study abroad services to help you achieve your international education goals
                                 </p>
                                 <div className="flex flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
-                                    <Button variant="outline" onClick={() => setIsModalOpen(true)} className="text-sm sm:text-base">
-                                        Book A Free Consultation <i className="fi fi-sr-meeting-alt"></i>
-                                    </Button>
+                                    <Link href="/contact">
+                                        <Button variant="outline" className="text-sm sm:text-base">
+                                            Book A Free Consultation <i className="fi fi-sr-meeting-alt"></i>
+                                        </Button>
+                                    </Link>
 
                                     <button className="bg-my-black text-my-white border border-my-white px-4 py-3 hover:bg-my-white hover:text-my-black hover:border-my-black hover:border-1 rounded-full transition-all duration-300 text-sm sm:text-base">
                                         Download Brochure <i className="fi fi-sr-file-pdf"></i>

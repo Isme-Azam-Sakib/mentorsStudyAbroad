@@ -50,26 +50,20 @@ export function sanitizeInput(input: string): string {
 
 // Validate name input
 export function validateName(name: string): { isValid: boolean; error?: string } {
-  console.log('validateName called with:', name);
   const sanitized = sanitizeInput(name);
-  console.log('sanitized name:', sanitized);
   
   if (!sanitized) {
-    console.log('Name validation failed: empty after sanitization');
     return { isValid: false, error: 'Name is required' };
   }
   
   if (sanitized.length < VALIDATION_RULES.NAME.minLength || sanitized.length > VALIDATION_RULES.NAME.maxLength) {
-    console.log('Name validation failed: length check', sanitized.length);
     return { isValid: false, error: `Name must be ${VALIDATION_RULES.NAME.minLength}-${VALIDATION_RULES.NAME.maxLength} characters` };
   }
   
   if (!VALIDATION_RULES.NAME.pattern.test(sanitized)) {
-    console.log('Name validation failed: pattern check', sanitized, 'pattern:', VALIDATION_RULES.NAME.pattern);
     return { isValid: false, error: VALIDATION_RULES.NAME.message };
   }
   
-  console.log('Name validation passed');
   return { isValid: true };
 }
 
@@ -171,11 +165,9 @@ export function secureLog(message: string, data?: Record<string, unknown>, level
 export function validateFormData(data: Record<string, unknown> | { [key: string]: unknown }): { isValid: boolean; errors: Record<string, string> } {
   const errors: Record<string, string> = {};
   
-  console.log('validateFormData called with:', data);
   
   // Validate each field based on its name
   Object.entries(data).forEach(([key, value]) => {
-    console.log('Processing field:', key, 'value:', value, 'type:', typeof value);
     if (typeof value === 'string') {
       let validation;
       
@@ -204,23 +196,22 @@ export function validateFormData(data: Record<string, unknown> | { [key: string]
           validation = validateCountry(value);
           break;
         default:
-          // For unknown fields, just sanitize
+          // For unknown fields, just sanitize and check for basic validity
           const sanitized = sanitizeInput(value);
-          if (sanitized !== value) {
+          // Only flag as error if sanitization removed dangerous characters (not just whitespace)
+          const dangerousCharsRemoved = sanitized.length < value.trim().length;
+          if (dangerousCharsRemoved) {
             errors[key] = 'Invalid characters detected';
           }
       }
       
       if (validation && !validation.isValid) {
-        console.log('Validation failed for field:', key, 'error:', validation.error);
         errors[key] = validation.error || 'Invalid input';
       } else if (validation) {
-        console.log('Validation passed for field:', key);
       }
     }
   });
   
-  console.log('Final validation result:', { isValid: Object.keys(errors).length === 0, errors });
   return {
     isValid: Object.keys(errors).length === 0,
     errors

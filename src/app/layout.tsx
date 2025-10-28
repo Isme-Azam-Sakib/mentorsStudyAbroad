@@ -70,7 +70,7 @@ new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.cr
         </noscript>
         {/* End Google Tag Manager (noscript) */}
         <Navbar />
-        <main className="pt-[120px] sm:pt-[140px]">
+        <main className="pt-[120px] sm:pt-[140px] ">
           {children}
         </main>
         <ContactFormSectionButton />

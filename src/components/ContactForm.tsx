@@ -34,12 +34,15 @@ export function ContactForm({ countryName, countryValue }: ContactFormProps) {
     mobile: '',
     country: countryValue || '',
     course: '',
-    year: ''
+    consultationMode: ''
   });
 
   // Form submission state
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
+  const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState('');
+  const [toastType, setToastType] = useState<'success' | 'error'>('success');
 
   const handleInputChange = (field: string, value: string) => {
     setFormData(prev => ({
@@ -53,6 +56,12 @@ export function ContactForm({ countryName, countryValue }: ContactFormProps) {
     setSubmitStatus('success');
     setErrorMessage('');
     
+    // Show success toast
+    setToastMessage('Thank you! Your consultation request has been submitted successfully. We\'ll contact you soon.');
+    setToastType('success');
+    setShowToast(true);
+    
+    
     // Reset form after successful submission
     setFormData({
       fullName: '',
@@ -60,7 +69,7 @@ export function ContactForm({ countryName, countryValue }: ContactFormProps) {
       mobile: '',
       country: countryValue || '',
       course: '',
-      year: ''
+      consultationMode: ''
     });
   };
 
@@ -70,6 +79,12 @@ export function ContactForm({ countryName, countryValue }: ContactFormProps) {
     }, 'error');
     setSubmitStatus('error');
     setErrorMessage('Failed to submit your request. Please try again.');
+    
+    // Show error toast
+    setToastMessage('Failed to submit your request. Please try again.');
+    setToastType('error');
+    setShowToast(true);
+    
   };
 
   const getApiPayload = () => {
@@ -88,7 +103,7 @@ export function ContactForm({ countryName, countryValue }: ContactFormProps) {
       mobile_no: sanitizeInput(formData.mobile),
       country_name: sanitizeInput(formData.country),
       preferred_course: sanitizeInput(formData.course),
-      year: sanitizeInput(formData.year)
+      consultation_mode: sanitizeInput(formData.consultationMode)
     };
   };
 
@@ -96,12 +111,7 @@ export function ContactForm({ countryName, countryValue }: ContactFormProps) {
   const getApiConfig = () => {
     // Only validate and get payload when actually submitting
     if (typeof window !== 'undefined' && formData.fullName && formData.email && formData.mobile) {
-      console.log('ContactForm validation data:', formData);
-      console.log('Full name value:', formData.fullName, 'Length:', formData.fullName.length);
-      console.log('Email value:', formData.email);
-      console.log('Mobile value:', formData.mobile);
       const validation = validateFormData(formData as unknown as { [key: string]: unknown });
-      console.log('ContactForm validation result:', validation);
       if (!validation.isValid) {
         console.error('Form validation errors:', validation.errors);
         throw new Error(`Form validation failed: ${Object.values(validation.errors).join(', ')}`);
@@ -114,13 +124,8 @@ export function ContactForm({ countryName, countryValue }: ContactFormProps) {
       mobile_no: sanitizeInput(formData.mobile),
       country_name: sanitizeInput(formData.country),
       preferred_course: sanitizeInput(formData.course),
-      year: sanitizeInput(formData.year)
+      consultation_mode: sanitizeInput(formData.consultationMode)
     };
-
-    console.log('ContactForm API Config:', {
-      url: getSessionBookingsApiUrl(),
-      payload
-    });
 
     return {
       url: getSessionBookingsApiUrl(),
@@ -130,8 +135,8 @@ export function ContactForm({ countryName, countryValue }: ContactFormProps) {
   };
 
   return (
-    <div className="lg:sticky lg:top-0 lg:h-screen lg:flex lg:items-center ml-0 sm:ml-8 lg:ml-24">
-      <div className="bg-my-white min-h-0 lg:min-h-0 lg:my-96 w-full rounded-2xl sm:rounded-3xl lg:rounded-[40px]" style={{ boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.10)" }}>
+    <div className="lg:sticky lg:top-0 lg:flex lg:items-center ml-0 sm:ml-8 lg:ml-24 flex justify-center lg:justify-start">
+      <div className="bg-my-white min-h-0 lg:min-h-0 lg:my-8 w-full max-w-sm sm:max-w-md md:max-w-lg lg:w-full rounded-2xl sm:rounded-3xl lg:rounded-[40px]" style={{ boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.10)" }}>
         <div className="p-4 sm:p-6 lg:p-8 xl:p-12">
           <div className="flex items-start gap-2 sm:gap-3 mb-4 sm:mb-5 lg:mb-6">
             <i className="fi fi-sr-messages-question text-gray-400 text-xl sm:text-2xl mt-0.5 sm:mt-1 flex-shrink-0"></i>
@@ -179,7 +184,7 @@ export function ContactForm({ countryName, countryValue }: ContactFormProps) {
                 className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-300 rounded-lg sm:rounded-xl focus:outline-none focus:border-gray-500 transition-colors appearance-none bg-white text-sm sm:text-base"
                 required
               >
-                <option value="">Select Country</option>
+                <option value="">Preferred Country</option>
                 {countries.map((country) => (
                   <option key={country.value} value={country.value}>
                     {country.name}
@@ -188,32 +193,24 @@ export function ContactForm({ countryName, countryValue }: ContactFormProps) {
               </select>
             </div>
 
-            {/* Preferred Course Dropdown */}
-            <div>
-              <select 
-                value={formData.course}
-                onChange={(e) => handleInputChange('course', e.target.value)}
-                className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-300 rounded-lg sm:rounded-xl focus:outline-none focus:border-gray-500 transition-colors appearance-none bg-white text-sm sm:text-base"
-              >
-                <option value="">Preferred course</option>
-                <option value="engineering">Engineering</option>
-                <option value="business">Business</option>
-                <option value="medicine">Medicine</option>
-                <option value="arts">Arts</option>
-              </select>
-            </div>
+            {/* Preferred Course Input */}
+            <CustomInput
+              type="text"
+              value={formData.course}
+              onChange={(value) => handleInputChange('course', value)}
+              placeholder="Preferred course"
+            />
 
-            {/* Year Dropdown */}
+            {/* Preferred Mode of Consultation Dropdown */}
             <div>
               <select 
-                value={formData.year}
-                onChange={(e) => handleInputChange('year', e.target.value)}
+                value={formData.consultationMode}
+                onChange={(e) => handleInputChange('consultationMode', e.target.value)}
                 className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-300 rounded-lg sm:rounded-xl focus:outline-none focus:border-gray-500 transition-colors appearance-none bg-white text-sm sm:text-base"
               >
-                <option value="">Year</option>
-                <option value="2024">2024</option>
-                <option value="2025">2025</option>
-                <option value="2026">2026</option>
+                <option value="">Preferred mode of consultation</option>
+                <option value="online">Online</option>
+                <option value="branch">Branch Visit</option>
               </select>
             </div>
 
@@ -228,25 +225,45 @@ export function ContactForm({ countryName, countryValue }: ContactFormProps) {
               onApiError={handleApiError}
               loadingText="Submitting..."
             >
-              Book Now
+              Book Free Consultation Now
             </Button>
 
-            {/* Success Message */}
-            {submitStatus === 'success' && (
-              <div className="mt-3 sm:mt-4 p-3 sm:p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg sm:rounded-xl text-sm sm:text-base">
-                Thank you! Your consultation request has been submitted successfully. We&apos;ll contact you soon.
-              </div>
-            )}
-
-            {/* Error Message */}
-            {submitStatus === 'error' && (
-              <div className="mt-3 sm:mt-4 p-3 sm:p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg sm:rounded-xl text-sm sm:text-base">
-                {errorMessage}
-              </div>
-            )}
           </form>
         </div>
       </div>
+      
+      {/* Modern Toast Notification */}
+      {showToast && (
+        <div className="fixed inset-0 bg-black/30 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-2xl max-w-md w-full mx-4 animate-in fade-in duration-300">
+            <div className="text-center py-8 px-6">
+              <div className={`w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 ${
+                toastType === 'success' ? 'bg-green-100' : 'bg-red-100'
+              }`}>
+                <i className={`fi ${toastType === 'success' ? 'fi-rr-check' : 'fi-rr-cross'} text-2xl ${
+                  toastType === 'success' ? 'text-green-600' : 'text-red-600'
+                }`}></i>
+              </div>
+              <h3 className={`text-xl font-bold mb-2 ${
+                toastType === 'success' ? 'text-green-600' : 'text-red-600'
+              }`}>
+                {toastType === 'success' ? 'Success!' : 'Submission Failed'}
+              </h3>
+              <p className="text-gray-600 mb-6 leading-relaxed">{toastMessage}</p>
+              <button
+                onClick={() => setShowToast(false)}
+                className={`font-medium rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 px-6 py-3 text-base ${
+                  toastType === 'success' 
+                    ? 'bg-green-600 text-white hover:bg-green-700 focus:ring-green-600' 
+                    : 'bg-red-600 text-white hover:bg-red-700 focus:ring-red-600'
+                }`}
+              >
+                {toastType === 'success' ? 'Got it!' : 'Try Again'}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
