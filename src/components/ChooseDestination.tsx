@@ -69,7 +69,11 @@ const countries: CountryCard[] = [
   }
 ];
 
-const ChooseDestination: React.FC = () => {
+interface ChooseDestinationProps {
+  maxRows?: number;
+}
+
+const ChooseDestination: React.FC<ChooseDestinationProps> = ({ maxRows }) => {
   return (
     <div className="py-8 sm:py-12 lg:py-16 bg-white mb-16">
       <div className="max-w-7xl mx-auto px-3 sm:px-4">
@@ -93,8 +97,8 @@ const ChooseDestination: React.FC = () => {
 
         {/* Country Cards */}
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 lg:gap-6 xl:gap-8">
-          {countries.map((country) => (
-            <div key={country.id} className="group cursor-pointer">
+          {countries.slice(0, maxRows ? maxRows * 3 : countries.length).map((country) => (
+            <Link key={country.id} href={country.href} className="group cursor-pointer">
               {/* Country Card */}
               <div className="bg-white rounded-xl sm:rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 sm:hover:-translate-y-2 aspect-square">
                 <div className="relative h-full">
@@ -117,21 +121,31 @@ const ChooseDestination: React.FC = () => {
 
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end z-20">
                     <div className="w-full p-3 sm:p-4 lg:p-6">
-                      <Link 
-                        href={country.href}
-                        className="w-full bg-my-accent text-white px-3 sm:px-4 lg:px-6 py-2 sm:py-2.5 lg:py-3 rounded-full flex items-center justify-center gap-1 sm:gap-2 font-semibold hover:bg-my-accent/90 transition-colors duration-300 text-sm sm:text-base"
-                      >
+                      <div className="w-full bg-my-accent text-white px-3 sm:px-4 lg:px-6 py-2 sm:py-2.5 lg:py-3 rounded-full flex items-center justify-center gap-1 sm:gap-2 font-semibold hover:bg-my-accent/90 transition-colors duration-300 text-sm sm:text-base">
                         <span className="hidden sm:inline">Study in {country.name}</span>
                         <span className="sm:hidden">Study</span>
                         <i className="fi fi-sr-arrow-right text-xs sm:text-sm"></i>
-                      </Link>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
+
+        {/* View More Button - Only show when maxRows is 2 */}
+        {maxRows === 2 && (
+          <div className="flex justify-center mt-8 sm:mt-10 lg:mt-12">
+            <Link 
+              href="/countries"
+              className="bg-my-white text-black border border-1 border-my-black px-6 sm:px-8 lg:px-10 py-3 sm:py-3.5 lg:py-4 rounded-full flex items-center gap-2 sm:gap-3 font-semibold hover:bg-my-black hover:text-my-white transition-colors duration-300 text-base sm:text-lg lg:text-xl"
+            >
+              <span>View More Countries</span>
+              <i className="fi fi-sr-arrow-right text-sm sm:text-base lg:text-lg"></i>
+            </Link>
+          </div>
+        )}
       </div>
     </div>
   );

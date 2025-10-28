@@ -24,11 +24,11 @@ export default function ContactPage() {
 
                 {/* Hero Content */}
                 <div className="relative z-10 flex items-center">
-                    <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 pt-20 sm:pt-24 lg:pt-32 my-16 sm:my-24 lg:my-32">
+                    <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 sm:my-24">
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-center">
                             {/* Left Column - Text and Buttons */}
                             <div className="text-center lg:text-left order-2 lg:order-1">
-                                <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-my-black mb-4 sm:mb-5 lg:mb-6 leading-tight">
+                                {/* <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-my-black mb-4 sm:mb-5 lg:mb-6 leading-tight">
                                     Get in <span className="text-my-accent relative">Touch</span> with Us
                                 </h1>
                                 <p className="text-base sm:text-lg text-gray-600 mb-6 sm:mb-7 lg:mb-8 leading-relaxed">
@@ -42,7 +42,8 @@ export default function ContactPage() {
                                     <button className="bg-my-black text-my-white border border-my-white px-4 py-3 hover:bg-my-white hover:text-my-black hover:border-my-black hover:border-1 rounded-full transition-all duration-300 text-sm sm:text-base">
                                         Download Brochure <i className="fi fi-sr-file-pdf"></i>
                                     </button>
-                                </div>
+                                </div> */}
+                                <ContactForm />
                             </div>
 
                             {/* Right Column - Hero Image */}
@@ -84,7 +85,14 @@ export default function ContactPage() {
                                         {/* Location */}
                                         <div className="flex items-start gap-3 mb-3">
                                             <i className="fi fi-ss-marker text-my-accent text-lg mt-0.5 flex-shrink-0"></i>
-                                            <p className="text-my-black text-sm leading-relaxed">{branch.address}</p>
+                                            <a 
+                                                href={branch.googleMapsUrl || `https://www.google.com/maps?q=${branch.coordinates?.lat},${branch.coordinates?.lng}`}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="text-my-black text-sm leading-relaxed hover:text-my-accent transition-colors duration-300 cursor-pointer"
+                                            >
+                                                {branch.address}
+                                            </a>
                                         </div>
 
                                        {/* Study Abroad Phone */}
@@ -93,7 +101,17 @@ export default function ContactPage() {
                                                 <i className="fi fi-sr-phone-call text-my-accent text-lg mt-0.5 flex-shrink-0"></i>
                                                 <div>
                                                     <p className="text-my-black text-sm font-medium">Study Abroad</p>
-                                                    <p className="text-my-black text-sm">{branch.contact.studyAbroad.join(', ')}</p>
+                                                    <div className="flex flex-wrap gap-2">
+                                                        {branch.contact.studyAbroad.map((phone, index) => (
+                                                            <a 
+                                                                key={index}
+                                                                href={`tel:${phone}`}
+                                                                className="text-my-black text-sm hover:text-my-accent transition-colors duration-300"
+                                                            >
+                                                                {phone}
+                                                            </a>
+                                                        ))}
+                                                    </div>
                                                 </div>
                                             </div>
                                         )}
@@ -101,7 +119,12 @@ export default function ContactPage() {
                                         {/* Email */}
                                         <div className="flex items-start gap-3">
                                             <i className="fi fi-sr-envelope text-my-accent text-lg mt-0.5 flex-shrink-0"></i>
-                                            <p className="text-my-black text-sm">{branch.contact.email}</p>
+                                            <a 
+                                                href={`mailto:${branch.contact.email}`}
+                                                className="text-my-black text-sm hover:text-my-accent transition-colors duration-300"
+                                            >
+                                                {branch.contact.email}
+                                            </a>
                                         </div>
                                     </div>
                                 ))}
@@ -119,7 +142,14 @@ export default function ContactPage() {
                                         {/* Location */}
                                         <div className="flex items-start gap-3 mb-3">
                                             <i className="fi fi-ss-marker text-my-accent text-lg mt-0.5 flex-shrink-0"></i>
-                                            <p className="text-my-black text-sm leading-relaxed">{branch.address}</p>
+                                            <a 
+                                                href={branch.googleMapsUrl || `https://www.google.com/maps?q=${branch.coordinates?.lat},${branch.coordinates?.lng}`}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="text-my-black text-sm leading-relaxed hover:text-my-accent transition-colors duration-300 cursor-pointer"
+                                            >
+                                                {branch.address}
+                                            </a>
                                         </div>
 
                                         {/* Education Phone */}
@@ -127,7 +157,17 @@ export default function ContactPage() {
                                             <i className="fi fi-sr-phone-call text-my-accent text-lg mt-0.5 flex-shrink-0"></i>
                                             <div>
                                                 <p className="text-my-black text-sm font-medium">Education</p>
-                                                <p className="text-my-black text-sm">{branch.contact.education.join(', ')}</p>
+                                                <div className="flex flex-wrap gap-2">
+                                                    {branch.contact.education.map((phone, index) => (
+                                                        <a 
+                                                            key={index}
+                                                            href={`tel:${phone}`}
+                                                            className="text-my-black text-sm hover:text-my-accent transition-colors duration-300"
+                                                        >
+                                                            {phone}
+                                                        </a>
+                                                    ))}
+                                                </div>
                                             </div>
                                         </div>
 
@@ -137,7 +177,17 @@ export default function ContactPage() {
                                                 <i className="fi fi-sr-phone-call text-my-accent text-lg mt-0.5 flex-shrink-0"></i>
                                                 <div>
                                                     <p className="text-my-black text-sm font-medium">Study Abroad</p>
-                                                    <p className="text-my-black text-sm">{branch.contact.studyAbroad.join(', ')}</p>
+                                                    <div className="flex flex-wrap gap-2">
+                                                        {branch.contact.studyAbroad.map((phone, index) => (
+                                                            <a 
+                                                                key={index}
+                                                                href={`tel:${phone}`}
+                                                                className="text-my-black text-sm hover:text-my-accent transition-colors duration-300"
+                                                            >
+                                                                {phone}
+                                                            </a>
+                                                        ))}
+                                                    </div>
                                                 </div>
                                             </div>
                                         )}
@@ -145,7 +195,12 @@ export default function ContactPage() {
                                         {/* Email */}
                                         <div className="flex items-start gap-3">
                                             <i className="fi fi-sr-envelope text-my-accent text-lg mt-0.5 flex-shrink-0"></i>
-                                            <p className="text-my-black text-sm">{branch.contact.email}</p>
+                                            <a 
+                                                href={`mailto:${branch.contact.email}`}
+                                                className="text-my-black text-sm hover:text-my-accent transition-colors duration-300"
+                                            >
+                                                {branch.contact.email}
+                                            </a>
                                         </div>
                                     </div>
                                 ))}
@@ -155,7 +210,7 @@ export default function ContactPage() {
                 </div>
             </LazySection>
 
-            {/* Contact Form & Map Section */}
+            {/* Contact Form & Map Section
             <LazySection delay={0.3}>
                 <div className="py-16 bg-white">
                     <div className="max-w-7xl mx-auto px-4">
@@ -170,7 +225,7 @@ export default function ContactPage() {
 
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 lg:items-stretch">
                             {/* Left Column - Map */}
-                            <div className="order-2 lg:order-1 flex flex-col justify-center py-16">
+                            {/* <div className="order-2 lg:order-1 flex flex-col justify-center py-16">
                                 <div className="bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-200 flex-1">
                                     <div className="h-full w-full">
                                         <iframe
@@ -186,18 +241,18 @@ export default function ContactPage() {
                                         />
                                     </div>
                                 </div>
-                            </div>
+                            </div> */}
 
                             {/* Right Column - Contact Form */}
-                            <div className="order-1 lg:order-2 flex flex-col">
+                            {/* <div className="order-1 lg:order-2 flex flex-col">
                                 <div className="flex-1">
                                     <ContactForm />
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </LazySection>
+                </div> 
+            </LazySection> */}
 
             
 

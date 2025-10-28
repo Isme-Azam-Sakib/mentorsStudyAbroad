@@ -7,6 +7,7 @@ export interface Branch {
     lat: number;
     lng: number;
   };
+  googleMapsUrl?: string;
   contact: {
     education: string[];
     studyAbroad: string[] | null;
@@ -18,16 +19,17 @@ export interface Branch {
 export const branchesData: Branch[] = [
   // Dhaka Branches
   {
-    id: 'nawabganj',
-    name: 'Nawabganj',
-    location: 'Nawabganj, Dhaka',
-    address: 'Khandokar Tower opposite Nawabganj Etim Khana, Nawabganj 1320, Dhaka',
+    id: 'kalabagan',
+    name: 'Kalabagan Branch',
+    location: 'Kalabagan, Dhaka',
+    address: '166/1 Mirpur Road (Beside Dolphin Goli), Kalabagan, Dhaka-1205',
     coordinates: {
-      lat: 23.8103,
-      lng: 90.4125
+      lat: 23.7464,
+      lng: 90.3764
     },
+    googleMapsUrl: 'https://maps.app.goo.gl/LMiGETkcsEd3odGWA',
     contact: {
-      education: ['01329640894'],
+      education: ['09610883388'],
       studyAbroad: null,
       email: 'info@mentors.com.bd'
     },
@@ -42,44 +44,13 @@ export const branchesData: Branch[] = [
       lat: 23.7231,
       lng: 90.4086
     },
+    googleMapsUrl: 'https://maps.app.goo.gl/PfiM72z9mTbNDGpQ9',
     contact: {
       education: ['09610883388'],
       studyAbroad: null,
       email: 'info@mentors.com.bd'
     },
     type: 'branch'
-  },
-  {
-    id: 'kalabagan',
-    name: 'Kalabagan Branch',
-    location: 'Kalabagan, Dhaka',
-    address: '166/1 Mirpur Road (Beside Dolphin Goli), Kalabagan, Dhaka-1205',
-    coordinates: {
-      lat: 23.7464,
-      lng: 90.3764
-    },
-    contact: {
-      education: ['09610883388'],
-      studyAbroad: null,
-      email: 'info@mentors.com.bd'
-    },
-    type: 'branch'
-  },
-  {
-    id: 'uttara-campus-2',
-    name: 'Uttara Campus - 2',
-    location: 'Uttara, Dhaka',
-    address: 'Level-7, Plot 17, Sonargaon Janopath, Sector-13, Uttara',
-    coordinates: {
-      lat: 23.8695,
-      lng: 90.3887
-    },
-    contact: {
-      education: ['09610883388'],
-      studyAbroad: ['48959796', '01713243420'],
-      email: 'info@mentors.com.bd'
-    },
-    type: 'campus'
   },
   {
     id: 'uttara-campus-1',
@@ -90,6 +61,7 @@ export const branchesData: Branch[] = [
       lat: 23.8695,
       lng: 90.3887
     },
+    googleMapsUrl: 'https://maps.app.goo.gl/GuQdwvXwYALkjJDy5',
     contact: {
       education: ['09610883388'],
       studyAbroad: ['01713243438', '0171384398'],
@@ -98,17 +70,35 @@ export const branchesData: Branch[] = [
     type: 'campus'
   },
   {
-    id: 'mirpur',
-    name: 'Mirpur Branch',
-    location: 'Mirpur, Dhaka',
-    address: 'House 14, Main Road Section 7 (Beside Mirpur 11 Central Mosque), Pallabi, Mirpur, Dhaka',
+    id: 'uttara-campus-2',
+    name: 'Uttara Campus - 2',
+    location: 'Uttara, Dhaka',
+    address: 'Level-7, Plot 17, Sonargaon Janopath, Sector-13, Uttara',
     coordinates: {
-      lat: 23.8041,
-      lng: 90.3617
+      lat: 23.8695,
+      lng: 90.3887
     },
+    googleMapsUrl: 'https://maps.app.goo.gl/v1WbSQvnJ1swGTRz9',
     contact: {
       education: ['09610883388'],
-      studyAbroad: ['01713243437', '01701215957'],
+      studyAbroad: ['48959796', '01713243420'],
+      email: 'info@mentors.com.bd'
+    },
+    type: 'campus'
+  },
+  {
+    id: 'banani',
+    name: 'Banani Branch',
+    location: 'Banani, Dhaka',
+    address: 'Taneem Square (1st Fl), 158/E Kamal Ataturk Avenue, Banani, Dhaka-1213',
+    coordinates: {
+      lat: 23.7949,
+      lng: 90.4034
+    },
+    googleMapsUrl: 'https://maps.app.goo.gl/53NqpFzL4FmYGsi29',
+    contact: {
+      education: ['09610883388'],
+      studyAbroad: null,
       email: 'info@mentors.com.bd'
     },
     type: 'branch'
@@ -122,6 +112,7 @@ export const branchesData: Branch[] = [
       lat: 23.7334,
       lng: 90.4170
     },
+    googleMapsUrl: 'https://maps.app.goo.gl/LFLPrzwsKDQDB7n97',
     contact: {
       education: ['09610883388'],
       studyAbroad: ['01713243415'],
@@ -130,23 +121,41 @@ export const branchesData: Branch[] = [
     type: 'branch'
   },
   {
-    id: 'banani',
-    name: 'Banani Branch',
-    location: 'Banani, Dhaka',
-    address: 'Taneem Square (1st Fl), 158/E Kamal Ataturk Avenue, Banani, Dhaka-1213',
+    id: 'mirpur',
+    name: 'Mirpur Branch',
+    location: 'Mirpur, Dhaka',
+    address: 'House 14, Main Road Section 7 (Beside Mirpur 11 Central Mosque), Pallabi, Mirpur, Dhaka',
     coordinates: {
-      lat: 23.7949,
-      lng: 90.4034
+      lat: 23.8041,
+      lng: 90.3617
     },
+    googleMapsUrl: 'https://maps.app.goo.gl/3rRBYdijzoTGq7Yp9',
     contact: {
       education: ['09610883388'],
-      studyAbroad: null,
+      studyAbroad: ['01713243437', '01701215957'],
       email: 'info@mentors.com.bd'
     },
     type: 'branch'
   },
-
+  
   // Other Branches
+  {
+    id: 'nawabganj',
+    name: 'Nawabganj',
+    location: 'Nawabganj, Dhaka',
+    address: 'Khandokar Tower opposite Nawabganj Etim Khana, Nawabganj 1320, Dhaka',
+    coordinates: {
+      lat: 23.8103,
+      lng: 90.4125
+    },
+    googleMapsUrl: 'https://maps.app.goo.gl/wLs1QqHJds8gbusE9',
+    contact: {
+      education: ['01329640894'],
+      studyAbroad: null,
+      email: 'info@mentors.com.bd'
+    },
+    type: 'branch'
+  }, 
   {
     id: 'brahmanbaria',
     name: 'Brahmanbaria',
@@ -156,6 +165,7 @@ export const branchesData: Branch[] = [
       lat: 23.9667,
       lng: 91.1111
     },
+    googleMapsUrl: 'https://maps.app.goo.gl/8DtPwiAhWuzEDtTS9',
     contact: {
       education: ['01321207484'],
       studyAbroad: null,
@@ -169,9 +179,10 @@ export const branchesData: Branch[] = [
     location: 'Chattogram',
     address: 'Mannan Bhaban, 156 Nur Ahmed Road, Jubilee Road, Chattogram, Postal Code: 4000',
     coordinates: {
-      lat: 22.3569,
-      lng: 91.7832
+      lat: 22.341927364752543,
+      lng:  91.82761763967876
     },
+    googleMapsUrl: 'https://maps.app.goo.gl/SEE59Zj8id8zX4vq7',
     contact: {
       education: ['01713243432'],
       studyAbroad: null,
@@ -183,6 +194,7 @@ export const branchesData: Branch[] = [
     id: 'sylhet',
     name: 'Sylhet Branch',
     location: 'Sylhet',
+    googleMapsUrl: 'https://maps.app.goo.gl/fN2Ljv66Z8TkfGwG7',
     address: '8th Floor, Kaniz Plaza, Zindabazar, Sylhet',
     coordinates: {
       lat: 24.9045,
@@ -204,6 +216,7 @@ export const branchesData: Branch[] = [
       lat: 25.7439,
       lng: 89.2752
     },
+    googleMapsUrl: 'https://maps.app.goo.gl/vx4ATdF9PE9CYnNd9',
     contact: {
       education: ['01713384393'],
       studyAbroad: null,
@@ -236,6 +249,7 @@ export const branchesData: Branch[] = [
       lat: 22.8088,
       lng: 89.5539
     },
+    googleMapsUrl: 'https://maps.app.goo.gl/TJNvsJKxGc2weYGX8',
     contact: {
       education: ['01329640872'],
       studyAbroad: null,
@@ -252,6 +266,7 @@ export const branchesData: Branch[] = [
       lat: 25.7439,
       lng: 89.2752
     },
+    googleMapsUrl: 'https://maps.app.goo.gl/dWRqjpCouqcCpJQb7',
     contact: {
       education: ['01713384393'],
       studyAbroad: null,
@@ -268,6 +283,7 @@ export const branchesData: Branch[] = [
       lat: 24.4820,
       lng: 91.7774
     },
+    googleMapsUrl: 'https://maps.app.goo.gl/fXPpuHoX4r9EvXXt6',
     contact: {
       education: ['01713384392'],
       studyAbroad: null,
@@ -284,6 +300,7 @@ export const branchesData: Branch[] = [
       lat: 24.3745,
       lng: 88.6042
     },
+    googleMapsUrl: 'https://maps.app.goo.gl/wqiiRohrW1BAk67o6',
     contact: {
       education: ['01713384394'],
       studyAbroad: null,

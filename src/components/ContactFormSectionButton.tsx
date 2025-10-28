@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { Button } from "./Button";
+import Link from "next/link";
 
 export const ContactFormSectionButton = () => {
     const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
@@ -35,7 +36,7 @@ export const ContactFormSectionButton = () => {
         <section className="w-full bg-white">
             <div className="relative mx-auto max-w-7xl px-6 mt-32">
 
-               <div className="bg-my-accent rounded-4xl p-8 lg:p-12 relative overflow-hidden h-[350px] sm:h-[700px] lg:h-[400px] my-16">
+                <div className="bg-my-accent rounded-4xl p-8 lg:p-12 relative overflow-hidden h-[350px] sm:h-[700px] lg:h-[400px] my-16">
                     {/* Mobile/Tablet Layout */}
                     <div className="lg:hidden flex flex-col items-center justify-start h-full text-center">
                         {/* Text Content */}
@@ -110,34 +111,34 @@ export const ContactFormSectionButton = () => {
                                 Send us a message and let our expert counselors help you
                             </p>
 
-                             <form
-                                 onSubmit={handleSubmit}
-                                 role="form"
-                                 aria-label="Contact form"
-                                 className="max-w-md"
-                             >
-                                 <div className="relative overflow-hidden">
-                                     <div className="relative flex">
-                                         <Button variant="secondary" onClick={() => {
-                                             console.log("Contact button clicked");
-                                         }} className="text-sm sm:text-base">
-                                             Book A Free Consultation <i className="fi fi-sr-meeting-alt"></i>
-                                         </Button>
-                                     </div>
+                            <form
+                                onSubmit={handleSubmit}
+                                role="form"
+                                aria-label="Contact form"
+                                className="max-w-md"
+                            >
+                                <div className="relative overflow-hidden">
+                                    <div className="relative flex">
+                                        <Link href="/contact">
+                                            <Button variant="secondary" className="text-sm sm:text-base">
+                                                Book A Free Consultation <i className="fi fi-sr-meeting-alt"></i>
+                                            </Button>
+                                        </Link>
+                                    </div>
 
-                                     {submitStatus === 'success' && (
-                                         <div className="mt-4 p-3 bg-green-100 border border-green-400 text-green-700 rounded-lg text-sm">
-                                             Thank you! Your message has been sent successfully. We&apos;ll get back to you soon.
-                                         </div>
-                                     )}
+                                    {submitStatus === 'success' && (
+                                        <div className="mt-4 p-3 bg-green-100 border border-green-400 text-green-700 rounded-lg text-sm">
+                                            Thank you! Your message has been sent successfully. We&apos;ll get back to you soon.
+                                        </div>
+                                    )}
 
-                                     {submitStatus === 'error' && (
-                                         <div className="mt-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded-lg text-sm">
-                                             {errorMessage}
-                                         </div>
-                                     )}
-                                 </div>
-                             </form>
+                                    {submitStatus === 'error' && (
+                                        <div className="mt-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded-lg text-sm">
+                                            {errorMessage}
+                                        </div>
+                                    )}
+                                </div>
+                            </form>
                         </div>
 
                         {/* Right side - Social Media Icons */}
@@ -160,7 +161,7 @@ export const ContactFormSectionButton = () => {
                         </div>
                     </div>
 
-               </div>
+                </div>
 
                 {/* Mobile/Tablet Image - Centered and Anchored */}
                 <div className="lg:hidden absolute -bottom-0 left-1/2 transform -translate-x-1/2">
