@@ -75,7 +75,7 @@ interface ChooseDestinationProps {
 
 const ChooseDestination: React.FC<ChooseDestinationProps> = ({ maxRows }) => {
   return (
-    <div className="py-8 sm:py-12 lg:py-16 bg-white mb-16">
+    <div className="py-8 sm:py-12 lg:py-16 bg-white">
       <div className="max-w-7xl mx-auto px-3 sm:px-4">
         {/* Mobile Hero Image */}
         <div className="block md:hidden mb-8">
@@ -139,7 +139,7 @@ const ChooseDestination: React.FC<ChooseDestinationProps> = ({ maxRows }) => {
           <div className="flex justify-center mt-8 sm:mt-10 lg:mt-12">
             <Link 
               href="/countries"
-              className="bg-my-white text-black border border-1 border-my-black px-6 sm:px-8 lg:px-10 py-3 sm:py-3.5 lg:py-4 rounded-full flex items-center gap-2 sm:gap-3 font-semibold hover:bg-my-black hover:text-my-white transition-colors duration-300 text-base sm:text-lg lg:text-xl"
+              className="bg-my-white text-black border border-1 border-my-black px-6 sm:px-8 lg:px-10 py-3 sm:py-3.5 lg:py-2 rounded-full flex items-center gap-2 sm:gap-3 font-semibold hover:bg-my-black hover:text-my-white transition-colors duration-300 text-base sm:text-lg lg:text-base"
             >
               <span>View More Countries</span>
               <i className="fi fi-sr-arrow-right text-sm sm:text-base lg:text-lg"></i>

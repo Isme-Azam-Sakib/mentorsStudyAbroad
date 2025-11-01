@@ -9,6 +9,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { VideoSection } from '@/components/VideoSection';
 import { ClientOnly } from '@/components/ClientOnly';
+import CTA from '@/components/CTA';
 
 export default function SuccessStoriesPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -65,6 +66,17 @@ export default function SuccessStoriesPage() {
       {/* What Students Say About Us Section */}
       <LazySection delay={0.3}>
         <TestimonialsSection />
+      </LazySection>
+
+      <LazySection delay={0.2}>
+        <CTA
+          title="Book your free consultation today"
+          subtitle="Simply send us a message and we'll handle the rest"
+          buttonText="Click to get started"
+          buttonOnClick={() => {/* your action */ }}
+          buttonHref="/contact"
+          className="bg-my-black/95"
+        />
       </LazySection>
 
       {/* Visa Success Stories with Filter */}
