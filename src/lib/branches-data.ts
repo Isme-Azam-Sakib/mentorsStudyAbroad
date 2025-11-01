@@ -36,23 +36,6 @@ export const branchesData: Branch[] = [
     type: 'branch'
   },
   {
-    id: 'wari',
-    name: 'Wari',
-    location: 'Wari, Dhaka',
-    address: '7 Folder Street (Wari Abed High School Building) Wari, Dhaka',
-    coordinates: {
-      lat: 23.7231,
-      lng: 90.4086
-    },
-    googleMapsUrl: 'https://maps.app.goo.gl/PfiM72z9mTbNDGpQ9',
-    contact: {
-      education: ['09610883388'],
-      studyAbroad: null,
-      email: 'info@mentors.com.bd'
-    },
-    type: 'branch'
-  },
-  {
     id: 'uttara-campus-1',
     name: 'Uttara Campus - 1',
     location: 'Uttara, Dhaka',
@@ -120,6 +103,7 @@ export const branchesData: Branch[] = [
     },
     type: 'branch'
   },
+  
   {
     id: 'mirpur',
     name: 'Mirpur Branch',
@@ -136,13 +120,30 @@ export const branchesData: Branch[] = [
       email: 'info@mentors.com.bd'
     },
     type: 'branch'
+  },  
+  {
+    id: 'wari',
+    name: 'Wari',
+    location: 'Wari, Dhaka',
+    address: '7 Folder Street (Wari Abed High School Building) Wari, Dhaka',
+    coordinates: {
+      lat: 23.7231,
+      lng: 90.4086
+    },
+    googleMapsUrl: 'https://maps.app.goo.gl/PfiM72z9mTbNDGpQ9',
+    contact: {
+      education: ['09610883388'],
+      studyAbroad: null,
+      email: 'info@mentors.com.bd'
+    },
+    type: 'branch'
   },
   
   // Other Branches
   {
     id: 'nawabganj',
     name: 'Nawabganj',
-    location: 'Nawabganj, Dhaka',
+    location: 'Nawabganj',
     address: 'Khandokar Tower opposite Nawabganj Etim Khana, Nawabganj 1320, Dhaka',
     coordinates: {
       lat: 23.8103,

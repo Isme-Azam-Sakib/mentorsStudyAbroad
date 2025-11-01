@@ -32,7 +32,7 @@ export default function Navbar() {
               <div className="flex items-center gap-2 sm:gap-3">
                 {/* Facebook */}
                 <Link
-                  href="https://facebook.com"
+                  href="https://www.facebook.com/MentorsSA"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-6 h-6 sm:w-7 sm:h-7 bg-my-white text-my-black rounded-full flex items-center justify-center hover:bg-my-white/80 hover:text-my-black transition-colors duration-300"
@@ -43,7 +43,7 @@ export default function Navbar() {
 
                 {/* Instagram */}
                 <Link
-                  href="https://instagram.com"
+                  href="https://www.instagram.com/studyabroadwithmentors"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-6 h-6 sm:w-7 sm:h-7 bg-my-white text-my-black rounded-full flex items-center justify-center hover:bg-my-white/80 hover:text-my-black transition-colors duration-300"
@@ -54,7 +54,7 @@ export default function Navbar() {
 
                 {/* LinkedIn */}
                 <Link
-                  href="https://linkedin.com"
+                  href="https://www.linkedin.com/company/mentorseducation"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-6 h-6 sm:w-7 sm:h-7 bg-my-white text-my-black rounded-full flex items-center justify-center hover:bg-my-white/80 hover:text-my-black transition-colors duration-300"
@@ -65,7 +65,7 @@ export default function Navbar() {
 
                 {/* YouTube */}
                 <Link
-                  href="https://youtube.com"
+                  href="https://www.youtube.com/@MentorsStudyAbroad"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-6 h-6 sm:w-7 sm:h-7 bg-my-white text-my-black rounded-full flex items-center justify-center hover:bg-my-white/80 hover:text-my-black transition-colors duration-300"
@@ -214,7 +214,7 @@ export default function Navbar() {
                 <div className="flex items-center gap-2">
                   {/* Facebook */}
                   <Link
-                    href="https://facebook.com"
+                    href="https://www.facebook.com/MentorsSA"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-8 h-8 bg-my-white text-my-black rounded-full flex items-center justify-center hover:bg-my-white/80 hover:text-my-black transition-colors duration-300"
@@ -225,7 +225,7 @@ export default function Navbar() {
 
                   {/* Instagram */}
                   <Link
-                    href="https://instagram.com"
+                    href="https://www.instagram.com/studyabroadwithmentors"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-8 h-8 bg-my-white text-my-black rounded-full flex items-center justify-center hover:bg-my-white/80 hover:text-my-black transition-colors duration-300"
@@ -236,7 +236,7 @@ export default function Navbar() {
 
                   {/* LinkedIn */}
                   <Link
-                    href="https://linkedin.com"
+                    href="https://www.linkedin.com/company/mentorseducation"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-8 h-8 bg-my-white text-my-black rounded-full flex items-center justify-center hover:bg-my-white/80 hover:text-my-black transition-colors duration-300"
@@ -247,7 +247,7 @@ export default function Navbar() {
 
                   {/* YouTube */}
                   <Link
-                    href="https://youtube.com"
+                    href="https://www.youtube.com/@MentorsStudyAbroad"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-8 h-8 bg-my-white text-my-black rounded-full flex items-center justify-center hover:bg-my-white/80 hover:text-my-black transition-colors duration-300"
