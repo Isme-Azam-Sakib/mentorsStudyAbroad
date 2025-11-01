@@ -222,11 +222,11 @@ export default function EventsPage() {
                             </div>
                         </GalleryLightbox>
 
-                        <div className="flex justify-center mt-6 sm:mt-8">
+                        {/* <div className="flex justify-center mt-6 sm:mt-8">
                             <Link href="/gallery" className="rounded-full border border-my-black px-4 sm:px-6 py-2 sm:py-3 hover:bg-my-black hover:text-white transition-colors font-semibold text-sm sm:text-base">
                                 View All
                             </Link>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </LazySection>

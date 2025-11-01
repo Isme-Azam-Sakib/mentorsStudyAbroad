@@ -26,13 +26,10 @@ export default function Footer() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10">
             <div>
               <div className="mb-6 sm:mb-[40px] mt-6 sm:mt-[40px]">
-                <Image src={logoAlt} alt="Study Abroad Mentors logo" height={50} className="sm:h-[60px]" />
+                <Image src={logoAlt} alt="Study Abroad Mentors logo" width={150} height={50} className="h-[50px] sm:h-[60px] w-auto object-contain" />
               </div>
               <p className="text-xs sm:text-sm text-gray-600 leading-5 sm:leading-6">
-                The sun cast long shadows across the quiet street. Small changes can
-                lead to remarkable results. Knowledge becomes wisdom through
-                experience. Creative thinking opens new possibilities. Simple ideas
-                can have profound impacts.
+                Mentors' is the most reputed educational institution and admission consulting house dedicated to preparing students in their admissions, standardized tests, and academic studies. We are a student-focused institution that offers a vibrant and inspirational learning environment.
               </p>
             </div>
 
@@ -79,19 +76,19 @@ export default function Footer() {
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-xs sm:text-sm text-gray-700 text-center md:text-left">©2025 Mentors&apos; Study Abroad Ltd.</p>
             <div className="flex items-center gap-4 sm:gap-6 text-gray-700">
-              <a href="#" aria-label="LinkedIn" className="hover:text-black">
+              <a href="https://www.linkedin.com/company/mentorseducation" aria-label="LinkedIn" className="hover:text-black">
                 <i className="fi fi-brands-linkedin text-[16px] sm:text-[18px] text-gray-700"></i>
               </a>
-              <a href="#" aria-label="Facebook" className="hover:text-black">
+              <a href="https://www.facebook.com/MentorsSA/" aria-label="Facebook" className="hover:text-black">
                 <i className="fi fi-brands-facebook text-[16px] sm:text-[18px] text-gray-700"></i>
               </a>
-              <a href="#" aria-label="WhatsApp" className="hover:text-black">
+              {/* <a href="#" aria-label="WhatsApp" className="hover:text-black">
                 <i className="fi fi-brands-whatsapp text-[16px] sm:text-[18px] text-gray-700"></i>
+              </a> */}
+              <a href="https://www.youtube.com/@MentorsStudyAbroad" aria-label="Youtube" className="hover:text-black">
+                <i className="fi fi-brands-youtube text-[16px] sm:text-[18px] text-gray-700"></i>
               </a>
-              <a href="#" aria-label="X" className="hover:text-black">
-                <i className="fi fi-brands-twitter-alt text-[16px] sm:text-[18px] text-gray-700"></i>
-              </a>
-              <a href="#" aria-label="Instagram" className="hover:text-black">
+              <a href="https://www.instagram.com/studyabroadwithmentors/?hl=en" aria-label="Instagram" className="hover:text-black">
                 <i className="fi fi-brands-instagram text-[16px] sm:text-[18px] text-gray-700"></i>
               </a>
             </div>
@@ -108,14 +105,14 @@ export default function Footer() {
         <div className="mx-auto max-w-7xl px-6 w-full">
           <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
             {/* Newsletter Text */}
-            {/* <div className="text-white">
+      {/* <div className="text-white">
               <h2 className="text-3xl lg:text-4xl font-bold leading-tight">
                 Sign up to our newsletter for news &amp; updates.
               </h2>
             </div>
             
             {/* Newsletter Form */}
-            {/* <div className="flex-1 max-w-md lg:max-w-lg">
+      {/* <div className="flex-1 max-w-md lg:max-w-lg">
               <form
                 onSubmit={handleSubmit}
                 role="form"

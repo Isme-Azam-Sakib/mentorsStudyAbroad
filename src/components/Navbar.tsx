@@ -73,6 +73,16 @@ export default function Navbar() {
                 >
                   <i className="fi fi-brands-youtube text-xs sm:text-sm flex items-center justify-center"></i>
                 </Link>
+                {/* Whatsapp */}
+                {/* <Link
+                  href="https://wa.me/8801713243400?text=Hello%21%20Is%20there%20anyone%20available%20to%20chat%3F"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-6 h-6 sm:w-7 sm:h-7 bg-my-white text-my-black rounded-full flex items-center justify-center hover:bg-my-white/80 hover:text-my-black transition-colors duration-300"
+                  aria-label="Whatsapp"
+                >
+                  <i className="fi fi-brands-whatsapp text-xs sm:text-sm flex items-center justify-center"></i>
+                </Link> */}
               </div>
               <div className="flex items-center gap-2">
                 <i className="fi fi-sr-phone-call text-my-accent text-sm sm:text-base"></i>
@@ -89,8 +99,8 @@ export default function Navbar() {
       </div>
 
       {/* Main Navigation Section */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 w-full relative">
-        <nav className="rounded-[20px] sm:rounded-[30px] flex items-center justify-between mt-0 bg-white border border-gray-200 shadow-lg px-4 sm:px-8 py-3 sm:py-4 h-[70px] sm:h-[85px]">
+      <div className="max-w-7xl mx-auto sm:px-6 w-full relative">
+        <nav className="rounded-[20px] sm:rounded-[30px] flex items-center justify-between mt-0 bg-white border border-gray-200 shadow-lg sm:px-8 py-3 sm:py-4 h-[70px] sm:h-[85px] sm:mx">
           {/* Mobile/Tablet Layout */}
           <div className="lg:hidden flex items-center justify-between w-full">
             {/* Logo Section */}
@@ -255,6 +265,17 @@ export default function Navbar() {
                   >
                     <i className="fi fi-brands-youtube text-sm flex items-center justify-center"></i>
                   </Link>
+                  
+                  {/* whatsapp */}
+                  {/* <Link
+                    href="https://wa.me/8801713243400?text=Hello%21%20Is%20there%20anyone%20available%20to%20chat%3F"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-8 h-8 bg-my-white text-my-black rounded-full flex items-center justify-center hover:bg-my-white/80 hover:text-my-black transition-colors duration-300"
+                    aria-label="Whatsapp"
+                  >
+                    <i className="fi fi-brands-whatsapp text-sm flex items-center justify-center"></i>
+                  </Link> */}
                 </div>
               </div>
 

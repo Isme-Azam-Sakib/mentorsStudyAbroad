@@ -224,7 +224,7 @@ export default function LatestEventsSection({
 
     return (
         <div ref={hoverRef} className={`py-12 sm:py-16 lg:py-20 bg-my-white ${className}`}>
-            <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6">
+            <div className="w-[375px] sm:w-[600px] md:w-[768px] lg:w-auto lg:max-w-7xl mx-auto px-3 sm:px-4 lg:px-6">
                 <div className="text-center mb-8 sm:mb-10 lg:mb-12">
                     <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-my-black mb-3 sm:mb-4">
                         {title}
@@ -400,7 +400,7 @@ export default function LatestEventsSection({
 
                                     <Link
                                         href={`/events/${activeEvent.id}`}
-                                        className="inline-block bg-my-accent text-white px-6 sm:px-8 py-3 sm:py-4 hover:bg-my-accent/90 rounded-full transition-all duration-300 ease-in-out transform hover:scale-105 text-sm sm:text-base font-semibold"
+                                        className="inline-block bg-my-white text-black border border-my-black px-6 sm:px-8 py-3 sm:py-4 hover:bg-my-black hover:text-my-white rounded-full transition-all duration-300 ease-in-out transform hover:scale-105 text-sm sm:text-base font-semibold"
                                     >
                                         View Details
                                     </Link>
