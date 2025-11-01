@@ -9,7 +9,7 @@ stages:
   - deploy-production
 
 stage-deploy-production:
-  stage: deploy-main
+  stage: deploy-production
   image: node:18.8.0-alpine
   script:
     - apk add --update openssh
