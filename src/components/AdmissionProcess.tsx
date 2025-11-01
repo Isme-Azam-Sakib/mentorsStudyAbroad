@@ -52,7 +52,7 @@ export const AdmissionProcess: React.FC = () => {
   // }, []);
 
   return (
-    <div className="w-full bg-white min-h-screen mb-60">
+    <div className="w-full bg-my-white min-h-screen mb-60">
       <div className="max-w-7xl mx-auto px-4 w-full">
         <div className="text-center">
           <h2 className="text-4xl font-bold text-my-black mb-4">

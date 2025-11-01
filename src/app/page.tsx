@@ -18,8 +18,10 @@ import { testimonialsData } from '@/lib/testimonials-data';
 import CTA from '@/components/CTA';
 import ChooseDestination from '@/components/ChooseDestination';
 import FilterableEventsSection from '@/components/FilterableEventsSection';
+import { BranchCardsSection } from '@/components/BranchCardsSection';
 import UniversitiesSection from '@/components/UniversitiesSection';
 import { CountryStats } from '@/components/CountryStats';
+import { AccreditationSection } from '@/components/AccreditationSection';
 
 const admissionSteps = [
   {
@@ -248,6 +250,12 @@ export default function HomePage() {
         <ChooseDestination maxRows={2} />
       </LazySection>
 
+
+      {/* Accreditation Section */}
+      <LazySection delay={0.2}>
+        <AccreditationSection />
+      </LazySection>
+
       {/* Admission Process Section */}
       <LazySection delay={0.2}>
         <div ref={admissionProcessRef} className="w-full bg-white min-h-[120vh] sm:mb-16">
@@ -436,6 +444,11 @@ export default function HomePage() {
         <ClientOnly>
           <VideoSection />
         </ClientOnly>
+      </LazySection>
+
+      {/* Branch Cards Section */}
+      <LazySection delay={0.3}>
+        <BranchCardsSection />
       </LazySection>
 
       {/* FAQ Section */}

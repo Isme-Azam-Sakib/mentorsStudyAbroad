@@ -210,7 +210,7 @@ export const ContactFormSection = () => {
 
                         {/* Right side - Social Media Icons */}
                         <div className="flex flex-col items-end justify-center space-y-4 z-10">
-                            <a href="#" aria-label="LinkedIn" className="text-white hover:text-white/80 transition-colors">
+                            <a href="https://www.linkedin.com/company/mentorseducation" aria-label="LinkedIn" className="text-white hover:text-white/80 transition-colors">
                                 <i className="fi fi-brands-linkedin text-[24px] text-my-white hover:text-my-black transition-all duration-300"></i>
                             </a>
                             <a href="https://www.facebook.com/MentorsSA/" aria-label="Facebook" className="text-white hover:text-white/80 transition-colors">
@@ -219,9 +219,9 @@ export const ContactFormSection = () => {
                             <a href="#" aria-label="WhatsApp" className="text-white hover:text-white/80 transition-colors">
                                 <i className="fi fi-brands-whatsapp text-[24px] text-my-white hover:text-my-black transition-all duration-300"></i>
                             </a>
-                            <a href="#" aria-label="X" className="text-white hover:text-white/80 transition-colors">
+                            {/* <a href="#" aria-label="X" className="text-white hover:text-white/80 transition-colors">
                                 <i className="fi fi-brands-twitter-alt text-[24px] text-my-white hover:text-my-black transition-all duration-300"></i>
-                            </a>
+                            </a> */}
                             <a href="https://www.instagram.com/studyabroadwithmentors/?hl=en" aria-label="Instagram" className="text-white hover:text-white/80 transition-colors">
                                 <i className="fi fi-brands-instagram text-[24px] text-my-white hover:text-my-black transition-all duration-300"></i>
                             </a>

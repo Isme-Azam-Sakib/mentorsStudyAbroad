@@ -36,7 +36,7 @@ export const ContactFormSectionButton = () => {
         <section className="w-full bg-white">
             <div className="relative mx-auto max-w-7xl px-6 mt-32">
 
-                <div className="bg-my-accent rounded-4xl p-8 lg:p-12 relative overflow-hidden h-[350px] sm:h-[700px] lg:h-[400px] my-16">
+                <div className="bg-my-accent rounded-4xl p-8 lg:p-12 relative overflow-hidden h-[500px] sm:h-[800px] lg:h-[400px] my-16">
                     {/* Mobile/Tablet Layout */}
                     <div className="lg:hidden flex flex-col items-center justify-start h-full text-center">
                         {/* Text Content */}
@@ -50,7 +50,7 @@ export const ContactFormSectionButton = () => {
                         </div>
 
                         {/* Button */}
-                        <div className="mb-8">
+                        <div className="mb-8 relative z-10">
                             <form
                                 onSubmit={handleSubmit}
                                 role="form"
@@ -81,21 +81,24 @@ export const ContactFormSectionButton = () => {
                         </div>
 
                         {/* Social Media Icons - Horizontal */}
-                        <div className="flex items-center justify-center space-x-4 z-10">
-                            <a href="#" aria-label="LinkedIn" className="text-white hover:text-white/80 transition-colors">
+                        <div className="flex items-center justify-center space-x-4 relative z-20">
+                            <a href="https://www.linkedin.com/company/mentorseducation" target="_blank" aria-label="LinkedIn" className="text-white hover:text-white/80 transition-colors">
                                 <i className="fi fi-brands-linkedin text-[24px] text-my-white hover:text-my-black transition-all duration-300"></i>
                             </a>
-                            <a href="https://www.facebook.com/MentorsSA/" aria-label="Facebook" className="text-white hover:text-white/80 transition-colors">
+                            <a href="https://www.facebook.com/MentorsSA/" target="_blank" aria-label="Facebook" className="text-white hover:text-white/80 transition-colors">
                                 <i className="fi fi-brands-facebook text-[24px] text-my-white hover:text-my-black transition-all duration-300"></i>
                             </a>
-                            <a href="#" aria-label="WhatsApp" className="text-white hover:text-white/80 transition-colors">
+                            <a href="#" target="_blank" aria-label="WhatsApp" className="text-white hover:text-white/80 transition-colors">
                                 <i className="fi fi-brands-whatsapp text-[24px] text-my-white hover:text-my-black transition-all duration-300"></i>
                             </a>
-                            <a href="#" aria-label="X" className="text-white hover:text-white/80 transition-colors">
+                            {/* <a href="#" aria-label="X" className="text-white hover:text-white/80 transition-colors">
                                 <i className="fi fi-brands-twitter-alt text-[24px] text-my-white hover:text-my-black transition-all duration-300"></i>
-                            </a>
-                            <a href="https://www.instagram.com/studyabroadwithmentors/?hl=en" aria-label="Instagram" className="text-white hover:text-white/80 transition-colors">
+                            </a> */}
+                            <a href="https://www.instagram.com/studyabroadwithmentors/?hl=en" target="_blank" aria-label="Instagram" className="text-white hover:text-white/80 transition-colors">
                                 <i className="fi fi-brands-instagram text-[24px] text-my-white hover:text-my-black transition-all duration-300"></i>
+                            </a>
+                            <a href="https://www.youtube.com/@MentorsStudyAbroad" target="_blank" aria-label="youtube" className="text-white hover:text-white/80 transition-colors">
+                                <i className="fi fi-brands-youtube text-[24px] text-my-white hover:text-my-black transition-all duration-300"></i>
                             </a>
                         </div>
                     </div>
@@ -143,20 +146,23 @@ export const ContactFormSectionButton = () => {
 
                         {/* Right side - Social Media Icons */}
                         <div className="flex flex-col items-end justify-center space-y-4 z-10">
-                            <a href="#" aria-label="LinkedIn" className="text-white hover:text-white/80 transition-colors">
+                            <a href="https://www.linkedin.com/company/mentorseducation" target="_blank" aria-label="LinkedIn" className="text-white hover:text-white/80 transition-colors">
                                 <i className="fi fi-brands-linkedin text-[24px] text-my-white hover:text-my-black transition-all duration-300"></i>
                             </a>
-                            <a href="https://www.facebook.com/MentorsSA/" aria-label="Facebook" className="text-white hover:text-white/80 transition-colors">
+                            <a href="https://www.facebook.com/MentorsSA/" target="_blank" aria-label="Facebook" className="text-white hover:text-white/80 transition-colors">
                                 <i className="fi fi-brands-facebook text-[24px] text-my-white hover:text-my-black transition-all duration-300"></i>
                             </a>
-                            <a href="#" aria-label="WhatsApp" className="text-white hover:text-white/80 transition-colors">
+                            <a href="#" target="_blank" aria-label="WhatsApp" className="text-white hover:text-white/80 transition-colors">
                                 <i className="fi fi-brands-whatsapp text-[24px] text-my-white hover:text-my-black transition-all duration-300"></i>
                             </a>
-                            <a href="#" aria-label="X" className="text-white hover:text-white/80 transition-colors">
+                            {/* <a href="#" aria-label="X" className="text-white hover:text-white/80 transition-colors">
                                 <i className="fi fi-brands-twitter-alt text-[24px] text-my-white hover:text-my-black transition-all duration-300"></i>
-                            </a>
-                            <a href="https://www.instagram.com/studyabroadwithmentors/?hl=en" aria-label="Instagram" className="text-white hover:text-white/80 transition-colors">
+                            </a> */}
+                            <a href="https://www.instagram.com/studyabroadwithmentors/?hl=en" target="_blank" aria-label="Instagram" className="text-white hover:text-white/80 transition-colors">
                                 <i className="fi fi-brands-instagram text-[24px] text-my-white hover:text-my-black transition-all duration-300"></i>
+                            </a>
+                            <a href="https://www.youtube.com/@MentorsStudyAbroad" target="_blank" aria-label="youtube" className="text-white hover:text-white/80 transition-colors">
+                                <i className="fi fi-brands-youtube text-[24px] text-my-white hover:text-my-black transition-all duration-300"></i>
                             </a>
                         </div>
                     </div>
@@ -164,9 +170,9 @@ export const ContactFormSectionButton = () => {
                 </div>
 
                 {/* Mobile/Tablet Image - Centered and Anchored */}
-                <div className="lg:hidden absolute -bottom-0 left-1/2 transform -translate-x-1/2">
+                <div className="lg:hidden absolute bottom-0 left-1/2 transform -translate-x-1/2 z-0">
                     <Image
-                        className="w-[300px] sm:w-[450px] h-auto"
+                        className="w-[250px] sm:w-[400px] h-auto"
                         alt="Customer support representative"
                         src="/customer-support-1.png"
                         width={320}
