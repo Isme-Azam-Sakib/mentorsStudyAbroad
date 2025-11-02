@@ -47,15 +47,15 @@ export default function EventsPage() {
                             {/* Left Column - Text and Buttons */}
                             <div className="text-center lg:text-left order-2 lg:order-1">
                                 <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-my-black mb-4 sm:mb-5 lg:mb-6 leading-tight">
-                                    Find out everything about the <span className="text-my-accent relative">events</span>, education fair, seminar etc organized by Mentors&apos; Study Abroad.
+                                    <span className="text-my-accent relative">Explore</span> our Education Fairs and Seminars
                                 </h1>
                                 <div className="flex flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
-                                <Link href="/contact">
-                    <Button variant="outline" className="text-sm sm:text-base">
-                      Book A Free Consultation <i className="fi fi-sr-meeting-alt"></i>
-                    </Button>
-                  </Link>
- 
+                                    <Link href="/contact">
+                                        <Button variant="outline" className="text-sm sm:text-base">
+                                            Book A Free Consultation <i className="fi fi-sr-meeting-alt"></i>
+                                        </Button>
+                                    </Link>
+
                                     <button className="bg-my-black text-my-white border border-my-white px-4 py-3 hover:bg-my-white hover:text-my-black hover:border-my-black hover:border-1 rounded-full transition-all duration-300 text-sm sm:text-base">
                                         Download Brochure <i className="fi fi-sr-file-pdf"></i>
                                     </button>
@@ -112,110 +112,110 @@ export default function EventsPage() {
                                 {/* All Gallery Images */}
                                 <div className="break-inside-avoid mb-3 sm:mb-4 md:mb-6">
                                     <div className="overflow-hidden rounded-xl sm:rounded-2xl group">
-                                        <img 
-                                            src="/gallery/Gallery_1.jpg" 
-                                            alt="Gallery 1" 
-                                            className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-[1.02]" 
+                                        <img
+                                            src="/gallery/Gallery_1.jpg"
+                                            alt="Gallery 1"
+                                            className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-[1.02]"
                                         />
                                     </div>
                                 </div>
-                                
+
                                 <div className="break-inside-avoid mb-3 sm:mb-4 md:mb-6">
                                     <div className="overflow-hidden rounded-xl sm:rounded-2xl group">
-                                        <img 
-                                            src="/gallery/Gallery_2.jpg" 
-                                            alt="Gallery 2" 
-                                            className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-[1.02]" 
+                                        <img
+                                            src="/gallery/Gallery_2.jpg"
+                                            alt="Gallery 2"
+                                            className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-[1.02]"
                                         />
                                     </div>
                                 </div>
-                                
+
                                 <div className="break-inside-avoid mb-3 sm:mb-4 md:mb-6">
                                     <div className="overflow-hidden rounded-xl sm:rounded-2xl group">
-                                        <img 
-                                            src="/gallery/Gallery_3.jpg" 
-                                            alt="Gallery 3" 
-                                            className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-[1.02]" 
+                                        <img
+                                            src="/gallery/Gallery_3.jpg"
+                                            alt="Gallery 3"
+                                            className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-[1.02]"
                                         />
                                     </div>
                                 </div>
-                                
+
                                 <div className="break-inside-avoid mb-3 sm:mb-4 md:mb-6">
                                     <div className="overflow-hidden rounded-xl sm:rounded-2xl group">
-                                        <img 
-                                            src="/gallery/Gallery_4.jpg" 
-                                            alt="Gallery 4" 
-                                            className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-[1.02]" 
+                                        <img
+                                            src="/gallery/Gallery_4.jpg"
+                                            alt="Gallery 4"
+                                            className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-[1.02]"
                                         />
                                     </div>
                                 </div>
-                                
+
                                 <div className="break-inside-avoid mb-3 sm:mb-4 md:mb-6">
                                     <div className="overflow-hidden rounded-xl sm:rounded-2xl group">
-                                        <img 
-                                            src="/gallery/Gallery_5.jpg" 
-                                            alt="Gallery 5" 
-                                            className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-[1.02]" 
+                                        <img
+                                            src="/gallery/Gallery_5.jpg"
+                                            alt="Gallery 5"
+                                            className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-[1.02]"
                                         />
                                     </div>
                                 </div>
-                                
+
                                 <div className="break-inside-avoid mb-3 sm:mb-4 md:mb-6">
                                     <div className="overflow-hidden rounded-xl sm:rounded-2xl group">
-                                        <img 
-                                            src="/gallery/Gallery_6.jpg" 
-                                            alt="Gallery 6" 
-                                            className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-[1.02]" 
+                                        <img
+                                            src="/gallery/Gallery_6.jpg"
+                                            alt="Gallery 6"
+                                            className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-[1.02]"
                                         />
                                     </div>
                                 </div>
-                                
+
                                 <div className="break-inside-avoid mb-3 sm:mb-4 md:mb-6">
                                     <div className="overflow-hidden rounded-xl sm:rounded-2xl group">
-                                        <img 
-                                            src="/gallery/Gallery_7.jpg" 
-                                            alt="Gallery 7" 
-                                            className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-[1.02]" 
+                                        <img
+                                            src="/gallery/Gallery_7.jpg"
+                                            alt="Gallery 7"
+                                            className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-[1.02]"
                                         />
                                     </div>
                                 </div>
-                                
+
                                 <div className="break-inside-avoid mb-3 sm:mb-4 md:mb-6">
                                     <div className="overflow-hidden rounded-xl sm:rounded-2xl group">
-                                        <img 
-                                            src="/gallery/Gallery_8.jpg" 
-                                            alt="Gallery 8" 
-                                            className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-[1.02]" 
+                                        <img
+                                            src="/gallery/Gallery_8.jpg"
+                                            alt="Gallery 8"
+                                            className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-[1.02]"
                                         />
                                     </div>
                                 </div>
-                                
+
                                 <div className="break-inside-avoid mb-3 sm:mb-4 md:mb-6">
                                     <div className="overflow-hidden rounded-xl sm:rounded-2xl group">
-                                        <img 
-                                            src="/gallery/Gallery_9.jpg" 
-                                            alt="Gallery 9" 
-                                            className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-[1.02]" 
+                                        <img
+                                            src="/gallery/Gallery_9.jpg"
+                                            alt="Gallery 9"
+                                            className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-[1.02]"
                                         />
                                     </div>
                                 </div>
-                                
+
                                 <div className="break-inside-avoid mb-3 sm:mb-4 md:mb-6">
                                     <div className="overflow-hidden rounded-xl sm:rounded-2xl group">
-                                        <img 
-                                            src="/gallery/Gallery_10.jpg" 
-                                            alt="Gallery 10" 
-                                            className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-[1.02]" 
+                                        <img
+                                            src="/gallery/Gallery_10.jpg"
+                                            alt="Gallery 10"
+                                            className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-[1.02]"
                                         />
                                     </div>
                                 </div>
-                                
+
                                 <div className="break-inside-avoid mb-3 sm:mb-4 md:mb-6">
                                     <div className="overflow-hidden rounded-xl sm:rounded-2xl group">
-                                        <img 
-                                            src="/gallery/Gallery_11.jpg" 
-                                            alt="Gallery 11" 
-                                            className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-[1.02]" 
+                                        <img
+                                            src="/gallery/Gallery_11.jpg"
+                                            alt="Gallery 11"
+                                            className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-[1.02]"
                                         />
                                     </div>
                                 </div>
@@ -232,9 +232,9 @@ export default function EventsPage() {
             </LazySection>
 
             {/* Study Abroad Modal */}
-            <StudyAbroadModal 
-                isOpen={isModalOpen} 
-                onClose={() => setIsModalOpen(false)} 
+            <StudyAbroadModal
+                isOpen={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
             />
         </>
     );

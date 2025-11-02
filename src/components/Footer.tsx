@@ -29,7 +29,7 @@ export default function Footer() {
                 <Image src={logoAlt} alt="Study Abroad Mentors logo" width={150} height={50} className="h-[50px] sm:h-[60px] w-auto object-contain" />
               </div>
               <p className="text-xs sm:text-sm text-gray-600 leading-5 sm:leading-6">
-                Mentors' is the most reputed educational institution and admission consulting house dedicated to preparing students in their admissions, standardized tests, and academic studies. We are a student-focused institution that offers a vibrant and inspirational learning environment.
+                Mentors’ Study Abroad is a leading student consultancy offering comprehensive A-Z guidance and support to help students achieve their dream of studying abroad - all with zero service charges.
               </p>
             </div>
 
@@ -40,8 +40,8 @@ export default function Footer() {
                 <li><Link href="/about" className="hover:text-black text-sm sm:text-base">About</Link></li>
                 <li><Link href="/success-stories" className="hover:text-black text-sm sm:text-base">Success Stories</Link></li>
                 <li><Link href="/countries" className="hover:text-black text-sm sm:text-base">Top Universities</Link></li>
-                <li><Link href="/services" className="hover:text-black text-sm sm:text-base">Visa Processing</Link></li>
-                <li><Link href="/resources/sop" className="hover:text-black text-sm sm:text-base">How to write SOP</Link></li>
+                {/* <li><Link href="/services" className="hover:text-black text-sm sm:text-base">Visa Processing</Link></li>
+                <li><Link href="/resources/sop" className="hover:text-black text-sm sm:text-base">How to write SOP</Link></li> */}
               </ul>
             </div>
 

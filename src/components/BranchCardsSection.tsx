@@ -13,10 +13,10 @@ export const BranchCardsSection = () => {
             <div className="mx-auto max-w-7xl px-6">
                 <div className="text-center mb-12">
                     <h2 className="text-3xl sm:text-4xl font-bold text-my-black mb-4">
-                        Ready to take your next step?
+                        Take your first step with us
                     </h2>
                     <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                        Visit one of our branches nearest to you and let us help you make a decisive move
+                        Visit your nearest branch today
                     </p>
                 </div>
 

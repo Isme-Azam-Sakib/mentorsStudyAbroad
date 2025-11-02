@@ -275,15 +275,15 @@ export default function HomePage() {
                 {admissionSteps.map((step, index) => (
                   <div
                     key={index}
-                    // className={`transition-all duration-500 ${index <= admissionActiveStep
-                    //   ? 'opacity-100 transform translate-y-16 sm:translate-y-24 lg:translate-y-32'
-                    //   : 'opacity-10 transform translate-y-32 sm:translate-y-48 lg:translate-y-64'
-                    //   }`}
-                    // style={{
-                    //   position: index <= admissionActiveStep ? 'sticky' : 'relative',
-                    //   top: index <= admissionActiveStep ? `${index * 60}px` : 'auto',
-                    //   zIndex: index + 1
-                    // }}
+                  // className={`transition-all duration-500 ${index <= admissionActiveStep
+                  //   ? 'opacity-100 transform translate-y-16 sm:translate-y-24 lg:translate-y-32'
+                  //   : 'opacity-10 transform translate-y-32 sm:translate-y-48 lg:translate-y-64'
+                  //   }`}
+                  // style={{
+                  //   position: index <= admissionActiveStep ? 'sticky' : 'relative',
+                  //   top: index <= admissionActiveStep ? `${index * 60}px` : 'auto',
+                  //   zIndex: index + 1
+                  // }}
                   >
                     <ProcessCard
                       title={step.title}
@@ -322,10 +322,10 @@ export default function HomePage() {
               <div className="order-1 lg:order-1">
                 <div className="mb-6 sm:mb-7 lg:mb-8 text-center lg:text-left">
                   <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-my-black mb-3 sm:mb-4">
-                    Mentors&apos; Study Abroad <span className="text-my-accent relative">Success Stories</span>
+                    Visa <span className="text-my-accent relative">Success Stories</span>
                   </h2>
                   <p className="text-base sm:text-lg text-gray-600 leading-relaxed">
-                    Here&apos;s what our successful students have to say about Mentors&apos; Study Abroad
+                    Hear from our students in home page
                   </p>
                 </div>
 
@@ -442,7 +442,13 @@ export default function HomePage() {
       {/* Video Section */}
       <LazySection delay={0.2}>
         <ClientOnly>
-          <VideoSection />
+          <VideoSection
+            title={
+              <>
+                Hear From <span className="text-my-accent relative">Our Students</span>
+              </>
+            }
+          />
         </ClientOnly>
       </LazySection>
 
