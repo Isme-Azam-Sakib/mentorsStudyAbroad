@@ -21,8 +21,8 @@ export default function Footer() {
   return (
     <>
       {/* Main Footer Section */}
-      <section className="w-full bg-my-white2 rounded-bl-[30px] sm:rounded-bl-[50px] rounded-br-[30px] sm:rounded-br-[50px] -pb-10 shadow-lg z-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 py-8 sm:py-10">
+      <section className="-pb-10 z-20">
+        <div className="bg-my-white2 mx-auto max-w-7xl rounded-4xl px-6 sm:px-6 py-8 sm:py-10 mb-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10">
             <div>
               <div className="mb-6 sm:mb-[40px] mt-6 sm:mt-[40px]">
