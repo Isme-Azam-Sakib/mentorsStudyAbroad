@@ -1,15 +1,15 @@
 workflow:
   rules:
-    - if: $CI_COMMIT_BRANCH == 'main' 
+    - if: $CI_COMMIT_BRANCH == 'production' 
       when: always
     - when: never
 
 stages:
   # - deploy-production
-  - deploy-main
+  - deploy-production
 
-stage-deploy-staging-local:
-  stage: deploy-main
+stage-deploy-production:
+  stage: deploy-production
   image: node:18.8.0-alpine
   script:
     - apk add --update openssh
@@ -19,6 +19,5 @@ stage-deploy-staging-local:
     # - ssh -i $MENTORS_KEY -o StrictHostKeyChecking=no -p $MENTORS_PORT $MENTORS_HOST "cd /home/ubuntu/www/mentorslearning.com/mentors-front && git checkout main && git pull origin main && npm install && npm run build && pm2 restart mentors-front && exit"
     - ssh -i  $MENTORS_KEY -o StrictHostKeyChecking=no -p $MENTORS_PORT $MENTORS_HOST "~/scripts/study-front.sh"
   only:
-    - main
-
+    - production
 
