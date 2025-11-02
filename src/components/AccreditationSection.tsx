@@ -9,7 +9,7 @@ export const AccreditationSection = () => {
                     {/* Left Column - Headline */}
                     <div className="text-center lg:text-left">
                         <h2 className="text-3xl sm:text-4xl font-bold text-my-black">
-                            Our Accredited & Trusted partners
+                            Our Accredited & Trusted Partners
                         </h2>
                     </div>
 
