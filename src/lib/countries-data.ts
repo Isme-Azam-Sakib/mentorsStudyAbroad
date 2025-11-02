@@ -19,7 +19,7 @@ export const countriesData: Record<string, Country> = {
   usa: {
     name: "United States",
     description: "Known for world-class universities consistently ranked among the best globally",
-    heroImage: "/country-hero-usa.png",
+    heroImage: "/country-heros/country-hero-usa.png",
     stats: { universities: "60+", annualTuitionFees: "$10K - $25K", successfulVisas: "600+", postStudyWork: "Up to 3 Years" },
     universityLogos: [
       '/universities/usa/hofstra.png',
@@ -53,7 +53,7 @@ export const countriesData: Record<string, Country> = {
   uk: {
     name: "United Kingdom",
     description: "Studying in UK offers a unique opportunity to experience life in a dynamic environment",
-    heroImage: "/country-hero-uk.png",
+    heroImage: "/country-heros/country-hero-uk.png",
     stats: { universities: "40+ ", annualTuitionFees: "£10K - £40K", successfulVisas: "500+", postStudyWork: "2 - 3 years" 
     },
     universityLogos: [
@@ -88,7 +88,7 @@ export const countriesData: Record<string, Country> = {
   ireland: {
     name: "Ireland",
     description: "a friendly and welcoming destination for international students",
-    heroImage: "/country-hero-ireland.png",
+    heroImage: "/country-heros/country-hero-ireland.png",
     stats: { universities: "15+", annualTuitionFees: "€10K - €55K", successfulVisas: "—", postStudyWork: "2 years" },
     universityLogos: [
       '/universities/ireland/University College Dublin.jpg',
@@ -122,7 +122,7 @@ export const countriesData: Record<string, Country> = {
   australia: {
     name: "Australia",
     description: "One of the top destinations for international students, offering a world-class education system",
-    heroImage: "/country-hero-australia.png",
+    heroImage: "/country-heros/country-hero-australia.png",
     stats: { universities: "40+", annualTuitionFees: "AUD 26K ", successfulVisas: "353+", postStudyWork: "4+ years" },
     universityLogos: [
       '/universities/australia/Curtin University.png',
@@ -156,7 +156,7 @@ export const countriesData: Record<string, Country> = {
   canada: {
     name: "Canada",
     description: "The world’s second-largest country, is a top choice for international students",
-    heroImage: "/country-hero-canada.png",
+    heroImage: "/country-heros/country-hero-canada.png",
     stats: { universities: "430+", annualTuitionFees: "CAD 15K - 45K", successfulVisas: "3000+", postStudyWork: "3 years" },
     universityLogos: [
       '/universities/canada/algoma.png',
@@ -192,7 +192,7 @@ export const countriesData: Record<string, Country> = {
   malaysia: {
     name: "Malaysia",
     description: "Malaysia offers a well-structured and affordable higher education system.",
-    heroImage: "/country-hero-malaysia.png",
+    heroImage: "/country-heros/country-hero-malaysia.png",
     stats: { universities: "18", annualTuitionFees: "-", successfulVisas: "500+", postStudyWork: "-" },
     universityLogos: [
       '/universities/malaysia/uow.png',
@@ -227,7 +227,7 @@ export const countriesData: Record<string, Country> = {
   japan: {
     name: "Japan",
     description: "Japan offers world-class education, affordability, safety, and a unique mix of tradition and modernity. ",
-    heroImage: "/country-hero-japan.png",
+    heroImage: "/country-heros/country-hero-japan.png",
     stats: { universities: "01", annualTuitionFees: "¥1,596,000", successfulVisas: "—", postStudyWork: "1 Year" },
     universityLogos: [],
     whyChoose: [
@@ -252,7 +252,7 @@ export const countriesData: Record<string, Country> = {
   newzealand: {
     name: "New Zealand",
     description: "a top study destination with no age barrier to education, making it accessible at any stage of life.",
-    heroImage: "/country-hero-newzealand.png",
+    heroImage: "/country-heros/country-hero-newzealand.png",
     stats: { 
       universities: "14", 
       annualTuitionFees: "NZD 22K-45K", 

@@ -5,6 +5,8 @@ import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import Lottie from 'lottie-react';
 import { getEventsApiUrl } from '@/lib/config';
+import FilterableEventsSection from '@/components/FilterableEventsSection';
+import LazySection from '@/components/LazySection';
 
 type ApiEvent = {
     id: number;
@@ -244,35 +246,37 @@ export default function EventDetailsPage() {
                     style={{ backgroundImage: "url('/hero background.png')" }}
                 />
                 <div className="relative z-10">
-                    <div className="max-w-7xl mx-auto px-4 pt-24 md:pt-28 pb-12 ">
-                        {/* Timer inside hero */}
+                    <div className="max-w-7xl mx-auto px-4 pt-8 md:pt-4 pb-12 ">
+                        {/* Timer*/}
                         <div className="mb-10">
-                            <div className="bg-my-black text-white rounded-2xl px-4 md:px-8 py-8 mt-10">
-                                <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-                                    <h3 className="text-2xl font-semibold">{heading}</h3>
-                                    <div className="flex items-center gap-8 md:gap-10">
+                            <div className="bg-my-black text-white rounded-2xl px-4 md:px-8 py-8">
+                                <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
+                                    <h3 className="text-xl sm:text-2xl font-semibold text-center lg:text-left">{heading}</h3>
+                                    <div className="grid grid-cols-2 sm:flex sm:flex-row gap-4 sm:gap-6 md:gap-8 lg:gap-10 w-full sm:w-auto items-center justify-center">
                                         {timerItems.map((t, idx) => (
-                                            <div key={t.label} className="flex items-end gap-2">
-                                                <span className="text-4xl font-bold">{String(t.value).padStart(2, '0')}</span>
-                                                <span className="opacity-80">{t.label}</span>
-                                                {idx < timerItems.length - 1 && <span className="mx-2 opacity-40">|</span>}
+                                            <div key={t.label} className="flex items-end gap-2 justify-center">
+                                                <span className="text-3xl sm:text-4xl font-bold">{String(t.value).padStart(2, '0')}</span>
+                                                <span className="opacity-80 text-sm sm:text-base">{t.label}</span>
+                                                {idx < timerItems.length - 1 && <span className="mx-2 opacity-40 hidden sm:inline">|</span>}
                                             </div>
                                         ))}
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center py-16">
-                            {/* Left: Title and description only */}
-                            <div>
-                                <h4 className="text-[24px] font-bold text-my-black leading-tight">
+                        
+                        {/* Mobile/Tablet: Thumbnail first, then Title and Description */}
+                        <div className="space-y-8 lg:space-y-0 lg:grid lg:grid-cols-2 lg:gap-10 lg:items-center py-8 lg:py-16">
+                            {/* Thumbnail image - First on mobile/tablet */}
+                            <div className="flex justify-center lg:justify-end order-1 lg:order-2">
+                                <img src={event.image} alt={event.title} className="w-full max-w-xl h-auto object-cover rounded-2xl sm:rounded-[32px]" />
+                            </div>
+                            {/* Title and description - Second on mobile/tablet */}
+                            <div className="order-2 lg:order-1">
+                                <h4 className="text-xl sm:text-2xl lg:text-[24px] font-bold text-my-black leading-tight">
                                     {event.title}
                                 </h4>
-                                <p className="mt-6 text-gray-700">{event.description}</p>
-                            </div>
-                            {/* Right: Thumbnail image */}
-                            <div className="flex justify-center lg:justify-end">
-                                <img src={event.image} alt={event.title} className="w-full max-w-xl h-auto object-cover rounded-[32px]" />
+                                <p className="mt-4 sm:mt-6 text-gray-700 whitespace-pre-line text-sm sm:text-base">{event.description}</p>
                             </div>
                         </div>
                     </div>
@@ -281,44 +285,44 @@ export default function EventDetailsPage() {
 
             {/* Event Quick Info (Date, Time, Location) */}
             <div className="-mt-6 mb-10 relative z-20">
-                <div className="max-w-6xl mx-auto px-3">
+                <div className="max-w-6xl mx-auto px-3 sm:px-4">
                     <div className="flex justify-center">
-                        <div className="bg-white/80 backdrop-blur-lg rounded-3xl border border-pink-200/50 p-6 md:p-8 shadow-xl w-full">
-                            <div className="flex items-center justify-center gap-10 md:gap-16">
+                        <div className="bg-white/80 backdrop-blur-lg rounded-2xl sm:rounded-3xl border border-pink-200/50 p-4 sm:p-6 md:p-8 shadow-xl w-full">
+                            <div className="flex items-center justify-center gap-4 sm:gap-6 md:gap-10 lg:gap-16 flex-wrap">
                                 {/* Date */}
-                                <div className="flex items-center gap-4">
-                                    <i className="fi fi-sr-calendar-clock text-my-accent text-4xl"></i>
+                                <div className="flex items-center gap-2 sm:gap-3 md:gap-4 flex-shrink-0">
+                                    <i className="fi fi-sr-calendar-clock text-my-accent text-2xl sm:text-3xl md:text-4xl"></i>
                                     <div className="text-left">
-                                        <div className="text-gray-500 text-sm font-medium mb-1">Date</div>
-                                        <div className="text-2xl md:text-3xl lg:text-4xl font-bold text-black">
+                                        <div className="text-gray-500 text-xs sm:text-sm font-medium mb-1">Date</div>
+                                        <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-black">
                                             {formatDate(event.datetimeISO)}
                                         </div>
                                     </div>
                                 </div>
 
                                 {/* Separator */}
-                                <div className="hidden md:block w-px h-16 bg-gray-300"></div>
+                                <div className="hidden sm:block w-px h-12 sm:h-16 bg-gray-300 flex-shrink-0"></div>
 
                                 {/* Time */}
-                                <div className="flex items-center gap-4">
-                                    <i className="fi fi-sr-clock-three text-my-accent text-4xl"></i>
+                                <div className="flex items-center gap-2 sm:gap-3 md:gap-4 flex-shrink-0">
+                                    <i className="fi fi-sr-clock-three text-my-accent text-2xl sm:text-3xl md:text-4xl"></i>
                                     <div className="text-left">
-                                        <div className="text-gray-500 text-sm font-medium mb-1">Time</div>
-                                        <div className="text-2xl md:text-3xl lg:text-4xl font-bold text-black">
+                                        <div className="text-gray-500 text-xs sm:text-sm font-medium mb-1">Time</div>
+                                        <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-black">
                                             {formatTime(event.datetimeISO)}
                                         </div>
                                     </div>
                                 </div>
 
                                 {/* Separator */}
-                                <div className="hidden md:block w-px h-16 bg-gray-300"></div>
+                                <div className="hidden sm:block w-px h-12 sm:h-16 bg-gray-300 flex-shrink-0"></div>
 
                                 {/* Location */}
-                                <div className="flex items-center gap-4">
-                                    <i className="fi fi-ss-marker text-my-accent text-4xl"></i>
-                                    <div className="text-left">
-                                        <div className="text-gray-500 text-sm font-medium mb-1">Location</div>
-                                        <div className="text-2xl md:text-3xl lg:text-4xl font-bold text-black">
+                                <div className="flex items-center gap-2 sm:gap-3 md:gap-4 flex-shrink-0">
+                                    <i className="fi fi-ss-marker text-my-accent text-2xl sm:text-3xl md:text-4xl"></i>
+                                    <div className="text-left min-w-0">
+                                        <div className="text-gray-500 text-xs sm:text-sm font-medium mb-1">Location</div>
+                                        <div className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold text-black break-words">
                                             {event.location}
                                         </div>
                                     </div>
@@ -340,7 +344,7 @@ export default function EventDetailsPage() {
                     </div>
                     
                     <div className="bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-200">
-                        <div className="aspect-video w-full">
+                        <div className="h-[400px] sm:h-[600px] md:aspect-video w-full">
                             <iframe
                                 width="100%"
                                 height="100%"
@@ -358,63 +362,9 @@ export default function EventDetailsPage() {
                 </div>
             </div>
 
-            {/* Separator and Upcoming Events */}
-            <div className="py-10">
-                <div className="max-w-7xl mx-auto px-4">                    
-                    <div className="my-6 w-full bg-gray-200"></div>
-
-                    <div className="text-center mb-8">
-                        <h2 className="text-3xl lg:text-4xl font-bold text-my-black">
-                            View <span className="text-my-accent relative">Upoming</span> Events
-                        </h2>
-                    </div>
-
-                    {allEvents.filter(e => currentTime && new Date(e.datetimeISO).getTime() > currentTime).length === 0 ? (
-                        <div className="flex flex-col justify-center items-center py-20">
-                            {calendarAnimation && (
-                                <Lottie 
-                                    animationData={calendarAnimation} 
-                                    loop={true}
-                                    style={{ width: 200, height: 200 }}
-                                />
-                            )}
-                            <p className="text-gray-600 mt-4 text-lg">No upcoming events at the moment.</p>
-                        </div>
-                    ) : (
-                        <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                            {allEvents
-                                .filter(e => currentTime && new Date(e.datetimeISO).getTime() > currentTime)
-                                .sort((a, b) => new Date(a.datetimeISO).getTime() - new Date(b.datetimeISO).getTime())
-                                .slice(0, 3)
-                                .map(evt => (
-                                <div key={evt.id} className="group rounded-3xl border border-gray-200 hover:bg-my-white2 transition-all duration-300 p-4 bg-white h-full flex flex-col">
-                                    <div className="relative overflow-hidden rounded-2xl">
-                                        <img src={evt.image} alt={evt.title} className="h-56 w-full object-cover hover:shadow-[0_8px_24px_rgba(0,0,0,0.12)] transition-transform duration-300 group-hover:scale-[1.03]" />
-                                        <span className="bg-my-black text-white group-hover:bg-my-accent group-hover:text-white transition-colors absolute top-3 right-3 px-4 py-1 rounded-full text-sm font-medium">
-                                            Upcoming
-                                        </span>
-                                    </div>
-                                    <div className="pt-5 space-y-3 flex-1 flex flex-col">
-                                        <div className="flex items-start gap-3">
-                                            <i className="fi fi-ss-marker text-my-accent"></i>
-                                            <div>
-                                                <h4 className="text-my-black font-semibold leading-snug">{evt.title}</h4>
-                                                <p className="text-gray-600 text-sm">{evt.location}</p>
-                                            </div>
-                                        </div>
-                                        <div className="flex items-center gap-3 text-sm">
-                                            <i className="fi fi-sr-calendar-clock text-my-accent"></i>
-                                            <span className="text-my-black font-medium">{evt.datetimeDisplay}</span>
-                                        </div>
-                                        <Link href={`/events/${evt.id}`} className="w-full text-center mt-auto rounded-full border border-my-black px-5 py-3 font-semibold transition-colors hover:bg-my-black hover:text-white">Learn More</Link>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    )}
-                </div>
-            </div>
-
+            <LazySection delay={0.2}>
+                <FilterableEventsSection title="Browse Other Events" />
+            </LazySection>
 
         </>
     );

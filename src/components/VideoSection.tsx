@@ -162,8 +162,8 @@ interface VideoSectionProps {
 
 export function VideoSection({ 
   className = "", 
-  title = "Watch what our successful students has to say",
-  subtitle = "Watch our expert instructors and successful students share their insights",
+  title = "Hear From Our Students",
+  subtitle = "Get Insights from Our Successful Students",
   country
 }: VideoSectionProps) {
     const [currentVideoIndex, setCurrentVideoIndex] = useState(0);

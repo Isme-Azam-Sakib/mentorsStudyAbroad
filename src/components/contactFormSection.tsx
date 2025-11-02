@@ -90,7 +90,7 @@ export const ContactFormSection = () => {
 
     return (
         <section className="w-full bg-white">
-            <div className="relative mx-auto max-w-7xl px-6 mt-32">
+            <div className="relative mx-auto max-w-7xl mt-32">
 
                <div className="bg-my-accent rounded-4xl p-8 lg:p-12 relative overflow-hidden h-[350px] sm:h-[700px] lg:h-[400px] my-16">
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 h-full">

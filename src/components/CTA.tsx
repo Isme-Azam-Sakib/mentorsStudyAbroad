@@ -57,7 +57,7 @@ const CTA: React.FC<CTAProps> = ({
 
         {/* CTA Button */}
         <Link href="/contact">
-          <Button variant="outline" className="text-sm sm:text-base">
+          <Button variant="outline" className="text-sm sm:text-base border-solid hover:border-solid hover:border-my-white">
             Book A Free Consultation <i className="fi fi-sr-meeting-alt"></i>
           </Button>
         </Link>

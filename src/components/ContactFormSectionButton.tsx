@@ -82,15 +82,12 @@ export const ContactFormSectionButton = () => {
 
                         {/* Social Media Icons - Horizontal */}
                         <div className="flex items-center justify-center space-x-4 relative z-20">
-                            <a href="https://www.linkedin.com/company/mentorseducation" target="_blank" aria-label="LinkedIn" className="text-white hover:text-white/80 transition-colors">
-                                <i className="fi fi-brands-linkedin text-[24px] text-my-white hover:text-my-black transition-all duration-300"></i>
-                            </a>
                             <a href="https://www.facebook.com/MentorsSA/" target="_blank" aria-label="Facebook" className="text-white hover:text-white/80 transition-colors">
                                 <i className="fi fi-brands-facebook text-[24px] text-my-white hover:text-my-black transition-all duration-300"></i>
                             </a>
-                            <a href="#" target="_blank" aria-label="WhatsApp" className="text-white hover:text-white/80 transition-colors">
+                            {/* <a href="https://wa.me/8801713243400?text=Hello%21%20Is%20there%20anyone%20available%20to%20chat%3F " target="_blank" aria-label="WhatsApp" className="text-white hover:text-white/80 transition-colors">
                                 <i className="fi fi-brands-whatsapp text-[24px] text-my-white hover:text-my-black transition-all duration-300"></i>
-                            </a>
+                            </a> */}
                             {/* <a href="#" aria-label="X" className="text-white hover:text-white/80 transition-colors">
                                 <i className="fi fi-brands-twitter-alt text-[24px] text-my-white hover:text-my-black transition-all duration-300"></i>
                             </a> */}
@@ -99,6 +96,9 @@ export const ContactFormSectionButton = () => {
                             </a>
                             <a href="https://www.youtube.com/@MentorsStudyAbroad" target="_blank" aria-label="youtube" className="text-white hover:text-white/80 transition-colors">
                                 <i className="fi fi-brands-youtube text-[24px] text-my-white hover:text-my-black transition-all duration-300"></i>
+                            </a>
+                            <a href="https://www.linkedin.com/company/mentorseducation" target="_blank" aria-label="LinkedIn" className="text-white hover:text-white/80 transition-colors">
+                                <i className="fi fi-brands-linkedin text-[24px] text-my-white hover:text-my-black transition-all duration-300"></i>
                             </a>
                         </div>
                     </div>
@@ -146,15 +146,12 @@ export const ContactFormSectionButton = () => {
 
                         {/* Right side - Social Media Icons */}
                         <div className="flex flex-col items-end justify-center space-y-4 z-10">
-                            <a href="https://www.linkedin.com/company/mentorseducation" target="_blank" aria-label="LinkedIn" className="text-white hover:text-white/80 transition-colors">
-                                <i className="fi fi-brands-linkedin text-[24px] text-my-white hover:text-my-black transition-all duration-300"></i>
-                            </a>
                             <a href="https://www.facebook.com/MentorsSA/" target="_blank" aria-label="Facebook" className="text-white hover:text-white/80 transition-colors">
                                 <i className="fi fi-brands-facebook text-[24px] text-my-white hover:text-my-black transition-all duration-300"></i>
                             </a>
-                            <a href="#" target="_blank" aria-label="WhatsApp" className="text-white hover:text-white/80 transition-colors">
+                            {/* <a href="https://wa.me/8801713243400?text=Hello%21%20Is%20there%20anyone%20available%20to%20chat%3F " target="_blank" aria-label="WhatsApp" className="text-white hover:text-white/80 transition-colors">
                                 <i className="fi fi-brands-whatsapp text-[24px] text-my-white hover:text-my-black transition-all duration-300"></i>
-                            </a>
+                            </a> */}
                             {/* <a href="#" aria-label="X" className="text-white hover:text-white/80 transition-colors">
                                 <i className="fi fi-brands-twitter-alt text-[24px] text-my-white hover:text-my-black transition-all duration-300"></i>
                             </a> */}
@@ -163,6 +160,9 @@ export const ContactFormSectionButton = () => {
                             </a>
                             <a href="https://www.youtube.com/@MentorsStudyAbroad" target="_blank" aria-label="youtube" className="text-white hover:text-white/80 transition-colors">
                                 <i className="fi fi-brands-youtube text-[24px] text-my-white hover:text-my-black transition-all duration-300"></i>
+                            </a>
+                            <a href="https://www.linkedin.com/company/mentorseducation" target="_blank" aria-label="LinkedIn" className="text-white hover:text-white/80 transition-colors">
+                                <i className="fi fi-brands-linkedin text-[24px] text-my-white hover:text-my-black transition-all duration-300"></i>
                             </a>
                         </div>
                     </div>

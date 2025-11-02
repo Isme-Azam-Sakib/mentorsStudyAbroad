@@ -47,48 +47,136 @@ const servicesData = [
 
 export default function Services() {
     const [activeService, setActiveService] = useState(1);
+    const [scrollProgress, setScrollProgress] = useState(0);
     const servicesRef = useRef<HTMLDivElement>(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const rafRef = useRef<number | null>(null);
+    const lastActiveServiceRef = useRef(1);
+
     useEffect(() => {
+        // Only run on desktop/tablet
+        if (typeof window === 'undefined' || window.innerWidth < 768) return;
+
         const handleScroll = () => {
-            if (!servicesRef.current) return;
+            // Cancel any pending animation frame
+            if (rafRef.current !== null) {
+                cancelAnimationFrame(rafRef.current);
+            }
 
-            const servicesSection = servicesRef.current;
-            const rect = servicesSection.getBoundingClientRect();
-            const sectionTop = rect.top;
-            const sectionHeight = rect.height;
-            const windowHeight = window.innerHeight;
+                // Use requestAnimationFrame to throttle updates
+                rafRef.current = requestAnimationFrame(() => {
+                    if (!servicesRef.current || window.innerWidth < 768) return;
 
-            // Calculate which service is currently in view
-            const serviceElements = servicesSection.querySelectorAll('.service-item');
-            let currentActive = 1;
+                    const servicesSection = servicesRef.current;
+                    const windowHeight = window.innerHeight;
 
-            serviceElements.forEach((element, index) => {
-                const elementRect = element.getBoundingClientRect();
-                const elementTop = elementRect.top;
-                const elementBottom = elementRect.bottom;
+                    // Calculate which service is currently in view - only desktop service items
+                    const serviceElements = servicesSection.querySelectorAll('.service-item');
+                    let currentActive = 1;
 
-                // If element is in the middle portion of the viewport
-                if (elementTop <= windowHeight / 2 && elementBottom >= windowHeight / 2) {
-                    currentActive = index + 1;
-                }
-            });
+                    // Get section position and dimensions
+                    const sectionRect = servicesSection.getBoundingClientRect();
+                    const sectionTopAbsolute = sectionRect.top + window.scrollY;
+                    const sectionHeight = sectionRect.height;
+                    const sectionBottomAbsolute = sectionTopAbsolute + sectionHeight;
 
-            setActiveService(currentActive);
+                    // Calculate scroll progress (0 to 100) based on scroll position
+                    let progress = 0;
+                    const scrollY = window.scrollY;
+                    const viewportCenter = scrollY + (windowHeight / 2);
+
+                    // Calculate progress based on viewport center position
+                    if (viewportCenter <= sectionTopAbsolute) {
+                        // Viewport center is before section starts
+                        progress = 0;
+                        currentActive = 1;
+                    } else if (viewportCenter >= sectionBottomAbsolute) {
+                        // Viewport center is past section end
+                        progress = 100;
+                        currentActive = servicesData.length;
+                    } else {
+                        // Viewport center is within section - calculate progress
+                        const progressFromTop = (viewportCenter - sectionTopAbsolute) / sectionHeight;
+                        progress = Math.min(100, Math.max(0, progressFromTop * 100));
+
+                        // Find which service element is closest to viewport center
+                        // Filter to only visible desktop service items
+                        const allServiceElements = servicesSection.querySelectorAll('.service-item');
+                        const visibleServices: { element: Element; index: number }[] = [];
+
+                        allServiceElements.forEach((element, index) => {
+                            const computedStyle = window.getComputedStyle(element);
+                            const elementRect = element.getBoundingClientRect();
+                            
+                            // Only include visible elements (desktop services are visible on md+ screens)
+                            if (computedStyle.display !== 'none' && 
+                                computedStyle.visibility !== 'hidden' &&
+                                elementRect.height > 50 && // Desktop services are tall
+                                elementRect.width > 100) { // Desktop services are wide
+                                visibleServices.push({ element, index });
+                            }
+                        });
+
+                        if (visibleServices.length > 0) {
+                            let closestIndex = 0;
+                            let closestDistance = Infinity;
+                            const viewportCenterY = windowHeight / 2;
+
+                            visibleServices.forEach(({ element, index }) => {
+                                const elementRect = element.getBoundingClientRect();
+                                const elementCenter = elementRect.top + (elementRect.height / 2);
+                                const distance = Math.abs(viewportCenterY - elementCenter);
+
+                                if (distance < closestDistance) {
+                                    closestDistance = distance;
+                                    closestIndex = index;
+                                }
+                            });
+
+                            currentActive = closestIndex + 1;
+                        }
+                    }
+
+                    // Always update scroll progress for smooth filling
+                    setScrollProgress(progress);
+
+                    // Only update active service if changed to prevent unnecessary re-renders
+                    if (currentActive !== lastActiveServiceRef.current) {
+                        lastActiveServiceRef.current = currentActive;
+                        setActiveService(currentActive);
+                    }
+                });
         };
 
-        window.addEventListener('scroll', handleScroll);
+        // Throttled resize handler
+        let resizeTimeout: NodeJS.Timeout;
+        const handleResize = () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                handleScroll();
+            }, 150);
+        };
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        window.addEventListener('resize', handleResize);
         handleScroll(); // Initial call
 
-        return () => window.removeEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+            window.removeEventListener('resize', handleResize);
+            if (rafRef.current !== null) {
+                cancelAnimationFrame(rafRef.current);
+            }
+            clearTimeout(resizeTimeout);
+        };
     }, []);
     return (
         <>
             {/* Hero Section */}
-            <div className="relative">
+            <div className="relative min-h-[60vh] sm:min-h-[70vh] lg:min-h-[80vh]">
                 {/* Hero Background */}
                 <div
-                    className="absolute inset-0 w-full h-auto bg-cover bg-center bg-no-repeat"
+                    className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat"
                     style={{
                         backgroundImage: "url('/hero background.png')"
                     }}
@@ -96,25 +184,25 @@ export default function Services() {
 
 
                 {/* Hero Content */}
-                <div className="relative z-10 flex items-center">
-                    <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 my-16 sm:my-24 lg:my-32">
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-center">
+                <div className="relative z-10 flex items-center min-h-[60vh] sm:min-h-[70vh] lg:min-h-[80vh]">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-24 w-full">
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center">
                             {/* Left Column - Text and Buttons */}
                             <div className="text-center lg:text-left order-2 lg:order-1">
-                                <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-my-black mb-4 sm:mb-5 lg:mb-6 leading-tight">
+                                <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-my-black mb-4 sm:mb-5 lg:mb-6 leading-tight px-2 sm:px-0">
                                     Find out <span className="text-my-accent relative">what we do</span>, how we do and how it benefits you
                                 </h1>
-                                <p className="text-base sm:text-lg text-gray-600 mb-6 sm:mb-7 lg:mb-8 leading-relaxed">
+                                <p className="text-sm sm:text-base md:text-lg text-gray-600 mb-6 sm:mb-7 lg:mb-8 leading-relaxed px-2 sm:px-0">
                                     We provide comprehensive study abroad services to help you achieve your international education goals
                                 </p>
-                                <div className="flex flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
+                                <div className="flex flex-row gap-3 sm:gap-4 justify-center lg:justify-start px-2 sm:px-0">
                                     <Link href="/contact">
-                                        <Button variant="outline" className="text-sm sm:text-base">
+                                        <Button variant="outline" className="text-xs sm:text-sm md:text-base">
                                             Book A Free Consultation <i className="fi fi-sr-meeting-alt"></i>
                                         </Button>
                                     </Link>
 
-                                    <button className="bg-my-black text-my-white border border-my-white px-4 py-3 hover:bg-my-white hover:text-my-black hover:border-my-black hover:border-1 rounded-full transition-all duration-300 text-sm sm:text-base">
+                                    <button className="bg-my-black text-my-white border border-my-white px-4 py-3 hover:bg-my-white hover:text-my-black hover:border-my-black hover:border-1 rounded-full transition-all duration-300 text-xs sm:text-sm md:text-base">
                                         Download Brochure <i className="fi fi-sr-file-pdf"></i>
                                     </button>
                                 </div>
@@ -122,11 +210,11 @@ export default function Services() {
 
                             {/* Right Column - Hero Image */}
                             <div className="flex justify-center lg:justify-end order-1 lg:order-2">
-                                <div className="relative">
+                                <div className="relative w-full max-w-sm sm:max-w-md lg:max-w-lg">
                                     <img
                                         src="/services/service- (6).png"
-                                        alt="Events, workshops and webinars"
-                                        className="max-w-full h-auto max-h-[300px] sm:max-h-[400px] lg:max-h-[500px] object-contain"
+                                        alt="Our services"
+                                        className="w-full h-auto max-h-[250px] sm:max-h-[350px] md:max-h-[400px] lg:max-h-[500px] object-contain"
                                     />
                                 </div>
                             </div>
@@ -136,26 +224,61 @@ export default function Services() {
             </div>
 
             {/* Services Section */}
-            <div ref={servicesRef} className="py-20 bg-my-white">
-                <div className="max-w-7xl mx-auto px-4">
+            <div ref={servicesRef} className="py-12 sm:py-16 lg:py-20 bg-my-white">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     {/* Section Title */}
-                    <div className="text-center mb-16">
-                        <h2 className="text-3xl lg:text-4xl font-bold text-my-black mb-4">
+                    <div className="text-center mb-8 sm:mb-12 lg:mb-16">
+                        <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-my-black mb-3 sm:mb-4">
                             What we <span className="text-my-accent relative">Offer</span>
                         </h2>
-                        <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                        <p className="text-sm sm:text-base md:text-lg text-gray-600 max-w-3xl mx-auto px-2">
                             We provide comprehensive study abroad services to help you achieve your international education goals
                         </p>
                     </div>
 
-                    {/* Services with Progress Indicator */}
-                    <div className="relative mx-8">
+                    {/* Mobile View */}
+                    <div className="md:hidden">
+                        <div className="flex flex-col items-center gap-4 sm:gap-6">
+                            {servicesData.map((service, index) => (
+                                <div
+                                    key={service.id}
+                                    className="service-item rounded-2xl overflow-hidden transition-all duration-300 transform hover:-translate-y-1 w-full max-w-sm sm:max-w-md"
+                                >
+                                    {/* Service Image */}
+                                    <div className="relative w-full overflow-hidden">
+                                        <img
+                                            src={service.image}
+                                            alt={service.title}
+                                            className="w-full h-auto object-contain"
+                                        />
+                                        {/* Service Number Badge */}
+                                        <div className="absolute top-4 left-4 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-my-black text-white flex items-center justify-center text-sm sm:text-base font-bold">
+                                            {String(service.id).padStart(2, '0')}
+                                        </div>
+                                    </div>
+
+                                    {/* Service Content */}
+                                    <div className="p-4 sm:p-5">
+                                        <h3 className="text-lg sm:text-xl font-bold text-my-black mb-2 sm:mb-3">
+                                            {service.title}
+                                        </h3>
+                                        <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
+                                            {service.description}
+                                        </p>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Tablet & Desktop View - Progress Indicator with Two-Column Layout */}
+                    <div className="hidden md:block relative mx-8">
                         {/* Progress Line */}
                         <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gray-200">
                             <div
-                                className="w-full bg-my-black transition-all duration-500 ease-out"
+                                className="w-full bg-my-black transition-all duration-100 ease-out will-change-[height]"
                                 style={{
-                                    height: `${((activeService - 1) / (servicesData.length - 1)) * 100}%`
+                                    height: `${scrollProgress}%`
                                 }}
                             />
                         </div>
@@ -165,7 +288,7 @@ export default function Services() {
                             {servicesData.map((service, index) => (
                                 <div
                                     key={service.id}
-                                    className={`w-12 h-12 rounded-full flex items-center justify-center text-lg font-bold transition-all duration-300 ${activeService >= service.id
+                                    className={`w-12 h-12 rounded-full flex items-center justify-center text-lg font-bold transition-all duration-300 will-change-[background-color,color] ${activeService >= service.id
                                         ? 'bg-my-black text-white'
                                         : 'bg-gray-200 text-gray-600'
                                         }`}
@@ -194,7 +317,7 @@ export default function Services() {
 
                                     {/* Service Content */}
                                     <div className="flex-1">
-                                        <h3 className="text-2xl lg:text-3xl font-bold text-my-black mb-6">
+                                        <h3 className="text-3xl xl:text-4xl font-bold text-my-black mb-6">
                                             {service.title}
                                         </h3>
                                         <p className="text-gray-600 leading-relaxed text-lg">
