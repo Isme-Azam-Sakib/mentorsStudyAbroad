@@ -90,7 +90,7 @@ export default function SuccessStoriesPage() {
           <VideoSection
             title={
               <>
-                <span className="text-my-accent relative">Hear</span> From Our Students
+                Hear From <span className="text-my-accent relative">Our Students</span>
               </>
             }
           />

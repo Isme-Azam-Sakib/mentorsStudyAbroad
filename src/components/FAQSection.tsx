@@ -26,7 +26,7 @@ const defaultFAQItems: FAQItem[] = [
   },
   {
     question: "Do I need to take IELTS or other English tests?",
-    answer: "Most universities in English-speaking countries require proof of English proficiency. We offer IELTS and PTE preparation courses to help you achieve the required scores. Some universities also accept other tests like TOEFL or Duolingo English Test."
+    answer: "Most universities in English-speaking countries require proof of English proficiency. We offer IELTS and PTE preparation courses to help you achieve the required scores."
   },
   {
     question: "How long does the application process take?",
