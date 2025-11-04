@@ -1,25 +1,46 @@
+export interface Semester {
+  period: string; 
+}
+
+export interface AdmissionIntake {
+  postGraduate: Semester[];
+  underGraduate: Semester[];
+}
+
+export interface EntryRequirement {
+  icon: string; // Icon class name (e.g., "fi fi-ss-document")
+  title: string;
+  description: string;
+  image?: {
+    src: string;
+    alt: string;
+  };
+  tag?: string;
+}
+
 export interface Country {
   name: string;
   description: string;
   heroImage: string;
-  // Stats displayed in CountryStats component
+
   stats: {
     universities: string;
     annualTuitionFees: string;
     successfulVisas: string;
     postStudyWork: string;
   };
-  // Image paths to university logos used by UniversitiesSection
+
   universityLogos: string[];
-  // Why choose this country content
   whyChoose: { title: string; content: string }[];
+  admissionIntake: AdmissionIntake;
+  entryRequirements?: EntryRequirement[];
 }
 
 export const countriesData: Record<string, Country> = {
   usa: {
     name: "United States",
     description: "Known for world-class universities consistently ranked among the best globally",
-    heroImage: "/country-heros/country-hero-usa.png",
+    heroImage: "/country-heros/usa.png",
     stats: { universities: "60+", annualTuitionFees: "$10K - $25K", successfulVisas: "600+", postStudyWork: "Up to 3 Years" },
     universityLogos: [
       '/universities/usa/hofstra.png',
@@ -48,12 +69,24 @@ export const countriesData: Record<string, Country> = {
         title: "Flexible Programs & Work Opportunities", 
         content: "Choose from adaptable study pathways while gaining valuable work experience during and after your studies." 
       }
-    ]
+    ],
+    admissionIntake: {
+      postGraduate: [
+        { period: "January – March" },
+        { period: "April – July" },
+        { period: "August – November" }
+      ],
+      underGraduate: [
+        { period: "January – March" },
+        { period: "April – July" },
+        { period: "August – November" }
+      ]
+    }
   },
   uk: {
     name: "United Kingdom",
     description: "Studying in UK offers a unique opportunity to experience life in a dynamic environment",
-    heroImage: "/country-heros/country-hero-uk.png",
+    heroImage: "/country-heros/uk.png",
     stats: { universities: "40+ ", annualTuitionFees: "£10K - £40K", successfulVisas: "500+", postStudyWork: "2 - 3 years" 
     },
     universityLogos: [
@@ -83,12 +116,24 @@ export const countriesData: Record<string, Country> = {
         title: "Fastest Visa Process with High Visa Grant Ratio", 
         content: "Benefit from a smooth, efficient visa process with a strong success rate for international students." 
       }
-    ]
+    ],
+    admissionIntake: {
+      postGraduate: [
+        { period: "January – March" },
+        { period: "April – July" },
+        { period: "August – November" }
+      ],
+      underGraduate: [
+        { period: "January – March" },
+        { period: "April – July" },
+        { period: "August – November" }
+      ]
+    }
   },
   ireland: {
     name: "Ireland",
     description: "a friendly and welcoming destination for international students",
-    heroImage: "/country-heros/country-hero-ireland.png",
+    heroImage: "/country-heros/ireland.png",
     stats: { universities: "15+", annualTuitionFees: "€10K - €55K", successfulVisas: "—", postStudyWork: "2 years" },
     universityLogos: [
       '/universities/ireland/University College Dublin.jpg',
@@ -117,12 +162,24 @@ export const countriesData: Record<string, Country> = {
         title: "Opportunities for Part-Time Work", 
         content: "Work alongside your studies to gain practical experience and help cover living expenses."
       }
-    ]
+    ],
+    admissionIntake: {
+      postGraduate: [
+        { period: "January – March" },
+        { period: "April – July" },
+        { period: "August – November" }
+      ],
+      underGraduate: [
+        { period: "January – March" },
+        { period: "April – July" },
+        { period: "August – November" }
+      ]
+    }
   },
   australia: {
     name: "Australia",
     description: "One of the top destinations for international students, offering a world-class education system",
-    heroImage: "/country-heros/country-hero-australia.png",
+    heroImage: "/country-heros/australia.png",
     stats: { universities: "40+", annualTuitionFees: "AUD 26K ", successfulVisas: "353+", postStudyWork: "4+ years" },
     universityLogos: [
       '/universities/australia/Curtin University.png',
@@ -151,12 +208,24 @@ export const countriesData: Record<string, Country> = {
         title: "Post-Study Work Permit", 
         content: "Gain valuable international work experience with generous post-study work opportunities." 
       }
-    ]
+    ],
+    admissionIntake: {
+      postGraduate: [
+        { period: "January – March" },
+        { period: "April – July" },
+        { period: "August – November" }
+      ],
+      underGraduate: [
+        { period: "January – March" },
+        { period: "April – July" },
+        { period: "August – November" }
+      ]
+    }
   },
   canada: {
     name: "Canada",
     description: "The world’s second-largest country, is a top choice for international students",
-    heroImage: "/country-heros/country-hero-canada.png",
+    heroImage: "/country-heros/canada.png",
     stats: { universities: "430+", annualTuitionFees: "CAD 15K - 45K", successfulVisas: "3000+", postStudyWork: "3 years" },
     universityLogos: [
       '/universities/canada/algoma.png',
@@ -187,17 +256,29 @@ export const countriesData: Record<string, Country> = {
         title: "Pathway Programs", 
         content: "Access flexible entry routes that help you meet admission requirements and transition smoothly into your chosen degree." 
       }
-    ]
+    ],
+    admissionIntake: {
+      postGraduate: [
+        { period: "January – March" },
+        { period: "April – July" },
+        { period: "August – November" }
+      ],
+      underGraduate: [
+        { period: "January – March" },
+        { period: "April – July" },
+        { period: "August – November" }
+      ]
+    }
   },
   malaysia: {
     name: "Malaysia",
     description: "Malaysia offers a well-structured and affordable higher education system.",
-    heroImage: "/country-heros/country-hero-malaysia.png",
+    heroImage: "/country-heros/malaysia.png",
     stats: { universities: "18", annualTuitionFees: "-", successfulVisas: "500+", postStudyWork: "-" },
     universityLogos: [
+      '/universities/malaysia/Curtin University.png',
       '/universities/malaysia/uow.png',
       '/universities/malaysia/utm.png',
-      '/universities/malaysia/Curtin University.png',
       '/universities/malaysia/Heriot Watt University.png',
       '/universities/malaysia/inti.png',
       '/universities/malaysia/klust.png',
@@ -222,12 +303,41 @@ export const countriesData: Record<string, Country> = {
         title: "Safe & Multicultural", 
         content: "Experience a welcoming, diverse, and secure environment for international students." 
       }
+    ],
+    admissionIntake: {
+      postGraduate: [
+        { period: "January – March" },
+        { period: "April – July" },
+        { period: "August – November" }
+      ],
+      underGraduate: [
+        { period: "January – March" },
+        { period: "April – July" },
+        { period: "August – November" }
+      ]
+    },
+    entryRequirements: [
+      {
+        icon: "fi fi-sr-workshop",
+        title: "Foundation Program",
+        description: "Minimum GPA: 2.5 out of 5.0 in HSC. 5 Credits in O-Levels (or equivalent). Students completing SSC may also be eligible."
+      },
+      {
+        icon: "fi fi-ss-diploma",
+        title: "Diploma Program",
+        description: "Minimum GPA: 2.5 out of 5.0 in HSC. 3 Credits in O-Levels (or equivalent).\nFor Bachelor's degree: Minimum GPA: 3.0 out of 5.0 in HSC OR Minimum 2 passes (Grade D or above) in A-Levels.\nGED also accepted."
+      },
+      {
+        icon: "fi fi-ss-user-graduate",
+        title: "Master's Degree",
+        description: "Minimum CGPA: 2.5 out of 4.0 in Bachelor's (or equivalent qualification)."
+      }
     ]
   },
   japan: {
     name: "Japan",
     description: "Japan offers world-class education, affordability, safety, and a unique mix of tradition and modernity. ",
-    heroImage: "/country-heros/country-hero-japan.png",
+    heroImage: "/country-heros/japan.png",
     stats: { universities: "01", annualTuitionFees: "¥1,596,000", successfulVisas: "—", postStudyWork: "1 Year" },
     universityLogos: [],
     whyChoose: [
@@ -247,12 +357,24 @@ export const countriesData: Record<string, Country> = {
         title: "World-Class Education Quality", 
         content: "Learn from globally recognized institutions with modern facilities and innovative teaching."
       }
-    ]
+    ],
+    admissionIntake: {
+      postGraduate: [
+        { period: "January – March" },
+        { period: "April – July" },
+        { period: "August – November" }
+      ],
+      underGraduate: [
+        { period: "January – March" },
+        { period: "April – July" },
+        { period: "August – November" }
+      ]
+    }
   },
   newzealand: {
     name: "New Zealand",
     description: "a top study destination with no age barrier to education, making it accessible at any stage of life.",
-    heroImage: "/country-heros/country-hero-newzealand.png",
+    heroImage: "/country-heros/newzealand.png",
     stats: { 
       universities: "14", 
       annualTuitionFees: "NZD 22K-45K", 
@@ -287,6 +409,18 @@ export const countriesData: Record<string, Country> = {
         title: "Scholarships for International Students", 
         content: "Benefit from a variety of scholarships that make quality education more affordable."
       }
-    ]
+    ],
+    admissionIntake: {
+      postGraduate: [
+        { period: "January – March" },
+        { period: "April – July" },
+        { period: "August – November" }
+      ],
+      underGraduate: [
+        { period: "January – March" },
+        { period: "April – July" },
+        { period: "August – November" }
+      ]
+    }
   }
 };

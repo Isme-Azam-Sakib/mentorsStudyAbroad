@@ -453,7 +453,7 @@ export default function HomePage() {
       </LazySection>
 
       {/* Branch Cards Section */}
-      <LazySection delay={0.3}>
+      <LazySection delay={0.2}>
         <BranchCardsSection />
       </LazySection>
 

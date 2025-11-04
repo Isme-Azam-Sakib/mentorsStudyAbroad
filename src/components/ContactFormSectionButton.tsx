@@ -10,13 +10,11 @@ export const ContactFormSectionButton = () => {
     const [errorMessage, setErrorMessage] = useState('');
 
     const handleApiSuccess = (response: unknown) => {
-        console.log("Form submitted successfully:", response);
         setSubmitStatus('success');
         setErrorMessage('');
     };
 
     const handleApiError = (error: unknown) => {
-        console.error("Form submission failed:", error);
         setSubmitStatus('error');
         setErrorMessage('Failed to send your message. Please try again.');
     };
@@ -28,7 +26,6 @@ export const ContactFormSectionButton = () => {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        console.log("Button clicked - form submitted");
         return;
     };
 
@@ -36,7 +33,7 @@ export const ContactFormSectionButton = () => {
         <section className="w-full bg-white">
             <div className="relative mx-auto max-w-7xl px-6 mt-32">
 
-                <div className="bg-my-accent rounded-4xl p-8 lg:p-12 relative overflow-hidden h-[500px] sm:h-[800px] lg:h-[400px] my-16">
+                <div className="bg-my-accent rounded-[50px] p-8 lg:p-12 relative overflow-hidden h-[500px] sm:h-[800px] lg:h-[400px] my-16">
                     {/* Mobile/Tablet Layout */}
                     <div className="lg:hidden flex flex-col items-center justify-start h-full text-center">
                         {/* Text Content */}
@@ -59,7 +56,6 @@ export const ContactFormSectionButton = () => {
                                 <div className="relative overflow-hidden">
                                     <div className="relative flex justify-center">
                                         <Button variant="secondary" onClick={() => {
-                                            console.log("Contact button clicked");
                                         }} className="text-sm sm:text-base">
                                             Book A Free Consultation <i className="fi fi-sr-meeting-alt"></i>
                                         </Button>

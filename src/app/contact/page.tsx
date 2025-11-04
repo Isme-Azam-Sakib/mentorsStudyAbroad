@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import LazySection from '@/components/LazySection';
 import { ContactForm } from '@/components/ContactForm';
 import { Button } from '@/components/Button';
@@ -9,6 +9,20 @@ import { branchesData, getDhakaBranches, getOutsideDhakaBranches } from '@/lib/b
 
 export default function ContactPage() {
     const [isModalOpen, setIsModalOpen] = useState(false);
+
+    useEffect(() => {
+        // Handle scroll to hash when page loads with hash in URL
+        if (window.location.hash) {
+            const hash = window.location.hash.substring(1);
+            const element = document.getElementById(hash);
+            if (element) {
+                // Small delay to ensure page is fully loaded
+                setTimeout(() => {
+                    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 100);
+            }
+        }
+    }, []);
 
     return (
         <>
@@ -132,7 +146,7 @@ export default function ContactPage() {
                         </div>
 
                         {/* Other Branches */}
-                        <div>
+                        <div id="other-branches" className="scroll-mt-32">
                             <h3 className="text-2xl font-bold text-my-black mb-8 text-center">Other Branches</h3>
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6">
                                 {getOutsideDhakaBranches().map((branch) => (
