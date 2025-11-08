@@ -14,13 +14,14 @@ interface ContactFormProps {
 
 // Countries data matching the navbar
 const countries = [
+  { value: 'australia', name: 'Australia' },
   { value: 'usa', name: 'USA' },
   { value: 'uk', name: 'UK' },
-  { value: 'uae', name: 'UAE' },
-  { value: 'australia', name: 'Australia' },
   { value: 'canada', name: 'Canada' },
+  { value: 'ireland', name: 'Ireland' },
   { value: 'malaysia', name: 'Malaysia' },
-  { value: 'finland', name: 'Finland' }
+  { value: 'newzealand', name: 'New Zealand' },
+  { value: 'japan', name: 'Japan' },
 ];
 
 export function ContactForm({ countryName, countryValue }: ContactFormProps) {

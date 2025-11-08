@@ -3,11 +3,13 @@
 import { useEffect, useMemo, useState } from "react";
 import type { ReactNode } from "react";
 import Image from "next/image";
-import { countriesData } from "@/lib/countries-data";
+import { universitiesData, type University as UniversityInfo } from "@/lib/universities-data";
 
 type University = {
   logo: string;
   name: string;
+  website?: string;
+  isDirectPartner?: boolean;
 };
 
 const CARD_BATCH_SIZE = 8;
@@ -25,28 +27,22 @@ export function PartnerUniversities({
 }: PartnerUniversitiesProps) {
   const universities = useMemo<University[]>(() => {
     const map = new Map<string, University>();
-    const selectedCountries =
-      countryKey && countriesData[countryKey]
-        ? [countriesData[countryKey]]
-        : Object.values(countriesData);
+    const selectedUniversities: UniversityInfo[] =
+      countryKey && countryKey.trim().length > 0
+        ? universitiesData.filter((university) => university.country === countryKey)
+        : universitiesData.filter((university) => university.isDirectPartner);
 
-    selectedCountries
-      .flatMap((country) => country.universityLogos)
-      .filter((logo): logo is string => Boolean(logo))
-      .forEach((logo) => {
-        const fileName = decodeURIComponent(logo.split("/").pop() ?? "");
-        const nameWithoutExt = fileName.replace(/\.[^/.]+$/, "");
-        const normalizedName = nameWithoutExt.replace(/[-_]+/g, " ").trim();
-
-        if (!normalizedName) return;
-        const key = normalizedName.toLowerCase();
-        if (!map.has(key)) {
-          map.set(key, {
-            logo,
-            name: normalizedName,
-          });
-        }
-      });
+    selectedUniversities.forEach((university) => {
+      const key = university.name.toLowerCase();
+      if (!map.has(key)) {
+        map.set(key, {
+          logo: university.logo,
+          name: university.name,
+          website: university.website,
+          isDirectPartner: university.isDirectPartner,
+        });
+      }
+    });
 
     return Array.from(map.values());
   }, [countryKey]);
