@@ -13,7 +13,7 @@ export const BranchCardsSection = () => {
             <div className="mx-auto max-w-7xl px-6">
                 <div className="text-center mb-12">
                     <h2 className="text-3xl sm:text-4xl font-bold text-my-black mb-4">
-                        Take your first step with us
+                        Take your first <span className="text-my-accent">step with us</span>
                     </h2>
                     <p className="text-lg text-gray-600 max-w-2xl mx-auto">
                         Visit your nearest branch today
@@ -64,7 +64,7 @@ export const BranchCardsSection = () => {
 
                 {/* View Other Branches Button */}
                 <div className="text-center mt-12">
-                    <Link href="/contact">
+                    <Link href="/contact#other-branches">
                         <button className="bg-my-white text-my-black border border-my-black px-6 py-3 hover:bg-my-black hover:text-my-white hover:border-my-white hover:border-1 rounded-full transition-all duration-300 text-sm sm:text-base">
                             View Other Branches
                         </button>

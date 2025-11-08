@@ -22,7 +22,7 @@ export default function Footer() {
     <>
       {/* Main Footer Section */}
       <section className="-pb-10 z-20">
-        <div className="bg-my-white2 mx-auto max-w-7xl rounded-4xl px-6 sm:px-6 py-8 sm:py-10 mb-8">
+        <div className="bg-my-white2 mx-auto max-w-7xl rounded-[50px] px-6 sm:px-6 py-8 sm:py-10 mb-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10">
             <div>
               <div className="mb-6 sm:mb-[40px] mt-6 sm:mt-[40px]">
