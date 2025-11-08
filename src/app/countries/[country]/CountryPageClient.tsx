@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { AdmissionProcess } from '../../../components/AdmissionProcess';
 import { ProcessCard } from '@/components/ProcessCard';
 import { ContactForm } from '@/components/ContactForm';
@@ -26,7 +26,8 @@ import { countriesData } from '@/lib/countries-data';
 import { AdmissionIntake } from '@/components/AdmissionIntake';
 import { EntryRequirements } from '@/components/EntryRequirements';
 import { PopularSubjects } from '@/components/PopularSubjects';
-import { coursesData } from '@/lib/course-data';
+import { coursesData, Course } from '@/lib/course-data';
+import { PartnerUniversities } from '@/components/PartnerUniversities';
 
 interface Country {
   name: string;
@@ -81,6 +82,13 @@ export default function CountryPageClient({ country, countryKey }: CountryPageCl
     const countryLower = countryKey.toLowerCase();
     return ['australia', 'usa', 'uk', 'canada', 'malaysia'].includes(countryLower);
   };
+
+  const countryPopularSubjects = useMemo(() => {
+    const subjectIds = countriesData[countryKey]?.popularSubjects ?? [];
+    return subjectIds
+      .map((id) => coursesData.find((course) => course.id === id) ?? null)
+      .filter((course): course is Course => course !== null);
+  }, [countryKey]);
 
   // Don't render until mounted to prevent hydration mismatches
   if (!isMounted) {
@@ -258,10 +266,26 @@ export default function CountryPageClient({ country, countryKey }: CountryPageCl
         <EntryRequirements requirements={countriesData[countryKey]?.entryRequirements || []} />
       </LazySection>
 
-      {/* Popular Subjects Section */}
+      {/* Partner Universities Section */}
       <LazySection delay={0.2}>
-        <PopularSubjects courses={coursesData} />
+        <PartnerUniversities countryKey={countryKey} />
       </LazySection>
+
+
+      
+      {/* Popular Subjects Section */}
+      {countryPopularSubjects.length > 0 && (
+        <LazySection delay={0.2}>
+          <PopularSubjects
+            courses={countryPopularSubjects}
+            title={
+              <>
+                Popular <span className="text-my-accent">Subjects</span> To Study in {country.name}
+              </>
+            }
+          />
+        </LazySection>
+      )}
 
       {/* Admission Process Section */}
       <LazySection delay={0.2}>

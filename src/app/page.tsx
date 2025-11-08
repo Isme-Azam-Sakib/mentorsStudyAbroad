@@ -22,6 +22,7 @@ import { BranchCardsSection } from '@/components/BranchCardsSection';
 import UniversitiesSection from '@/components/UniversitiesSection';
 import { CountryStats } from '@/components/CountryStats';
 import { AccreditationSection } from '@/components/AccreditationSection';
+import { PartnerUniversities } from '@/components/PartnerUniversities';
 
 const admissionSteps = [
   {
@@ -312,6 +313,11 @@ export default function HomePage() {
       {/* <LazySection delay={0.2}>
         <UniversitiesSection />
       </LazySection> */}
+
+      {/* Partner Universities Section */}
+      <LazySection delay={0.2}>
+        <PartnerUniversities />
+      </LazySection>
 
       {/* Testimonials Section */}
       <LazySection delay={0.2}>

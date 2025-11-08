@@ -18,14 +18,27 @@ export const PopularSubjects: React.FC<PopularSubjectsProps> = ({
   ),
   itemsPerPage = 6,
 }) => {
-  const [visibleCount, setVisibleCount] = useState(itemsPerPage);
+  const [visibleCount, setVisibleCount] = useState(
+    Math.min(itemsPerPage, courses.length)
+  );
 
-  const visibleCourses = courses.slice(0, visibleCount);
-  const hasMore = visibleCount < courses.length;
+  React.useEffect(() => {
+    setVisibleCount(Math.min(itemsPerPage, courses.length));
+  }, [courses, itemsPerPage]);
 
-  const handleLoadMore = () => {
-    setVisibleCount((prev) => Math.min(prev + itemsPerPage, courses.length));
+  const handleToggle = () => {
+    setVisibleCount((prev) => {
+      if (prev >= courses.length) {
+        return Math.min(itemsPerPage, courses.length);
+      }
+      return Math.min(prev + itemsPerPage, courses.length);
+    });
   };
+
+  const canToggle = courses.length > itemsPerPage;
+  const isExpanded = visibleCount >= courses.length;
+  const visibleCourses = courses.slice(0, visibleCount);
+  const toggleLabel = isExpanded ? "Show Less" : "Show More";
 
   return (
     <div className="w-full bg-white py-12 sm:py-16 md:py-32">
@@ -40,10 +53,10 @@ export const PopularSubjects: React.FC<PopularSubjectsProps> = ({
         </h2>
 
         {/* Courses Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-8 md:mb-12">
-          {visibleCourses.map((course, index) => (
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-8 md:mb-12">
+          {visibleCourses.map((course) => (
             <div
-              key={index}
+              key={course.id}
               className="group relative rounded-[50px] overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02]"
             >
               {/* Image Container */}
@@ -69,15 +82,23 @@ export const PopularSubjects: React.FC<PopularSubjectsProps> = ({
           ))}
         </div>
 
-        {/* Load More Button */}
-        {hasMore && (
+        {/* Toggle Button */}
+        {canToggle && (
           <div className="flex justify-center">
-            <button
-              onClick={handleLoadMore}
-              className="bg-white text-my-black border-2 border-my-black px-8 py-3 rounded-full hover:bg-my-black hover:text-white hover:border-my-black transition-all duration-300 text-sm sm:text-base font-medium"
+            <div
+              role="button"
+              tabIndex={0}
+              onClick={handleToggle}
+              onKeyDown={(event) => {
+                if (event.key === "Enter" || event.key === " ") {
+                  event.preventDefault();
+                  handleToggle();
+                }
+              }}
+              className="bg-white text-my-black border-2 border-my-black px-8 py-3 rounded-full hover:bg-my-black hover:text-white hover:border-my-black transition-all duration-300 text-sm sm:text-base font-medium cursor-pointer select-none"
             >
-              Load More
-            </button>
+              {toggleLabel}
+            </div>
           </div>
         )}
       </div>

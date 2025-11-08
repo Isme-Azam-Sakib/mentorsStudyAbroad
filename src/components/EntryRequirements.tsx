@@ -39,6 +39,10 @@ export const EntryRequirements: React.FC<EntryRequirementsProps> = ({
   padding = 40,
   contentImageGap = 16,
 }) => {
+  if (!requirements || requirements.length === 0) {
+    return null;
+  }
+
   const [activeIndex, setActiveIndex] = useState(0);
   const [progress, setProgress] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
@@ -115,7 +119,7 @@ export const EntryRequirements: React.FC<EntryRequirementsProps> = ({
           <div className="flex flex-col gap-5 min-h-full">
             {requirements.map((requirement, index) => {
               const cardImage = requirement.image || {
-                src: `/others/requirements(${index + 1}).jpg`,
+                src: `/others/entryRequirements/requirements(${index + 1}).jpg`,
                 alt: requirement.title || "Entry requirement image",
               };
 
@@ -179,7 +183,7 @@ export const EntryRequirements: React.FC<EntryRequirementsProps> = ({
           {requirements.map((requirement, index) => {
             const isActive = index === activeIndex;
                          const cardImage = requirement.image || {
-               src: `/others/requirements(${index + 1}).jpg`,
+               src: `/others/entryRequirements/requirements(${index + 1}).jpg`,
                alt: requirement.title || "Entry requirement image",
              };
 

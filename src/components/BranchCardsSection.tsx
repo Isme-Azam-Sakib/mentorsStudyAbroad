@@ -13,7 +13,7 @@ export const BranchCardsSection = () => {
             <div className="mx-auto max-w-7xl px-6">
                 <div className="text-center mb-12">
                     <h2 className="text-3xl sm:text-4xl font-bold text-my-black mb-4">
-                        Take your first step with us
+                        Take your first <span className="text-my-accent">step with us</span>
                     </h2>
                     <p className="text-lg text-gray-600 max-w-2xl mx-auto">
                         Visit your nearest branch today

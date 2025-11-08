@@ -16,6 +16,13 @@ export const AdmissionIntake: React.FC<AdmissionIntakeProps> = ({
   postGraduateSemesters,
   underGraduateSemesters,
 }) => {
+  const hasUnderGraduate = underGraduateSemesters && underGraduateSemesters.length > 0;
+  const hasPostGraduate = postGraduateSemesters && postGraduateSemesters.length > 0;
+
+  if (!hasUnderGraduate && !hasPostGraduate) {
+    return null;
+  }
+
   return (
     <div className="w-full bg-white py-12 sm:py-16 md:py-32">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -32,7 +39,8 @@ export const AdmissionIntake: React.FC<AdmissionIntakeProps> = ({
           </div>
 
           {/* Middle Column - under-graduate Programs Card (Order 2 on mobile) */}
-          <div className="order-2 md:order-none md:col-span-1">
+          {hasUnderGraduate && (
+            <div className="order-2 md:order-none md:col-span-1">
             <div className="group bg-white lg:rounded-[50px] rounded-4xl p-4 sm:p-6 md:p-8 border border-my-black/10 shadow-sm hover:shadow-lg transition-shadow duration-300 h-full w-full max-w-sm mx-auto md:max-w-none md:mx-0">
               {/* Icon */}
               <div className="flex justify-start mb-4 sm:mb-6">
@@ -60,10 +68,12 @@ export const AdmissionIntake: React.FC<AdmissionIntakeProps> = ({
                 ))}
               </div>
             </div>
-          </div>
+            </div>
+          )}
 
           {/* Right Column - post-graduate Programs Card (Order 3 on mobile) */}
-          <div className="order-3 md:order-none md:col-span-1">
+          {hasPostGraduate && (
+            <div className="order-3 md:order-none md:col-span-1">
             <div className="group bg-white lg:rounded-[50px] rounded-4xl p-4 sm:p-6 md:p-8 border border-my-black/10 shadow-sm hover:shadow-lg transition-shadow duration-300 h-full w-full max-w-sm mx-auto md:max-w-none md:mx-0">
               {/* Icon */}
               <div className="flex justify-start mb-4 sm:mb-6">
@@ -91,7 +101,8 @@ export const AdmissionIntake: React.FC<AdmissionIntakeProps> = ({
                 ))}
               </div>
             </div>
-          </div>
+            </div>
+          )}
         </div>
       </div>
     </div>
