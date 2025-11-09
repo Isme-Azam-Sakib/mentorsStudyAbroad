@@ -1,35 +1,63 @@
+export interface Semester {
+  period: string; 
+}
+
+export interface AdmissionIntake {
+  postGraduate: Semester[];
+  underGraduate: Semester[];
+}
+
+export interface EntryRequirement {
+  icon: string; // Icon class name (e.g., "fi fi-ss-document")
+  title: string;
+  description: string;
+  image?: {
+    src: string;
+    alt: string;
+  };
+  tag?: string;
+}
+
 export interface Country {
   name: string;
   description: string;
   heroImage: string;
-  // Stats displayed in CountryStats component
+
   stats: {
     universities: string;
     annualTuitionFees: string;
     successfulVisas: string;
     postStudyWork: string;
   };
-  // Image paths to university logos used by UniversitiesSection
+
   universityLogos: string[];
-  // Why choose this country content
   whyChoose: { title: string; content: string }[];
+  popularSubjects: number[];
+  admissionIntake: AdmissionIntake;
+  entryRequirements?: EntryRequirement[];
 }
 
 export const countriesData: Record<string, Country> = {
   usa: {
     name: "United States",
     description: "Known for world-class universities consistently ranked among the best globally",
-    heroImage: "/country-heros/country-hero-usa.png",
+    heroImage: "/country-heros/usa.png",
     stats: { universities: "60+", annualTuitionFees: "$10K - $25K", successfulVisas: "600+", postStudyWork: "Up to 3 Years" },
     universityLogos: [
-      '/universities/usa/hofstra.png',
-      '/universities/usa/long island university.png',
-      '/universities/usa/mercy.png',
-      '/universities/usa/queens college.png',
-      '/universities/usa/San Francisco State University.png',
+      '/universities/usa/Queens College.png',
+      '/universities/usa/Berkeley College.png',
+      '/universities/usa/Montclair State University.png',
+      '/universities/usa/Long Lsland University.png',
       '/universities/usa/Texas State University.png',
-      '/universities/usa/university of north texas.png',
-      '/universities/usa/William paterson University.png'
+      '/universities/usa/The University Of Oklahoma.png',
+      '/universities/usa/University Of Northern Iowa.png',
+      '/universities/usa/San Francisco State University.png',
+      '/universities/usa/University Of Northern Iowa.png',
+      // '/universities/usa/hofstra.png',
+      '/universities/usa/University Of Bridgeport.png',
+      '/universities/usa/William Paterson University.png',
+      '/universities/usa/Illinois State University.png',
+      '/universities/usa/Mercy University.png',
     ],
     whyChoose: [
       { 
@@ -48,23 +76,53 @@ export const countriesData: Record<string, Country> = {
         title: "Flexible Programs & Work Opportunities", 
         content: "Choose from adaptable study pathways while gaining valuable work experience during and after your studies." 
       }
+    ],
+    popularSubjects: [5, 10, 12, 14, 18],
+    admissionIntake: {
+      postGraduate: [
+        { period: "Spring (January)" },
+        { period: "Summer (May)" },
+        { period: "Fall (August)" }
+      ],
+      underGraduate: [
+        { period: "Spring (January)" },
+        { period: "Summer (May)" },
+        { period: "Fall (August)" }
+      ]
+    },
+    entryRequirements: [
+      {
+        icon: "fi fi-ss-user-graduate",
+        title: "Bachelor's Programs",
+        description: "Must have completed GED, Diploma, O/A Level, or HSC (any one). IELTS: Minimum overall score of 5.5"
+      },
+      {
+        icon: "fi fi-sr-graduation-cap",
+        title: "Master's Programs",
+        description: "Must have a completed Bachelor's degree. IELTS: Minimum overall score of 6.0"
+      }
     ]
   },
   uk: {
     name: "United Kingdom",
     description: "Studying in UK offers a unique opportunity to experience life in a dynamic environment",
-    heroImage: "/country-heros/country-hero-uk.png",
-    stats: { universities: "40+ ", annualTuitionFees: "£10K - £40K", successfulVisas: "500+", postStudyWork: "2 - 3 years" 
+    heroImage: "/country-heros/uk.png",
+    stats: { universities: "40+ ", annualTuitionFees: "£13K - £24K", successfulVisas: "500+", postStudyWork: "2 - 3 years" 
     },
     universityLogos: [
-      '/universities/uk/bangor.png',
-      '/universities/uk/Canterbury Christ Church University.jpg',
-      '/universities/uk/London Metropolitan University.png',
       '/universities/uk/London South Bank University.png',
-      '/universities/uk/University of Chester.png',
-      '/universities/uk/University of South Wales.jpg',
+      '/universities/uk/University_of_Roehampton_logo.png',
+      '/universities/uk/University of Hull (London).png',
       '/universities/uk/University of the West of England.png',
-      '/universities/uk/London South Bank University.png'
+      '/universities/uk/Coventry University.png',
+      '/universities/uk/University of South Wales.jpg',
+      '/universities/uk/Ravensbourne University London.png'
+
+      // '/universities/uk/bangor.png',
+      // '/universities/uk/Canterbury Christ Church University.jpg',
+      // '/universities/uk/London Metropolitan University.png',
+      // '/universities/uk/London South Bank University.png',
+      // '/universities/uk/University of Chester.png'
     ],
     whyChoose: [
       { 
@@ -83,12 +141,23 @@ export const countriesData: Record<string, Country> = {
         title: "Fastest Visa Process with High Visa Grant Ratio", 
         content: "Benefit from a smooth, efficient visa process with a strong success rate for international students." 
       }
-    ]
+    ],
+    popularSubjects: [1, 4, 5, 8, 12, 18, 19, 25],
+    admissionIntake: {
+      postGraduate: [
+        { period: "May" }
+      ],
+      underGraduate: [
+        { period: "January" },
+        { period: "May" },
+        { period: "September" }
+      ]
+    }
   },
   ireland: {
     name: "Ireland",
     description: "a friendly and welcoming destination for international students",
-    heroImage: "/country-heros/country-hero-ireland.png",
+    heroImage: "/country-heros/ireland.png",
     stats: { universities: "15+", annualTuitionFees: "€10K - €55K", successfulVisas: "—", postStudyWork: "2 years" },
     universityLogos: [
       '/universities/ireland/University College Dublin.jpg',
@@ -117,22 +186,59 @@ export const countriesData: Record<string, Country> = {
         title: "Opportunities for Part-Time Work", 
         content: "Work alongside your studies to gain practical experience and help cover living expenses."
       }
+    ],
+    popularSubjects: [],
+    admissionIntake: {
+      postGraduate: [
+        { period: "September" }
+      ],
+      underGraduate: [
+        { period: "January" },
+        { period: "September" }
+      ]
+    },
+    entryRequirements: [
+      // {
+      //   icon: "fi fi-sr-workshop",
+      //   title: "Foundation Program",
+      //   description: "Academic: O Level or Year 10 completion. English: IELTS overall 5.5 (no band less than 5.0)."
+      // },
+      // {
+      //   icon: "fi fi-ss-diploma",
+      //   title: "Diploma Program",
+      //   description: "Academic: HSC or Year 12 completion. English: IELTS overall 5.5 (no band less than 5.0)."
+      // },
+      // {
+      //   icon: "fi fi-ss-user-graduate",
+      //   title: "Bachelor's Program",
+      //   description: "Academic: HSC or Year 12 completion. English: IELTS overall 6.0 (no band less than 5.5)."
+      // },
+      // {
+      //   icon: "fi fi-sr-graduation-cap",
+      //   title: "Postgraduate Diploma",
+      //   description: "Academic: Bachelor's degree completed. English: IELTS overall 6.5 (no band less than 6.0)."
+      // },
+      // {
+      //   icon: "fi fi-ss-trophy",
+      //   title: "Master's Program",
+      //   description: "Academic: Bachelor's degree completed. English: IELTS overall 6.5 (no band less than 6.0)."
+      // }
     ]
   },
   australia: {
     name: "Australia",
     description: "One of the top destinations for international students, offering a world-class education system",
-    heroImage: "/country-heros/country-hero-australia.png",
-    stats: { universities: "40+", annualTuitionFees: "AUD 26K ", successfulVisas: "353+", postStudyWork: "4+ years" },
+    heroImage: "/country-heros/australia.png",
+    stats: { universities: "40+", annualTuitionFees: "AUD 22K - 60K ", successfulVisas: "353+", postStudyWork: "4+ years" },
     universityLogos: [
-      '/universities/australia/Curtin University.png',
-      '/universities/australia/Deakin University.png',
-      '/universities/australia/James Cook University.png',
-      '/universities/australia/La Trobe University.png',
       '/universities/australia/Macquarie University.jpg',
+      '/universities/australia/Deakin University.png',
+      '/universities/australia/La Trobe University.png',
+      '/universities/australia/Curtin University.png',
+      '/universities/australia/Victoria University.png',
       '/universities/australia/Southern Cross University.png',
-      '/universities/australia/The University of Western Australia.png',
-      '/universities/australia/Victoria University.png'
+      '/universities/australia/James Cook University.png',
+      '/universities/australia/The University of Western Australia.png'
     ],
     whyChoose: [
       { 
@@ -151,22 +257,59 @@ export const countriesData: Record<string, Country> = {
         title: "Post-Study Work Permit", 
         content: "Gain valuable international work experience with generous post-study work opportunities." 
       }
+    ],
+    popularSubjects: [2, 3, 5, 13, 14, 16, 18, 19, 22, 24],
+    admissionIntake: {
+      postGraduate: [
+        { period: "February / March" },
+        { period: "July" },
+        { period: "November" }
+      ],
+      underGraduate: [
+        { period: "February / March" },
+        { period: "June / July" },
+        { period: "October / November" }
+      ]
+    },
+    entryRequirements: [
+      {
+        icon: "fi fi-sr-workshop",
+        title: "Foundation Program",
+        description: "Academic: O Level, SSC, or Year 10 completion. IELTS / PTE (Proof of English proficiency)."
+      },
+      {
+        icon: "fi fi-ss-diploma",
+        title: "Diploma Program",
+        description: "Academic: HSC or A Level completion. IELTS / PTE (Proof of English proficiency)."
+      },
+      {
+        icon: "fi fi-ss-user-graduate",
+        title: "Bachelor's Program",
+        description: "Academic: HSC or A Level completion. IELTS / PTE (Proof of English proficiency)."
+      },
+      {
+        icon: "fi fi-sr-graduation-cap",
+        title: "Master's Program",
+        description: "Academic: Bachelor's degree completed. English: IELTS overall 6.5, no band less than 6.0 (PTE accepted)."
+      }
     ]
   },
   canada: {
     name: "Canada",
     description: "The world’s second-largest country, is a top choice for international students",
-    heroImage: "/country-heros/country-hero-canada.png",
+    heroImage: "/country-heros/canada.png",
     stats: { universities: "430+", annualTuitionFees: "CAD 15K - 45K", successfulVisas: "3000+", postStudyWork: "3 years" },
     universityLogos: [
-      '/universities/canada/algoma.png',
-      '/universities/canada/Brock University.png',
-      '/universities/canada/International College of Manitoba.png',
+      '/universities/canada/University Of Manitoba.png',
+      '/universities/canada/International College Of Manitoba.png',
+      '/universities/canada/Toronto Metropolitan University.png',
+      '/universities/canada/University Of Windsor.png',
+      '/universities/canada/Algoma University.png',
       '/universities/canada/Laurentian University.png',
       '/universities/canada/Lakehead University.png',
-      '/universities/canada/Toronto Metropolitan University.png',
-      '/universities/canada/University of Manitoba.png',
-      '/universities/canada/university of windsor.png'
+      '/universities/canada/Seneca College.png',
+      '/universities/canada/Centennial College.png',
+      // '/universities/canada/Brock University.png',
 
       
     ],
@@ -187,23 +330,58 @@ export const countriesData: Record<string, Country> = {
         title: "Pathway Programs", 
         content: "Access flexible entry routes that help you meet admission requirements and transition smoothly into your chosen degree." 
       }
+    ],
+    popularSubjects: [9, 14, 20, 23],
+    admissionIntake: {
+      postGraduate: [
+        { period: "Spring (January)" },
+        { period: "Summer (May)" },
+        { period: "Fall (September)" }
+      ],
+      underGraduate: [
+        { period: "Spring (January)" },
+        { period: "Summer (May)" },
+        { period: "Fall (September)" }
+      ]
+    },
+    entryRequirements: [
+      {
+        icon: "fi fi-ss-diploma",
+        title: "Diploma",
+        description: "Completed HSC, O/A Level (or equivalent). IELTS: minimum score overall of 6.0, no band less than 5.5 (varies per institution)"
+      },
+      {
+        icon: "fi fi-ss-user-graduate",
+        title: "Bachelor's",
+        description: "Completed HSC, O/A Level (or equivalent). IELTS: minimum score overall of 6.0, no band less than 5.5 (varies per institution)"
+      },
+      {
+        icon: "fi fi-sr-graduation-cap",
+        title: "Master's",
+        description: "Completed Bachelor's degree. IELTS: minimum score overall of 6.0, no band less than 5.5 (varies per institution)"
+      },
+      {
+        icon: "fi fi-ss-trophy",
+        title: "Post Graduate Degree",
+        description: "Completed Master's degree. IELTS: minimum score overall of 6.0, no band less than 5.5 (varies per institution)"
+      }
     ]
   },
   malaysia: {
     name: "Malaysia",
     description: "Malaysia offers a well-structured and affordable higher education system.",
-    heroImage: "/country-heros/country-hero-malaysia.png",
+    heroImage: "/country-heros/malaysia.png",
     stats: { universities: "18", annualTuitionFees: "-", successfulVisas: "500+", postStudyWork: "-" },
     universityLogos: [
-      '/universities/malaysia/uow.png',
-      '/universities/malaysia/utm.png',
-      '/universities/malaysia/Curtin University.png',
+      '/universities/malaysia/University Of Wollongong Malaysia.png',
+      '/universities/malaysia/Curtin University Malaysia.png',
+      '/universities/malaysia/INTI International University.png',
+      '/universities/malaysia/Kuala Lumpur University of Science and Infrastructure.png',
+      '/universities/malaysia/Universiti Teknologi Malaysia.png',
+      '/universities/malaysia/Swinburne University of Technology Malaysia.jpg',
       '/universities/malaysia/Heriot Watt University.png',
-      '/universities/malaysia/inti.png',
-      '/universities/malaysia/klust.png',
       '/universities/malaysia/Sunway-university.png',
-      '/universities/malaysia/Swinburne University of Technology.jpg',
-      '/universities/malaysia/University of Southampton.png'
+      '/universities/malaysia/University Of Southampton.png'
     ],
     whyChoose: [
       { 
@@ -222,12 +400,42 @@ export const countriesData: Record<string, Country> = {
         title: "Safe & Multicultural", 
         content: "Experience a welcoming, diverse, and secure environment for international students." 
       }
+    ],
+    popularSubjects: [3, 6, 11, 14, 15, 17, 21, 26],
+    admissionIntake: {
+      postGraduate: [
+        { period: "January – March" },
+        { period: "April – July" },
+        { period: "August – November" }
+      ],
+      underGraduate: [
+        { period: "January – March" },
+        { period: "April – July" },
+        { period: "August – November" }
+      ]
+    },
+    entryRequirements: [
+      {
+        icon: "fi fi-sr-workshop",
+        title: "Foundation Program",
+        description: "Minimum GPA: 2.5 out of 5.0 in HSC. 5 Credits in O-Levels (or equivalent). Students completing SSC may also be eligible."
+      },
+      {
+        icon: "fi fi-ss-diploma",
+        title: "Diploma Program",
+        description: "Minimum GPA: 2.5 out of 5.0 in HSC. 3 Credits in O-Levels (or equivalent).\nFor Bachelor's degree: Minimum GPA: 3.0 out of 5.0 in HSC OR Minimum 2 passes (Grade D or above) in A-Levels.\nGED also accepted."
+      },
+      {
+        icon: "fi fi-ss-user-graduate",
+        title: "Master's Degree",
+        description: "Minimum CGPA: 2.5 out of 4.0 in Bachelor's (or equivalent qualification)."
+      }
     ]
   },
   japan: {
     name: "Japan",
     description: "Japan offers world-class education, affordability, safety, and a unique mix of tradition and modernity. ",
-    heroImage: "/country-heros/country-hero-japan.png",
+    heroImage: "/country-heros/japan.png",
     stats: { universities: "01", annualTuitionFees: "¥1,596,000", successfulVisas: "—", postStudyWork: "1 Year" },
     universityLogos: [],
     whyChoose: [
@@ -247,12 +455,25 @@ export const countriesData: Record<string, Country> = {
         title: "World-Class Education Quality", 
         content: "Learn from globally recognized institutions with modern facilities and innovative teaching."
       }
-    ]
+    ],
+    popularSubjects: [],
+    admissionIntake: {
+      postGraduate: [
+        { period: "January – March" },
+        { period: "April – July" },
+        { period: "August – November" }
+      ],
+      underGraduate: [
+        { period: "January – March" },
+        { period: "April – July" },
+        { period: "August – November" }
+      ]
+    }
   },
   newzealand: {
     name: "New Zealand",
     description: "a top study destination with no age barrier to education, making it accessible at any stage of life.",
-    heroImage: "/country-heros/country-hero-newzealand.png",
+    heroImage: "/country-heros/newzealand.png",
     stats: { 
       universities: "14", 
       annualTuitionFees: "NZD 22K-45K", 
@@ -260,13 +481,14 @@ export const countriesData: Record<string, Country> = {
       postStudyWork: "1-3 years" 
     },
     universityLogos: [
-      '/universities/newzealand/Auckland University of Technology.png',
-      '/universities/newzealand/massey university.png',
+      '/universities/newzealand/Yoobee.png',
+      '/universities/newzealand/University Of Waikato.png',
+      '/universities/newzealand/Auckland University Of Technology.png',
+      '/universities/newzealand/Massey University.png',
       '/universities/newzealand/Lincoln University.png',
-      '/universities/newzealand/University of Auckland.png',
-      '/universities/newzealand/University of Canterbury.png',
-      '/universities/newzealand/University of Otago.png',
-      '/universities/newzealand/yoobee.png',
+      '/universities/newzealand/University Of Auckland.png',
+      '/universities/newzealand/University Of Canterbury.png',
+      '/universities/newzealand/University Of Otago.png',
       '/universities/newzealand/New Zealand Tertiary College.png',
 
     ],
@@ -286,6 +508,44 @@ export const countriesData: Record<string, Country> = {
       { 
         title: "Scholarships for International Students", 
         content: "Benefit from a variety of scholarships that make quality education more affordable."
+      }
+    ],
+    popularSubjects: [7, 14, 16, 18],
+    admissionIntake: {
+      postGraduate: [
+        { period: "February" },
+        { period: "July" }
+      ],
+      underGraduate: [
+        { period: "February" },
+        { period: "July" }
+      ]
+    },
+    entryRequirements: [
+      {
+        icon: "fi fi-sr-workshop",
+        title: "Foundation Program",
+        description: "Academic: O Level or Year 10 completion. English: IELTS overall 5.5 (no band less than 5.0)."
+      },
+      {
+        icon: "fi fi-ss-diploma",
+        title: "Diploma Program",
+        description: "Academic: HSC or Year 12 completion. English: IELTS overall 5.5 (no band less than 5.0)."
+      },
+      {
+        icon: "fi fi-ss-user-graduate",
+        title: "Bachelor's Program",
+        description: "Academic: HSC or Year 12 completion. English: IELTS overall 6.0 (no band less than 5.5)."
+      },
+      {
+        icon: "fi fi-sr-graduation-cap",
+        title: "Postgraduate Diploma",
+        description: "Academic: Bachelor's degree completed. English: IELTS overall 6.5 (no band less than 6.0)."
+      },
+      {
+        icon: "fi fi-ss-trophy",
+        title: "Master's Program",
+        description: "Academic: Bachelor's degree completed. English: IELTS overall 6.5 (no band less than 6.0)."
       }
     ]
   }

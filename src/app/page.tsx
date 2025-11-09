@@ -22,6 +22,7 @@ import { BranchCardsSection } from '@/components/BranchCardsSection';
 import UniversitiesSection from '@/components/UniversitiesSection';
 import { CountryStats } from '@/components/CountryStats';
 import { AccreditationSection } from '@/components/AccreditationSection';
+import { PartnerUniversities } from '@/components/PartnerUniversities';
 
 const admissionSteps = [
   {
@@ -313,6 +314,11 @@ export default function HomePage() {
         <UniversitiesSection />
       </LazySection> */}
 
+      {/* Partner Universities Section */}
+      <LazySection delay={0.2}>
+        <PartnerUniversities />
+      </LazySection>
+
       {/* Testimonials Section */}
       <LazySection delay={0.2}>
         <div className="py-12 sm:py-14 lg:py-16 bg-my-white relative">
@@ -453,7 +459,7 @@ export default function HomePage() {
       </LazySection>
 
       {/* Branch Cards Section */}
-      <LazySection delay={0.3}>
+      <LazySection delay={0.2}>
         <BranchCardsSection />
       </LazySection>
 

@@ -35,16 +35,16 @@ export function CountryStats({ countryKey, isHomepage = false }: CountryStatsPro
   const labels = isHomepage ? homepageLabels : countryLabels;
 
   return (
-    <div className="mt-5 -mt-16 sm:-mt-8 lg:-mt-32 mb-16 sm:mb-24 lg:mb-32 relative z-20">
+    <div className="lg:-mt-[200px] md:-mt-[150px] sm:-mt-[100px] sm:mb-24 relative z-20">
       <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6">
         <div className="flex justify-center">
-          <div className="bg-white/80 backdrop-blur-lg rounded-3xl sm:rounded-3xl border border-pink-200/50 p-4 sm:p-6 lg:p-8 shadow-xl w-full max-w-5xl">
+          <div className="bg-white/40 backdrop-blur-lg rounded-3xl sm:rounded-3xl border-2 border-pink-200/50 p-4 sm:p-6 lg:p-8 shadow-xl w-full max-w-5xl">
             {/* Mobile Layout: 2x2 Grid */}
             <div className="block sm:hidden">
               <div className={`grid ${isHomepage ? 'grid-cols-3' : 'grid-cols-2'} gap-4`}>
                 {/* Universities */}
                 <div className="text-center">
-                  <div className="text-gray-500 text-xs font-medium mb-1">
+                  <div className="text-my-black/80 text-xs font-medium mb-1">
                     {labels.universities}
                   </div>
                   <div className="text-xl font-bold text-black">
@@ -54,7 +54,7 @@ export function CountryStats({ countryKey, isHomepage = false }: CountryStatsPro
 
                 {/* Annual Tuition Fees */}
                 <div className="text-center">
-                  <div className="text-gray-500 text-xs font-medium mb-1">
+                  <div className="text-my-black/80 text-xs font-medium mb-1">
                     {labels.annualTuitionFees}
                   </div>
                   <div className="text-xl font-bold text-black">
@@ -64,7 +64,7 @@ export function CountryStats({ countryKey, isHomepage = false }: CountryStatsPro
 
                 {/* Successful Visas */}
                 <div className="text-center">
-                  <div className="text-gray-500 text-xs font-medium mb-1">
+                  <div className="text-my-black/80 text-xs font-medium mb-1">
                     {labels.successfulVisas}
                   </div>
                   <div className="text-xl font-bold text-black">
@@ -75,7 +75,7 @@ export function CountryStats({ countryKey, isHomepage = false }: CountryStatsPro
                 {/* Post Study Work - Only for country pages */}
                 {!isHomepage && (
                   <div className="text-center">
-                    <div className="text-gray-500 text-xs font-medium mb-1">
+                    <div className="text-my-black/80 text-xs font-medium mb-1">
                       {countryLabels.postStudyWork}
                     </div>
                     <div className="text-xl font-bold text-black">
@@ -93,7 +93,7 @@ export function CountryStats({ countryKey, isHomepage = false }: CountryStatsPro
                 <div className="flex items-center justify-center gap-6">
                   {/* Universities */}
                   <div className="text-left">
-                    <div className="text-gray-500 text-sm font-medium mb-2">
+                    <div className="text-my-black/80 text-sm font-medium mb-2">
                       {labels.universities}
                     </div>
                     <div className="text-2xl font-bold text-black">
@@ -106,7 +106,7 @@ export function CountryStats({ countryKey, isHomepage = false }: CountryStatsPro
 
                   {/* Annual Tuition Fees */}
                   <div className="text-left">
-                    <div className="text-gray-500 text-sm font-medium mb-2">
+                    <div className="text-my-black/80 text-sm font-medium mb-2">
                       {labels.annualTuitionFees}
                     </div>
                     <div className="text-2xl font-bold text-black">
@@ -119,7 +119,7 @@ export function CountryStats({ countryKey, isHomepage = false }: CountryStatsPro
 
                   {/* Successful Visas */}
                   <div className="text-left">
-                    <div className="text-gray-500 text-sm font-medium mb-2">
+                    <div className="text-my-black/80 text-sm font-medium mb-2">
                       {labels.successfulVisas}
                     </div>
                     <div className="text-2xl font-bold text-black">
@@ -133,7 +133,7 @@ export function CountryStats({ countryKey, isHomepage = false }: CountryStatsPro
                   <div className="flex items-center justify-center gap-6">
                     {/* Universities */}
                     <div className="text-left">
-                      <div className="text-gray-500 text-sm font-medium mb-2">
+                      <div className="text-my-black/80 text-sm font-medium mb-2">
                         {labels.universities}
                       </div>
                       <div className="text-2xl font-bold text-black">
@@ -146,7 +146,7 @@ export function CountryStats({ countryKey, isHomepage = false }: CountryStatsPro
 
                     {/* Annual Tuition Fees */}
                     <div className="text-left">
-                      <div className="text-gray-500 text-sm font-medium mb-2">
+                      <div className="text-my-black/80 text-sm font-medium mb-2">
                         {labels.annualTuitionFees}
                       </div>
                       <div className="text-2xl font-bold text-black">
@@ -158,7 +158,7 @@ export function CountryStats({ countryKey, isHomepage = false }: CountryStatsPro
                   <div className="flex items-center justify-center gap-6">
                     {/* Successful Visas */}
                     <div className="text-left">
-                      <div className="text-gray-500 text-sm font-medium mb-2">
+                      <div className="text-my-black/80 text-sm font-medium mb-2">
                         {labels.successfulVisas}
                       </div>
                       <div className="text-2xl font-bold text-black">
@@ -171,7 +171,7 @@ export function CountryStats({ countryKey, isHomepage = false }: CountryStatsPro
 
                     {/* Post Study Work */}
                     <div className="text-left">
-                      <div className="text-gray-500 text-sm font-medium mb-2">
+                      <div className="text-my-black/80 text-sm font-medium mb-2">
                         {countryLabels.postStudyWork}
                       </div>
                       <div className="text-2xl font-bold text-black">
@@ -187,7 +187,7 @@ export function CountryStats({ countryKey, isHomepage = false }: CountryStatsPro
             <div className="hidden lg:flex items-center justify-center gap-8 xl:gap-16">
               {/* Universities */}
               <div className="text-left">
-                <div className="text-gray-500 text-sm font-medium mb-2">
+                <div className="text-my-black/80 text-sm font-medium mb-2">
                   {labels.universities}
                 </div>
                 <div className="text-3xl xl:text-3xl font-bold text-black">
@@ -200,7 +200,7 @@ export function CountryStats({ countryKey, isHomepage = false }: CountryStatsPro
 
               {/* Annual Tuition Fees */}
               <div className="text-left">
-                <div className="text-gray-500 text-sm font-medium mb-2">
+                <div className="text-my-black/80 text-sm font-medium mb-2">
                   {labels.annualTuitionFees}
                 </div>
                 <div className="text-3xl xl:text-3xl font-bold text-black">
@@ -213,7 +213,7 @@ export function CountryStats({ countryKey, isHomepage = false }: CountryStatsPro
 
               {/* Successful Visas */}
               <div className="text-left">
-                <div className="text-gray-500 text-sm font-medium mb-2">
+                <div className="text-my-black/80 text-sm font-medium mb-2">
                   {labels.successfulVisas}
                 </div>
                 <div className="text-3xl xl:text-3xl font-bold text-black">
@@ -229,7 +229,7 @@ export function CountryStats({ countryKey, isHomepage = false }: CountryStatsPro
 
                   {/* Post Study Work */}
                   <div className="text-left">
-                    <div className="text-gray-500 text-sm font-medium mb-2">
+                    <div className="text-my-black/80 text-sm font-medium mb-2">
                       {countryLabels.postStudyWork}
                     </div>
                     <div className="text-3xl xl:text-3xl font-bold text-black">
