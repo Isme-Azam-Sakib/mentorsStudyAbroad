@@ -39,21 +39,16 @@ export const EntryRequirements: React.FC<EntryRequirementsProps> = ({
   padding = 40,
   contentImageGap = 16,
 }) => {
-  if (!requirements || requirements.length === 0) {
-    return null;
-  }
-
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [progress, setProgress] = useState(0);
-  const [isMobile, setIsMobile] = useState(false);
-  const progressIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+   // ✅ All hooks at top level
+   const [activeIndex, setActiveIndex] = useState(0);
+   const [progress, setProgress] = useState(0);
+   const [isMobile, setIsMobile] = useState(false);
+   const progressIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
 
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
 
     checkMobile();
     window.addEventListener("resize", checkMobile);
@@ -61,7 +56,7 @@ export const EntryRequirements: React.FC<EntryRequirementsProps> = ({
   }, []);
 
   useEffect(() => {
-    if (isMobile) return;
+    if (isMobile || !requirements || requirements.length === 0) return;
 
     const interval = 16;
     const increment = (100 / (animationSpeed * 1000)) * interval;
@@ -106,6 +101,9 @@ export const EntryRequirements: React.FC<EntryRequirementsProps> = ({
     setActiveIndex(index);
     setProgress(0);
   };
+
+  // ✅ Early return for empty requirements
+  if (!requirements || requirements.length === 0) return null;
 
   // Mobile view - vertical stack
   if (isMobile) {
