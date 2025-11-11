@@ -198,7 +198,7 @@ export const StudyAbroadModal: React.FC<StudyAbroadModalProps> = ({ isOpen, onCl
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
 
-            const result = await response.json();
+            await response.json();
             secureLog('Consultation request submitted successfully', { success: true });
             setSubmitStatus('success');
             

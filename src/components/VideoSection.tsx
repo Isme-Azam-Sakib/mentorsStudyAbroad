@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
 
 // Helper function to extract YouTube video ID from URL
@@ -217,21 +217,21 @@ export function VideoSection({
     const videosPerView = getVideosPerView();
     const maxIndex = Math.max(0, filteredVideos.length - videosPerView);
 
-    const nextVideo = () => {
+    const nextVideo = useCallback(() => {
         setCurrentVideoIndex((prev) => {
             const next = prev + 1;
             // Infinite scroll: if we reach the end, go back to start
             return next > maxIndex ? 0 : next;
         });
-    };
+    }, [maxIndex]);
 
-    const prevVideo = () => {
+    const prevVideo = useCallback(() => {
         setCurrentVideoIndex((prev) => {
             const prevIndex = prev - 1;
             // Infinite scroll: if we go below 0, go to the last position
             return prevIndex < 0 ? maxIndex : prevIndex;
         });
-    };
+    }, [maxIndex]);
 
     // Auto-scroll effect for mobile and tablet
     useEffect(() => {
@@ -325,7 +325,7 @@ export function VideoSection({
                             onTouchMove={handleTouchMove}
                             onTouchEnd={handleTouchEnd}
                         >
-                             {filteredVideos.map((video, _index) => (
+                             {filteredVideos.map((video) => (
                                  <div key={video.id} className={`flex-shrink-0 px-2 sm:px-3 group ${
                                      screenSize === 'mobile' ? 'w-1/2' : 
                                      screenSize === 'tablet' ? 'w-1/3' : 

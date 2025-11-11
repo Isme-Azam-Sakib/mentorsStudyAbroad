@@ -113,7 +113,7 @@ export const ContactFormSection = () => {
                                      {/* Form Input Container with Sliding Animation */}
                                      <div className="relative flex transition-transform duration-300 ease-in-out"
                                           style={{ transform: `translateX(-${currentStep * 100}%)` }}>
-                                         {steps.map((step, _index) => (
+                                         {steps.map((step) => (
                                              <div key={step.key} className="w-full flex-shrink-0">
                                                  <label htmlFor={`${step.key}-input`} className="sr-only">
                                                      {step.label}

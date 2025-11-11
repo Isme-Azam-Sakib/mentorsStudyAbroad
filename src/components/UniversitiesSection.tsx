@@ -8,8 +8,8 @@ export function UniversitiesSection() {
     // Get all university logos from all countries
     const allLogos = useMemo(() => {
         return Object.values(countriesData)
-            .flatMap(country => country.universityLogos)
-            .filter(logo => logo); // Remove any empty logos
+            .flatMap(country => country.universityLogos ?? [])
+            .filter((logo): logo is string => Boolean(logo));
     }, []);
 
     const mid = Math.ceil(allLogos.length / 2);

@@ -10,7 +10,6 @@ export default function Navbar() {
   const [visible, setVisible] = useState(true);
   const [isScrollingDown, setIsScrollingDown] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
-  const [currentScrollY, setCurrentScrollY] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isCountriesDropdownOpen, setIsCountriesDropdownOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -30,7 +29,6 @@ export default function Navbar() {
       // Hide navbar when scrolling down (except at very top)
       setVisible(currentScrollPos < 10 || !scrollingDown);
       setIsScrollingDown(scrollingDown);
-      setCurrentScrollY(currentScrollPos);
       setPrevScrollPos(currentScrollPos);
     };
 
