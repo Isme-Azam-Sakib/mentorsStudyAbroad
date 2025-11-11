@@ -57,7 +57,7 @@ export const PopularSubjects: React.FC<PopularSubjectsProps> = ({
           {visibleCourses.map((course) => (
             <div
               key={course.id}
-              className="group relative rounded-[50px] overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02]"
+              className="group relative rounded-3xl lg:rounded-[50px] overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02]"
             >
               {/* Image Container */}
               <div className="relative w-full aspect-[4/3] overflow-hidden">

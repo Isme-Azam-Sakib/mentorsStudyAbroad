@@ -57,7 +57,7 @@ export default function ContactPage() {
                                         Download Brochure <i className="fi fi-sr-file-pdf"></i>
                                     </button>
                                 </div> */}
-                                <ContactForm />
+                                <ContactForm showIntro={false} />
                             </div>
 
                             {/* Right Column - Hero Image */}
@@ -260,7 +260,7 @@ export default function ContactPage() {
                             {/* Right Column - Contact Form */}
                             {/* <div className="order-1 lg:order-2 flex flex-col">
                                 <div className="flex-1">
-                                    <ContactForm />
+                                    <ContactForm showIntro={false} />
                                 </div>
                             </div>
                         </div>

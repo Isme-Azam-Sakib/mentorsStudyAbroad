@@ -10,11 +10,41 @@ interface TestimonialsSectionProps {
 
 export default function TestimonialsSection({ className = "" }: TestimonialsSectionProps) {
   const [isClient, setIsClient] = useState(false);
+  const [visibleCount, setVisibleCount] = useState(3);
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [baselineCount, setBaselineCount] = useState(3);
 
   // Ensure component only renders on client side to avoid hydration issues
   useEffect(() => {
     setIsClient(true);
   }, []);
+
+  useEffect(() => {
+    if (!isClient) return;
+
+    const updateVisibleCount = () => {
+      if (window.innerWidth >= 1024) {
+        const count = isExpanded ? testimonialsData.length : 7;
+        setVisibleCount(count);
+        setBaselineCount(7);
+      } else if (window.innerWidth >= 768) {
+        const count = isExpanded ? testimonialsData.length : 5;
+        setVisibleCount(count);
+        setBaselineCount(5);
+      } else {
+        const count = isExpanded ? testimonialsData.length : 3;
+        setVisibleCount(count);
+        setBaselineCount(3);
+      }
+    };
+
+    updateVisibleCount();
+    window.addEventListener('resize', updateVisibleCount);
+
+    return () => {
+      window.removeEventListener('resize', updateVisibleCount);
+    };
+  }, [isClient]);
 
   // Show loading state during hydration
   if (!isClient) {
@@ -47,12 +77,30 @@ export default function TestimonialsSection({ className = "" }: TestimonialsSect
 
         {/* Masonry Grid Layout */}
         <div className="columns-1 md:columns-2 lg:columns-3 gap-4 md:gap-6 space-y-4 md:space-y-6">
-          {testimonialsData.map((testimonial: Testimonial) => (
+          {testimonialsData.slice(0, visibleCount).map((testimonial: Testimonial) => (
             <div key={testimonial.id} className="break-inside-avoid mb-4 md:mb-6">
               <TestimonialCard testimonial={testimonial} />
             </div>
           ))}
         </div>
+
+        {baselineCount < testimonialsData.length && (
+          <div className="mt-10 text-center">
+            <button
+              onClick={() => {
+                if (isExpanded) {
+                  setVisibleCount(baselineCount);
+                } else {
+                  setVisibleCount(testimonialsData.length);
+                }
+                setIsExpanded((prev) => !prev);
+              }}
+              className="inline-flex items-center px-8 py-3 rounded-full border border-my-black text-my-black text-sm sm:text-base font-medium hover:bg-my-black hover:text-white transition-all duration-300"
+            >
+              {isExpanded ? "Show Less" : "Show More"}
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

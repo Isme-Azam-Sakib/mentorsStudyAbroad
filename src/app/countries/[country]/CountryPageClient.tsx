@@ -211,6 +211,7 @@ export default function CountryPageClient({ country, countryKey }: CountryPageCl
       <LazySection delay={0.2}>
         <CountryStats countryKey={countryKey} />
       </LazySection>
+      
 
       {/* Why Choose Country Section */}
       <LazySection delay={0.2}>
