@@ -44,7 +44,7 @@ export default function TestimonialsSection({ className = "" }: TestimonialsSect
     return () => {
       window.removeEventListener('resize', updateVisibleCount);
     };
-  }, [isClient]);
+  }, [isClient, isExpanded]);
 
   // Show loading state during hydration
   if (!isClient) {
