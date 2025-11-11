@@ -33,7 +33,7 @@ export const ContactFormSectionButton = () => {
         <section className="w-full bg-white">
             <div className="relative mx-auto max-w-7xl px-6 mt-32">
 
-                <div className="bg-my-accent rounded-[50px] p-8 lg:p-12 relative overflow-hidden h-[500px] sm:h-[800px] lg:h-[400px] my-16">
+                <div className="bg-my-accent rounded-[50px] p-8 lg:p-12 relative overflow-hidden h-[600px] sm:h-[600px] md:h-[700px] lg:h-[400px] my-16">
                     {/* Mobile/Tablet Layout */}
                     <div className="lg:hidden flex flex-col items-center justify-start h-full text-center">
                         {/* Text Content */}
@@ -77,7 +77,7 @@ export const ContactFormSectionButton = () => {
                         </div>
 
                         {/* Social Media Icons - Horizontal */}
-                        <div className="flex items-center justify-center space-x-4 relative z-20">
+                        <div className="flex items-center justify-center space-x-4 relative z-20 mb-16">
                             <a href="https://www.facebook.com/MentorsSA/" target="_blank" aria-label="Facebook" className="text-white hover:text-white/80 transition-colors">
                                 <i className="fi fi-brands-facebook text-[24px] text-my-white hover:text-my-black transition-all duration-300"></i>
                             </a>
@@ -166,7 +166,7 @@ export const ContactFormSectionButton = () => {
                 </div>
 
                 {/* Mobile/Tablet Image - Centered and Anchored */}
-                <div className="lg:hidden absolute bottom-0 left-1/2 transform -translate-x-1/2 z-0">
+                <div className="lg:hidden absolute bottom-0 left-1/2 transform mt-16 -translate-x-1/2 z-0">
                     <Image
                         className="w-[250px] sm:w-[400px] h-auto"
                         alt="Customer support representative"

@@ -20,7 +20,6 @@ import ChooseDestination from '@/components/ChooseDestination';
 import FilterableEventsSection from '@/components/FilterableEventsSection';
 import { BranchCardsSection } from '@/components/BranchCardsSection';
 import UniversitiesSection from '@/components/UniversitiesSection';
-import { CountryStats } from '@/components/CountryStats';
 import { AccreditationSection } from '@/components/AccreditationSection';
 import { PartnerUniversities } from '@/components/PartnerUniversities';
 
@@ -74,6 +73,22 @@ export default function HomePage() {
   const [admissionActiveStep, setAdmissionActiveStep] = useState(0);
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const homepageStats = {
+    universities: "200+",
+    annualTuitionFees: "19+ Years",
+    successfulVisas: "10,000+"
+  };
+
+  const homepageLabels = {
+    universities: "University Partners",
+    annualTuitionFees: "Of Experience",
+    successfulVisas: "Success Stories"
+  };
+
+  const isHomepageStats = true;
+  const stats = homepageStats;
+  const labels = homepageLabels;
 
   useEffect(() => {
     // Only run on client side to avoid hydration mismatch
@@ -199,9 +214,7 @@ export default function HomePage() {
           </div>
         </div>
       </div>
-      <LazySection delay={0.2}>
-        <CountryStats isHomepage={true} />
-      </LazySection>
+
 
       {/* Why Choose us Section */}
       <LazySection delay={0.2}>
@@ -245,6 +258,181 @@ export default function HomePage() {
           </div>
         </div>
       </LazySection>
+
+
+
+      {/* Country Stats Section */}
+      <LazySection delay={0.2}>
+        <div className="relative z-20 mb-24">
+          <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6">
+            <div className="flex justify-center">
+              <div className="bg-white/40 backdrop-blur-lg rounded-3xl sm:rounded-3xl border-2 border-pink-200/50 p-4 sm:p-6 lg:p-8 shadow-xl w-full max-w-5xl">
+                {/* Mobile Layout: 2x2 Grid */}
+                <div className="block sm:hidden">
+                  <div className={`grid ${isHomepageStats ? 'grid-cols-3' : 'grid-cols-2'} gap-4`}>
+                    {/* Universities */}
+                    <div className="text-center">
+                      <div className="text-xl font-bold text-black">
+                        {stats.universities}
+                      </div>
+                      <div className="text-my-black/80 text-xs font-medium mb-1">
+                        {labels.universities}
+                      </div>
+                    </div>
+
+                    {/* Annual Tuition Fees */}
+                    <div className="text-center">
+                      <div className="text-xl font-bold text-black">
+                        {stats.annualTuitionFees}
+                      </div>
+                      <div className="text-my-black/80 text-xs font-medium mb-1">
+                        {labels.annualTuitionFees}
+                      </div>
+                    </div>
+
+                    {/* Successful Visas */}
+                    <div className="text-center">
+                      <div className="text-xl font-bold text-black">
+                        {stats.successfulVisas}
+                      </div>
+                      <div className="text-my-black/80 text-xs font-medium mb-1">
+                        {labels.successfulVisas}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Tablet Layout: Responsive based on homepage */}
+                <div className="hidden sm:block lg:hidden">
+                  {isHomepageStats ? (
+                    // Homepage: Single row with 3 items
+                    <div className="flex items-center justify-center gap-6">
+                      {/* Universities */}
+                      <div className="text-left">
+                        <div className="text-2xl font-bold text-black">
+                          {stats.universities}
+                        </div>
+                        <div className="text-my-black/80 text-sm font-medium mb-2">
+                          {labels.universities}
+                        </div>
+                      </div>
+
+                      {/* Separator */}
+                      <div className="w-px h-12 bg-gray-300"></div>
+
+                      {/* Annual Tuition Fees */}
+                      <div className="text-left">
+                        <div className="text-2xl font-bold text-black">
+                          {stats.annualTuitionFees}
+                        </div>
+                        <div className="text-my-black/80 text-sm font-medium mb-2">
+                          {labels.annualTuitionFees}
+                        </div>
+                      </div>
+
+                      {/* Separator */}
+                      <div className="w-px h-12 bg-gray-300"></div>
+
+                      {/* Successful Visas */}
+                      <div className="text-left">
+                        <div className="text-2xl font-bold text-black">
+                          {stats.successfulVisas}
+                        </div>
+                        <div className="text-my-black/80 text-sm font-medium mb-2">
+                          {labels.successfulVisas}
+                        </div>
+                      </div>
+                    </div>
+                  ) : (
+                    // Country pages: 2x2 grid
+                    <div className="grid grid-cols-2 gap-6">
+                      <div className="flex items-center justify-center gap-6">
+                        {/* Universities */}
+                        <div className="text-left">
+                          <div className="text-2xl font-bold text-black">
+                            {stats.universities}
+                          </div>
+                          <div className="text-my-black/80 text-sm font-medium mb-2">
+                            {labels.universities}
+                          </div>
+                        </div>
+
+                        {/* Separator */}
+                        <div className="w-px h-12 bg-gray-300"></div>
+
+                        {/* Annual Tuition Fees */}
+                        <div className="text-left">
+                          <div className="text-2xl font-bold text-black">
+                            {stats.annualTuitionFees}
+                          </div>
+                          <div className="text-my-black/80 text-sm font-medium mb-2">
+                            {labels.annualTuitionFees}
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center justify-center gap-6">
+                        {/* Successful Visas */}
+                        <div className="text-left">
+                          <div className="text-2xl font-bold text-black">
+                            {stats.successfulVisas}
+                          </div>
+                          <div className="text-my-black/80 text-sm font-medium mb-2">
+                            {labels.successfulVisas}
+                          </div>
+                        </div>
+
+                        {/* Separator */}
+                        <div className="w-px h-12 bg-gray-300"></div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                {/* Desktop Layout: Single row */}
+                <div className="hidden lg:flex items-center justify-center gap-8 xl:gap-16">
+                  {/* Universities */}
+                  <div className="text-left">
+                    <div className="text-3xl xl:text-3xl font-bold text-black">
+                      {stats.universities}
+                    </div>
+                    <div className="text-my-black/80 text-sm font-medium mb-2">
+                      {labels.universities}
+                    </div>
+                  </div>
+
+                  {/* Separator */}
+                  <div className="w-px h-16 bg-gray-300"></div>
+
+                  {/* Annual Tuition Fees */}
+                  <div className="text-left">
+                    <div className="text-3xl xl:text-3xl font-bold text-black">
+                      {stats.annualTuitionFees}
+                    </div>
+                    <div className="text-my-black/80 text-sm font-medium mb-2">
+                      {labels.annualTuitionFees}
+                    </div>
+                  </div>
+
+                  {/* Separator */}
+                  <div className="w-px h-16 bg-gray-300"></div>
+
+                  {/* Successful Visas */}
+                  <div className="text-left">
+                    <div className="text-3xl xl:text-3xl font-bold text-black">
+                      {stats.successfulVisas}
+                    </div>
+                    <div className="text-my-black/80 text-sm font-medium mb-2">
+                      {labels.successfulVisas}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </LazySection>
+
 
       {/* Choose Destination Section */}
       <LazySection delay={0.2}>

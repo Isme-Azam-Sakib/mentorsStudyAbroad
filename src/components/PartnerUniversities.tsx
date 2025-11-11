@@ -64,7 +64,13 @@ export function PartnerUniversities({
     setVisibleCount((prev) =>
       Math.min(prev + CARD_BATCH_SIZE, universities.length)
     );
-  };    
+  };
+
+  const handleShowLess = () => {
+    setVisibleCount((prev) =>
+      Math.max(prev - CARD_BATCH_SIZE, CARD_BATCH_SIZE)
+    );
+  };
 
   const heading =
     title ??
@@ -113,16 +119,24 @@ export function PartnerUniversities({
           ))}
         </div>
 
-        {hasMore && (
-          <div className="flex justify-center mt-10 sm:mt-12">
+        <div className="flex justify-center mt-10 sm:mt-12 gap-4">
+          {hasMore && (
             <button
               onClick={handleLoadMore}
               className="inline-flex items-center px-6 sm:px-8 py-3 sm:py-3.5 rounded-full border border-my-black text-my-black text-sm sm:text-base font-medium hover:bg-my-black hover:text-white transition-colors duration-200"
             >
-              Load More
+              Show More
             </button>
-          </div>
-        )}
+          )}
+          {visibleCount > CARD_BATCH_SIZE && (
+            <button
+              onClick={handleShowLess}
+              className="inline-flex items-center px-6 sm:px-8 py-3 sm:py-3.5 rounded-full border border-my-black text-my-black text-sm sm:text-base font-medium hover:bg-my-black hover:text-white transition-colors duration-200"
+            >
+              Show Less
+            </button>
+          )}
+        </div>
       </div>
     </section>
   );

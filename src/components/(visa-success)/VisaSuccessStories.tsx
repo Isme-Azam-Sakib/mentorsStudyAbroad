@@ -300,7 +300,7 @@ export default function VisaSuccessStories({
                           <LazyImage
                             src={story.image}
                             alt={story.name}
-                            className="w-full h-auto md:h-[50%] md:w-auto object-contain"
+                            className="w-[50%] h-auto lg:w-full lg:h-auto md:h-[50%] md:w-auto object-contain mx-auto"
                             onError={() => handleImageError(story.id)}
                           />
                         ) : (
