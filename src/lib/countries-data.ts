@@ -30,7 +30,7 @@ export interface Country {
     postStudyWork: string;
   };
 
-  // universityLogos: string[];
+  universityLogos?: string[];
   whyChoose: { title: string; content: string }[];
   popularSubjects: number[];
   admissionIntake: AdmissionIntake;

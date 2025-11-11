@@ -26,11 +26,9 @@ export function ProspectiveCoursesSection() {
       }
     };
     
-    const onStyleChange = (entries: MutationRecord[]) => {
-      for (const entry of entries) {
-        if (scrollRef.current) {
-          setScrollRange(scrollRef.current.scrollWidth);
-        }
+    const onStyleChange: MutationCallback = () => {
+      if (scrollRef.current) {
+        setScrollRange(scrollRef.current.scrollWidth);
       }
     };
     
