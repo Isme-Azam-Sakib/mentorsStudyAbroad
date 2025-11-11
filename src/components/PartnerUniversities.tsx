@@ -3,11 +3,13 @@
 import { useEffect, useMemo, useState } from "react";
 import type { ReactNode } from "react";
 import Image from "next/image";
-import { countriesData } from "@/lib/countries-data";
+import { universitiesData, type University as UniversityInfo } from "@/lib/universities-data";
 
 type University = {
   logo: string;
   name: string;
+  website?: string;
+  isDirectPartner?: boolean;
 };
 
 const CARD_BATCH_SIZE = 8;
@@ -25,28 +27,22 @@ export function PartnerUniversities({
 }: PartnerUniversitiesProps) {
   const universities = useMemo<University[]>(() => {
     const map = new Map<string, University>();
-    const selectedCountries =
-      countryKey && countriesData[countryKey]
-        ? [countriesData[countryKey]]
-        : Object.values(countriesData);
+    const selectedUniversities: UniversityInfo[] =
+      countryKey && countryKey.trim().length > 0
+        ? universitiesData.filter((university) => university.country === countryKey)
+        : universitiesData.filter((university) => university.isDirectPartner);
 
-    selectedCountries
-      .flatMap((country) => country.universityLogos)
-      .filter((logo): logo is string => Boolean(logo))
-      .forEach((logo) => {
-        const fileName = decodeURIComponent(logo.split("/").pop() ?? "");
-        const nameWithoutExt = fileName.replace(/\.[^/.]+$/, "");
-        const normalizedName = nameWithoutExt.replace(/[-_]+/g, " ").trim();
-
-        if (!normalizedName) return;
-        const key = normalizedName.toLowerCase();
-        if (!map.has(key)) {
-          map.set(key, {
-            logo,
-            name: normalizedName,
-          });
-        }
-      });
+    selectedUniversities.forEach((university) => {
+      const key = university.name.toLowerCase();
+      if (!map.has(key)) {
+        map.set(key, {
+          logo: university.logo,
+          name: university.name,
+          website: university.website,
+          isDirectPartner: university.isDirectPartner,
+        });
+      }
+    });
 
     return Array.from(map.values());
   }, [countryKey]);
@@ -68,7 +64,13 @@ export function PartnerUniversities({
     setVisibleCount((prev) =>
       Math.min(prev + CARD_BATCH_SIZE, universities.length)
     );
-  };    
+  };
+
+  const handleShowLess = () => {
+    setVisibleCount((prev) =>
+      Math.max(prev - CARD_BATCH_SIZE, CARD_BATCH_SIZE)
+    );
+  };
 
   const heading =
     title ??
@@ -117,16 +119,24 @@ export function PartnerUniversities({
           ))}
         </div>
 
-        {hasMore && (
-          <div className="flex justify-center mt-10 sm:mt-12">
+        <div className="flex justify-center mt-10 sm:mt-12 gap-4">
+          {hasMore && (
             <button
               onClick={handleLoadMore}
               className="inline-flex items-center px-6 sm:px-8 py-3 sm:py-3.5 rounded-full border border-my-black text-my-black text-sm sm:text-base font-medium hover:bg-my-black hover:text-white transition-colors duration-200"
             >
-              Load More
+              Show More
             </button>
-          </div>
-        )}
+          )}
+          {visibleCount > CARD_BATCH_SIZE && (
+            <button
+              onClick={handleShowLess}
+              className="inline-flex items-center px-6 sm:px-8 py-3 sm:py-3.5 rounded-full border border-my-black text-my-black text-sm sm:text-base font-medium hover:bg-my-black hover:text-white transition-colors duration-200"
+            >
+              Show Less
+            </button>
+          )}
+        </div>
       </div>
     </section>
   );

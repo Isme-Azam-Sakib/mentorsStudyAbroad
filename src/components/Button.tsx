@@ -81,7 +81,23 @@ export const Button: React.FC<ButtonProps> = ({
                 if (!response.ok) {
                     const errorText = await response.text();
                     console.error('API Error Response:', errorText);
-                    throw new Error(`HTTP error! status: ${response.status} - ${errorText}`);
+
+                    let errorMessage = `Request failed with status ${response.status}. Please try again later.`;
+                    try {
+                        const parsed = JSON.parse(errorText);
+                        if (parsed?.message) {
+                            errorMessage = parsed.message;
+                        } else if (typeof parsed === 'string') {
+                            errorMessage = parsed;
+                        }
+                    } catch {
+                        const text = errorText.replace(/<[^>]*>/g, '').trim();
+                        if (text.length > 0) {
+                            errorMessage = text.length > 200 ? `${text.slice(0, 200)}…` : text;
+                        }
+                    }
+
+                    throw new Error(errorMessage);
                 }
                 
                 const data = await response.json();

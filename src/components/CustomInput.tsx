@@ -9,6 +9,7 @@ interface CustomInputProps {
   onChange?: (value: string) => void;
   className?: string;
   required?: boolean;
+  label?: string;
 }
 
 export function CustomInput({ 
@@ -17,7 +18,8 @@ export function CustomInput({
   value = '', 
   onChange, 
   className = '',
-  required = false 
+  required = false,
+  label,
 }: CustomInputProps) {
   const [isFocused, setIsFocused] = useState(false);
   const [inputValue, setInputValue] = useState(value);
@@ -43,6 +45,8 @@ export function CustomInput({
 
   const hasValue = inputValue.length > 0;
   const isLabelVisible = isFocused || hasValue;
+
+  const displayLabel = label ?? placeholder;
 
   return (
     <div className={`relative ${className}`}>
@@ -73,7 +77,8 @@ export function CustomInput({
           }
         `}
       >
-        {placeholder}
+        <span>{displayLabel}</span>
+        {required && <span className="ml-1 text-my-accent">*</span>}
       </label>
     </div>
   );

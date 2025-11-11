@@ -249,7 +249,7 @@ export default function EventDetailsPage() {
                     <div className="max-w-7xl mx-auto px-4 pt-8 md:pt-4 pb-12 ">
                         {/* Timer*/}
                         <div className="mb-10">
-                            <div className="bg-my-black text-white rounded-2xl px-4 md:px-8 py-8">
+                            <div className="bg-my-black text-white rounded-2xl px-4 md:px-8 py-8 mt-32">
                                 <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
                                     <h3 className="text-xl sm:text-2xl font-semibold text-center lg:text-left">{heading}</h3>
                                     <div className="grid grid-cols-2 sm:flex sm:flex-row gap-4 sm:gap-6 md:gap-8 lg:gap-10 w-full sm:w-auto items-center justify-center">
