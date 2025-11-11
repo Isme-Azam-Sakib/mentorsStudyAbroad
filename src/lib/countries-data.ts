@@ -30,7 +30,7 @@ export interface Country {
     postStudyWork: string;
   };
 
-  universityLogos: string[];
+  // universityLogos: string[];
   whyChoose: { title: string; content: string }[];
   popularSubjects: number[];
   admissionIntake: AdmissionIntake;
@@ -43,22 +43,7 @@ export const countriesData: Record<string, Country> = {
     description: "Known for world-class universities consistently ranked among the best globally",
     heroImage: "/country-heros/usa.png",
     stats: { universities: "60+", annualTuitionFees: "$10K - $25K", successfulVisas: "600+", postStudyWork: "Up to 3 Years" },
-    universityLogos: [
-      '/universities/usa/Queens College.png',
-      '/universities/usa/Berkeley College.png',
-      '/universities/usa/Montclair State University.png',
-      '/universities/usa/Long Lsland University.png',
-      '/universities/usa/Texas State University.png',
-      '/universities/usa/The University Of Oklahoma.png',
-      '/universities/usa/University Of Northern Iowa.png',
-      '/universities/usa/San Francisco State University.png',
-      '/universities/usa/University Of Northern Iowa.png',
-      // '/universities/usa/hofstra.png',
-      '/universities/usa/University Of Bridgeport.png',
-      '/universities/usa/William Paterson University.png',
-      '/universities/usa/Illinois State University.png',
-      '/universities/usa/Mercy University.png',
-    ],
+ 
     whyChoose: [
       { 
         title: "Top-Ranked Universities", 
@@ -109,21 +94,7 @@ export const countriesData: Record<string, Country> = {
     heroImage: "/country-heros/uk.png",
     stats: { universities: "40+ ", annualTuitionFees: "£13K - £24K", successfulVisas: "500+", postStudyWork: "2 - 3 years" 
     },
-    universityLogos: [
-      '/universities/uk/London South Bank University.png',
-      '/universities/uk/University_of_Roehampton_logo.png',
-      '/universities/uk/University of Hull (London).png',
-      '/universities/uk/University of the West of England.png',
-      '/universities/uk/Coventry University.png',
-      '/universities/uk/University of South Wales.jpg',
-      '/universities/uk/Ravensbourne University London.png'
-
-      // '/universities/uk/bangor.png',
-      // '/universities/uk/Canterbury Christ Church University.jpg',
-      // '/universities/uk/London Metropolitan University.png',
-      // '/universities/uk/London South Bank University.png',
-      // '/universities/uk/University of Chester.png'
-    ],
+ 
     whyChoose: [
       { 
         title: "Scholarship Opportunities", 
@@ -159,16 +130,7 @@ export const countriesData: Record<string, Country> = {
     description: "a friendly and welcoming destination for international students",
     heroImage: "/country-heros/ireland.png",
     stats: { universities: "15+", annualTuitionFees: "€10K - €55K", successfulVisas: "—", postStudyWork: "2 years" },
-    universityLogos: [
-      '/universities/ireland/University College Dublin.jpg',
-      '/universities/ireland/University College Cork.png',
-      '/universities/ireland/University of Galway.png',
-      '/universities/ireland/University of Limerick.png',
-      '/universities/ireland/Trinity College Dublin.png',
-      '/universities/ireland/Dublin City University.png',
-      '/universities/ireland/Maynooth University.png',
-      '/universities/ireland/Technological University Dublin.png',
-    ],
+   
     whyChoose: [
       { 
         title: "World-Class Education", 
@@ -230,16 +192,7 @@ export const countriesData: Record<string, Country> = {
     description: "One of the top destinations for international students, offering a world-class education system",
     heroImage: "/country-heros/australia.png",
     stats: { universities: "40+", annualTuitionFees: "AUD 22K - 60K ", successfulVisas: "353+", postStudyWork: "4+ years" },
-    universityLogos: [
-      '/universities/australia/Macquarie University.jpg',
-      '/universities/australia/Deakin University.png',
-      '/universities/australia/La Trobe University.png',
-      '/universities/australia/Curtin University.png',
-      '/universities/australia/Victoria University.png',
-      '/universities/australia/Southern Cross University.png',
-      '/universities/australia/James Cook University.png',
-      '/universities/australia/The University of Western Australia.png'
-    ],
+  
     whyChoose: [
       { 
         title: "Renowned Colleges & Universities", 
@@ -299,20 +252,6 @@ export const countriesData: Record<string, Country> = {
     description: "The world’s second-largest country, is a top choice for international students",
     heroImage: "/country-heros/canada.png",
     stats: { universities: "430+", annualTuitionFees: "CAD 15K - 45K", successfulVisas: "3000+", postStudyWork: "3 years" },
-    universityLogos: [
-      '/universities/canada/University Of Manitoba.png',
-      '/universities/canada/International College Of Manitoba.png',
-      '/universities/canada/Toronto Metropolitan University.png',
-      '/universities/canada/University Of Windsor.png',
-      '/universities/canada/Algoma University.png',
-      '/universities/canada/Laurentian University.png',
-      '/universities/canada/Lakehead University.png',
-      '/universities/canada/Seneca College.png',
-      '/universities/canada/Centennial College.png',
-      // '/universities/canada/Brock University.png',
-
-      
-    ],
     whyChoose: [
       { 
         title: "Affordable Tuition Fees", 
@@ -372,17 +311,7 @@ export const countriesData: Record<string, Country> = {
     description: "Malaysia offers a well-structured and affordable higher education system.",
     heroImage: "/country-heros/malaysia.png",
     stats: { universities: "18", annualTuitionFees: "-", successfulVisas: "500+", postStudyWork: "-" },
-    universityLogos: [
-      '/universities/malaysia/University Of Wollongong Malaysia.png',
-      '/universities/malaysia/Curtin University Malaysia.png',
-      '/universities/malaysia/INTI International University.png',
-      '/universities/malaysia/Kuala Lumpur University of Science and Infrastructure.png',
-      '/universities/malaysia/Universiti Teknologi Malaysia.png',
-      '/universities/malaysia/Swinburne University of Technology Malaysia.jpg',
-      '/universities/malaysia/Heriot Watt University.png',
-      '/universities/malaysia/Sunway-university.png',
-      '/universities/malaysia/University Of Southampton.png'
-    ],
+
     whyChoose: [
       { 
         title: "Affordable Education", 
@@ -437,7 +366,7 @@ export const countriesData: Record<string, Country> = {
     description: "Japan offers world-class education, affordability, safety, and a unique mix of tradition and modernity. ",
     heroImage: "/country-heros/japan.png",
     stats: { universities: "01", annualTuitionFees: "¥1,596,000", successfulVisas: "—", postStudyWork: "1 Year" },
-    universityLogos: [],
+
     whyChoose: [
       { 
         title: "Merit-Based Scholarship", 
@@ -480,18 +409,7 @@ export const countriesData: Record<string, Country> = {
       successfulVisas: "—", 
       postStudyWork: "1-3 years" 
     },
-    universityLogos: [
-      '/universities/newzealand/Yoobee.png',
-      '/universities/newzealand/University Of Waikato.png',
-      '/universities/newzealand/Auckland University Of Technology.png',
-      '/universities/newzealand/Massey University.png',
-      '/universities/newzealand/Lincoln University.png',
-      '/universities/newzealand/University Of Auckland.png',
-      '/universities/newzealand/University Of Canterbury.png',
-      '/universities/newzealand/University Of Otago.png',
-      '/universities/newzealand/New Zealand Tertiary College.png',
 
-    ],
     whyChoose: [
       { 
         title: "Safe & Peaceful Living", 
