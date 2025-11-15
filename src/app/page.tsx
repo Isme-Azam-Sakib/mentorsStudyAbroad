@@ -519,7 +519,7 @@ export default function HomePage() {
                     Visa <span className="text-my-accent relative">Success Stories</span>
                   </h2>
                   <p className="text-base sm:text-lg text-gray-600 leading-relaxed">
-                    Hear from our students in home page
+                    Hear from our students
                   </p>
                 </div>
 
