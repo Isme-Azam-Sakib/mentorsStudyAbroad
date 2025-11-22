@@ -2,27 +2,19 @@
 
 import React from 'react';
 import { ProcessCard } from './ProcessCard';
+import { AdmissionStep } from '@/lib/countries-data';
 
-const admissionSteps = [
-  {
-    title: "Get personalized counselling",
-    content: " Meet our expert counsellors to explore your study options, shortlist universities, and understand admission requirements."
-  },
-  {
-    title: "Confirm admission from institute",
-    content: " Apply to your chosen institute and receive an official offer letter once your application is successful."
-  },
-  {
-    title: "Pay tuition & OSHC fees",
-    content: "Secure your admission by paying the required tuition fees and arranging Overseas Student Health Cover (OSHC)."
-  },
-  {
-    title: "Share updated documents",
-    content: "Submit proof of payment and updated academic or financial documents to complete the admission process. Applicants must submit certified copies of academic certificates, mark sheets, professional certificates, and English proficiency test results (IELTS/TOEFL/PTE). A CV, Statement of Purpose (SOP), work experience certificates, and proof of salary or bank statements for the last six months are also required, if applicable. Additionally, provide a copy of your passport, evidence of any education gap (if needed), and details of your immigration history."
-  }
-];
+interface AdmissionProcessProps {
+  steps: AdmissionStep[];
+  imageUrl?: string;
+  imageAlt?: string;
+}
 
-export const AdmissionProcess: React.FC = () => {
+export const AdmissionProcess: React.FC<AdmissionProcessProps> = ({ 
+  steps,
+  imageUrl = "/services/hero-service.png",
+  imageAlt = "Admission process counseling session"
+}) => {
   // Commented out scroll animation behavior
   // const containerRef = useRef<HTMLDivElement>(null);
   // const [activeStep, setActiveStep] = useState(0);
@@ -56,10 +48,10 @@ export const AdmissionProcess: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 w-full">
         <div className="text-center">
           <h2 className="text-4xl font-bold text-my-black mb-4">
-            <span className="text-my-accent relative">Admission</span> Process
+            <span className="text-my-accent relative">Admission</span> & Visa Process
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Follow our simple 4-step process to secure your admission to your dream university
+            Follow our simple {steps.length}-step process to secure your admission to your dream university
           </p>
         </div>
 
@@ -69,8 +61,8 @@ export const AdmissionProcess: React.FC = () => {
             <div className="relative">
               <div className="w-full sm:w-80 md:w-96 lg:w-full h-auto overflow-hidden">
                 <img
-                  src="/services/hero-service.png"
-                  alt="Admission process counseling session"
+                  src={imageUrl}
+                  alt={imageAlt}
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -79,7 +71,7 @@ export const AdmissionProcess: React.FC = () => {
 
           {/* Left Column - Steps (Bottom on mobile) */}
           <div className="order-2 lg:order-1 space-y-8">
-            {admissionSteps.map((step, index) => (
+            {steps.map((step, index) => (
               <div key={index}>
                 <ProcessCard
                   title={step.title}

@@ -4,7 +4,7 @@ export interface University {
   country: string;
   logo: string;
   website: string;
-  isDirectPartner: boolean;
+  partnershipType: string;
 }
 
 export const universitiesData: University[] = [
@@ -14,7 +14,7 @@ export const universitiesData: University[] = [
         "country": "usa",
         "logo": "/universities/usa/Queens_College.png",
         "website": "",
-        "isDirectPartner": true
+        "partnershipType": "direct"
     },
     {
         "id": 2,
@@ -22,7 +22,7 @@ export const universitiesData: University[] = [
         "country": "usa",
         "logo": "/universities/usa/Berkeley_College.png",
         "website": "",
-        "isDirectPartner": true
+        "partnershipType": "direct"
     },
     {
         "id": 3,
@@ -30,7 +30,7 @@ export const universitiesData: University[] = [
         "country": "usa",
         "logo": "/universities/usa/Montclair_State_University.png",
         "website": "",
-        "isDirectPartner": true
+        "partnershipType": "direct"
     },
     {
         "id": 4,
@@ -38,7 +38,7 @@ export const universitiesData: University[] = [
         "country": "usa",
         "logo": "/universities/usa/Long_Island_University.png",
         "website": "",
-        "isDirectPartner": true
+        "partnershipType": "direct"
     },
     {
         "id": 5,
@@ -46,7 +46,7 @@ export const universitiesData: University[] = [
         "country": "usa",
         "logo": "/universities/usa/Texas_State_University.png",
         "website": "",
-        "isDirectPartner": true
+        "partnershipType": "direct"
     },
     {
         "id": 6,
@@ -54,7 +54,7 @@ export const universitiesData: University[] = [
         "country": "usa",
         "logo": "/universities/usa/The_University_Of_Oklahoma.png",
         "website": "",
-        "isDirectPartner": true
+        "partnershipType": "direct"
     },
     {
         "id": 7,
@@ -62,7 +62,7 @@ export const universitiesData: University[] = [
         "country": "usa",
         "logo": "/universities/usa/University_Of_Northern_Iowa.png",
         "website": "",
-        "isDirectPartner": true
+        "partnershipType": "direct"
     },
     {
         "id": 8,
@@ -70,7 +70,7 @@ export const universitiesData: University[] = [
         "country": "usa",
         "logo": "/universities/usa/San_Francisco_State_University.png",
         "website": "",
-        "isDirectPartner": true
+        "partnershipType": "direct"
     },
     {
         "id": 9,
@@ -78,7 +78,7 @@ export const universitiesData: University[] = [
         "country": "usa",
         "logo": "/universities/usa/University_Of_Bridgeport.png",
         "website": "",
-        "isDirectPartner": true
+        "partnershipType": "direct"
     },
     {
         "id": 10,
@@ -86,7 +86,7 @@ export const universitiesData: University[] = [
         "country": "usa",
         "logo": "/universities/usa/William_Paterson_University.png",
         "website": "",
-        "isDirectPartner": true
+        "partnershipType": "direct"
     },
     {
         "id": 11,
@@ -94,7 +94,7 @@ export const universitiesData: University[] = [
         "country": "usa",
         "logo": "/universities/usa/Illinois_State_University.png",
         "website": "",
-        "isDirectPartner": true
+        "partnershipType": "direct"
     },
     {
         "id": 12,
@@ -102,7 +102,7 @@ export const universitiesData: University[] = [
         "country": "usa",
         "logo": "/universities/usa/University_Of_North_Texas.png",
         "website": "",
-        "isDirectPartner": true
+        "partnershipType": "direct"
     },
     {
         "id": 13,
@@ -110,7 +110,7 @@ export const universitiesData: University[] = [
         "country": "usa",
         "logo": "/universities/usa/Colorado_State_University.png",
         "website": "",
-        "isDirectPartner": true
+        "partnershipType": "direct"
     },
     {
         "id": 14,
@@ -118,7 +118,7 @@ export const universitiesData: University[] = [
         "country": "usa",
         "logo": "/universities/usa/Ashland_University.png",
         "website": "",
-        "isDirectPartner": true
+        "partnershipType": "direct"
     },
     {
         "id": 15,
@@ -126,7 +126,7 @@ export const universitiesData: University[] = [
         "country": "usa",
         "logo": "/universities/usa/Saint_Louis_University.png",
         "website": "",
-        "isDirectPartner": true
+        "partnershipType": "direct"
     },
     {
         "id": 16,
@@ -134,7 +134,7 @@ export const universitiesData: University[] = [
         "country": "usa",
         "logo": "/universities/usa/University_of_Arizona.png",
         "website": "",
-        "isDirectPartner": true
+        "partnershipType": "direct"
     },
     {
         "id": 17,
@@ -142,7 +142,7 @@ export const universitiesData: University[] = [
         "country": "usa",
         "logo": "/universities/usa/Murray_State_University.png",
         "website": "",
-        "isDirectPartner": true
+        "partnershipType": "direct"
     },
     {
         "id": 18,
@@ -150,7 +150,7 @@ export const universitiesData: University[] = [
         "country": "usa",
         "logo": "/universities/usa/Florida_Atlantic_University.png",
         "website": "",
-        "isDirectPartner": true
+        "partnershipType": "direct"
     },
     {
         "id": 19,
@@ -158,7 +158,7 @@ export const universitiesData: University[] = [
         "country": "usa",
         "logo": "/universities/usa/Oregon_State_University.png",
         "website": "",
-        "isDirectPartner": true
+        "partnershipType": "direct"
     },
     {
         "id": 20,
@@ -166,7 +166,7 @@ export const universitiesData: University[] = [
         "country": "usa",
         "logo": "/universities/usa/Emporia_State_University.png",
         "website": "",
-        "isDirectPartner": true
+        "partnershipType": "direct"
     },
     {
         "id": 21,
@@ -174,7 +174,7 @@ export const universitiesData: University[] = [
         "country": "usa",
         "logo": "/universities/usa/Mercy_University.png",
         "website": "",
-        "isDirectPartner": true
+        "partnershipType": "direct"
     },   
     {
         "id": 22,
@@ -182,7 +182,7 @@ export const universitiesData: University[] = [
         "country": "uk",
         "logo": "/universities/uk/London_South_Bank_University.png",
         "website": "",
-        "isDirectPartner": true
+        "partnershipType": "direct"
     }, 
     {
         "id": 23,
@@ -190,7 +190,7 @@ export const universitiesData: University[] = [
         "country": "uk",
         "logo": "/universities/uk/University_of_Roehampton.png",
         "website": "",
-        "isDirectPartner": true
+        "partnershipType": "direct"
     },
     {
         "id": 24,
@@ -198,7 +198,7 @@ export const universitiesData: University[] = [
         "country": "uk",
         "logo": "/universities/uk/University_of_Hull_London.png",
         "website": "",
-        "isDirectPartner": true
+        "partnershipType": "direct"
     },
     {
         "id": 25,
@@ -206,7 +206,7 @@ export const universitiesData: University[] = [
         "country": "uk",
         "logo": "/universities/uk/University_of_the_West_of_England.png",
         "website": "",
-        "isDirectPartner": true
+        "partnershipType": "direct"
     },
     {
         "id": 26,
@@ -214,7 +214,7 @@ export const universitiesData: University[] = [
         "country": "uk",
         "logo": "/universities/uk/Coventry_University.png",
         "website": "",
-        "isDirectPartner": true
+        "partnershipType": "direct"
     },
     {
         "id": 27,
@@ -222,7 +222,7 @@ export const universitiesData: University[] = [
         "country": "uk",
         "logo": "/universities/uk/University_Of_South_Wales.jpg",
         "website": "",
-        "isDirectPartner": true
+        "partnershipType": "direct"
     },
     {
         "id": 28,
@@ -230,7 +230,7 @@ export const universitiesData: University[] = [
         "country": "uk",
         "logo": "/universities/uk/Ravensbourne_University_London.png",
         "website": "",
-        "isDirectPartner": true
+        "partnershipType": "direct"
     },
     {
         "id": 29,
@@ -238,7 +238,7 @@ export const universitiesData: University[] = [
         "country": "ireland",
         "logo": "/universities/ireland/University_College_Dublin.jpg",
         "website": "",
-        "isDirectPartner": false
+        "partnershipType": ""
     },
     {
         "id": 30,
@@ -246,7 +246,7 @@ export const universitiesData: University[] = [
         "country": "ireland",
         "logo": "/universities/ireland/University_College_Cork.png",
         "website": "",
-        "isDirectPartner": false
+        "partnershipType": ""
     },
     {
         "id": 31,
@@ -254,7 +254,7 @@ export const universitiesData: University[] = [
         "country": "ireland",
         "logo": "/universities/ireland/University_Of_Galway.png",
         "website": "",
-        "isDirectPartner": false
+        "partnershipType": ""
     },
     {
         "id": 32,
@@ -262,7 +262,7 @@ export const universitiesData: University[] = [
         "country": "ireland",
         "logo": "/universities/ireland/University_Of_Limerick.png",
         "website": "",
-        "isDirectPartner": false
+        "partnershipType": ""
     },
     {
         "id": 33,
@@ -270,7 +270,7 @@ export const universitiesData: University[] = [
         "country": "ireland",
         "logo": "/universities/ireland/Trinity_College_Dublin.png",
         "website": "",
-        "isDirectPartner": false
+        "partnershipType": ""
     },
     {
         "id": 34,
@@ -278,7 +278,7 @@ export const universitiesData: University[] = [
         "country": "ireland",
         "logo": "/universities/ireland/Dublin_City_University.png",
         "website": "",
-        "isDirectPartner": false
+        "partnershipType": ""
     },
     {
         "id": 35,
@@ -286,7 +286,7 @@ export const universitiesData: University[] = [
         "country": "ireland",
         "logo": "/universities/ireland/Maynooth_University.png",
         "website": "",
-        "isDirectPartner": false
+        "partnershipType": ""
     },
     {
         "id": 36,
@@ -294,7 +294,7 @@ export const universitiesData: University[] = [
         "country": "ireland",
         "logo": "/universities/ireland/Technological_University_Dublin.png",
         "website": "",
-        "isDirectPartner": false
+        "partnershipType": ""
     },
     {
         "id": 37,
@@ -302,7 +302,7 @@ export const universitiesData: University[] = [
         "country": "australia",
         "logo": "/universities/australia/Macquarie_University.jpg",
         "website": "",
-        "isDirectPartner": true
+        "partnershipType": "direct"
     },
     {
         "id": 38,
@@ -310,7 +310,7 @@ export const universitiesData: University[] = [
         "country": "australia",
         "logo": "/universities/australia/Deakin_University.png",
         "website": "",
-        "isDirectPartner": true
+        "partnershipType": "direct"
     },
     {
         "id": 39,
@@ -318,7 +318,7 @@ export const universitiesData: University[] = [
         "country": "australia",
         "logo": "/universities/australia/La_Trobe_University.png",
         "website": "",
-        "isDirectPartner": true
+        "partnershipType": "direct"
     },
     {
         "id": 40,
@@ -326,7 +326,7 @@ export const universitiesData: University[] = [
         "country": "australia",
         "logo": "/universities/australia/Curtin_University.png",
         "website": "",
-        "isDirectPartner": true
+        "partnershipType": "direct"
     },
     {
         "id": 41,
@@ -334,7 +334,7 @@ export const universitiesData: University[] = [
         "country": "australia",
         "logo": "/universities/australia/Victoria_University.png",
         "website": "",
-        "isDirectPartner": true
+        "partnershipType": "direct"
     },
     {
         "id": 42,
@@ -342,7 +342,7 @@ export const universitiesData: University[] = [
         "country": "australia",
         "logo": "/universities/australia/Southern_Cross_University.png",
         "website": "",
-        "isDirectPartner": true
+        "partnershipType": "direct"
     },
     {
         "id": 43,
@@ -350,7 +350,7 @@ export const universitiesData: University[] = [
         "country": "australia",
         "logo": "/universities/australia/James_Cook_University.png",
         "website": "",
-        "isDirectPartner": true
+        "partnershipType": "direct"
     },
     {
         "id": 44,
@@ -358,7 +358,7 @@ export const universitiesData: University[] = [
         "country": "australia",
         "logo": "/universities/australia/The_University_Of_Western_Australia.png",
         "website": "",
-        "isDirectPartner": true
+        "partnershipType": "INTO"
     },
     {
         "id": 45,
@@ -366,7 +366,7 @@ export const universitiesData: University[] = [
         "country": "canada",
         "logo": "/universities/canada/University_Of_Manitoba.png",
         "website": "",
-        "isDirectPartner": true
+        "partnershipType": "direct"
     },
     {
         "id": 46,
@@ -374,7 +374,7 @@ export const universitiesData: University[] = [
         "country": "canada",
         "logo": "/universities/canada/International_College_Of_Manitoba.png",
         "website": "",
-        "isDirectPartner": true
+        "partnershipType": "direct"
     },
     {
         "id": 47,
@@ -382,7 +382,7 @@ export const universitiesData: University[] = [
         "country": "canada",
         "logo": "/universities/canada/Toronto_Metropolitan_University.png",
         "website": "",
-        "isDirectPartner": true
+        "partnershipType": "direct"
     },
     {
         "id": 48,
@@ -390,7 +390,7 @@ export const universitiesData: University[] = [
         "country": "canada",
         "logo": "/universities/canada/University_Of_Windsor.png",
         "website": "",
-        "isDirectPartner": true
+        "partnershipType": "direct"
     },
     {
         "id": 49,
@@ -398,7 +398,7 @@ export const universitiesData: University[] = [
         "country": "canada",
         "logo": "/universities/canada/Algoma_University.png",
         "website": "",
-        "isDirectPartner": true
+        "partnershipType": "direct"
     },
     {
         "id": 50,
@@ -406,7 +406,7 @@ export const universitiesData: University[] = [
         "country": "canada",
         "logo": "/universities/canada/Laurentian_University.png",
         "website": "",
-        "isDirectPartner": true
+        "partnershipType": "direct"
     },
     {
         "id": 51,
@@ -414,7 +414,7 @@ export const universitiesData: University[] = [
         "country": "canada",
         "logo": "/universities/canada/Lakehead_University.png",
         "website": "",
-        "isDirectPartner": true
+        "partnershipType": "direct"
     },
     {
         "id": 52,
@@ -422,7 +422,7 @@ export const universitiesData: University[] = [
         "country": "canada",
         "logo": "/universities/canada/Seneca_College.png",
         "website": "",
-        "isDirectPartner": true
+        "partnershipType": "direct"
     },
     {
         "id": 53,
@@ -430,7 +430,7 @@ export const universitiesData: University[] = [
         "country": "canada",
         "logo": "/universities/canada/Centennial_College.png",
         "website": "",
-        "isDirectPartner": true
+        "partnershipType": "direct"
     },
     {
         "id": 54,
@@ -438,7 +438,7 @@ export const universitiesData: University[] = [
         "country": "malaysia",
         "logo": "/universities/malaysia/University_Of_Wollongong_Malaysia.png",
         "website": "",
-        "isDirectPartner": true
+        "partnershipType": "direct"
     },
     {
         "id": 55,
@@ -446,7 +446,7 @@ export const universitiesData: University[] = [
         "country": "malaysia",
         "logo": "/universities/malaysia/Curtin_University_Malaysia.png",
         "website": "",
-        "isDirectPartner": true
+        "partnershipType": "direct"
     },
     {
         "id": 56,
@@ -454,7 +454,7 @@ export const universitiesData: University[] = [
         "country": "malaysia",
         "logo": "/universities/malaysia/INTI_International_University.png",
         "website": "",
-        "isDirectPartner": false
+        "partnershipType": ""
     },
     {
         "id": 57,
@@ -462,7 +462,7 @@ export const universitiesData: University[] = [
         "country": "malaysia",
         "logo": "/universities/malaysia/Kuala_Lumpur_University_Of_Science_And_Infrastructure.png",
         "website": "",
-        "isDirectPartner": false
+        "partnershipType": ""
     },
     {
         "id": 58,
@@ -470,7 +470,7 @@ export const universitiesData: University[] = [
         "country": "malaysia",
         "logo": "/universities/malaysia/Universiti_Teknologi_Malaysia.png",
         "website": "",
-        "isDirectPartner": false
+        "partnershipType": ""
     },
     {
         "id": 59,
@@ -478,7 +478,7 @@ export const universitiesData: University[] = [
         "country": "malaysia",
         "logo": "/universities/malaysia/Swinburne_University_Of_Technology_Malaysia.jpg",
         "website": "",
-        "isDirectPartner": false
+        "partnershipType": ""
     },
     {
         "id": 60,
@@ -486,7 +486,7 @@ export const universitiesData: University[] = [
         "country": "malaysia",
         "logo": "/universities/malaysia/Heriot_Watt_University.png",
         "website": "",
-        "isDirectPartner": false
+        "partnershipType": ""
     },
     {
         "id": 61,
@@ -494,7 +494,7 @@ export const universitiesData: University[] = [
         "country": "malaysia",
         "logo": "/universities/malaysia/Sunway_University.png",
         "website": "",
-        "isDirectPartner": false
+        "partnershipType": ""
     },
     {
         "id": 62,
@@ -502,7 +502,7 @@ export const universitiesData: University[] = [
         "country": "malaysia",
         "logo": "/universities/malaysia/University_Of_Southampton.png",
         "website": "",
-        "isDirectPartner": false
+        "partnershipType": ""
     },
     {
         "id": 63,
@@ -510,7 +510,7 @@ export const universitiesData: University[] = [
         "country": "newzealand",
         "logo": "/universities/newzealand/Yoobeee.png",
         "website": "",
-        "isDirectPartner": true
+        "partnershipType": "direct"
     },
     {
         "id": 64,
@@ -518,7 +518,7 @@ export const universitiesData: University[] = [
         "country": "newzealand",
         "logo": "/universities/newzealand/University_Of_Waikato.png",
         "website": "",
-        "isDirectPartner": true
+        "partnershipType": "direct"
     },
     {
         "id": 65,
@@ -526,7 +526,7 @@ export const universitiesData: University[] = [
         "country": "newzealand",
         "logo": "/universities/newzealand/Auckland_University_Of_Technology.png",
         "website": "",
-        "isDirectPartner": false
+        "partnershipType": ""
     },
     {
         "id": 66,
@@ -534,7 +534,7 @@ export const universitiesData: University[] = [
         "country": "newzealand",
         "logo": "/universities/newzealand/Massey_University.png",
         "website": "",
-        "isDirectPartner": false
+        "partnershipType": ""
     },
     {
         "id": 67,
@@ -542,7 +542,7 @@ export const universitiesData: University[] = [
         "country": "newzealand",
         "logo": "/universities/newzealand/Lincoln_University.png",
         "website": "",
-        "isDirectPartner": false
+        "partnershipType": ""
     },
     {
         "id": 68,
@@ -550,7 +550,7 @@ export const universitiesData: University[] = [
         "country": "newzealand",
         "logo": "/universities/newzealand/University_Of_Auckland.png",
         "website": "",
-        "isDirectPartner": false
+        "partnershipType": ""
     },
     {
         "id": 69,
@@ -558,7 +558,7 @@ export const universitiesData: University[] = [
         "country": "newzealand",
         "logo": "/universities/newzealand/University_Of_Canterbury.png",
         "website": "",
-        "isDirectPartner": false
+        "partnershipType": ""
     },
     {
         "id": 70,
@@ -566,7 +566,7 @@ export const universitiesData: University[] = [
         "country": "newzealand",
         "logo": "/universities/newzealand/University_Of_Otago.png",
         "website": "",
-        "isDirectPartner": false
+        "partnershipType": ""
     },
     {
         "id": 71,
@@ -574,7 +574,7 @@ export const universitiesData: University[] = [
         "country": "newzealand",
         "logo": "/universities/newzealand/New_Zealand_Tertiary_College.png",
         "website": "",
-        "isDirectPartner": false
+        "partnershipType": ""
     },
 ];
 

@@ -3,12 +3,12 @@ export interface Semester {
 }
 
 export interface AdmissionIntake {
-  postGraduate: Semester[];
+  // postGraduate: Semester[];
   underGraduate: Semester[];
 }
 
 export interface EntryRequirement {
-  icon: string; // Icon class name (e.g., "fi fi-ss-document")
+  icon: string; 
   title: string;
   description: string;
   image?: {
@@ -16,6 +16,11 @@ export interface EntryRequirement {
     alt: string;
   };
   tag?: string;
+}
+
+export interface AdmissionStep {
+  title: string;
+  content: string;
 }
 
 export interface Country {
@@ -35,6 +40,8 @@ export interface Country {
   popularSubjects: number[];
   admissionIntake: AdmissionIntake;
   entryRequirements?: EntryRequirement[];
+  admissionProcess?: AdmissionStep[];
+  partnerUniversitiesNote?: string; 
 }
 
 export const countriesData: Record<string, Country> = {
@@ -62,14 +69,9 @@ export const countriesData: Record<string, Country> = {
         content: "Choose from adaptable study pathways while gaining valuable work experience during and after your studies." 
       }
     ],
-    popularSubjects: [5, 10, 12, 14, 18],
+    popularSubjects: [4, 5, 10, 12, 14, 18],
     admissionIntake: {
-      postGraduate: [
-        { period: "Spring (January)" },
-        { period: "Summer (May)" },
-        { period: "Fall (August)" }
-      ],
-      underGraduate: [
+    underGraduate: [
         { period: "Spring (January)" },
         { period: "Summer (May)" },
         { period: "Fall (August)" }
@@ -79,12 +81,30 @@ export const countriesData: Record<string, Country> = {
       {
         icon: "fi fi-ss-user-graduate",
         title: "Bachelor's Programs",
-        description: "Must have completed GED, Diploma, O/A Level, or HSC (any one). IELTS: Minimum overall score of 5.5"
+        description: "Must have completed GED, Diploma, O/A Level, or HSC. IELTS / PTE (Proof of English proficiency)."
       },
       {
         icon: "fi fi-sr-graduation-cap",
         title: "Master's Programs",
-        description: "Must have a completed Bachelor's degree. IELTS: Minimum overall score of 6.0"
+        description: "Must have a completed Bachelor's degree. IELTS / PTE (Proof of English proficiency)."
+      }
+    ],
+    admissionProcess: [
+      {
+        title: "Free Counselling & Shortlisting",
+        content: "Receive a profile review, shortlist courses/universities, and prepare documents."
+      },
+      {
+        title: "Apply & Accept Offer",
+        content: "Submit applications. Once offers arrive, accept your preferred one and pay any required deposit."
+      },
+      {
+        title: "I-20 & Visa Preparation",
+        content: "Get your I-20, pay the SEVIS fee, complete DS-160, and prepare financial documents."
+      },
+      {
+        title: "Embassy Interview",
+        content: "Attend the F-1 visa interview."
       }
     ]
   },
@@ -115,15 +135,34 @@ export const countriesData: Record<string, Country> = {
     ],
     popularSubjects: [1, 4, 5, 8, 12, 18, 19, 25],
     admissionIntake: {
-      postGraduate: [
-        { period: "May" }
-      ],
-      underGraduate: [
+     underGraduate: [
         { period: "January" },
         { period: "May" },
         { period: "September" }
       ]
-    }
+    },
+    admissionProcess: [
+      {
+        title: "Free Assessment & Counselling",
+        content: "Get expert guidance and a personalized study plan."
+      },
+      {
+        title: "Submit Documents",
+        content: "Provide required academic and supporting documents."
+      },
+      {
+        title: "Application Submission",
+        content: "We send your documents to institutions at no extra cost."
+      },
+      {
+        title: "Admission & Fee Payment",
+        content: "Admission takes 2-8 weeks. Pay tuition directly to the institution (TT/Bank Draft/Card). Refunds are given if the visa is refused. Receive your CAS letter after payment."
+      },
+      {
+        title: "Pay Insurance Fees & Apply for Visa",
+        content: "Pay insurance fees and apply for visa."
+      }
+    ]
   },
   ireland: {
     name: "Ireland",
@@ -151,12 +190,9 @@ export const countriesData: Record<string, Country> = {
     ],
     popularSubjects: [],
     admissionIntake: {
-      postGraduate: [
-        { period: "September" }
-      ],
-      underGraduate: [
-        { period: "January" },
-        { period: "September" }
+     underGraduate: [
+        // { period: "January" },
+        // { period: "September" }
       ]
     },
     entryRequirements: [
@@ -185,6 +221,28 @@ export const countriesData: Record<string, Country> = {
       //   title: "Master's Program",
       //   description: "Academic: Bachelor's degree completed. English: IELTS overall 6.5 (no band less than 6.0)."
       // }
+    ],
+    admissionProcess: [
+      {
+        title: "Prepare Documents",
+        content: "Academic certificates, passport, photos, SOP, references. Postgraduates: CV and work experience."
+      },
+      {
+        title: "Complete Application",
+        content: "Fill out university forms (no file opening charges)."
+      },
+      {
+        title: "Submit to Institution",
+        content: "We submit all documents; admission confirmation takes 2–8 weeks."
+      },
+      {
+        title: "Tuition Payment & CoE",
+        content: "Pay tuition (refundable if visa is rejected) and receive your Confirmation of Enrolment for visa processing."
+      },
+      {
+        title: "Apply for Visa",
+        content: "Apply for visa after receiving your Confirmation of Enrolment."
+      }
     ]
   },
   australia: {
@@ -213,15 +271,10 @@ export const countriesData: Record<string, Country> = {
     ],
     popularSubjects: [2, 3, 5, 13, 14, 16, 18, 19, 22, 24],
     admissionIntake: {
-      postGraduate: [
-        { period: "February / March" },
-        { period: "July" },
-        { period: "November" }
-      ],
-      underGraduate: [
-        { period: "February / March" },
-        { period: "June / July" },
-        { period: "October / November" }
+     underGraduate: [
+        { period: "February / March Intake" },
+        { period: "June / July Intake" },
+        { period: "October / November Intake" }
       ]
     },
     entryRequirements: [
@@ -243,7 +296,34 @@ export const countriesData: Record<string, Country> = {
       {
         icon: "fi fi-sr-graduation-cap",
         title: "Master's Program",
-        description: "Academic: Bachelor's degree completed. English: IELTS overall 6.5, no band less than 6.0 (PTE accepted)."
+        description: "Academic: Bachelor's degree completed. IELTS / PTE (Proof of English proficiency)."
+      },
+      {
+        icon: "fi fi-ss-trophy",
+        title: "Master's Qualifying Program (MQP)",
+        description: "Academic: Bachelor's degree completed. IELTS / PTE (Proof of English proficiency)."
+      }
+    ],
+    admissionProcess: [
+      {
+        title: "Free Personalized Counselling",
+        content: "Meet our expert counsellors to explore study options, shortlist universities, and understand requirements."
+      },
+      {
+        title: "Admission Confirmation",
+        content: "Apply to your preferred institute and receive your offer letter."
+      },
+      {
+        title: "Pay Tuition & OSHC",
+        content: "Secure your place by paying tuition fees and arranging Overseas Student Health Cover (OSHC)."
+      },
+      {
+        title: "Submit Updated Documents",
+        content: "Provide proof of payment and any updated academic/financial documents. Required documents: Certified academic certificates, mark sheets, English test scores (IELTS/TOEFL/PTE), CV, SOP, work experience (if any), financial statements (last 6 months), passport copy, gap explanation (if needed), and immigration history."
+      },
+      {
+        title: "Apply for the Visa",
+        content: "Apply for the visa through our Immi account with the help of our counsellor."
       }
     ]
   },
@@ -270,13 +350,8 @@ export const countriesData: Record<string, Country> = {
         content: "Access flexible entry routes that help you meet admission requirements and transition smoothly into your chosen degree." 
       }
     ],
-    popularSubjects: [9, 14, 20, 23],
+    popularSubjects: [4, 9, 12, 14, 20, 23],
     admissionIntake: {
-      postGraduate: [
-        { period: "Spring (January)" },
-        { period: "Summer (May)" },
-        { period: "Fall (September)" }
-      ],
       underGraduate: [
         { period: "Spring (January)" },
         { period: "Summer (May)" },
@@ -287,22 +362,44 @@ export const countriesData: Record<string, Country> = {
       {
         icon: "fi fi-ss-diploma",
         title: "Diploma",
-        description: "Completed HSC, O/A Level (or equivalent). IELTS: minimum score overall of 6.0, no band less than 5.5 (varies per institution)"
+        description: "Completed HSC, O/A Level (or equivalent). IELTS / PTE (Proof of English proficiency)."
       },
       {
         icon: "fi fi-ss-user-graduate",
         title: "Bachelor's",
-        description: "Completed HSC, O/A Level (or equivalent). IELTS: minimum score overall of 6.0, no band less than 5.5 (varies per institution)"
+        description: "Completed HSC, O/A Level (or equivalent). IELTS / PTE (Proof of English proficiency)."
       },
       {
         icon: "fi fi-sr-graduation-cap",
         title: "Master's",
-        description: "Completed Bachelor's degree. IELTS: minimum score overall of 6.0, no band less than 5.5 (varies per institution)"
+        description: "Completed Bachelor's degree. IELTS / PTE (Proof of English proficiency)."
       },
       {
         icon: "fi fi-ss-trophy",
-        title: "Post Graduate Degree",
-        description: "Completed Master's degree. IELTS: minimum score overall of 6.0, no band less than 5.5 (varies per institution)"
+        title: "Post Graduate Diploma",
+        description: "Completed Master's degree. IELTS / PTE (Proof of English proficiency)."
+      }
+    ],
+    admissionProcess: [
+      {
+        title: "Explore & Get Guidance",
+        content: "Receive expert counselling to choose the right university and course."
+      },
+      {
+        title: "Choose Your Path",
+        content: "Decide on your preferred university and program."
+      },
+      {
+        title: "Prepare Documents",
+        content: "Submit transcripts, certificates, passport copy. Postgraduate applicants: CV, SOP, 2–3 reference letters, work experience (if any)."
+      },
+      {
+        title: "Submit Application",
+        content: "Send scanned documents and pay application fees (CAD 100–130) + courier charges (BDT 2,000–3,000 if needed)."
+      },
+      {
+        title: "Visa Process",
+        content: "Receive offer → Pay tuition/deposit → Receive UC offer → Apply for visa → If approved, submit passport."
       }
     ]
   },
@@ -332,15 +429,10 @@ export const countriesData: Record<string, Country> = {
     ],
     popularSubjects: [3, 6, 11, 14, 15, 17, 21, 26],
     admissionIntake: {
-      postGraduate: [
-        { period: "January – March" },
-        { period: "April – July" },
-        { period: "August – November" }
-      ],
       underGraduate: [
-        { period: "January – March" },
-        { period: "April – July" },
-        { period: "August – November" }
+        { period: "Semester 1: January – March" },
+        { period: "Semester 2: April – July" },
+        { period: "Semester 3: August – November" }
       ]
     },
     entryRequirements: [
@@ -352,53 +444,39 @@ export const countriesData: Record<string, Country> = {
       {
         icon: "fi fi-ss-diploma",
         title: "Diploma Program",
-        description: "Minimum GPA: 2.5 out of 5.0 in HSC. 3 Credits in O-Levels (or equivalent).\nFor Bachelor's degree: Minimum GPA: 3.0 out of 5.0 in HSC OR Minimum 2 passes (Grade D or above) in A-Levels.\nGED also accepted."
+        description: "Minimum GPA: 2.5 out of 5.0 in HSC. 3 Credits in O-Levels (or equivalent)."
       },
       {
         icon: "fi fi-ss-user-graduate",
+        title: "Bachelor's Degree",
+        description: "Minimum GPA: 3.0 out of 5.0 in HSC OR Minimum 2 passes (Grade D or above) in A-Levels. GED also accepted."
+      },
+      {
+        icon: "fi fi-sr-graduation-cap",
         title: "Master's Degree",
         description: "Minimum CGPA: 2.5 out of 4.0 in Bachelor's (or equivalent qualification)."
       }
+    ],
+    admissionProcess: [
+      {
+        title: "Free Assessment & Counselling",
+        content: "Check eligibility and explore options."
+      },
+      {
+        title: "Submit Documents",
+        content: "Provide transcripts, passport copy, photo, and Health Declaration form."
+      },
+      {
+        title: "Receive Eligibility Letter",
+        content: "Complete university-required payments."
+      },
+      {
+        title: "Visa Application → Pay EMAS Fees",
+        content: "Apply for EVAL and SEV."
+      }
     ]
   },
-  japan: {
-    name: "Japan",
-    description: "Study where world-class education meets cutting-edge technology and timeless cultural richness.",
-    heroImage: "/country-heros/japan.png",
-    stats: { universities: "01", annualTuitionFees: "¥1,596,000", successfulVisas: "—", postStudyWork: "1 Year" },
 
-    whyChoose: [
-      { 
-        title: "Merit-Based Scholarship", 
-        content: "Rewarding outstanding academic performance with financial support to ease study costs."
-      },
-      { 
-        title: "Full-Time Work Opportunities During Vacations", 
-        content: "Gain valuable work experience and earn extra income during semester breaks."
-      },
-      { 
-        title: "Affordable Tuition Fees", 
-        content: "Access quality education at a cost that’s lower compared to many other study destinations."
-      },
-      { 
-        title: "World-Class Education Quality", 
-        content: "Learn from globally recognized institutions with modern facilities and innovative teaching."
-      }
-    ],
-    popularSubjects: [],
-    admissionIntake: {
-      postGraduate: [
-        { period: "January – March" },
-        { period: "April – July" },
-        { period: "August – November" }
-      ],
-      underGraduate: [
-        { period: "January – March" },
-        { period: "April – July" },
-        { period: "August – November" }
-      ]
-    }
-  },
   newzealand: {
     name: "New Zealand",
     description: "Learn in a safe, inclusive environment that embraces lifelong learning and real-world experience.",
@@ -428,12 +506,8 @@ export const countriesData: Record<string, Country> = {
         content: "Benefit from a variety of scholarships that make quality education more affordable."
       }
     ],
-    popularSubjects: [7, 14, 16, 18],
+    popularSubjects: [4, 9, 7, 14, 16, 18],
     admissionIntake: {
-      postGraduate: [
-        { period: "February" },
-        { period: "July" }
-      ],
       underGraduate: [
         { period: "February" },
         { period: "July" }
@@ -443,28 +517,105 @@ export const countriesData: Record<string, Country> = {
       {
         icon: "fi fi-sr-workshop",
         title: "Foundation Program",
-        description: "Academic: O Level or Year 10 completion. English: IELTS overall 5.5 (no band less than 5.0)."
+        description: "Academic: O Level or Year 10 completion. IELTS / PTE (Proof of English proficiency)."
       },
       {
         icon: "fi fi-ss-diploma",
         title: "Diploma Program",
-        description: "Academic: HSC or Year 12 completion. English: IELTS overall 5.5 (no band less than 5.0)."
+        description: "Academic: HSC or Year 12 completion. IELTS / PTE (Proof of English proficiency)."
       },
       {
         icon: "fi fi-ss-user-graduate",
         title: "Bachelor's Program",
-        description: "Academic: HSC or Year 12 completion. English: IELTS overall 6.0 (no band less than 5.5)."
+        description: "Academic: HSC or Year 12 completion. IELTS / PTE (Proof of English proficiency)."
       },
       {
         icon: "fi fi-sr-graduation-cap",
         title: "Postgraduate Diploma",
-        description: "Academic: Bachelor's degree completed. English: IELTS overall 6.5 (no band less than 6.0)."
+        description: "Academic: Bachelor's degree completed. IELTS / PTE (Proof of English proficiency)."
       },
       {
         icon: "fi fi-ss-trophy",
         title: "Master's Program",
-        description: "Academic: Bachelor's degree completed. English: IELTS overall 6.5 (no band less than 6.0)."
+        description: "Academic: Bachelor's degree completed. IELTS / PTE (Proof of English proficiency)."
+      }
+    ],
+    admissionProcess: [
+      {
+        title: "Prepare Documents",
+        content: "Collect transcripts, certificates, passport copy, English test scores, SOP, and reference letters."
+      },
+      {
+        title: "Apply to Institution",
+        content: "Submit your application — no application fees required."
+      },
+      {
+        title: "Interview (If Required)",
+        content: "Some institutions may take an interview."
+      },
+      {
+        title: "Receive Offer Letter",
+        content: "Get your unconditional offer after a successful review."
+      },
+      {
+        title: "Apply for Visa",
+        content: "Apply for visa after receiving your offer letter."
       }
     ]
   }
+  // ,
+  // japan: {
+  //   name: "Japan",
+  //   description: "Study where world-class education meets cutting-edge technology and timeless cultural richness.",
+  //   heroImage: "/country-heros/japan.png",
+  //   stats: { universities: "01", annualTuitionFees: "¥1,596,000", successfulVisas: "—", postStudyWork: "1 Year" },
+
+  //   whyChoose: [
+  //     { 
+  //       title: "Merit-Based Scholarship", 
+  //       content: "Rewarding outstanding academic performance with financial support to ease study costs."
+  //     },
+  //     { 
+  //       title: "Full-Time Work Opportunities During Vacations", 
+  //       content: "Gain valuable work experience and earn extra income during semester breaks."
+  //     },
+  //     { 
+  //       title: "Affordable Tuition Fees", 
+  //       content: "Access quality education at a cost that’s lower compared to many other study destinations."
+  //     },
+  //     { 
+  //       title: "World-Class Education Quality", 
+  //       content: "Learn from globally recognized institutions with modern facilities and innovative teaching."
+  //     }
+  //   ],
+  //   popularSubjects: [],
+  //   admissionIntake: {
+  //    underGraduate: [
+  //       { period: "January – March" },
+  //       { period: "April – July" },
+  //       { period: "August – November" }
+  //     ]
+  //   },
+  //   admissionProcess: [
+  //     {
+  //       title: "Submit academic documents",
+  //       content: "Provide your transcripts, certificates, and other required academic documents."
+  //     },
+  //     {
+  //       title: "Provide English test scores",
+  //       content: "Submit English proficiency test scores (if applicable)."
+  //     },
+  //     {
+  //       title: "Submit 2 recommendation letters",
+  //       content: "Provide two recommendation letters as part of your application."
+  //     },
+  //     {
+  //       title: "Pay the ¥7,000 non-refundable application fee",
+  //       content: "Pay the ¥7,000 non-refundable application fee (no extra service or file charges). To apply, you must submit your transcripts, certificates, English test scores (if needed), personal statement, recommendation letters, passport copy, and optional SAT scores. Shortlisted students will attend an online interview, and successful applicants will receive a formal offer letter."
+  //     }
+  //   ]
+  // }
 };
+
+
+

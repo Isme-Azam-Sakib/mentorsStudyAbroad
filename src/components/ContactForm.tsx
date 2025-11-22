@@ -2,10 +2,9 @@
 
 import { useState } from 'react';
 import { CustomInput } from './CustomInput';
-import { Button } from './Button';
-import { getSessionBookingsApiUrl } from '@/lib/config';
 import { validateFormData, sanitizeInput, secureLog } from '@/lib/security';
 import { useBrowserExtensionFix } from '@/hooks/useBrowserExtensionFix';
+import { getDhakaBranches } from '@/lib/branches-data';
 
 interface ContactFormProps {
   countryName?: string;
@@ -42,9 +41,12 @@ export function ContactForm({
     mobile: '',
     country: countryValue || '',
     country2: '',
-    course: '',
-    consultationMode: ''
+    studyLevel: '',
+    consultationMode: '',
+    nearestOffice: ''
   });
+
+  const dhakaBranches = getDhakaBranches();
 
   // Form submission state
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
@@ -86,28 +88,40 @@ export function ContactForm({
       mobile: '',
       country: countryValue || '',
       country2: '',
-      course: '',
-      consultationMode: ''
+      studyLevel: '',
+      consultationMode: '',
+      nearestOffice: ''
     });
   };
 
   const handleApiError = (error: unknown) => {
-    const message =
-      error instanceof Error
-        ? 'Submission failed. Please try again shortly.'
-        : 'Failed to submit your request. Please try again.';
+    let errorMessage = 'Failed to submit your request. Please try again.';
+    
+    if (error instanceof Error) {
+      // Extract the actual error message
+      const errorMsg = error.message;
+      
+      // Check if it's a validation error (contains specific field errors)
+      if (errorMsg.includes('Form validation failed:') || errorMsg.includes('Please') || errorMsg.match(/^\d+\./)) {
+        // Use the actual validation error message
+        // Remove "Form validation failed: " prefix if present for cleaner display
+        errorMessage = errorMsg.replace(/^Form validation failed:\s*/i, '');
+      } else {
+        // For other errors, show a more helpful message
+        errorMessage = errorMsg || 'Submission failed. Please check your inputs and try again.';
+      }
+    }
 
     secureLog('Form submission failed', {
       error: error instanceof Error ? error.message : error,
     }, 'error');
     setSubmitStatus('error');
-    setErrorMessage(message);
+    setErrorMessage(errorMessage);
     
-    // Show error toast
-    setToastMessage(message);
+    // Show error toast with the specific error message
+    setToastMessage(errorMessage);
     setToastType('error');
     setShowToast(true);
-    
   };
 
   const runCustomValidations = () => {
@@ -125,18 +139,34 @@ export function ContactForm({
       validationErrors.push('Please select two different countries.');
     }
 
+    if (!formData.studyLevel) {
+      validationErrors.push('Please select a preferred study level.');
+    }
+
+    if (formData.consultationMode === 'branch' && !formData.nearestOffice) {
+      validationErrors.push('Please select the nearest Mentors\' office.');
+    }
+
     if (validationErrors.length > 0) {
-      throw new Error(validationErrors.join(' '));
+      // Format errors nicely - use line breaks for multiple errors
+      const formattedErrors = validationErrors.length > 1 
+        ? validationErrors.map((err, idx) => `${idx + 1}. ${err}`).join('\n')
+        : validationErrors[0];
+      throw new Error(formattedErrors);
     }
   };
 
-  const getApiPayload = () => {
+  const getFormPayload = () => {
     // Only validate if we have actual form data and are on client side
     if (typeof window !== 'undefined' && formData.fullName && formData.email && formData.mobile) {
       const validation = validateFormData(formData as unknown as { [key: string]: unknown });
       if (!validation.isValid) {
         console.error('Form validation errors:', validation.errors);
-        throw new Error(`Form validation failed: ${Object.values(validation.errors).join(', ')}`);
+        const errorMessages = Object.values(validation.errors).filter(msg => msg) as string[];
+        const formattedErrors = errorMessages.length > 1
+          ? errorMessages.map((err, idx) => `${idx + 1}. ${err}`).join('\n')
+          : errorMessages[0] || 'Please check your form inputs.';
+        throw new Error(formattedErrors);
       }
     }
 
@@ -148,39 +178,21 @@ export function ContactForm({
       mobile_no: sanitizeInput(formData.mobile),
       country_name: sanitizeInput(formData.country),
       country_name2: sanitizeInput(formData.country2),
-      preferred_course: sanitizeInput(formData.course),
-      consultation_mode: sanitizeInput(formData.consultationMode)
+      study_level: sanitizeInput(formData.studyLevel),
+      consultation_mode: sanitizeInput(formData.consultationMode),
+      nearest_office: sanitizeInput(formData.nearestOffice)
     };
   };
 
-  // Create a function that returns the API config only when needed
-  const getApiConfig = () => {
-    // Only validate and get payload when actually submitting
-    if (typeof window !== 'undefined' && formData.fullName && formData.email && formData.mobile) {
-      const validation = validateFormData(formData as unknown as { [key: string]: unknown });
-      if (!validation.isValid) {
-        console.error('Form validation errors:', validation.errors);
-        throw new Error(`Form validation failed: ${Object.values(validation.errors).join(', ')}`);
-      }
+  const handleSubmit = () => {
+    try {
+      const payload = getFormPayload();
+      console.log('Form Submission Payload:', JSON.stringify(payload, null, 2));
+      
+      handleApiSuccess(payload);
+    } catch (error) {
+      handleApiError(error);
     }
-
-    runCustomValidations();
-
-    const payload = {
-      full_name: sanitizeInput(formData.fullName),
-      email: sanitizeInput(formData.email),
-      mobile_no: sanitizeInput(formData.mobile),
-      country_name: sanitizeInput(formData.country),
-      country_name2: sanitizeInput(formData.country2),
-      preferred_course: sanitizeInput(formData.course),
-      consultation_mode: sanitizeInput(formData.consultationMode)
-    };
-
-    return {
-      url: getSessionBookingsApiUrl(),
-      method: 'POST' as const,
-      body: payload
-    };
   };
 
   const secondaryCountryOptions = countries.filter((country) => country.value !== formData.country);
@@ -233,7 +245,7 @@ export function ContactForm({
               label="Email"
               value={formData.email}
               onChange={(value) => handleInputChange('email', value)}
-              required={false}
+              required
             />
 
             {/* Mobile No. */}
@@ -285,15 +297,23 @@ export function ContactForm({
               </select>
             </div>
 
-            {/* Preferred Course Input */}
-            <CustomInput
-              type="text"
-              value={formData.course}
-              onChange={(value) => handleInputChange('course', value)}
-              placeholder="Preferred course"
-              label="Preferred course"
-              required
-            />
+            {/* Preferred Study Level Dropdown */}
+            <div>
+              <select 
+                value={formData.studyLevel}
+                onChange={(e) => handleInputChange('studyLevel', e.target.value)}
+                className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-300 rounded-lg sm:rounded-xl focus:outline-none focus:border-gray-500 transition-colors appearance-none bg-white text-sm sm:text-base"
+                required
+              >
+                <option value="">Select study level (required)</option>
+                <option value="foundation">Foundation</option>
+                <option value="diploma">Diploma</option>
+                <option value="bachelor">Bachelor</option>
+                <option value="master">Master</option>
+                <option value="phd">PhD</option>
+                <option value="certificate">Certificate</option>
+              </select>
+            </div>
 
             {/* Preferred Mode of Consultation Dropdown */}
             <div>
@@ -302,29 +322,49 @@ export function ContactForm({
               </label> */}
               <select 
                 value={formData.consultationMode}
-                onChange={(e) => handleInputChange('consultationMode', e.target.value)}
+                onChange={(e) => {
+                  handleInputChange('consultationMode', e.target.value);
+                  // Clear nearest office when consultation mode changes
+                  if (e.target.value !== 'branch') {
+                    handleInputChange('nearestOffice', '');
+                  }
+                }}
                 className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-300 rounded-lg sm:rounded-xl focus:outline-none focus:border-gray-500 transition-colors appearance-none bg-white text-sm sm:text-base"
                 required
               >
                 <option value="">Select a consultation mode</option>
                 <option value="online">Online</option>
-                <option value="branch">Branch Visit</option>
+                <option value="branch">Office Visit</option>
               </select>
             </div>
 
+            {/* Nearest Mentors' Office Dropdown - Only show when Office Visit is selected */}
+            {formData.consultationMode === 'branch' && (
+              <div>
+                <select 
+                  value={formData.nearestOffice}
+                  onChange={(e) => handleInputChange('nearestOffice', e.target.value)}
+                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-300 rounded-lg sm:rounded-xl focus:outline-none focus:border-gray-500 transition-colors appearance-none bg-white text-sm sm:text-base"
+                  required
+                >
+                  <option value="">Select nearest Mentors' office (required)</option>
+                  {dhakaBranches.map((branch) => (
+                    <option key={branch.id} value={branch.id}>
+                      {branch.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            )}
+
             {/* Submit Button */}
-            <Button
+            <button
               type="button"
-              variant="secondary"
-              size="md"
-              className="w-full font-bold py-3 sm:py-4 rounded-lg sm:rounded-xl"
-              apiConfig={getApiConfig}
-              onApiSuccess={handleApiSuccess}
-              onApiError={handleApiError}
-              loadingText="Submitting..."
+              onClick={handleSubmit}
+              className="w-full font-bold py-3 sm:py-4 rounded-lg sm:rounded-xl bg-my-black text-white hover:bg-my-accent transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-my-accent focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               Book Free Consultation Now
-            </Button>
+            </button>
 
           </form>
         </div>
@@ -333,7 +373,7 @@ export function ContactForm({
       {/* Modern Toast Notification */}
       {showToast && (
         <div className="fixed inset-0 z-50 flex items-center justify-center px-4">
-          <div className={`rounded-2xl shadow-xl border px-5 py-6 max-w-xl w-full bg-white flex flex-col items-center text-center animate-in fade-in duration-300 ${
+          <div className={`rounded-2xl shadow-xl border px-5 py-6 max-w-xl w-full bg-white flex flex-col items-center animate-in fade-in duration-300 ${
             toastType === 'success' ? 'border-green-200' : 'border-red-200'
           }`}>
             <div className={`w-12 h-12 rounded-full flex items-center justify-center mb-3 ${
@@ -343,12 +383,14 @@ export function ContactForm({
                 toastType === 'success' ? 'text-green-600' : 'text-red-600'
               }`}></i>
             </div>
-            <h3 className={`text-lg font-bold mb-2 ${
+            <h3 className={`text-lg font-bold mb-2 text-center ${
               toastType === 'success' ? 'text-green-600' : 'text-red-600'
             }`}>
               {toastType === 'success' ? 'Success!' : 'Submission Failed'}
             </h3>
-            <p className="text-gray-600 mb-4 leading-relaxed">{toastMessage}</p>
+            <div className="w-full mb-4">
+              <p className="text-gray-600 leading-relaxed whitespace-pre-line text-left text-sm sm:text-base">{toastMessage}</p>
+            </div>
             <button
               onClick={() => setShowToast(false)}
               className={`font-medium rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 px-6 py-2.5 text-sm ${

@@ -14,6 +14,7 @@ import LazyImage from '@/components/LazyImage';
 import PageLoader from '@/components/PageLoader';
 import { Button } from '@/components/Button';
 import { StudyAbroadModal } from '@/components/StudyAbroadModal';
+import { CountrySelectionModal } from '@/components/CountrySelectionModal';
 import { testimonialsData } from '@/lib/testimonials-data';
 import CTA from '@/components/CTA';
 import ChooseDestination from '@/components/ChooseDestination';
@@ -22,6 +23,7 @@ import { BranchCardsSection } from '@/components/BranchCardsSection';
 import UniversitiesSection from '@/components/UniversitiesSection';
 import { AccreditationSection } from '@/components/AccreditationSection';
 import { PartnerUniversities } from '@/components/PartnerUniversities';
+import { ClientPartners } from '@/components/ClientPartners';
 
 const admissionSteps = [
   {
@@ -73,16 +75,17 @@ export default function HomePage() {
   const [admissionActiveStep, setAdmissionActiveStep] = useState(0);
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isCountryModalOpen, setIsCountryModalOpen] = useState(false);
 
   const homepageStats = {
     universities: "200+",
-    annualTuitionFees: "19+ Years",
+    annualTuitionFees: "19+",
     successfulVisas: "10,000+"
   };
 
   const homepageLabels = {
     universities: "University Partners",
-    annualTuitionFees: "Of Experience",
+    annualTuitionFees: "Years Of Experience",
     successfulVisas: "Success Stories"
   };
 
@@ -176,7 +179,7 @@ export default function HomePage() {
 
         {/* Hero Content */}
         <div className="relative z-10 flex items-center">
-          <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 my-16 sm:my-24 lg:my-32">
+          <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 my-16 sm:my-24">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-center mb-24 mt-16">
               {/* Left Column - Text and Buttons */}
               <div className="text-center lg:text-left order-2 lg:order-1">
@@ -220,16 +223,16 @@ export default function HomePage() {
       <LazySection delay={0.2}>
         <div className="py-16 bg-my-white">
           <div className="max-w-7xl mx-auto px-4">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
               {/* Left Column - Why Choose Content */}
-              <div>
+              <div className="flex flex-col">
                 <div className="mb-12">
                   <h2 className="text-3xl lg:text-4xl font-bold lg:text-left md:text-center sm:text-center text-my-black mb-4">
                     Why choose <span className="text-my-accent relative">Mentors&apos; Study Abroad?</span>
                   </h2>
                 </div>
 
-                <div className="space-y-4">
+                <div className="space-y-4 flex-1">
                   {whyChooseItems.map((item, index) => (
                     <ProcessCard
                       key={index}
@@ -242,18 +245,78 @@ export default function HomePage() {
                 </div>
               </div>
 
-              {/* Right Column - Fixed Image */}
-              <div className="lg:sticky lg:top-8 lg:translate-y-50">
-                <div className="relative flex justify-center">
-                  <div className="w-full max-w-sm sm:max-w-md md:max-w-lg h-auto overflow-hidden">
-                    <img
-                      src="/why-choose-us.jpg"
-                      alt="Why choose us"
-                      className="w-full h-auto object-cover rounded-3xl"
-                    />
+              {/* Right Column - Image with Stats Overlay */}
+              <div className="lg:sticky lg:top-8 h-full min-h-[500px]">
+                <div className="relative w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-none mx-auto lg:mx-0 h-full rounded-[40px] lg:rounded-[50px] overflow-hidden">
+                  <img
+                    src="/why-choose-us.png"
+                    alt="Why choose us"
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
+
+                  {/* Stats Cards Overlay at Bottom */}
+                  <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4 md:p-6">
+                    <div className="bg-my-white/90 backdrop-blur-sm rounded-3xl p-3 sm:p-4 md:p-5 lg:p-6 shadow-lg">
+                      <div className="flex flex-row justify-evenly items-center gap-2 sm:gap-3 md:gap-4">
+                        {/* University Partners */}
+                        <div className="flex-1 text-left min-w-0">
+                          <div className="flex items-center justify-start gap-2 sm:gap-3 mb-1 sm:mb-2">
+                            <div className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 flex items-center justify-center flex-shrink-0">
+                              <i className="fi fi-sr-building text-my-accent text-base sm:text-xl md:text-2xl"></i>
+                            </div>
+                          </div>
+                          <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-black mb-0.5 sm:mb-1">
+                            {stats.universities}
+                          </div>
+                          <div className="text-[10px] sm:text-xs md:text-sm text-my-black/80 font-medium leading-tight">
+                            {labels.universities}
+                          </div>
+                        </div>
+
+                        {/* Years Of Experience */}
+                        <div className="flex-1 text-left min-w-0">
+                          <div className="flex items-center justify-start gap-2 sm:gap-3 mb-1 sm:mb-2">
+                            <div className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 flex items-center justify-center flex-shrink-0">
+                              <i className="fi fi-sr-calendar text-my-accent text-base sm:text-xl md:text-2xl"></i>
+                            </div>
+                          </div>
+                          <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-black mb-0.5 sm:mb-1">
+                            {stats.annualTuitionFees}
+                          </div>
+                          <div className="text-[10px] sm:text-xs md:text-sm text-my-black/80 font-medium leading-tight">
+                            {labels.annualTuitionFees}
+                          </div>
+                        </div>
+
+                        {/* Success Stories */}
+                        <div className="flex-1 text-left min-w-0">
+                          <div className="flex items-center justify-start gap-2 sm:gap-3 mb-1 sm:mb-2">
+                            <div className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 flex items-center justify-center flex-shrink-0">
+                              <i className="fi fi-sr-star text-my-accent text-base sm:text-xl md:text-2xl"></i>
+                            </div>
+                          </div>
+                          <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-black mb-0.5 sm:mb-1">
+                            {stats.successfulVisas}
+                          </div>
+                          <div className="text-[10px] sm:text-xs md:text-sm text-my-black/80 font-medium leading-tight">
+                            {labels.successfulVisas}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
+            </div>
+
+            {/* Know More Button */}
+            <div className="flex justify-center mt-8 sm:mt-10">
+              <button
+                onClick={() => setIsCountryModalOpen(true)}
+                className="bg-my-white text-black border border-1 border-my-black px-6 sm:px-8 lg:px-10 py-3 sm:py-3.5 lg:py-2 rounded-full flex items-center gap-2 sm:gap-3 font-semibold hover:bg-my-black hover:text-my-white transition-colors duration-300 text-base sm:text-lg lg:text-base"
+              >
+                Know More
+              </button>
             </div>
           </div>
         </div>
@@ -262,176 +325,20 @@ export default function HomePage() {
 
 
       {/* Country Stats Section */}
+      
+
+      {/* Accreditation Section */}
+
       <LazySection delay={0.2}>
-        <div className="relative z-20 mb-24">
-          <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6">
-            <div className="flex justify-center">
-              <div className="bg-white/40 backdrop-blur-lg rounded-3xl sm:rounded-3xl border-2 border-pink-200/50 p-4 sm:p-6 lg:p-8 shadow-xl w-full max-w-5xl">
-                {/* Mobile Layout: 2x2 Grid */}
-                <div className="block sm:hidden">
-                  <div className={`grid ${isHomepageStats ? 'grid-cols-3' : 'grid-cols-2'} gap-4`}>
-                    {/* Universities */}
-                    <div className="text-center">
-                      <div className="text-xl font-bold text-black">
-                        {stats.universities}
-                      </div>
-                      <div className="text-my-black/80 text-xs font-medium mb-1">
-                        {labels.universities}
-                      </div>
-                    </div>
-
-                    {/* Annual Tuition Fees */}
-                    <div className="text-center">
-                      <div className="text-xl font-bold text-black">
-                        {stats.annualTuitionFees}
-                      </div>
-                      <div className="text-my-black/80 text-xs font-medium mb-1">
-                        {labels.annualTuitionFees}
-                      </div>
-                    </div>
-
-                    {/* Successful Visas */}
-                    <div className="text-center">
-                      <div className="text-xl font-bold text-black">
-                        {stats.successfulVisas}
-                      </div>
-                      <div className="text-my-black/80 text-xs font-medium mb-1">
-                        {labels.successfulVisas}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Tablet Layout: Responsive based on homepage */}
-                <div className="hidden sm:block lg:hidden">
-                  {isHomepageStats ? (
-                    // Homepage: Single row with 3 items
-                    <div className="flex items-center justify-center gap-6">
-                      {/* Universities */}
-                      <div className="text-left">
-                        <div className="text-2xl font-bold text-black">
-                          {stats.universities}
-                        </div>
-                        <div className="text-my-black/80 text-sm font-medium mb-2">
-                          {labels.universities}
-                        </div>
-                      </div>
-
-                      {/* Separator */}
-                      <div className="w-px h-12 bg-gray-300"></div>
-
-                      {/* Annual Tuition Fees */}
-                      <div className="text-left">
-                        <div className="text-2xl font-bold text-black">
-                          {stats.annualTuitionFees}
-                        </div>
-                        <div className="text-my-black/80 text-sm font-medium mb-2">
-                          {labels.annualTuitionFees}
-                        </div>
-                      </div>
-
-                      {/* Separator */}
-                      <div className="w-px h-12 bg-gray-300"></div>
-
-                      {/* Successful Visas */}
-                      <div className="text-left">
-                        <div className="text-2xl font-bold text-black">
-                          {stats.successfulVisas}
-                        </div>
-                        <div className="text-my-black/80 text-sm font-medium mb-2">
-                          {labels.successfulVisas}
-                        </div>
-                      </div>
-                    </div>
-                  ) : (
-                    // Country pages: 2x2 grid
-                    <div className="grid grid-cols-2 gap-6">
-                      <div className="flex items-center justify-center gap-6">
-                        {/* Universities */}
-                        <div className="text-left">
-                          <div className="text-2xl font-bold text-black">
-                            {stats.universities}
-                          </div>
-                          <div className="text-my-black/80 text-sm font-medium mb-2">
-                            {labels.universities}
-                          </div>
-                        </div>
-
-                        {/* Separator */}
-                        <div className="w-px h-12 bg-gray-300"></div>
-
-                        {/* Annual Tuition Fees */}
-                        <div className="text-left">
-                          <div className="text-2xl font-bold text-black">
-                            {stats.annualTuitionFees}
-                          </div>
-                          <div className="text-my-black/80 text-sm font-medium mb-2">
-                            {labels.annualTuitionFees}
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="flex items-center justify-center gap-6">
-                        {/* Successful Visas */}
-                        <div className="text-left">
-                          <div className="text-2xl font-bold text-black">
-                            {stats.successfulVisas}
-                          </div>
-                          <div className="text-my-black/80 text-sm font-medium mb-2">
-                            {labels.successfulVisas}
-                          </div>
-                        </div>
-
-                        {/* Separator */}
-                        <div className="w-px h-12 bg-gray-300"></div>
-                      </div>
-                    </div>
-                  )}
-                </div>
-
-                {/* Desktop Layout: Single row */}
-                <div className="hidden lg:flex items-center justify-center gap-8 xl:gap-16">
-                  {/* Universities */}
-                  <div className="text-left">
-                    <div className="text-3xl xl:text-3xl font-bold text-black">
-                      {stats.universities}
-                    </div>
-                    <div className="text-my-black/80 text-sm font-medium mb-2">
-                      {labels.universities}
-                    </div>
-                  </div>
-
-                  {/* Separator */}
-                  <div className="w-px h-16 bg-gray-300"></div>
-
-                  {/* Annual Tuition Fees */}
-                  <div className="text-left">
-                    <div className="text-3xl xl:text-3xl font-bold text-black">
-                      {stats.annualTuitionFees}
-                    </div>
-                    <div className="text-my-black/80 text-sm font-medium mb-2">
-                      {labels.annualTuitionFees}
-                    </div>
-                  </div>
-
-                  {/* Separator */}
-                  <div className="w-px h-16 bg-gray-300"></div>
-
-                  {/* Successful Visas */}
-                  <div className="text-left">
-                    <div className="text-3xl xl:text-3xl font-bold text-black">
-                      {stats.successfulVisas}
-                    </div>
-                    <div className="text-my-black/80 text-sm font-medium mb-2">
-                      {labels.successfulVisas}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <AccreditationSection />
       </LazySection>
+
+      {/* <LazySection delay={0.2}>
+        <ClientPartners partners={[
+          "/accreditation/AIRC_LOGO.png",
+          "/accreditation/IAS_badge.png"
+        ]} title={<>Our <span className="text-my-accent">Accreditations</span> & Memberships</>} />
+      </LazySection> */}
 
 
       {/* Choose Destination Section */}
@@ -440,13 +347,12 @@ export default function HomePage() {
       </LazySection>
 
 
-      {/* Accreditation Section */}
       <LazySection delay={0.2}>
-        <AccreditationSection />
+        <FilterableEventsSection />
       </LazySection>
 
       {/* Admission Process Section */}
-      <LazySection delay={0.2}>
+      {/* <LazySection delay={0.2}>
         <div ref={admissionProcessRef} className="w-full bg-white min-h-[120vh] sm:mb-16">
           <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 w-full">
             <div className="text-center">
@@ -458,9 +364,9 @@ export default function HomePage() {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-12 items-start">
-              {/* Left Column - Admission Steps (Commented Out Scrolling Behavior) */}
-              <div className="space-y-4 sm:space-y-6 lg:space-y-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-12 items-start"> */}
+      {/* Left Column - Admission Steps (Commented Out Scrolling Behavior) */}
+      {/* <div className="space-y-4 sm:space-y-6 lg:space-y-8">
                 {admissionSteps.map((step, index) => (
                   <div
                     key={index}
@@ -482,10 +388,10 @@ export default function HomePage() {
                     />
                   </div>
                 ))}
-              </div>
+              </div> */}
 
-              {/* Right Column - Contact Form */}
-              <div
+      {/* Right Column - Contact Form */}
+      {/* <div
                 className="lg:sticky lg:top-4 xl:top-8 transition-all duration-500"
                 style={{ zIndex: 20 }}
               >
@@ -496,7 +402,7 @@ export default function HomePage() {
             </div>
           </div>
         </div>
-      </LazySection>
+      </LazySection> */}
 
       {/* <LazySection delay={0.2}>
         <UniversitiesSection />
@@ -628,9 +534,9 @@ export default function HomePage() {
         />
       </LazySection>
 
-      <LazySection delay={0.2}>
-        <FilterableEventsSection />
-      </LazySection>
+
+      {/* events section */}
+
 
 
       {/* Video Section */}
@@ -644,6 +550,17 @@ export default function HomePage() {
             }
           />
         </ClientOnly>
+      </LazySection>
+
+      {/* Client Partners Section */}
+      <LazySection delay={0.2}>
+        <ClientPartners partners={[
+          "/partners/partner (1).png",
+          "/partners/partner (2).png",
+          "/partners/partner (3).png",
+          "/partners/partner (4).png",
+          "/partners/partner (6).png",
+        ]} autoScrollInterval={5000} />
       </LazySection>
 
       {/* Branch Cards Section */}
@@ -660,6 +577,12 @@ export default function HomePage() {
       <StudyAbroadModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
+      />
+
+      {/* Country Selection Modal */}
+      <CountrySelectionModal
+        isOpen={isCountryModalOpen}
+        onClose={() => setIsCountryModalOpen(false)}
       />
     </>
   );

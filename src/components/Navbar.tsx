@@ -161,7 +161,7 @@ export default function Navbar() {
                     <Link href="/countries/ireland" className="block px-3 xl:px-4 py-2 text-sm xl:text-base text-gray-900 hover:bg-gray-100 hover:text-black transition-all duration-300 font-medium">Ireland</Link>
                     <Link href="/countries/malaysia" className="block px-3 xl:px-4 py-2 text-sm xl:text-base text-gray-900 hover:bg-gray-100 hover:text-black transition-all duration-300 font-medium">Malaysia</Link>
                     <Link href="/countries/newzealand" className="block px-3 xl:px-4 py-2 text-sm xl:text-base text-gray-900 hover:bg-gray-100 hover:text-black transition-all duration-300 font-medium">New Zealand</Link>
-                    <Link href="/countries/japan" className="block px-3 xl:px-4 py-2 text-sm xl:text-base text-gray-900 hover:bg-gray-100 hover:text-black transition-all duration-300 font-medium">Japan</Link>
+                    {/* <Link href="/countries/japan" className="block px-3 xl:px-4 py-2 text-sm xl:text-base text-gray-900 hover:bg-gray-100 hover:text-black transition-all duration-300 font-medium">Japan</Link> */}
                   </div>
                 </div>
               </div>
@@ -381,13 +381,13 @@ export default function Navbar() {
                     >
                       New Zealand
                     </Link>
-                    <Link
+                    {/* <Link
                       href="/countries/japan"
                       className="block px-4 py-2 text-base text-gray-600 hover:bg-gray-100 hover:text-black rounded-lg transition-all duration-300"
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
                       Japan
-                    </Link>
+                    </Link> */}
                   </div>
                 </div>
               </div>

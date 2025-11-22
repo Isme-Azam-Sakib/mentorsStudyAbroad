@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useRef } from 'react';
 import { AdmissionProcess } from '../../../components/AdmissionProcess';
 import { ProcessCard } from '@/components/ProcessCard';
 import { ContactForm } from '@/components/ContactForm';
@@ -49,10 +49,31 @@ export default function CountryPageClient({ country, countryKey }: CountryPageCl
   const [, setIsPageLoaded] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
+  const admissionProcessRef = useRef<HTMLDivElement>(null);
+  const partnerUniversitiesRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setIsMounted(true);
   }, []);
+
+  // Handle scroll to sections when hash is present
+  useEffect(() => {
+    if (typeof window === 'undefined' || !isMounted) return;
+
+    const hash = window.location.hash.substring(1);
+    
+    if (hash === 'admission-process' && admissionProcessRef.current) {
+      // Small delay to ensure page is fully loaded
+      setTimeout(() => {
+        admissionProcessRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 300);
+    } else if (hash === 'partner-universities' && partnerUniversitiesRef.current) {
+      // Small delay to ensure page is fully loaded
+      setTimeout(() => {
+        partnerUniversitiesRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 300);
+    }
+  }, [isMounted]);
 
   // Use the custom hook to handle browser extension attributes
   useBrowserExtensionFix();
@@ -255,10 +276,10 @@ export default function CountryPageClient({ country, countryKey }: CountryPageCl
       <AdmissionIntake
         title={
           <>
-            <span className="text-my-accent">Admission</span> Intake in {country.name}
+            Major <span className="text-my-accent">Admission Intakes</span> in {country.name}
           </>
         }
-        postGraduateSemesters={countriesData[countryKey]?.admissionIntake.postGraduate || []}
+        // postGraduateSemesters={countriesData[countryKey]?.admissionIntake.postGraduate || []}
         underGraduateSemesters={countriesData[countryKey]?.admissionIntake.underGraduate || []}
       />
 
@@ -268,9 +289,14 @@ export default function CountryPageClient({ country, countryKey }: CountryPageCl
       </LazySection>
 
       {/* Partner Universities Section */}
-      <LazySection delay={0.2}>
-        <PartnerUniversities countryKey={countryKey} />
-      </LazySection>
+      <div id="partner-universities" ref={partnerUniversitiesRef}>
+        <LazySection delay={0.2}>
+          <PartnerUniversities 
+            countryKey={countryKey}
+            asteriskNote={countriesData[countryKey]?.partnerUniversitiesNote}
+          />
+        </LazySection>
+      </div>
 
 
       
@@ -289,9 +315,13 @@ export default function CountryPageClient({ country, countryKey }: CountryPageCl
       )}
 
       {/* Admission Process Section */}
-      <LazySection delay={0.2}>
-        <AdmissionProcess />
-      </LazySection>
+      {countriesData[countryKey]?.admissionProcess && countriesData[countryKey].admissionProcess!.length > 0 && (
+        <div id="admission-process" ref={admissionProcessRef}>
+          <LazySection delay={0.2}>
+            <AdmissionProcess steps={countriesData[countryKey].admissionProcess!} />
+          </LazySection>
+        </div>
+      )}
 
       {/* Videos Section - Country-specific videos */}
       <LazySection delay={0.2}>
