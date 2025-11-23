@@ -15,7 +15,26 @@ type University = {
 
 const CARD_BATCH_SIZE = 8;
 const HOME_PAGE_INITIAL = 16;
-const HOME_PAGE_INCREMENT = 4; 
+const HOME_PAGE_INCREMENT = 4;
+
+const HOME_PAGE_UNIVERSITY_ORDER = [
+  "Macquarie University",
+  "La Trobe University",
+  "Deakin University",
+  "Curtin University",
+  "University of Wollongong",
+  "Victoria University",
+  "Charles Darwin University",
+  "Memorial University of Newfoundland",
+  "University Of Manitoba",
+  "University Of Windsor",
+  "University of Arizona",
+  "University Of Northern Iowa",
+  "Youngstown State University",
+  "Ravensbourne University London",
+  "University of the West of England",
+  "Taylor's University",
+]; 
 
 type PartnerUniversitiesProps = {
   countryKey?: string;
@@ -34,10 +53,18 @@ export function PartnerUniversities({
   
   const universities = useMemo<University[]>(() => {
     const map = new Map<string, University>();
-    const selectedUniversities: UniversityInfo[] =
-      countryKey && countryKey.trim().length > 0
-        ? universitiesData.filter((university) => university.country === countryKey)
-        : universitiesData.filter((university) => university.partnershipType === "direct");
+    let selectedUniversities: UniversityInfo[];
+
+    if (countryKey && countryKey.trim().length > 0) {
+      // For country pages, show all universities for that country
+      selectedUniversities = universitiesData.filter((university) => university.country === countryKey);
+    } else {
+      // For home page, only show the 16 specified universities
+      const homePageUniversityNames = new Set(HOME_PAGE_UNIVERSITY_ORDER.map(name => name.toLowerCase()));
+      selectedUniversities = universitiesData.filter((university) => 
+        homePageUniversityNames.has(university.name.toLowerCase())
+      );
+    }
 
     selectedUniversities.forEach((university) => {
       const key = university.name.toLowerCase();
@@ -51,8 +78,33 @@ export function PartnerUniversities({
       }
     });
 
-    return Array.from(map.values());
-  }, [countryKey]);
+    const universitiesList = Array.from(map.values());
+
+    // For home page, sort by the specified order
+    if (isHomePage) {
+      return universitiesList.sort((a, b) => {
+        const indexA = HOME_PAGE_UNIVERSITY_ORDER.findIndex(
+          (name) => name.toLowerCase() === a.name.toLowerCase()
+        );
+        const indexB = HOME_PAGE_UNIVERSITY_ORDER.findIndex(
+          (name) => name.toLowerCase() === b.name.toLowerCase()
+        );
+        
+        // If both are in the order list, sort by their position
+        if (indexA !== -1 && indexB !== -1) {
+          return indexA - indexB;
+        }
+        // If only A is in the list, A comes first
+        if (indexA !== -1) return -1;
+        // If only B is in the list, B comes first
+        if (indexB !== -1) return 1;
+        // If neither is in the list, maintain original order
+        return 0;
+      });
+    }
+
+    return universitiesList;
+  }, [countryKey, isHomePage]);
 
   const initialCount = isHomePage ? HOME_PAGE_INITIAL : CARD_BATCH_SIZE;
   const incrementSize = isHomePage ? HOME_PAGE_INCREMENT : CARD_BATCH_SIZE;

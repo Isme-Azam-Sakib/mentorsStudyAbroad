@@ -49,7 +49,7 @@ export const countriesData: Record<string, Country> = {
     name: "United States",
     description: "Home to the world’s leading universities and unmatched innovation across every field of study.",
     heroImage: "/country-heros/usa.png",
-    stats: { universities: "60+", annualTuitionFees: "$10K - $25K", successfulVisas: "600+", postStudyWork: "Up to 3 Years" },
+    stats: { universities: "60+", annualTuitionFees: "$10K - $35K", successfulVisas: "600+", postStudyWork: "Up to 3 Years" },
  
     whyChoose: [
       { 
@@ -112,7 +112,7 @@ export const countriesData: Record<string, Country> = {
     name: "United Kingdom",
     description: "A country steeped in academic heritage, where centuries of tradition meet global opportunity.",
     heroImage: "/country-heros/uk.png",
-    stats: { universities: "40+ ", annualTuitionFees: "£13K - £24K", successfulVisas: "500+", postStudyWork: "2 - 3 years" 
+    stats: { universities: "40+ ", annualTuitionFees: "£11K - £24K", successfulVisas: "500+", postStudyWork: "2 - 3 years" 
     },
  
     whyChoose: [
@@ -249,7 +249,7 @@ export const countriesData: Record<string, Country> = {
     name: "Australia",
     description: " A global education powerhouse combining academic excellence with an unbeatable quality of life.",
     heroImage: "/country-heros/australia.png",
-    stats: { universities: "40+", annualTuitionFees: "AUD 22K - 60K ", successfulVisas: "353+", postStudyWork: "4+ years" },
+    stats: { universities: "40+", annualTuitionFees: "AUD 22K - 50K", successfulVisas: "353+", postStudyWork: "4+ years" },
   
     whyChoose: [
       { 
@@ -483,7 +483,7 @@ export const countriesData: Record<string, Country> = {
     heroImage: "/country-heros/newzealand.png",
     stats: { 
       universities: "14", 
-      annualTuitionFees: "NZD 22K-45K", 
+      annualTuitionFees: "NZD 22K - 45K", 
       successfulVisas: "—", 
       postStudyWork: "1-3 years" 
     },

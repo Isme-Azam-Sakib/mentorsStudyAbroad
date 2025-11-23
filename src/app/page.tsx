@@ -180,7 +180,7 @@ export default function HomePage() {
         {/* Hero Content */}
         <div className="relative z-10 flex items-center">
           <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 my-16 sm:my-24">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-center mb-24 mt-16">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-center mt-16">
               {/* Left Column - Text and Buttons */}
               <div className="text-center lg:text-left order-2 lg:order-1">
                 <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-my-black mb-4 sm:mb-5 lg:mb-6 leading-tight">

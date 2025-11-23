@@ -60,7 +60,7 @@ export const universitiesData: University[] = [
         "id": 7,
         "name": "University Of Northern Iowa",
         "country": "usa",
-        "logo": "/universities/usa/University_Of_Northern_Iowa.png",
+        "logo": "/universities/usa/University_Of_Northern_Iowa_usa.png",
         "website": "",
         "partnershipType": "direct"
     },
@@ -132,7 +132,7 @@ export const universitiesData: University[] = [
         "id": 16,
         "name": "University of Arizona",
         "country": "usa",
-        "logo": "/universities/usa/University_of_Arizona.png",
+        "logo": "/universities/usa/University_Of_Arizona_usa.png",
         "website": "",
         "partnershipType": "direct"
     },
@@ -234,6 +234,22 @@ export const universitiesData: University[] = [
     },
     {
         "id": 29,
+        "name": "Canterbury Christ Church University",
+        "country": "uk",
+        "logo": "/universities/uk/Canterbury_Christ_Church_University.png",
+        "website": "",
+        "partnershipType": "direct"
+    },
+    {
+        "id": 30,
+        "name": "London Metropolitan University.png",
+        "country": "uk",
+        "logo": "/universities/uk/London_Metropolitan_University.png",
+        "website": "",
+        "partnershipType": "direct"
+    },
+    {
+        "id": 29,
         "name": "University College Dublin",
         "country": "ireland",
         "logo": "/universities/ireland/University_College_Dublin.jpg",
@@ -305,6 +321,22 @@ export const universitiesData: University[] = [
         "partnershipType": "direct"
     },
     {
+        "id": 42,
+        "name": "Southern Cross University",
+        "country": "australia",
+        "logo": "/universities/australia/Southern_Cross_University.png",
+        "website": "",
+        "partnershipType": "direct"
+    },
+    {
+        "id": 43,
+        "name": "James Cook University",
+        "country": "australia",
+        "logo": "/universities/australia/James_Cook_University.png",
+        "website": "",
+        "partnershipType": "direct"
+    },
+    {
         "id": 38,
         "name": "Deakin University",
         "country": "australia",
@@ -335,23 +367,7 @@ export const universitiesData: University[] = [
         "logo": "/universities/australia/Victoria_University.png",
         "website": "",
         "partnershipType": "direct"
-    },
-    {
-        "id": 42,
-        "name": "Southern Cross University",
-        "country": "australia",
-        "logo": "/universities/australia/Southern_Cross_University.png",
-        "website": "",
-        "partnershipType": "direct"
-    },
-    {
-        "id": 43,
-        "name": "James Cook University",
-        "country": "australia",
-        "logo": "/universities/australia/James_Cook_University.png",
-        "website": "",
-        "partnershipType": "direct"
-    },
+    },  
     {
         "id": 44,
         "name": "The University of Western Australia",
@@ -526,7 +542,7 @@ export const universitiesData: University[] = [
         "country": "newzealand",
         "logo": "/universities/newzealand/Auckland_University_Of_Technology.png",
         "website": "",
-        "partnershipType": ""
+        "partnershipType": "direct"
     },
     {
         "id": 66,
@@ -534,7 +550,7 @@ export const universitiesData: University[] = [
         "country": "newzealand",
         "logo": "/universities/newzealand/Massey_University.png",
         "website": "",
-        "partnershipType": ""
+        "partnershipType": "direct"
     },
     {
         "id": 67,
@@ -542,7 +558,7 @@ export const universitiesData: University[] = [
         "country": "newzealand",
         "logo": "/universities/newzealand/Lincoln_University.png",
         "website": "",
-        "partnershipType": ""
+        "partnershipType": "direct"
     },
     {
         "id": 68,
@@ -550,7 +566,7 @@ export const universitiesData: University[] = [
         "country": "newzealand",
         "logo": "/universities/newzealand/University_Of_Auckland.png",
         "website": "",
-        "partnershipType": ""
+        "partnershipType": "direct"
     },
     {
         "id": 69,
@@ -558,7 +574,7 @@ export const universitiesData: University[] = [
         "country": "newzealand",
         "logo": "/universities/newzealand/University_Of_Canterbury.png",
         "website": "",
-        "partnershipType": ""
+        "partnershipType": "direct"
     },
     {
         "id": 70,
@@ -566,7 +582,7 @@ export const universitiesData: University[] = [
         "country": "newzealand",
         "logo": "/universities/newzealand/University_Of_Otago.png",
         "website": "",
-        "partnershipType": ""
+        "partnershipType": "direct"
     },
     {
         "id": 71,
@@ -574,7 +590,47 @@ export const universitiesData: University[] = [
         "country": "newzealand",
         "logo": "/universities/newzealand/New_Zealand_Tertiary_College.png",
         "website": "",
-        "partnershipType": ""
+        "partnershipType": "direct"
+    },
+    {
+        "id": 72,
+        "name": "University of Wollongong",
+        "country": "australia",
+        "logo": "/universities/australia/University_Of_Wollongong_Australia.png",
+        "website": "",
+        "partnershipType": "direct"
+    },
+    {
+        "id": 73,
+        "name": "Charles Darwin University",
+        "country": "australia",
+        "logo": "/universities/australia/Charles_Darwin_University.png",
+        "website": "",
+        "partnershipType": "direct"
+    },
+    {
+        "id": 74,
+        "name": "Memorial University of Newfoundland",
+        "country": "canada",
+        "logo": "/universities/canada/Memorial_University_Of_Newfoundland.png",
+        "website": "",
+        "partnershipType": "direct"
+    },
+    {
+        "id": 75,
+        "name": "Youngstown State University",
+        "country": "usa",
+        "logo": "/universities/usa/Youngstown_State_University.png",
+        "website": "",
+        "partnershipType": "direct"
+    },
+    {
+        "id": 76,
+        "name": "Taylor's University",
+        "country": "malaysia",
+        "logo": "/universities/malaysia/Taylors_University.png",
+        "website": "",
+        "partnershipType": "direct"
     },
 ];
 
