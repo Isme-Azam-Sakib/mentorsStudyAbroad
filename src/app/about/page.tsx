@@ -97,7 +97,7 @@ export default function AboutPage() {
                       <i className="fi fi-sr-paper-plane text-gray-400"></i>
                       <span className="font-semibold text-my-black">
                         MENTORS
-                        <span className="text-my-accent">'</span>
+                        <span className="text-my-accent">&apos;</span>
                       </span>
                     </div>
                   </div>

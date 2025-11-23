@@ -10,7 +10,7 @@ const servicesData = [
     {
         id: 1,
         title: "Expert Guidance",
-        description: "From choosing the appropriate country, university, and program - to complete admission process support, our expert counsellors will closely work with you to ensure you get the program that&apos;s right for you.",
+        description: "From choosing the appropriate country, university, and program - to complete admission process support, our expert counsellors will closely work with you to ensure you get the program that's right for you.",
         image: "/services/service 1.png"
     },
     {
