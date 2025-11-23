@@ -12,7 +12,7 @@ interface AdmissionProcessProps {
 
 export const AdmissionProcess: React.FC<AdmissionProcessProps> = ({ 
   steps,
-  imageUrl = "/services/hero-service.png",
+  imageUrl = "/services/service 4.png",
   imageAlt = "Admission process counseling session"
 }) => {
   // Commented out scroll animation behavior

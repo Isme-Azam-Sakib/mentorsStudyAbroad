@@ -69,7 +69,7 @@ export const countriesData: Record<string, Country> = {
         content: "Choose from adaptable study pathways while gaining valuable work experience during and after your studies." 
       }
     ],
-    popularSubjects: [4, 5, 10, 12, 14, 18],
+    popularSubjects: [1, 9, 2, 10, 11],
     admissionIntake: {
     underGraduate: [
         { period: "Spring (January)" },
@@ -133,7 +133,7 @@ export const countriesData: Record<string, Country> = {
         content: "Benefit from a smooth, efficient visa process with a strong success rate for international students." 
       }
     ],
-    popularSubjects: [1, 4, 5, 8, 12, 18, 19, 25],
+    popularSubjects: [3, 12, 1, 2, 13],
     admissionIntake: {
      underGraduate: [
         { period: "January" },
@@ -188,7 +188,7 @@ export const countriesData: Record<string, Country> = {
         content: "Work alongside your studies to gain practical experience and help cover living expenses."
       }
     ],
-    popularSubjects: [],
+    popularSubjects: [15, 16, 3, 2, 17],
     admissionIntake: {
      underGraduate: [
         // { period: "January" },
@@ -269,7 +269,7 @@ export const countriesData: Record<string, Country> = {
         content: "Gain valuable international work experience with generous post-study work opportunities." 
       }
     ],
-    popularSubjects: [2, 3, 5, 13, 14, 16, 18, 19, 22, 24],
+    popularSubjects: [1, 2, 3, 4, 5, 6],
     admissionIntake: {
      underGraduate: [
         { period: "February / March Intake" },
@@ -350,7 +350,7 @@ export const countriesData: Record<string, Country> = {
         content: "Access flexible entry routes that help you meet admission requirements and transition smoothly into your chosen degree." 
       }
     ],
-    popularSubjects: [4, 9, 12, 14, 20, 23],
+    popularSubjects: [1, 3, 2, 7, 8],
     admissionIntake: {
       underGraduate: [
         { period: "Spring (January)" },
@@ -427,7 +427,7 @@ export const countriesData: Record<string, Country> = {
         content: "Experience a welcoming, diverse, and secure environment for international students." 
       }
     ],
-    popularSubjects: [3, 6, 11, 14, 15, 17, 21, 26],
+    popularSubjects: [3, 1, 2, 18, 19, 20],
     admissionIntake: {
       underGraduate: [
         { period: "Semester 1: January – March" },
@@ -506,7 +506,7 @@ export const countriesData: Record<string, Country> = {
         content: "Benefit from a variety of scholarships that make quality education more affordable."
       }
     ],
-    popularSubjects: [4, 9, 7, 14, 16, 18],
+    popularSubjects: [1, 3, 2, 4, 14],
     admissionIntake: {
       underGraduate: [
         { period: "February" },
