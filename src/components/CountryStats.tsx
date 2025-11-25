@@ -6,17 +6,15 @@ interface CountryStatsProps {
 }
 
 export function CountryStats({ countryKey, isHomepage = false }: CountryStatsProps) {
-  // Homepage stats (only 3 items)
+  // Homepage stats (only 2 items)
   const homepageStats = {
     universities: "200+",
-    annualTuitionFees: "19+ Years",
-    successfulVisas: "10,000+"
+    annualTuitionFees: "19+ Years"
   };
 
   const homepageLabels = {
     universities: "Partner Universities",
-    annualTuitionFees: "Years of Experience",
-    successfulVisas: "Success Stories"
+    annualTuitionFees: "Years of Experience"
   };
 
   const countryStats = countriesData[countryKey as keyof typeof countriesData]?.stats || countriesData.australia.stats;
@@ -24,7 +22,6 @@ export function CountryStats({ countryKey, isHomepage = false }: CountryStatsPro
   const countryLabels = {
     universities: "Universities",
     annualTuitionFees: "Annual Tuition Fees",
-    successfulVisas: "Successful Visas",
     postStudyWork: "Post study work"
   };
 
@@ -35,205 +32,45 @@ export function CountryStats({ countryKey, isHomepage = false }: CountryStatsPro
     <div className="lg:-mt-[200px] md:-mt-[150px] sm:-mt-[100px] sm:mb-24 relative z-20">
       <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6">
         <div className="flex justify-center">
-          <div className="bg-white/40 backdrop-blur-lg rounded-3xl sm:rounded-3xl border-2 border-pink-200/50 p-4 sm:p-6 lg:p-8 shadow-xl w-full max-w-5xl">
-            {/* Mobile Layout: 2x2 Grid */}
-            <div className="block sm:hidden">
-              <div className={`grid ${isHomepage ? 'grid-cols-3' : 'grid-cols-2'} gap-4`}>
-                {/* Universities */}
-                <div className="text-center">
-                  <div className="text-xl font-bold text-black">
-                    {stats.universities}
-                  </div>
-                  <div className="text-my-black/80 text-xs font-medium mt-1">
-                    {labels.universities}
-                  </div>
-                </div>
-
-                {/* Annual Tuition Fees */}
-                <div className="text-center">
-                  <div className="text-xl font-bold text-black">
-                    {stats.annualTuitionFees}
-                  </div>
-                  <div className="text-my-black/80 text-xs font-medium mt-1">
-                    {labels.annualTuitionFees}
-                  </div>
-                </div>
-
-                {/* Successful Visas */}
-                <div className="text-center">
-                  <div className="text-xl font-bold text-black">
-                    {stats.successfulVisas}
-                  </div>
-                  <div className="text-my-black/80 text-xs font-medium mt-1">
-                    {labels.successfulVisas}
-                  </div>
-                </div>
-
-                {/* Post Study Work - Only for country pages */}
-                {!isHomepage && (
-                  <div className="text-center">
-                    <div className="text-xl font-bold text-black">
-                      {countryStats.postStudyWork}
-                    </div>
-                    <div className="text-my-black/80 text-xs font-medium mt-1">
-                      {countryLabels.postStudyWork}
-                    </div>
-                  </div>
-                )}
-              </div>
-            </div>
-
-            {/* Tablet Layout: Responsive based on homepage */}
-            <div className="hidden sm:block lg:hidden">
-              {isHomepage ? (
-                // Homepage: Single row with 3 items
-                <div className="flex items-center justify-center gap-6">
-                  {/* Universities */}
-                  <div className="text-left">
-                    <div className="text-2xl font-bold text-black">
-                      {stats.universities}
-                    </div>
-                  <div className="text-my-black/80 text-sm font-medium mt-2">
-                    {labels.universities}
-                  </div>
-                  </div>
-
-                  {/* Separator */}
-                  <div className="w-px h-12 bg-gray-300"></div>
-
-                  {/* Annual Tuition Fees */}
-                  <div className="text-left">
-                    <div className="text-2xl font-bold text-black">
-                      {stats.annualTuitionFees}
-                    </div>
-                  <div className="text-my-black/80 text-sm font-medium mt-2">
-                    {labels.annualTuitionFees}
-                  </div>
-                  </div>
-
-                  {/* Separator */}
-                  <div className="w-px h-12 bg-gray-300"></div>
-
-                  {/* Successful Visas */}
-                  <div className="text-left">
-                    <div className="text-2xl font-bold text-black">
-                      {stats.successfulVisas}
-                    </div>
-                  <div className="text-my-black/80 text-sm font-medium mt-2">
-                    {labels.successfulVisas}
-                  </div>
-                  </div>
-                </div>
-              ) : (
-                // Country pages: 2x2 grid
-                <div className="grid grid-cols-2 gap-6">
-                  <div className="flex items-center justify-center gap-6">
-                    {/* Universities */}
-                    <div className="text-left">
-                      <div className="text-2xl font-bold text-black">
-                        {stats.universities}
-                      </div>
-                      <div className="text-my-black/80 text-sm font-medium mt-2">
-                        {labels.universities}
-                      </div>
-                    </div>
-
-                    {/* Separator */}
-                    <div className="w-px h-12 bg-gray-300"></div>
-
-                    {/* Annual Tuition Fees */}
-                    <div className="text-left">
-                      <div className="text-2xl font-bold text-black">
-                        {stats.annualTuitionFees}
-                      </div>
-                      <div className="text-my-black/80 text-sm font-medium mt-2">
-                        {labels.annualTuitionFees}
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center justify-center gap-6">
-                    {/* Successful Visas */}
-                    <div className="text-left">
-                    <div className="text-2xl font-bold text-black">
-                        {stats.successfulVisas}
-                      </div>
-                      <div className="text-my-black/80 text-sm font-medium mt-2">
-                        {labels.successfulVisas}
-                      </div>
-                    </div>
-
-                    {/* Separator */}
-                    <div className="w-px h-12 bg-gray-300"></div>
-
-                    {/* Post Study Work */}
-                    <div className="text-left">
-                    <div className="text-2xl font-bold text-black">
-                        {countryStats.postStudyWork}
-                      </div>
-                      <div className="text-my-black/80 text-sm font-medium mt-2">
-                        {countryLabels.postStudyWork}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {/* Desktop Layout: Single row */}
-            <div className="hidden lg:flex items-center justify-center gap-8 xl:gap-16">
+          <div className="bg-white/40 backdrop-blur-lg rounded-3xl sm:rounded-3xl border-2 border-pink-200/50 p-3 sm:p-4 md:p-5 lg:p-6 xl:p-8 shadow-xl w-full max-w-xs sm:max-w-md md:max-w-2xl lg:max-w-4xl xl:max-w-5xl">
+            {/* Responsive 3-column layout for all screen sizes */}
+            <div className="grid grid-cols-3 gap-1 sm:gap-2 md:gap-4 lg:gap-6 xl:gap-8">
               {/* Universities */}
-              <div className="text-left">
-                <div className="text-3xl xl:text-3xl font-bold text-black">
+              <div className="text-center sm:text-left">
+                <div className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold text-black">
                   {stats.universities}
                 </div>
-                <div className="text-my-black/80 text-sm font-medium mt-2">
+                <div className="text-my-black/80 text-[10px] sm:text-xs md:text-sm font-medium mt-0.5 sm:mt-1 md:mt-2">
                   {labels.universities}
                 </div>
               </div>
 
-              {/* Separator */}
-              <div className="w-px h-16 bg-gray-300"></div>
-
               {/* Annual Tuition Fees */}
-              <div className="text-left">
-                <div className="text-3xl xl:text-3xl font-bold text-black">
+              <div className="text-center sm:text-left relative">
+                {/* Vertical separator for tablet and desktop */}
+                <div className="hidden sm:block absolute left-0 top-0 bottom-0 w-px bg-gray-300 -ml-1 sm:-ml-2 md:-ml-2 lg:-ml-3"></div>
+                <div className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold text-black">
                   {stats.annualTuitionFees}
                 </div>
-                <div className="text-my-black/80 text-sm font-medium mt-2">
+                <div className="text-my-black/80 text-[10px] sm:text-xs md:text-sm font-medium mt-0.5 sm:mt-1 md:mt-2">
                   {labels.annualTuitionFees}
                 </div>
               </div>
 
-              {/* Separator */}
-              <div className="w-px h-16 bg-gray-300"></div>
-
-              {/* Successful Visas */}
-              <div className="text-left">
-                <div className="text-3xl xl:text-3xl font-bold text-black">
-                  {stats.successfulVisas}
-                </div>
-                <div className="text-my-black/80 text-sm font-medium mt-2">
-                  {labels.successfulVisas}
-                </div>
-              </div>
-
-              {/* Conditional 4th item and separator for country pages */}
-              {!isHomepage && (
-                <>
-                  {/* Separator */}
-                  <div className="w-px h-16 bg-gray-300"></div>
-
-                  {/* Post Study Work */}
-                  <div className="text-left">
-                    <div className="text-3xl xl:text-3xl font-bold text-black">
-                      {countryStats.postStudyWork}
-                    </div>
-                    <div className="text-my-black/80 text-sm font-medium mt-2">
-                      {countryLabels.postStudyWork}
-                    </div>
+              {/* Post Study Work - Only for country pages */}
+              {!isHomepage ? (
+                <div className="text-center sm:text-left relative">
+                  {/* Vertical separator for tablet and desktop */}
+                  <div className="hidden sm:block absolute left-0 top-0 bottom-0 w-px bg-gray-300 -ml-1 sm:-ml-2 md:-ml-2 lg:-ml-3"></div>
+                  <div className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold text-black">
+                    {countryStats.postStudyWork}
                   </div>
-                </>
+                  <div className="text-my-black/80 text-[10px] sm:text-xs md:text-sm font-medium mt-0.5 sm:mt-1 md:mt-2">
+                    {countryLabels.postStudyWork}
+                  </div>
+                </div>
+              ) : (
+                <div></div>
               )}
             </div>
           </div>

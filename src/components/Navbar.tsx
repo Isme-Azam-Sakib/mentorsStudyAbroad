@@ -102,7 +102,7 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto sm:px-6 w-full relative">
         <nav className="rounded-[20px] sm:rounded-[30px] flex items-center justify-between mt-0 bg-white border border-gray-200 shadow-lg sm:px-8 py-3 sm:py-4 h-[70px] sm:h-[85px] sm:mx">
           {/* Mobile/Tablet Layout */}
-          <div className="lg:hidden flex items-center justify-between w-full">
+          <div className="lg:hidden flex items-center justify-between w-full gap-2">
             {/* Logo Section */}
             <div className="flex items-center gap-2 sm:gap-3">
               <Link href="/">
@@ -110,12 +110,21 @@ export default function Navbar() {
               </Link>
             </div>
 
-            {/* Right side - Hamburger Menu Only */}
-            <div className="flex items-center">
+            {/* Right side - Consultation Button and Hamburger Menu */}
+            <div className="flex items-center gap-1.5 sm:gap-2">
+              {/* Mobile Consultation Button */}
+              <Link href="/contact">
+                <Button variant="secondary" className="text-xs sm:text-sm px-2 sm:px-3 py-1.5 sm:py-2 whitespace-nowrap">
+                  <span className="hidden sm:inline">Book A Free Consultation</span>
+                  <span className="sm:hidden">Book A Free Consultation</span>
+                  <i className="fi fi-sr-meeting-alt ml-1"></i>
+                </Button>
+              </Link>
+              
               {/* Mobile Menu Button */}
               <button
                 onClick={toggleMobileMenu}
-                className="text-gray-500 hover:text-black transition duration-300 ease-in-out p-2"
+                className="text-gray-500 hover:text-black transition duration-300 ease-in-out p-2 flex-shrink-0"
               >
                 {isMobileMenuOpen ? (
                   <i className="fi fi-br-cross w-6 h-6 text-xl"></i>
@@ -161,7 +170,7 @@ export default function Navbar() {
                     <Link href="/countries/ireland" className="block px-3 xl:px-4 py-2 text-sm xl:text-base text-gray-900 hover:bg-gray-100 hover:text-black transition-all duration-300 font-medium">Ireland</Link>
                     <Link href="/countries/malaysia" className="block px-3 xl:px-4 py-2 text-sm xl:text-base text-gray-900 hover:bg-gray-100 hover:text-black transition-all duration-300 font-medium">Malaysia</Link>
                     <Link href="/countries/newzealand" className="block px-3 xl:px-4 py-2 text-sm xl:text-base text-gray-900 hover:bg-gray-100 hover:text-black transition-all duration-300 font-medium">New Zealand</Link>
-                    <Link href="/countries/japan" className="block px-3 xl:px-4 py-2 text-sm xl:text-base text-gray-900 hover:bg-gray-100 hover:text-black transition-all duration-300 font-medium">Japan</Link>
+                    {/* <Link href="/countries/japan" className="block px-3 xl:px-4 py-2 text-sm xl:text-base text-gray-900 hover:bg-gray-100 hover:text-black transition-all duration-300 font-medium">Japan</Link> */}
                   </div>
                 </div>
               </div>
@@ -292,15 +301,6 @@ export default function Navbar() {
 
             </div>
 
-            {/* Free Consultation Button - Top */}
-            <div className="p-6 border-b border-gray-200">
-              <Link href="/contact">
-                <Button variant="secondary" className="text-sm sm:text-base">
-                  Book A Free Consultation <i className="fi fi-sr-meeting-alt"></i>
-                </Button>
-              </Link>
-            </div>
-
             {/* Menu Items */}
             <div className="p-6 space-y-1">
               {/* Countries Dropdown */}
@@ -381,13 +381,13 @@ export default function Navbar() {
                     >
                       New Zealand
                     </Link>
-                    <Link
+                    {/* <Link
                       href="/countries/japan"
                       className="block px-4 py-2 text-base text-gray-600 hover:bg-gray-100 hover:text-black rounded-lg transition-all duration-300"
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
                       Japan
-                    </Link>
+                    </Link> */}
                   </div>
                 </div>
               </div>

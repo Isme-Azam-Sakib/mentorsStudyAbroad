@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useRef } from 'react';
 import { AdmissionProcess } from '../../../components/AdmissionProcess';
 import { ProcessCard } from '@/components/ProcessCard';
 import { ContactForm } from '@/components/ContactForm';
@@ -49,10 +49,31 @@ export default function CountryPageClient({ country, countryKey }: CountryPageCl
   const [, setIsPageLoaded] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
+  const admissionProcessRef = useRef<HTMLDivElement>(null);
+  const partnerUniversitiesRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setIsMounted(true);
   }, []);
+
+  // Handle scroll to sections when hash is present
+  useEffect(() => {
+    if (typeof window === 'undefined' || !isMounted) return;
+
+    const hash = window.location.hash.substring(1);
+    
+    if (hash === 'admission-process' && admissionProcessRef.current) {
+      // Small delay to ensure page is fully loaded
+      setTimeout(() => {
+        admissionProcessRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 300);
+    } else if (hash === 'partner-universities' && partnerUniversitiesRef.current) {
+      // Small delay to ensure page is fully loaded
+      setTimeout(() => {
+        partnerUniversitiesRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 300);
+    }
+  }, [isMounted]);
 
   // Use the custom hook to handle browser extension attributes
   useBrowserExtensionFix();
@@ -102,7 +123,7 @@ export default function CountryPageClient({ country, countryKey }: CountryPageCl
 
       {/* Hero Section */}
       <LazySection delay={0.2}>
-        <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 my-16 sm:my-24 lg:my-32 pt-8">
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 mt-16 sm:my-24 lg:my-32 pt-8">
           <div
             className="relative overflow-hidden rounded-[50px]"
             style={{
@@ -129,11 +150,11 @@ export default function CountryPageClient({ country, countryKey }: CountryPageCl
               <div className="px-6 sm:px-8 lg:px-12 py-12 sm:py-16 lg:py-20 w-full lg:w-2/3">
                 {/* Heading */}
                 <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold mb-4 sm:mb-5 lg:mb-6 leading-tight">
-                  <span className="text-my-black relative inline-block">
+                  <span className="text-my-white relative inline-block">
                     {country.name}
                     <span className="absolute bottom-0 left-0 w-full h-1 bg-my-accent"></span>
                   </span>
-                  <span className="text-my-white"> : {country.description}</span>
+                  <span className="text-my-white "> : {country.description}</span>
                 </h1>
 
                 {/* Buttons - Horizontal Layout */}
@@ -215,7 +236,7 @@ export default function CountryPageClient({ country, countryKey }: CountryPageCl
 
       {/* Why Choose Country Section */}
       <LazySection delay={0.2}>
-        <div className="py-16 bg-my-white">
+        <div className="py-8 bg-my-white">
           <div className="max-w-7xl mx-auto px-4">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {/* Left Column - Why Choose Content */}
@@ -255,10 +276,10 @@ export default function CountryPageClient({ country, countryKey }: CountryPageCl
       <AdmissionIntake
         title={
           <>
-            <span className="text-my-accent">Admission</span> Intake in {country.name}
+            Major <span className="text-my-accent">Admission Intakes</span> in {country.name}
           </>
         }
-        postGraduateSemesters={countriesData[countryKey]?.admissionIntake.postGraduate || []}
+        // postGraduateSemesters={countriesData[countryKey]?.admissionIntake.postGraduate || []}
         underGraduateSemesters={countriesData[countryKey]?.admissionIntake.underGraduate || []}
       />
 
@@ -268,9 +289,14 @@ export default function CountryPageClient({ country, countryKey }: CountryPageCl
       </LazySection>
 
       {/* Partner Universities Section */}
-      <LazySection delay={0.2}>
-        <PartnerUniversities countryKey={countryKey} />
-      </LazySection>
+      <div id="partner-universities" ref={partnerUniversitiesRef}>
+        <LazySection delay={0.2}>
+          <PartnerUniversities 
+            countryKey={countryKey}
+            asteriskNote={countriesData[countryKey]?.partnerUniversitiesNote}
+          />
+        </LazySection>
+      </div>
 
 
       
@@ -289,9 +315,13 @@ export default function CountryPageClient({ country, countryKey }: CountryPageCl
       )}
 
       {/* Admission Process Section */}
-      <LazySection delay={0.2}>
-        <AdmissionProcess />
-      </LazySection>
+      {countriesData[countryKey]?.admissionProcess && countriesData[countryKey].admissionProcess!.length > 0 && (
+        <div id="admission-process" ref={admissionProcessRef}>
+          <LazySection delay={0.2}>
+            <AdmissionProcess steps={countriesData[countryKey].admissionProcess!} />
+          </LazySection>
+        </div>
+      )}
 
       {/* Videos Section - Country-specific videos */}
       <LazySection delay={0.2}>
