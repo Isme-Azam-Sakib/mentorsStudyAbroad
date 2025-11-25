@@ -1,18 +1,38 @@
+# workflow:
+#   rules:
+#     - if: $CI_COMMIT_BRANCH == 'production' 
+#       when: always
+
+# stages:
+#   - deploy-production
+
+# stage-deploy-production:
+#   stage: deploy-production
+#   image: node:18.8.0-alpine
+#   script:
+#     - apk add --update openssh
+#     - chmod 400 $MENTORS_KEY
+#     - ssh -i  $MENTORS_KEY -o StrictHostKeyChecking=no -p $MENTORS_PORT $MENTORS_HOST "~/scripts/study-front.sh"
+#   only:
+#     - production
 workflow:
   rules:
-    - if: $CI_COMMIT_BRANCH == 'production' 
+    - if: '$CI_COMMIT_BRANCH == "production"'
       when: always
+    - when: never
 
 stages:
   - deploy-production
 
-stage-deploy-production:
+deploy_production:
   stage: deploy-production
   image: node:18.8.0-alpine
+
   script:
     - apk add --update openssh
-    - chmod 400 $MENTORS_KEY
-    - ssh -i  $MENTORS_KEY -o StrictHostKeyChecking=no -p $MENTORS_PORT $MENTORS_HOST "~/scripts/study-front.sh"
-  only:
-    - production
+    - chmod 400 "$MENTORS_KEY"
+    - ssh -i "$MENTORS_KEY" -o StrictHostKeyChecking=no -p "$MENTORS_PORT" "$MENTORS_HOST" "~/scripts/study-front.sh"
+
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "production"'
 
