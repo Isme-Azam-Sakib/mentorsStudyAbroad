@@ -254,7 +254,7 @@ export const universitiesData: University[] = [
         "country": "ireland",
         "logo": "/universities/ireland/University_College_Dublin.jpg",
         "website": "",
-        "partnershipType": ""
+        "partnershipType": "direct"
     },
     {
         "id": 30,
@@ -262,7 +262,7 @@ export const universitiesData: University[] = [
         "country": "ireland",
         "logo": "/universities/ireland/University_College_Cork.png",
         "website": "",
-        "partnershipType": ""
+        "partnershipType": "direct"
     },
     {
         "id": 31,
@@ -270,7 +270,7 @@ export const universitiesData: University[] = [
         "country": "ireland",
         "logo": "/universities/ireland/University_Of_Galway.png",
         "website": "",
-        "partnershipType": ""
+        "partnershipType": "direct"
     },
     {
         "id": 32,
@@ -278,7 +278,7 @@ export const universitiesData: University[] = [
         "country": "ireland",
         "logo": "/universities/ireland/University_Of_Limerick.png",
         "website": "",
-        "partnershipType": ""
+        "partnershipType": "direct"
     },
     {
         "id": 33,
@@ -286,7 +286,7 @@ export const universitiesData: University[] = [
         "country": "ireland",
         "logo": "/universities/ireland/Trinity_College_Dublin.png",
         "website": "",
-        "partnershipType": ""
+        "partnershipType": "direct"
     },
     {
         "id": 34,
@@ -294,7 +294,7 @@ export const universitiesData: University[] = [
         "country": "ireland",
         "logo": "/universities/ireland/Dublin_City_University.png",
         "website": "",
-        "partnershipType": ""
+        "partnershipType": "direct"
     },
     {
         "id": 35,
@@ -302,7 +302,7 @@ export const universitiesData: University[] = [
         "country": "ireland",
         "logo": "/universities/ireland/Maynooth_University.png",
         "website": "",
-        "partnershipType": ""
+        "partnershipType": "direct"
     },
     {
         "id": 36,
@@ -310,7 +310,7 @@ export const universitiesData: University[] = [
         "country": "ireland",
         "logo": "/universities/ireland/Technological_University_Dublin.png",
         "website": "",
-        "partnershipType": ""
+        "partnershipType": "direct"
     },
     {
         "id": 37,
