@@ -29,6 +29,7 @@ type FilterableEvent = {
     datetime: string; // human readable date time
     image: string;
     status: 'upcoming' | 'past';
+    dateTimestamp: number; // timestamp for sorting
 };
 
 // API Service
@@ -66,7 +67,8 @@ const transformApiEventToFilterableEvent = (apiEvent: ApiEvent, currentTime: num
         location: apiEvent.location,
         datetime,
         image: apiEvent.image,
-        status: isUpcoming ? 'upcoming' : 'past'
+        status: isUpcoming ? 'upcoming' : 'past',
+        dateTimestamp: eventDate.getTime()
     };
 };
 
@@ -78,13 +80,13 @@ interface FilterableEventsSectionProps {
 export default function FilterableEventsSection({ 
     title = (
         <>
-            Browse <span className="text-my-accent relative">all events</span>
+            Our <span className="text-my-accent relative">events</span>
         </>
     ),
     className = ""
 }: FilterableEventsSectionProps) {
     const [activeTab, setActiveTab] = useState<'upcoming' | 'past'>('upcoming');
-    const [visibleCount, setVisibleCount] = useState(3);
+    const [visibleCount, setVisibleCount] = useState(4);
     const [currentTime, setCurrentTime] = useState<number>(0);
 
     // API data state
@@ -133,7 +135,22 @@ export default function FilterableEventsSection({
 
     // Transform API data to component formats
     const filterableEventsData: FilterableEvent[] = events
-        .map(event => transformApiEventToFilterableEvent(event, currentTime));
+        .map(event => transformApiEventToFilterableEvent(event, currentTime))
+        .sort((a, b) => {
+            // Sort upcoming events by date (earliest first)
+            if (a.status === 'upcoming' && b.status === 'upcoming') {
+                return a.dateTimestamp - b.dateTimestamp;
+            }
+            // Sort past events by date (most recent first)
+            if (a.status === 'past' && b.status === 'past') {
+                return b.dateTimestamp - a.dateTimestamp;
+            }
+            // Keep upcoming before past
+            if (a.status === 'upcoming' && b.status === 'past') {
+                return -1;
+            }
+            return 1;
+        });
 
     return (
         <div className={`py-12 sm:py-16 lg:py-20 bg-white ${className}`}>
@@ -147,14 +164,14 @@ export default function FilterableEventsSection({
                 {!loading && !error && (
                     <div className="flex items-center justify-center gap-6 sm:gap-8 lg:gap-10 mb-8 sm:mb-10">
                         <button
-                            onClick={() => { setActiveTab('upcoming'); setVisibleCount(3); }}
+                            onClick={() => { setActiveTab('upcoming'); setVisibleCount(4); }}
                             className={`relative text-base sm:text-lg font-semibold transition-colors ${activeTab === 'upcoming' ? 'text-my-black' : 'text-gray-400'}`}
                         >
                             Upcoming
                             <span className={`absolute -bottom-2 left-0 right-0 mx-auto h-[2px] w-8 sm:w-10 rounded-full transition-all ${activeTab === 'upcoming' ? 'bg-my-accent' : 'bg-transparent'}`} />
                         </button>
                         <button
-                            onClick={() => { setActiveTab('past'); setVisibleCount(3); }}
+                            onClick={() => { setActiveTab('past'); setVisibleCount(4); }}
                             className={`relative text-base sm:text-lg font-semibold transition-colors ${activeTab === 'past' ? 'text-my-black' : 'text-gray-400'}`}
                         >
                             Past Events
@@ -201,7 +218,7 @@ export default function FilterableEventsSection({
 
                 {!loading && !error && filterableEventsData.length > 0 && (
                     <>
-                        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
+                        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
                             {filterableEventsData
                                 .filter((e) => e.status === activeTab)
                                 .slice(0, visibleCount)
@@ -223,7 +240,7 @@ export default function FilterableEventsSection({
                                             <div className="flex items-start gap-2 sm:gap-3">
                                                 <i className="fi fi-ss-marker text-my-accent text-sm sm:text-base mt-0.5"></i>
                                                 <div className="min-w-0 flex-1">
-                                                    <h4 className="text-my-black font-semibold leading-snug text-sm sm:text-[12px]">{evt.title}</h4>
+                                                    <h4 className="text-my-black font-semibold leading-snug text-[18px] sm:text-[12px]">{evt.title}</h4>
                                                     <p className="text-gray-600 text-xs sm:text-sm truncate">{evt.location}</p>
                                                 </div>
                                             </div>
@@ -252,7 +269,7 @@ export default function FilterableEventsSection({
 
                         {filterableEventsData.filter((e) => e.status === activeTab).length > visibleCount && (
                             <div className="flex justify-center mt-8 sm:mt-10">
-                                <button onClick={() => setVisibleCount((c) => c + 3)} className="rounded-full px-4 sm:px-6 py-2 sm:py-3 border border-my-black hover:bg-my-black hover:text-white transition-colors font-semibold text-sm sm:text-base">Load More</button>
+                                <button onClick={() => setVisibleCount((c) => c + 4)} className="rounded-full px-4 sm:px-6 py-2 sm:py-3 border border-my-black hover:bg-my-black hover:text-white transition-colors font-semibold text-sm sm:text-base">Load More</button>
                             </div>
                         )}
                     </>

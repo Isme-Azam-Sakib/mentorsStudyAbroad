@@ -81,7 +81,7 @@ const ChooseDestination: React.FC<ChooseDestinationProps> = ({ maxRows }) => {
         <div className="block md:hidden mb-8">
           <div className="relative h-48 sm:h-56 rounded-2xl overflow-hidden">
             <div className="absolute inset-0 flex items-center justify-center">
-              <h2 className="text-2xl sm:text-3xl font-bold text-my-black text-center px-4 mb-4">
+              <h2 className="text-3xl lg:text-4xl font-bold text-center text-my-black mb-4">
                 Choose your dream <span className="text-my-accent">destination</span>
               </h2>
             </div>
@@ -90,7 +90,7 @@ const ChooseDestination: React.FC<ChooseDestinationProps> = ({ maxRows }) => {
 
         {/* Section Title - Desktop */}
         <div className="text-center mb-8 sm:mb-10 lg:mb-12 hidden md:block">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-my-black">
+          <h2 className="text-3xl lg:text-4xl font-bold text-center text-my-black mb-4">
             Choose your dream <span className="text-my-accent relative">destination</span>
           </h2>
         </div>
@@ -100,7 +100,7 @@ const ChooseDestination: React.FC<ChooseDestinationProps> = ({ maxRows }) => {
           {countries.slice(0, maxRows ? maxRows * 3 : countries.length).map((country) => (
             <Link key={country.id} href={country.href} className="group cursor-pointer">
               {/* Country Card */}
-              <div className="bg-white rounded-xl sm:rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 sm:hover:-translate-y-2 aspect-square">
+              <div className="bg-white rounded-[40px] lg:rounded-[50px] sm:rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 sm:hover:-translate-y-2 aspect-square">
                 <div className="relative h-full">
                   {/* Country Image */}
                   <Image

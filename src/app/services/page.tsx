@@ -10,38 +10,38 @@ const servicesData = [
     {
         id: 1,
         title: "Expert Guidance",
-        description: "From choosing the appropriate country, university, and program - to complete admission process support, our expert counsellors will closely work with you to ensure you get the program that’s right for you.",
-        image: "/services/service- (1).png"
+        description: "From choosing the appropriate country, university, and program - to complete admission process support, our expert counsellors will closely work with you to ensure you get the program that's right for you.",
+        image: "/services/service 1.png"
     },
     {
         id: 2,
         title: "Test Prep Support",
         description: "Prefer IELTS or PTE? We offer both. SAT? We have that, too. If spoken and written English is something you need to work on, first, we can offer you that, too. Our reputation of excellence for test prep support has been built over nearly 30 years!",
-        image: "/services/service- (2).png"
+        image: "/services/service 2.png"
     },
     {
         id: 3,
         title: "Scholarship Support",
         description: "Our experts help you find which university, in which country, and for which program that suits your profile and ambitions - provide the highest amount of scholarship, so that finances do not remain too much of a headache for you.",
-        image: "/services/service- (3).png"
+        image: "/services/service 3.png"
     },
     {
         id: 4,
         title: "Visa Support",
         description: "Our services do not stop at admission. Our experts help you process visas for your journey as well. No service charge for us - pay only what the visa office requires.",
-        image: "/services/service- (4).png"
+        image: "/services/service 4.png"
     },
     {
         id: 5,
         title: "Flight and Accommodation Support",
         description: "We offer you ticketing support, as well as accommodation support so that you may know how you will fly and where you will stay as much in advance as possible.",
-        image: "/services/service- (5).png"
+        image: "/services/service 5.png"
     },
     {
         id: 6,
         title: "Post-Admission Support",
         description: "We remain connected with our students and offer any support we can to them, long after they have taken our service and fly away to pursue their dream education abroad. We believe not only in providing services, but also in nurturing lifelong friendships with our students.",
-        image: "/services/hero-service.png"
+        image: "/services/service 6.png"
     }
 ];
 
@@ -212,7 +212,7 @@ export default function Services() {
                             <div className="flex justify-center lg:justify-end order-1 lg:order-2">
                                 <div className="relative w-full max-w-sm sm:max-w-md lg:max-w-lg">
                                     <img
-                                        src="/services/service- (6).png"
+                                        src="/services/service-hero.png"
                                         alt="Our services"
                                         className="w-full h-auto max-h-[250px] sm:max-h-[350px] md:max-h-[400px] lg:max-h-[500px] object-contain"
                                     />
@@ -311,7 +311,7 @@ export default function Services() {
                                         <img
                                             src={service.image}
                                             alt={service.title}
-                                            className="w-full h-auto object-cover rounded-3xl"
+                                            className="w-full h-auto object-cover rounded-3xl px-4"
                                         />
                                     </div>
 
