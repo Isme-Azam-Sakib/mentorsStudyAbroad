@@ -249,7 +249,7 @@ export const countriesData: Record<string, Country> = {
     name: "Australia",
     description: " A global education powerhouse combining academic excellence with an unbeatable quality of life.",
     heroImage: "/country-heros/australia.png",
-    stats: { universities: "40+", annualTuitionFees: "AUD 22K - 50K", successfulVisas: "353+", postStudyWork: "4+ years" },
+    stats: { universities: "40+", annualTuitionFees: "AUD 22K - 50K", successfulVisas: "-", postStudyWork: "4+ years" },
   
     whyChoose: [
       { 

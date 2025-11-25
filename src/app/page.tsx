@@ -527,7 +527,7 @@ export default function HomePage() {
       {/* CTA Section */}
       <LazySection delay={0.2}>
         <CTA
-          title="1 step away from your study abroad dream"
+          title="One step away from your study abroad dream"
           subtitle="Just click the button below, follow the instruction and we’ll take it from there"
           buttonText="Click to get started"
           buttonOnClick={() => {/* your action */ }}

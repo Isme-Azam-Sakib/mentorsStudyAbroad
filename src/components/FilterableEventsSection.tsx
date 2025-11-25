@@ -80,7 +80,7 @@ interface FilterableEventsSectionProps {
 export default function FilterableEventsSection({ 
     title = (
         <>
-            Browse <span className="text-my-accent relative">all events</span>
+            Our <span className="text-my-accent relative">events</span>
         </>
     ),
     className = ""

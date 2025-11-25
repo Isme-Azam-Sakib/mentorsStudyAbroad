@@ -42,10 +42,10 @@ export const PopularSubjects: React.FC<PopularSubjectsProps> = ({
   const toggleLabel = isExpanded ? "Show Less" : "Show More";
 
   return (
-    <div className="w-full bg-white py-12 sm:py-16 md:py-32">
+    <div className="w-full bg-white py-12 sm:py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Title */}
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-my-black mb-8 md:mb-12 text-center">
+        <h2 className="text-3xl lg:text-4xl font-bold text-center text-my-black mb-4">
           {typeof title === 'string' ? (
             <span>{title}</span>
           ) : (

@@ -150,11 +150,11 @@ export default function CountryPageClient({ country, countryKey }: CountryPageCl
               <div className="px-6 sm:px-8 lg:px-12 py-12 sm:py-16 lg:py-20 w-full lg:w-2/3">
                 {/* Heading */}
                 <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold mb-4 sm:mb-5 lg:mb-6 leading-tight">
-                  <span className="text-my-black relative inline-block">
+                  <span className="text-my-white relative inline-block">
                     {country.name}
                     <span className="absolute bottom-0 left-0 w-full h-1 bg-my-accent"></span>
                   </span>
-                  <span className="text-my-white"> : {country.description}</span>
+                  <span className="text-my-white "> : {country.description}</span>
                 </h1>
 
                 {/* Buttons - Horizontal Layout */}
@@ -236,7 +236,7 @@ export default function CountryPageClient({ country, countryKey }: CountryPageCl
 
       {/* Why Choose Country Section */}
       <LazySection delay={0.2}>
-        <div className="py-16 bg-my-white">
+        <div className="py-8 bg-my-white">
           <div className="max-w-7xl mx-auto px-4">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {/* Left Column - Why Choose Content */}

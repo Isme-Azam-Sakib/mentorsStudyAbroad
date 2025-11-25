@@ -34,7 +34,7 @@ export const AdmissionIntake: React.FC<AdmissionIntakeProps> = ({
   }
 
   return (
-    <div className="w-full bg-white py-12 sm:py-16">
+    <div className="w-full bg-white py-4 sm:py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-white rounded-3xl sm:rounded-4xl lg:rounded-[50px] p-6 sm:p-8 md:p-10 lg:p-12 border border-gray-200 shadow-sm hover:shadow-lg transition-shadow duration-300">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center">

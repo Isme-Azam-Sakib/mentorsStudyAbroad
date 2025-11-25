@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import type { ReactNode } from "react";
 import Image from "next/image";
 import { universitiesData, type University as UniversityInfo } from "@/lib/universities-data";
+import { countriesData } from "@/lib/countries-data";
 import { CountrySelectionModal } from "@/components/CountrySelectionModal";
 
 type University = {
@@ -141,15 +142,34 @@ export function PartnerUniversities({
     title ??
     (
       <>
-        Partner <span className="text-my-accent">Institutions</span>
+        Our Partner <span className="text-my-accent">Institutions</span>
       </>
     );
 
-  const subheading =
-    description ?? "Discover our global network of trusted education partners";
+  // Get country name from countryKey
+  const countryName = countryKey && countryKey.trim().length > 0
+    ? countriesData[countryKey as keyof typeof countriesData]?.name
+    : null;
+
+  // Replace {country} placeholder with actual country name
+  const getSubheading = () => {
+    if (description) {
+      // If description is a string, replace {country} placeholder
+      if (typeof description === 'string') {
+        return countryName ? description.replace('{country}', countryName) : description.replace('{country}', '');
+      }
+      // If description is a ReactNode, return as is
+      return description;
+    }
+    // Default description
+    const defaultText = "Discover your opportunities in {country}";
+    return countryName ? defaultText.replace('{country}', countryName) : "Discover your opportunities";
+  };
+
+  const subheading = getSubheading(); 
 
   return (
-    <section className="py-16 sm:py-20 lg:py-24 bg-my-white">
+    <section className="py-8 sm:py-20 lg:py-8 bg-my-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12 sm:mb-16">
           <h2 className="text-3xl lg:text-4xl font-bold text-center text-my-black mb-4">

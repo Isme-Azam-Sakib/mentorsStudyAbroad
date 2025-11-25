@@ -168,7 +168,7 @@ export const EntryRequirements: React.FC<EntryRequirementsProps> = ({
 
   // Desktop view - horizontal layout with animations
   return (
-    <div className="w-full bg-white py-12 sm:py-16 md:py-32">
+    <div className="w-full bg-white lg:py-4 sm:py-16 md:py-32">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-my-black mb-8 md:mb-12 text-center">
           <span className="text-my-accent">Entry</span> Requirements
