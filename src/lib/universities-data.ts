@@ -220,7 +220,7 @@ export const universitiesData: University[] = [
         "id": 27,
         "name": "University of South Wales",
         "country": "uk",
-        "logo": "/universities/uk/University_Of_South_Wales.jpg",
+        "logo": "/universities/uk/University_Of_South_Wales_USW.png",
         "website": "",
         "partnershipType": "direct"
     },

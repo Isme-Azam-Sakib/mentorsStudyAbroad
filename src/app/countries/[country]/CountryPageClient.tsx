@@ -123,7 +123,7 @@ export default function CountryPageClient({ country, countryKey }: CountryPageCl
 
       {/* Hero Section */}
       <LazySection delay={0.2}>
-        <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 my-16 sm:my-24 lg:my-32 pt-8">
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 mt-16 sm:my-24 lg:my-32 pt-8">
           <div
             className="relative overflow-hidden rounded-[50px]"
             style={{

@@ -31,7 +31,6 @@ export interface Country {
   stats: {
     universities: string;
     annualTuitionFees: string;
-    successfulVisas: string;
     postStudyWork: string;
   };
 
@@ -49,7 +48,7 @@ export const countriesData: Record<string, Country> = {
     name: "United States",
     description: "Home to the world’s leading universities and unmatched innovation across every field of study.",
     heroImage: "/country-heros/usa.png",
-    stats: { universities: "60+", annualTuitionFees: "$10K - $35K", successfulVisas: "600+", postStudyWork: "Up to 3 Years" },
+    stats: { universities: "60+", annualTuitionFees: "USD 10K – 35K", postStudyWork: "Up to 3 Years" },
  
     whyChoose: [
       { 
@@ -112,7 +111,7 @@ export const countriesData: Record<string, Country> = {
     name: "United Kingdom",
     description: "A country steeped in academic heritage, where centuries of tradition meet global opportunity.",
     heroImage: "/country-heros/uk.png",
-    stats: { universities: "40+ ", annualTuitionFees: "£11K - £24K", successfulVisas: "500+", postStudyWork: "2 - 3 years" 
+    stats: { universities: "40+ ", annualTuitionFees: "GBP 11K – 24K ", postStudyWork: "2 - 3 years" 
     },
  
     whyChoose: [
@@ -143,23 +142,23 @@ export const countriesData: Record<string, Country> = {
     },
     admissionProcess: [
       {
-        title: "Free Assessment & Counselling",
+        title: "Step 1: Free Assessment & Counselling",
         content: "Get expert guidance and a personalized study plan."
       },
       {
-        title: "Submit Documents",
+        title: "Step 2: Submit Documents",
         content: "Provide required academic and supporting documents."
       },
       {
-        title: "Application Submission",
-        content: "We send your documents to institutions at no extra cost."
+        title: "Step 3: Application Submission",
+        content: "Documents are sent to institutions at no extra cost."
       },
       {
-        title: "Admission & Fee Payment",
+        title: "Step 4: Admission & Fee Payment",
         content: "Admission takes 2-8 weeks. Pay tuition directly to the institution (TT/Bank Draft/Card). Refunds are given if the visa is refused. Receive your CAS letter after payment."
       },
       {
-        title: "Pay Insurance Fees & Apply for Visa",
+        title: "Step 5: Pay Insurance Fees & Apply for Visa",
         content: "Pay insurance fees and apply for visa."
       }
     ]
@@ -168,7 +167,7 @@ export const countriesData: Record<string, Country> = {
     name: "Ireland",
     description: "Experience world-class education in a friendly country known for its warmth and innovation.",
     heroImage: "/country-heros/ireland.png",
-    stats: { universities: "15+", annualTuitionFees: "€10K - €55K", successfulVisas: "—", postStudyWork: "2 years" },
+    stats: { universities: "15+", annualTuitionFees: "€10K - €55K", postStudyWork: "2 years" },
    
     whyChoose: [
       { 
@@ -224,24 +223,24 @@ export const countriesData: Record<string, Country> = {
     ],
     admissionProcess: [
       {
-        title: "Prepare Documents",
-        content: "Academic certificates, passport, photos, SOP, references. Postgraduates: CV and work experience."
+        title: "Step 1: Prepare Documents",
+        content: "Academic certificates, passport, photos, SOP, references. (Postgraduates: CV and work experience)."
       },
       {
-        title: "Complete Application",
+        title: "Step 2: Complete Application",
         content: "Fill out university forms (no file opening charges)."
       },
       {
-        title: "Submit to Institution",
-        content: "We submit all documents; admission confirmation takes 2–8 weeks."
+        title: "Step 3: Submit to Institution",
+        content: "Documents are submitted; admission confirmation takes 2–8 weeks."
       },
       {
-        title: "Tuition Payment & CoE",
+        title: "Step 4: Tuition Payment & CoE",
         content: "Pay tuition (refundable if visa is rejected) and receive your Confirmation of Enrolment for visa processing."
       },
       {
-        title: "Apply for Visa",
-        content: "Apply for visa after receiving your Confirmation of Enrolment."
+        title: "Step 5: Apply for Visa",
+        content: "Apply for visa."
       }
     ]
   },
@@ -249,7 +248,7 @@ export const countriesData: Record<string, Country> = {
     name: "Australia",
     description: " A global education powerhouse combining academic excellence with an unbeatable quality of life.",
     heroImage: "/country-heros/australia.png",
-    stats: { universities: "40+", annualTuitionFees: "AUD 22K - 50K", successfulVisas: "-", postStudyWork: "4+ years" },
+    stats: { universities: "40+", annualTuitionFees: "AUD 22K – 50K", postStudyWork: "4+ years" },
   
     whyChoose: [
       { 
@@ -307,7 +306,7 @@ export const countriesData: Record<string, Country> = {
     admissionProcess: [
       {
         title: "Free Personalized Counselling",
-        content: "Meet our expert counsellors to explore study options, shortlist universities, and understand requirements."
+        content: "Meet expert counsellors to explore study options, shortlist universities, and understand requirements."
       },
       {
         title: "Admission Confirmation",
@@ -319,11 +318,11 @@ export const countriesData: Record<string, Country> = {
       },
       {
         title: "Submit Updated Documents",
-        content: "Provide proof of payment and any updated academic/financial documents. Required documents: Certified academic certificates, mark sheets, English test scores (IELTS/TOEFL/PTE), CV, SOP, work experience (if any), financial statements (last 6 months), passport copy, gap explanation (if needed), and immigration history."
+        content: "Provide proof of payment and any updated academic/financial documents. Required Documents: Certified academic certificates, mark sheets, English test scores (IELTS/TOEFL/PTE), CV, SOP, work experience (if any), financial statements (last 6 months), passport copy, gap explanation (if needed), and immigration history."
       },
       {
         title: "Apply for the Visa",
-        content: "Apply for the visa through our Immi account with the help of our counsellor."
+        content: "Apply for the Visa through the Immi account with the help of a counsellor."
       }
     ]
   },
@@ -331,7 +330,7 @@ export const countriesData: Record<string, Country> = {
     name: "Canada",
     description: "A welcoming, multicultural destination offering high-quality education and strong post-study career pathways.",
     heroImage: "/country-heros/canada.png",
-    stats: { universities: "430+", annualTuitionFees: "CAD 15K - 45K", successfulVisas: "3000+", postStudyWork: "3 years" },
+    stats: { universities: "430+", annualTuitionFees: "-", postStudyWork: "3 years" },
     whyChoose: [
       { 
         title: "Affordable Tuition Fees", 
@@ -382,23 +381,23 @@ export const countriesData: Record<string, Country> = {
     ],
     admissionProcess: [
       {
-        title: "Explore & Get Guidance",
+        title: "Step 1: Explore & Get Guidance",
         content: "Receive expert counselling to choose the right university and course."
       },
       {
-        title: "Choose Your Path",
+        title: "Step 2: Choose Your Path",
         content: "Decide on your preferred university and program."
       },
       {
-        title: "Prepare Documents",
-        content: "Submit transcripts, certificates, passport copy. Postgraduate applicants: CV, SOP, 2–3 reference letters, work experience (if any)."
+        title: "Step 3: Prepare Documents",
+        content: "Submit transcripts, certificates, passport copy. (Postgraduate applicants: CV, SOP, 2–3 reference letters, work experience (if any))."
       },
       {
-        title: "Submit Application",
+        title: "Step 4: Submit Application",
         content: "Send scanned documents and pay application fees (CAD 100–130) + courier charges (BDT 2,000–3,000 if needed)."
       },
       {
-        title: "Visa Process",
+        title: "Step 5: Visa Process",
         content: "Receive offer → Pay tuition/deposit → Receive UC offer → Apply for visa → If approved, submit passport."
       }
     ]
@@ -407,7 +406,7 @@ export const countriesData: Record<string, Country> = {
     name: "Malaysia",
     description: "Discover globally recognized, affordable education in one of Asia’s fastest-growing academic hubs.",
     heroImage: "/country-heros/malaysia.png",
-    stats: { universities: "18", annualTuitionFees: "-", successfulVisas: "500+", postStudyWork: "-" },
+    stats: { universities: "18", annualTuitionFees: "-", postStudyWork: "-" },
 
     whyChoose: [
       { 
@@ -459,19 +458,19 @@ export const countriesData: Record<string, Country> = {
     ],
     admissionProcess: [
       {
-        title: "Free Assessment & Counselling",
+        title: "Step 1: Free Assessment & Counselling",
         content: "Check eligibility and explore options."
       },
       {
-        title: "Submit Documents",
+        title: "Step 2: Submit Documents",
         content: "Provide transcripts, passport copy, photo, and Health Declaration form."
       },
       {
-        title: "Receive Eligibility Letter",
+        title: "Step 3: Receive Eligibility Letter",
         content: "Complete university-required payments."
       },
       {
-        title: "Visa Application → Pay EMAS Fees",
+        title: "Step 4: Visa Application → Pay EMAS Fees",
         content: "Apply for EVAL and SEV."
       }
     ]
@@ -483,8 +482,7 @@ export const countriesData: Record<string, Country> = {
     heroImage: "/country-heros/newzealand.png",
     stats: { 
       universities: "14", 
-      annualTuitionFees: "NZD 22K - 45K", 
-      successfulVisas: "—", 
+      annualTuitionFees: "NZD 22K – 45K", 
       postStudyWork: "1-3 years" 
     },
 
@@ -542,24 +540,24 @@ export const countriesData: Record<string, Country> = {
     ],
     admissionProcess: [
       {
-        title: "Prepare Documents",
+        title: "Step 1: Prepare Documents",
         content: "Collect transcripts, certificates, passport copy, English test scores, SOP, and reference letters."
       },
       {
-        title: "Apply to Institution",
+        title: "Step 2: Apply to Institution",
         content: "Submit your application — no application fees required."
       },
       {
-        title: "Interview (If Required)",
+        title: "Step 3: Interview (If Required)",
         content: "Some institutions may take an interview."
       },
       {
-        title: "Receive Offer Letter",
+        title: "Step 4: Receive Offer Letter",
         content: "Get your unconditional offer after a successful review."
       },
       {
-        title: "Apply for Visa",
-        content: "Apply for visa after receiving your offer letter."
+        title: "Step 5: Apply for Visa",
+        content: "Apply for visa."
       }
     ]
   }
