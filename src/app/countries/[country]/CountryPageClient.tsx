@@ -22,7 +22,7 @@ import {
   MalaysiaVisaSuccess
 } from '@/components/(visa-success)';
 import Link from 'next/link';
-import { countriesData } from '@/lib/countries-data';
+import { countriesData, AdmissionStep } from '@/lib/countries-data';
 import { AdmissionIntake } from '@/components/AdmissionIntake';
 import { EntryRequirements } from '@/components/EntryRequirements';
 import { PopularSubjects } from '@/components/PopularSubjects';
@@ -51,6 +51,7 @@ export default function CountryPageClient({ country, countryKey }: CountryPageCl
   const [isMounted, setIsMounted] = useState(false);
   const admissionProcessRef = useRef<HTMLDivElement>(null);
   const partnerUniversitiesRef = useRef<HTMLDivElement>(null);
+  const isEurope = countryKey.toLowerCase() === 'europe';
 
   useEffect(() => {
     setIsMounted(true);
@@ -111,6 +112,19 @@ export default function CountryPageClient({ country, countryKey }: CountryPageCl
       .filter((course): course is Course => course !== null);
   }, [countryKey]);
 
+  const admissionSteps: AdmissionStep[] = useMemo(() => {
+    if (countryKey.toLowerCase() === 'europe') {
+      return [
+        {
+          title: 'Personalized Guidance for Each Country',
+          content: 'Different countries have different processes. Our counselors will guide you accordingly.',
+        },
+      ];
+    }
+
+    return countriesData[countryKey]?.admissionProcess ?? [];
+  }, [countryKey]);
+
   // Don't render until mounted to prevent hydration mismatches
   if (!isMounted) {
     return null;
@@ -144,29 +158,37 @@ export default function CountryPageClient({ country, countryKey }: CountryPageCl
               aria-hidden="true"
             />
 
+            {/* Red Gradient Overlay on Left Side */}
+            <div 
+              className="absolute inset-0 z-10"
+              style={{
+                background: 'linear-gradient(to right, rgba(220, 38, 38, 0.9) 0%, rgba(220, 38, 38, 0.85) 35%, rgba(220, 38, 38, 0.5) 45%, rgba(220, 38, 38, 0.2) 55%, transparent 65%)'
+              }}
+            />
 
             {/* Hero Content */}
-            <div className="absolute inset-0 z-10 flex items-center">
-              <div className="px-6 sm:px-8 lg:px-12 py-12 sm:py-16 lg:py-20 w-full lg:w-2/3">
-                {/* Heading */}
-                <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold mb-4 sm:mb-5 lg:mb-6 leading-tight">
-                  <span className="text-my-white relative inline-block">
-                    {country.name}
-                    <span className="absolute bottom-0 left-0 w-full h-1 bg-my-accent"></span>
-                  </span>
-                  <span className="text-my-white "> : {country.description}</span>
+            <div className="absolute inset-0 z-20 flex items-center">
+              <div className="px-6 sm:px-8 lg:px-12 py-12 sm:py-16 lg:py-20 w-full lg:w-3/5">
+                {/* Country Name */}
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-3 sm:mb-4 lg:mb-5 leading-none">
+                  {country.name}
                 </h1>
+
+                {/* Description */}
+                <p className="text-white text-[16px] sm:text-base lg:text-lg mb-6 sm:mb-7 lg:mb-8 leading-tight">
+                  {country.description}
+                </p>
 
                 {/* Buttons - Horizontal Layout */}
                 <div className="flex flex-row gap-3 sm:gap-4">
                   <Link href="/contact">
-                    <button className="bg-my-white text-my-black px-6 py-3 sm:px-8 sm:py-4 rounded-full hover:bg-my-black hover:text-my-white transition-all duration-300 text-sm sm:text-base flex items-center justify-center gap-2 sm:gap-3">
-                      <span>Book A Free Consultation</span>
+                    <button className="bg-white text-black px-6 py-2 sm:px-8 sm:py-4 rounded-full hover:bg-gray-100 transition-all duration-300 text-sm sm:text-base font-semibold flex items-center justify-center gap-2 sm:gap-3">
+                      <span>Free expert consultation</span>
                       <i className="fi fi-sr-meeting-alt"></i>
                     </button>
                   </Link>
 
-                  <button className="bg-my-black text-my-white px-6 py-3 sm:px-8 sm:py-4 rounded-full hover:bg-my-white hover:text-my-black transition-all duration-300 text-sm sm:text-base flex items-center justify-center gap-2 sm:gap-3">
+                  <button className="bg-black text-white px-6 py-2 sm:px-8 sm:py-4 rounded-full hover:bg-gray-800 transition-all duration-300 text-sm sm:text-base font-semibold flex items-center justify-center gap-2 sm:gap-3">
                     <span>Download Brochure</span>
                     <i className="fi fi-sr-file-pdf"></i>
                   </button>
@@ -228,80 +250,89 @@ export default function CountryPageClient({ country, countryKey }: CountryPageCl
         </div>
       </LazySection> */}
 
-      {/* Country Statistics Section */}
-      <LazySection delay={0.2}>
-        <CountryStats countryKey={countryKey} />
-      </LazySection>
-      
+      {!isEurope && (
+        <>
+          {/* Country Statistics Section */}
+          <LazySection delay={0.2}>
+            <CountryStats countryKey={countryKey} />
+          </LazySection>
 
-      {/* Why Choose Country Section */}
-      <LazySection delay={0.2}>
-        <div className="py-8 bg-my-white">
-          <div className="max-w-7xl mx-auto px-4">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              {/* Left Column - Why Choose Content */}
-              <div>
-                <div className="mb-12 sm:text-center md:text-center lg:text-left">
-                  <h2 className="text-3xl lg:text-4xl font-bold text-my-black mb-4">
-                    <span className="text-my-accent relative">Why</span> {country.name}?
-                  </h2>
-                </div>
+          {/* Why Choose Country Section */}
+          <LazySection delay={0.2}>
+            <div className="py-8 bg-my-white">
+              <div className="max-w-7xl mx-auto px-4">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                  {/* Left Column - Why Choose Content */}
+                  <div>
+                    <div className="mb-12 sm:text-center md:text-center lg:text-left">
+                      <h2 className="text-3xl lg:text-4xl font-bold text-my-black mb-4">
+                        <span className="text-my-accent relative">Why</span> {country.name}?
+                      </h2>
+                    </div>
 
-                <div className="space-y-4">
-                  {whyChooseItems.map((item, index) => (
-                    <ProcessCard
-                      key={index}
-                      title={item.title}
-                      content={item.content}
-                      index={index}
-                      className="mx-auto lg:mx-0 bg-my-white hover:bg-my-white transition-colors duration-300"
-                    />
-                  ))}
+                    <div className="space-y-4">
+                      {whyChooseItems.map((item, index) => (
+                        <ProcessCard
+                          key={index}
+                          title={item.title}
+                          content={item.content}
+                          index={index}
+                          className="mx-auto lg:mx-0 bg-my-white hover:bg-my-white transition-colors duration-300"
+                        />
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Right Column - Contact Form */}
+                  <ContactForm countryName={country.name} countryValue={countryKey} />
                 </div>
               </div>
-
-              {/* Right Column - Contact Form */}
-              <ContactForm countryName={country.name} countryValue={countryKey} />
             </div>
-          </div>
-        </div>
-      </LazySection>
+          </LazySection>
 
-      {/* Universities Section */}
-      {/* <LazySection delay={0.2}>
-        <UniversitiesSection />
-      </LazySection> */}
-
-
-      <AdmissionIntake
-        title={
-          <>
-            Major <span className="text-my-accent">Admission Intakes</span> in {country.name}
-          </>
-        }
-        // postGraduateSemesters={countriesData[countryKey]?.admissionIntake.postGraduate || []}
-        underGraduateSemesters={countriesData[countryKey]?.admissionIntake.underGraduate || []}
-      />
-
-      {/* Entry Requirements Section */}
-      <LazySection delay={0.2}>
-        <EntryRequirements requirements={countriesData[countryKey]?.entryRequirements || []} />
-      </LazySection>
-
-      {/* Partner Universities Section */}
-      <div id="partner-universities" ref={partnerUniversitiesRef}>
-        <LazySection delay={0.2}>
-          <PartnerUniversities 
-            countryKey={countryKey}
-            asteriskNote={countriesData[countryKey]?.partnerUniversitiesNote}
+          <AdmissionIntake
+            title={
+              <>
+                Major <span className="text-my-accent">Admission Intakes</span> in {country.name}
+              </>
+            }
+            // postGraduateSemesters={countriesData[countryKey]?.admissionIntake.postGraduate || []}
+            underGraduateSemesters={countriesData[countryKey]?.admissionIntake.underGraduate || []}
           />
-        </LazySection>
-      </div>
 
+          {/* Entry Requirements Section */}
+          <LazySection delay={0.2}>
+            <EntryRequirements requirements={countriesData[countryKey]?.entryRequirements || []} />
+          </LazySection>
 
-      
-      {/* Popular Subjects Section */}
-      {countryPopularSubjects.length > 0 && (
+          {/* Partner Universities Section */}
+          <div id="partner-universities" ref={partnerUniversitiesRef}>
+            <LazySection delay={0.2}>
+              <PartnerUniversities 
+                countryKey={countryKey}
+                asteriskNote={countriesData[countryKey]?.partnerUniversitiesNote}
+              />
+            </LazySection>
+          </div>
+
+          {/* Popular Subjects Section */}
+          {countryPopularSubjects.length > 0 && (
+            <LazySection delay={0.2}>
+              <PopularSubjects
+                courses={countryPopularSubjects}
+                title={
+                  <>
+                    Popular <span className="text-my-accent">Subjects</span> To Study in {country.name}
+                  </>
+                }
+              />
+            </LazySection>
+          )}
+        </>
+      )}
+
+      {/* Popular Subjects Section  */}
+      {false && countryPopularSubjects.length > 0 && (
         <LazySection delay={0.2}>
           <PopularSubjects
             courses={countryPopularSubjects}
@@ -314,32 +345,47 @@ export default function CountryPageClient({ country, countryKey }: CountryPageCl
         </LazySection>
       )}
 
-      {/* Admission Process Section */}
-      {countriesData[countryKey]?.admissionProcess && countriesData[countryKey].admissionProcess!.length > 0 && (
+      {/* Europe-specific content */}
+      {isEurope && (
+        <LazySection delay={0.2}>
+          <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 py-12 sm:py-16 lg:py-20 w-full flex justify-center">
+            <div className="w-full lg:w-2/3 text-center">
+            <h2 className="text-my-black lg:text-[30px] sm:text-lg lg:text-xl leading-relaxed text-center">
+              Different countries have different processes. Our counselors will guide you accordingly.
+            </h2>
+            </div>
+          </div>
+        </LazySection>
+      )}
+
+      {/* Admission Process Section - Hidden for Europe */}
+      {!isEurope && admissionSteps.length > 0 && (
         <div id="admission-process" ref={admissionProcessRef}>
           <LazySection delay={0.2}>
-            <AdmissionProcess steps={countriesData[countryKey].admissionProcess!} />
+            <AdmissionProcess steps={admissionSteps} />
           </LazySection>
         </div>
       )}
 
       {/* Videos Section - Country-specific videos */}
-      <LazySection delay={0.2}>
-        <ClientOnly>
-          <VideoSection
-            country={countryKey}
-            title={
-              <>
-                <span className="text-my-accent relative">Hear</span> From Our Students
-              </>
-            }
-            subtitle={`Watch videos from students and experts about studying in ${country.name}`}
-          />
-        </ClientOnly>
-      </LazySection>
+      {!isEurope && (
+        <LazySection delay={0.2}>
+          <ClientOnly>
+            <VideoSection
+              country={countryKey}
+              title={
+                <>
+                  <span className="text-my-accent relative">Hear</span> From Our Students
+                </>
+              }
+              subtitle={`Watch videos from students and experts about studying in ${country.name}`}
+            />
+          </ClientOnly>
+        </LazySection>
+      )}
 
       {/* Visa Success Stories Section - Conditional Rendering */}
-      {shouldRenderVisaSuccess() && (
+      {!isEurope && shouldRenderVisaSuccess() && (
         <LazySection delay={0.2}>
           {getVisaSuccessComponent()}
         </LazySection>

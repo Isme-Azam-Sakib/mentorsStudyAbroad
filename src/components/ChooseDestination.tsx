@@ -61,11 +61,11 @@ const countries: CountryCard[] = [
     href: '/countries/newzealand'
   },
   {
-    id: 'japan',
-    name: 'Japan',
-    displayName: 'Japan',
-    image: '/countries/japan.png',
-    href: '/countries/japan'
+    id: 'europe',
+    name: 'Europe',
+    displayName: 'Europe',
+    image: '/countries/Europe.png',
+    href: '/countries/europe'
   }
 ];
 

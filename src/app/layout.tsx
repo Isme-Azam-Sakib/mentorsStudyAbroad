@@ -1,16 +1,61 @@
-export const metadata = {
-  title: "Study Abroad",
-  description: "Explore study abroad opportunities and services.",
-};
 import "./globals.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import { ContactFormSection } from "../components/contactFormSection";
 import type { ReactNode } from "react";
 import { Onest } from "next/font/google";
 import { ContactFormSectionButton } from "../components/ContactFormSectionButton";
 import Script from "next/script";
+import type { Metadata } from "next";
 
+export const metadata: Metadata = {
+  title: {
+    default: "Mentors’ Study Abroad | Study Abroad Counselling & Visa Experts",
+    template: "%s | Mentors’ Study Abroad",
+  },
+  description:
+    "Achieve your global dreams with Mentors’ Study Abroad. Expert counselling, university selection, admission support and hassle-free visa processing for top study destinations worldwide.",
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+  },
+  openGraph: {
+    title: "Mentors’ Study Abroad | Study Abroad Counselling & Visa Experts",
+    description:
+      "Get end-to-end guidance for admissions, visas and scholarships to top universities worldwide with Mentors’ Study Abroad.",
+    url: "/",
+    siteName: "Mentors’ Study Abroad",
+    type: "website",
+    images: [
+      {
+        url: "/hero-home.png",
+        width: 1200,
+        height: 630,
+        alt: "Mentors’ Study Abroad - Achieve your global dreams",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Mentors’ Study Abroad | Study Abroad Counselling & Visa Experts",
+    description:
+      "Personalised guidance for university applications, admissions and visa processing to help you study abroad confidently.",
+    images: ["/hero-home.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+  alternates: {
+    canonical: "/",
+  },
+};
 
 const onest = Onest({
   subsets: ["latin"],

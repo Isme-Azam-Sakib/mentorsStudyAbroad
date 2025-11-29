@@ -9,14 +9,20 @@ interface TestimonialCardProps {
 }
 
 export default function TestimonialCard({ testimonial }: TestimonialCardProps) {
-  const [imageError, setImageError] = useState(false);
+  // Check if image is empty or invalid initially
+  const hasValidImage = testimonial.image && testimonial.image.trim() !== '';
+  const [imageError, setImageError] = useState(!hasValidImage);
 
   const handleImageError = () => {
     setImageError(true);
   };
 
   const getInitials = (name: string) => {
-    return name.split(' ').map(n => n[0]).join('');
+    if (!name || name.trim() === '') return '?';
+    const parts = name.trim().split(' ').filter(n => n.length > 0);
+    if (parts.length === 0) return '?';
+    if (parts.length === 1) return parts[0][0].toUpperCase();
+    return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
   };
 
   return (
@@ -38,8 +44,8 @@ export default function TestimonialCard({ testimonial }: TestimonialCardProps) {
       {/* Student Info */}
       <div className="flex items-center gap-3 md:gap-4">
         {/* Student Photo */}
-        <div className="w-12 h-12 md:w-16 md:h-16 rounded-full overflow-hidden flex-shrink-0 bg-gray-200">
-          {!imageError ? (
+        <div className="w-12 h-12 md:w-16 md:h-16 rounded-full overflow-hidden flex-shrink-0">
+          {!imageError && hasValidImage ? (
             <LazyImage
               src={testimonial.image}
               alt={testimonial.name}

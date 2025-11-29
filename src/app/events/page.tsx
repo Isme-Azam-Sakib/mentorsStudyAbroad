@@ -47,7 +47,7 @@ export default function EventsPage() {
                             {/* Left Column - Text and Buttons */}
                             <div className="text-center lg:text-left order-2 lg:order-1">
                                 <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-my-black mb-4 sm:mb-5 lg:mb-6 leading-tight">
-                                    <span className="text-my-accent relative">Explore</span> our Education Fairs and Seminars
+                                    <span className="text-my-accent relative">Events</span> and Seminars
                                 </h1>
                                 <div className="flex flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
                                     <Link href="/contact">

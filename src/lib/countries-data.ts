@@ -48,7 +48,7 @@ export const countriesData: Record<string, Country> = {
     name: "United States",
     description: "Home to the world’s leading universities and unmatched innovation across every field of study.",
     heroImage: "/country-heros/usa.png",
-    stats: { universities: "60+", annualTuitionFees: "USD 10K – 35K", postStudyWork: "Up to 3 Years" },
+    stats: { universities: "60+", annualTuitionFees: "USD 10K – 45K", postStudyWork: "Up to 3 Years" },
  
     whyChoose: [
       { 
@@ -475,32 +475,31 @@ export const countriesData: Record<string, Country> = {
       }
     ]
   },
-
   newzealand: {
     name: "New Zealand",
     description: "Learn in a safe, inclusive environment that embraces lifelong learning and real-world experience.",
     heroImage: "/country-heros/newzealand.png",
-    stats: { 
-      universities: "14", 
-      annualTuitionFees: "NZD 22K – 45K", 
-      postStudyWork: "1-3 years" 
+    stats: {
+      universities: "14",
+      annualTuitionFees: "NZD 22K – 45K",
+      postStudyWork: "1-3 years"
     },
 
     whyChoose: [
-      { 
-        title: "Safe & Peaceful Living", 
+      {
+        title: "Safe & Peaceful Living",
         content: "Enjoy life in a welcoming country known for its safety, stability, and high living standards."
       },
-      { 
-        title: "Globally Recognized Universities", 
+      {
+        title: "Globally Recognized Universities",
         content: "Study at top-ranked institutions that are respected worldwide for academic excellence."
       },
-      { 
-        title: "Post-Study Work Opportunities", 
+      {
+        title: "Post-Study Work Opportunities",
         content: "Build your career with up to 3 years of post-study work options after graduation."
       },
-      { 
-        title: "Scholarships for International Students", 
+      {
+        title: "Scholarships for International Students",
         content: "Benefit from a variety of scholarships that make quality education more affordable."
       }
     ],
@@ -559,6 +558,76 @@ export const countriesData: Record<string, Country> = {
         title: "Step 5: Apply for Visa",
         content: "Apply for visa."
       }
+    ]
+  },
+  europe: {
+    name: "Europe",
+    description: "Study across leading European destinations that offer high-quality education, rich culture, and diverse career opportunities.",
+    heroImage: "/country-heros/europe.png",
+    stats: {
+      universities: "-",
+      annualTuitionFees: "-",
+      postStudyWork: "-"
+    },
+
+    whyChoose: [
+      // {
+      //   title: "World-Class Universities Across Multiple Countries",
+      //   content: "Access top-ranked institutions in countries like Germany, France, Netherlands, Sweden, and more."
+      // },
+      // {
+      //   title: "Affordable or Low Tuition Options",
+      //   content: "Benefit from low or even zero tuition fees in selected public universities and scholarship options."
+      // },
+      // {
+      //   title: "Multi-Cultural Experience",
+      //   content: "Live and study in a region known for its cultural diversity, history, and lifestyle."
+      // },
+      // {
+      //   title: "Strong Post-Study Career Prospects",
+      //   content: "Build your global career with post-study work options and access to the wider European job market."
+      // }
+    ],
+    popularSubjects: [],
+    admissionIntake: {
+      underGraduate: [
+        // { period: "September / October (Main Intake)" },
+        // { period: "January / February (Limited Programs)" }
+      ]
+    },
+    entryRequirements: [
+      // {
+      //   icon: "fi fi-ss-user-graduate",
+      //   title: "Bachelor's Programs",
+      //   description: "Higher Secondary or A Level completion with required GPA. IELTS / PTE (or equivalent) may be required depending on country."
+      // },
+      // {
+      //   icon: "fi fi-sr-graduation-cap",
+      //   title: "Master's Programs",
+      //   description: "Completed Bachelor's degree with minimum required CGPA. English proficiency test and, in some cases, country-specific requirements."
+      // }
+    ],
+    admissionProcess: [
+      // {
+      //   title: "Step 1: Free Counselling & Country Selection",
+      //   content: "Discuss your profile, goals, and budget to shortlist suitable European countries and universities."
+      // },
+      // {
+      //   title: "Step 2: Prepare Documents",
+      //   content: "Collect academic transcripts, certificates, passport copy, CV, SOP, recommendation letters, and test scores if required."
+      // },
+      // {
+      //   title: "Step 3: Apply to Universities",
+      //   content: "Submit online applications to selected universities with complete documentation."
+      // },
+      // {
+      //   title: "Step 4: Receive Offer & Arrange Finances",
+      //   content: "Receive admission offers, arrange tuition payment and financial proof as per embassy and university requirements."
+      // },
+      // {
+      //   title: "Step 5: Visa Application",
+      //   content: "Apply for the relevant country’s student visa with complete financial and academic documents."
+      // }
     ]
   }
   // ,

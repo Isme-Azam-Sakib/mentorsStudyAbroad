@@ -33,7 +33,7 @@ export default function SuccessStoriesPage() {
               {/* Left Column - Text and Buttons */}
               <div className="text-center lg:text-left order-2 lg:order-1">
                 <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-my-black mb-4 sm:mb-5 lg:mb-6 leading-tight">
-                  Real stories of <span className="text-my-accent relative">success</span> from our students who achieved their dreams of studying abroad.
+                  <span className="text-my-accent relative">Success stories</span> of students who made their study-abroad dreams come true
                 </h1>
 
                 <div className="flex flex-row gap-3 sm:gap-4 justify-center lg:justify-start">

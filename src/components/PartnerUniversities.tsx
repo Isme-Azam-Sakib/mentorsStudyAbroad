@@ -158,7 +158,6 @@ export function PartnerUniversities({
       if (typeof description === 'string') {
         return countryName ? description.replace('{country}', countryName) : description.replace('{country}', '');
       }
-      // If description is a ReactNode, return as is
       return description;
     }
     // Default description
