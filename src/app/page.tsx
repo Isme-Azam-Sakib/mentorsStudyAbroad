@@ -76,6 +76,7 @@ export default function HomePage() {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isCountryModalOpen, setIsCountryModalOpen] = useState(false);
+  const [testimonialImageErrors, setTestimonialImageErrors] = useState<Record<number, boolean>>({});
 
   const homepageStats = {
     universities: "200+",
@@ -163,6 +164,20 @@ export default function HomePage() {
 
   const prevTestimonial = () => {
     setCurrentTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+  };
+
+  // Helper function to get initials
+  const getInitials = (name: string) => {
+    if (!name || name.trim() === '') return '?';
+    const parts = name.trim().split(' ').filter(n => n.length > 0);
+    if (parts.length === 0) return '?';
+    if (parts.length === 1) return parts[0][0].toUpperCase();
+    return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+  };
+
+  // Handle image error for testimonials
+  const handleTestimonialImageError = (testimonialId: number) => {
+    setTestimonialImageErrors((prev) => ({ ...prev, [testimonialId]: true }));
   };
 
   return (
@@ -491,22 +506,19 @@ export default function HomePage() {
 
                           {/* Author Info */}
                           <div className="flex items-center gap-3 sm:gap-4">
-                            <div className="w-10 h-10 sm:w-11 sm:h-11 lg:w-12 lg:h-12 rounded-full bg-gray-200 flex items-center justify-center overflow-hidden flex-shrink-0">
-                              <LazyImage
-                                src={testimonial.image}
-                                alt={testimonial.name}
-                                className="w-full h-full object-cover"
-                                onError={(e) => {
-                                  // Fallback to initials if image fails to load
-                                  const target = e.target as HTMLImageElement;
-                                  target.style.display = 'none';
-                                  const parent = target.parentElement;
-                                  if (parent) {
-                                    parent.textContent = testimonial.name.split(' ').map(n => n[0]).join('');
-                                    parent.className = 'w-10 h-10 sm:w-11 sm:h-11 lg:w-12 lg:h-12 rounded-full bg-my-accent text-white flex items-center justify-center font-bold text-xs sm:text-sm';
-                                  }
-                                }}
-                              />
+                            <div className="w-10 h-10 sm:w-11 sm:h-11 lg:w-12 lg:h-12 rounded-full overflow-hidden flex-shrink-0">
+                              {testimonial.image && testimonial.image.trim() !== '' && !testimonialImageErrors[testimonial.id] ? (
+                                <LazyImage
+                                  src={testimonial.image}
+                                  alt={testimonial.name}
+                                  className="w-full h-full object-cover"
+                                  onError={() => handleTestimonialImageError(testimonial.id)}
+                                />
+                              ) : (
+                                <div className="w-10 h-10 sm:w-11 sm:h-11 lg:w-12 lg:h-12 rounded-full bg-my-accent text-white flex items-center justify-center font-bold text-xs sm:text-sm">
+                                  {getInitials(testimonial.name)}
+                                </div>
+                              )}
                             </div>
                             <div className="min-w-0 flex-1">
                               <h4 className="font-bold text-my-black text-sm sm:text-base truncate">{testimonial.name}</h4>
