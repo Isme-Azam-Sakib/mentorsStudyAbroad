@@ -6,6 +6,7 @@ export const API_CONFIG = {
   EVENTS: {
     GET_ACTIVE: process.env.NEXT_PUBLIC_EVENTS_ACTIVE_ENDPOINT || 'get-active-events',
     GET_BY_ID: process.env.NEXT_PUBLIC_EVENTS_BY_ID_ENDPOINT || 'get-event',
+    GET_GALLERY: process.env.NEXT_PUBLIC_EVENTS_GALLERY_ENDPOINT || 'get-event-gallery',
   },
   
   // Session Bookings API endpoints
@@ -29,4 +30,9 @@ export const getInquiryMessageApiUrl = (endpoint: keyof typeof API_CONFIG.INQUIR
 
 export const getConsultationRequestApiUrl = (endpoint: keyof typeof API_CONFIG.CONSULTATION_REQUEST = 'SUBMIT') => {
   return `${API_CONFIG.BASE_URL}${API_CONFIG.CONSULTATION_REQUEST[endpoint]}`;
+};
+
+// Gallery API helper
+export const getEventGalleryApiUrl = (eventId: number) => {
+  return `${API_CONFIG.BASE_URL}${API_CONFIG.EVENTS.GET_GALLERY}?eventId=${eventId}`;
 };

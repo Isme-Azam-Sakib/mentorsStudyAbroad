@@ -3,19 +3,32 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { usePathname } from "next/navigation";
+import { useEffect } from "react";
 import logoAlt from "../app/public/logo-alt.png";
 
 export default function Footer() {
   const [email, setEmail] = useState("");
+  const pathname = usePathname();
+
+  // Scroll to top when route changes
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [pathname]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Handle newsletter signup
-    console.log("Newsletter signup:", email);
+    // Note: Implement newsletter signup API call here
   };
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
+  };
+
+  const handleLinkClick = () => {
+    // Scroll to top immediately when clicking footer links
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
@@ -36,12 +49,12 @@ export default function Footer() {
             <div>
               <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-3 sm:mb-1">Important Links</h3>
               <ul className="space-y-2 text-gray-700">
-                <li><Link href="/" className="hover:text-black text-sm sm:text-base">Home</Link></li>
-                <li><Link href="/about" className="hover:text-black text-sm sm:text-base">About</Link></li>
-                <li><Link href="/success-stories" className="hover:text-black text-sm sm:text-base">Success Stories</Link></li>
-                <li><Link href="/countries" className="hover:text-black text-sm sm:text-base">Top Universities</Link></li>
-                {/* <li><Link href="/services" className="hover:text-black text-sm sm:text-base">Visa Processing</Link></li>
-                <li><Link href="/resources/sop" className="hover:text-black text-sm sm:text-base">How to write SOP</Link></li> */}
+                <li><Link href="/" onClick={handleLinkClick} className="hover:text-black text-sm sm:text-base">Home</Link></li>
+                <li><Link href="/about" onClick={handleLinkClick} className="hover:text-black text-sm sm:text-base">About</Link></li>
+                <li><Link href="/success-stories" onClick={handleLinkClick} className="hover:text-black text-sm sm:text-base">Success Stories</Link></li>
+                <li><Link href="/countries" onClick={handleLinkClick} className="hover:text-black text-sm sm:text-base">Top Universities</Link></li>
+                {/* <li><Link href="/services" onClick={handleLinkClick} className="hover:text-black text-sm sm:text-base">Visa Processing</Link></li>
+                <li><Link href="/resources/sop" onClick={handleLinkClick} className="hover:text-black text-sm sm:text-base">How to write SOP</Link></li> */}
               </ul>
             </div>
 

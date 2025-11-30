@@ -253,7 +253,7 @@ export function PartnerUniversities({
         {universities.some((uni) => uni.partnershipType !== "direct") && (  
           <div className="mt-6 sm:mt-8 text-left">
             <p className="text-sm sm:text-base text-gray-600">
-              <span className="text-my-accent">*</span> {asteriskNote || "Indicates partner universities that are not direct partners"}
+              <span className="text-my-accent">*</span> {asteriskNote || "Denotes partnership via INTO/ECA/Navitas/UP Education"}
             </p>
           </div>
         )}

@@ -5,14 +5,10 @@ import { AdmissionProcess } from '../../../components/AdmissionProcess';
 import { ProcessCard } from '@/components/ProcessCard';
 import { ContactForm } from '@/components/ContactForm';
 import { CountryStats } from '@/components/CountryStats';
-import { UniversitiesSection } from '@/components/UniversitiesSection';
 import { VideoSection } from '@/components/VideoSection';
 import { ClientOnly } from '@/components/ClientOnly';
 import { useBrowserExtensionFix } from '@/hooks/useBrowserExtensionFix';
 import LazySection from '@/components/LazySection';
-import LazyImage from '@/components/LazyImage';
-import PageLoader from '@/components/PageLoader';
-import { Button } from '@/components/Button';
 import { StudyAbroadModal } from '@/components/StudyAbroadModal';
 import {
   AustraliaVisaSuccess,
@@ -62,7 +58,7 @@ export default function CountryPageClient({ country, countryKey }: CountryPageCl
     if (typeof window === 'undefined' || !isMounted) return;
 
     const hash = window.location.hash.substring(1);
-    
+
     if (hash === 'admission-process' && admissionProcessRef.current) {
       // Small delay to ensure page is fully loaded
       setTimeout(() => {
@@ -132,10 +128,6 @@ export default function CountryPageClient({ country, countryKey }: CountryPageCl
 
   return (
     <>
-      {/* Page Loader */}
-      {/* <PageLoader onComplete={() => setIsPageLoaded(true)} /> */}
-
-      {/* Hero Section */}
       <LazySection delay={0.2}>
         <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 mt-16 sm:my-24 lg:my-32 pt-8">
           <div
@@ -158,19 +150,11 @@ export default function CountryPageClient({ country, countryKey }: CountryPageCl
               aria-hidden="true"
             />
 
-            {/* Red Gradient Overlay on Left Side */}
-            <div 
-              className="absolute inset-0 z-10"
-              style={{
-                background: 'linear-gradient(to right, rgba(220, 38, 38, 0.9) 0%, rgba(220, 38, 38, 0.85) 35%, rgba(220, 38, 38, 0.5) 45%, rgba(220, 38, 38, 0.2) 55%, transparent 65%)'
-              }}
-            />
-
             {/* Hero Content */}
             <div className="absolute inset-0 z-20 flex items-center">
               <div className="px-6 sm:px-8 lg:px-12 py-12 sm:py-16 lg:py-20 w-full lg:w-3/5">
                 {/* Country Name */}
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-3 sm:mb-4 lg:mb-5 leading-none">
+                <h1 className="text-[50px] sm:text-[50px] lg:text-[90px] xl:text-[100px] font-bold text-white mb-3 sm:mb-4 lg:mb-5 leading-none">
                   {country.name}
                 </h1>
 
@@ -182,13 +166,13 @@ export default function CountryPageClient({ country, countryKey }: CountryPageCl
                 {/* Buttons - Horizontal Layout */}
                 <div className="flex flex-row gap-3 sm:gap-4">
                   <Link href="/contact">
-                    <button className="bg-white text-black px-6 py-2 sm:px-8 sm:py-4 rounded-full hover:bg-gray-100 transition-all duration-300 text-sm sm:text-base font-semibold flex items-center justify-center gap-2 sm:gap-3">
+                    <button className="bg-white text-black px-6 py-2 sm:px-8 sm:py-4 rounded-full hover:bg-gray-100 transition-all duration-300 text-sm sm:text-base font-semibold flex items-center justify-center gap-2 sm:gap-3 hover:text-my-white hover:bg-my-black">
                       <span>Free expert consultation</span>
                       <i className="fi fi-sr-meeting-alt"></i>
                     </button>
                   </Link>
 
-                  <button className="bg-black text-white px-6 py-2 sm:px-8 sm:py-4 rounded-full hover:bg-gray-800 transition-all duration-300 text-sm sm:text-base font-semibold flex items-center justify-center gap-2 sm:gap-3">
+                  <button className="bg-black text-white px-6 py-2 sm:px-8 sm:py-4 rounded-full hover:bg-gray-800 transition-all duration-300 text-sm sm:text-base font-semibold flex items-center justify-center gap-2 sm:gap-3 hover:text-my-black hover:bg-my-white">
                     <span>Download Brochure</span>
                     <i className="fi fi-sr-file-pdf"></i>
                   </button>
@@ -296,7 +280,6 @@ export default function CountryPageClient({ country, countryKey }: CountryPageCl
                 Major <span className="text-my-accent">Admission Intakes</span> in {country.name}
               </>
             }
-            // postGraduateSemesters={countriesData[countryKey]?.admissionIntake.postGraduate || []}
             underGraduateSemesters={countriesData[countryKey]?.admissionIntake.underGraduate || []}
           />
 
@@ -308,7 +291,7 @@ export default function CountryPageClient({ country, countryKey }: CountryPageCl
           {/* Partner Universities Section */}
           <div id="partner-universities" ref={partnerUniversitiesRef}>
             <LazySection delay={0.2}>
-              <PartnerUniversities 
+              <PartnerUniversities
                 countryKey={countryKey}
                 asteriskNote={countriesData[countryKey]?.partnerUniversitiesNote}
               />
@@ -345,14 +328,13 @@ export default function CountryPageClient({ country, countryKey }: CountryPageCl
         </LazySection>
       )}
 
-      {/* Europe-specific content */}
       {isEurope && (
         <LazySection delay={0.2}>
           <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 py-12 sm:py-16 lg:py-20 w-full flex justify-center">
             <div className="w-full lg:w-2/3 text-center">
-            <h2 className="text-my-black lg:text-[30px] sm:text-lg lg:text-xl leading-relaxed text-center">
-              Different countries have different processes. Our counselors will guide you accordingly.
-            </h2>
+              <h2 className="text-my-black lg:text-[30px] sm:text-lg lg:text-xl leading-relaxed text-center">
+                Different countries have different processes. Our counselors will guide you accordingly.
+              </h2>
             </div>
           </div>
         </LazySection>

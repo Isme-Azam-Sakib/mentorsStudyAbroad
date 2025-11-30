@@ -4,23 +4,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Lottie from 'lottie-react';
 import { getEventsApiUrl } from '@/lib/config';
-
-// API Response Types - Only fields actually used in the component
-type ApiEvent = {
-    id: number;
-    title: string;
-    description: string;
-    image: string;
-    location: string;
-    date: string;
-    time: string;
-};
-
-type ApiResponse = {
-    success: boolean;
-    message: string;
-    data: ApiEvent[];
-};
+import { ApiEvent, ApiResponse } from '@/lib/events-api-types';
 
 type FilterableEvent = {
     id: number;

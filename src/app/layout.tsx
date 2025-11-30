@@ -7,39 +7,66 @@ import { ContactFormSectionButton } from "../components/ContactFormSectionButton
 import Script from "next/script";
 import type { Metadata } from "next";
 
+// Get the base URL from environment or default to the production domain
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.studyabroadmentors.com';
+
 export const metadata: Metadata = {
+  metadataBase: new URL(baseUrl),
   title: {
-    default: "Mentors’ Study Abroad | Study Abroad Counselling & Visa Experts",
-    template: "%s | Mentors’ Study Abroad",
+    default: "Mentors' Study Abroad | Study Abroad Counselling & Visa Experts",
+    template: "%s | Mentors' Study Abroad",
   },
   description:
-    "Achieve your global dreams with Mentors’ Study Abroad. Expert counselling, university selection, admission support and hassle-free visa processing for top study destinations worldwide.",
+    "Achieve your global dreams with Mentors' Study Abroad. Expert counselling, university selection, admission support and hassle-free visa processing for top study destinations worldwide.",
+  keywords: [
+    "study abroad",
+    "study abroad counselling",
+    "visa experts",
+    "university selection",
+    "study in Australia",
+    "study in USA",
+    "study in UK",
+    "study in Canada",
+    "study abroad Bangladesh",
+    "Mentors Study Abroad"
+  ],
+  authors: [{ name: "Mentors' Study Abroad" }],
+  creator: "Mentors' Study Abroad",
+  publisher: "Mentors' Study Abroad",
   icons: {
-    icon: "/favicon.ico",
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon.ico", type: "image/x-icon" }
+    ],
     shortcut: "/favicon.ico",
+    apple: "/favicon.ico",
   },
+  manifest: "/favicon.ico",
   openGraph: {
-    title: "Mentors’ Study Abroad | Study Abroad Counselling & Visa Experts",
+    title: "Mentors' Study Abroad | Study Abroad Counselling & Visa Experts",
     description:
-      "Get end-to-end guidance for admissions, visas and scholarships to top universities worldwide with Mentors’ Study Abroad.",
-    url: "/",
-    siteName: "Mentors’ Study Abroad",
+      "Get end-to-end guidance for admissions, visas and scholarships to top universities worldwide with Mentors' Study Abroad.",
+    url: baseUrl,
+    siteName: "Mentors' Study Abroad",
     type: "website",
+    locale: "en_US",
     images: [
       {
-        url: "/hero-home.png",
+        url: `${baseUrl}/hero-home.png`,
         width: 1200,
         height: 630,
-        alt: "Mentors’ Study Abroad - Achieve your global dreams",
+        alt: "Mentors' Study Abroad - Achieve your global dreams",
+        type: "image/png",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Mentors’ Study Abroad | Study Abroad Counselling & Visa Experts",
+    title: "Mentors' Study Abroad | Study Abroad Counselling & Visa Experts",
     description:
       "Personalised guidance for university applications, admissions and visa processing to help you study abroad confidently.",
-    images: ["/hero-home.png"],
+    images: [`${baseUrl}/hero-home.png`],
+    creator: "@MentorsStudyAbroad",
   },
   robots: {
     index: true,
@@ -53,7 +80,11 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: "/",
+    canonical: baseUrl,
+  },
+  verification: {
+    // Add Google Search Console verification if you have it
+    // google: "your-google-verification-code",
   },
 };
 
@@ -67,6 +98,12 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning={true}>
       <head>
+        {/* Explicit favicon links for better compatibility */}
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+        <link rel="shortcut icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" href="/favicon.ico" />
+        
         <Script id="google-tag-manager" strategy="beforeInteractive">
           {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],

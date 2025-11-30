@@ -161,7 +161,6 @@ export function ContactForm({
     if (typeof window !== 'undefined' && formData.fullName && formData.email && formData.mobile) {
       const validation = validateFormData(formData as unknown as { [key: string]: unknown });
       if (!validation.isValid) {
-        console.error('Form validation errors:', validation.errors);
         const errorMessages = Object.values(validation.errors).filter(msg => msg) as string[];
         const formattedErrors = errorMessages.length > 1
           ? errorMessages.map((err, idx) => `${idx + 1}. ${err}`).join('\n')
@@ -187,8 +186,6 @@ export function ContactForm({
   const handleSubmit = () => {
     try {
       const payload = getFormPayload();
-      console.log('Form Submission Payload:', JSON.stringify(payload, null, 2));
-      
       handleApiSuccess(payload);
     } catch (error) {
       handleApiError(error);

@@ -5,24 +5,9 @@ import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import Lottie from 'lottie-react';
 import { getEventsApiUrl } from '@/lib/config';
+import { ApiEvent, ApiResponse } from '@/lib/events-api-types';
 import FilterableEventsSection from '@/components/FilterableEventsSection';
 import LazySection from '@/components/LazySection';
-
-type ApiEvent = {
-    id: number;
-    title: string;
-    description: string;
-    image: string;
-    location: string;
-    date: string;
-    time: string;
-};
-
-type ApiResponse = {
-    success: boolean;
-    message: string;
-    data: ApiEvent[];
-};
 
 // Component Types
 type EventDetails = {

@@ -8,10 +8,10 @@ import FilterableEventsSection from '@/components/FilterableEventsSection';
 import LazySection from '@/components/LazySection';
 import { Button } from '@/components/Button';
 import { StudyAbroadModal } from '@/components/StudyAbroadModal';
-import GalleryLightbox from '@/components/GalleryLightbox';
+import FullScreenGallery, { GalleryImage } from '@/components/FullScreenGallery';
 
 // Gallery Images Data
-const galleryImages = [
+const galleryImages: GalleryImage[] = [
     { id: 1, src: "/gallery/Gallery_1.jpg", alt: "Gallery Image 1" },
     { id: 2, src: "/gallery/Gallery_2.jpg", alt: "Gallery Image 2" },
     { id: 3, src: "/gallery/Gallery_3.jpg", alt: "Gallery Image 3" },
@@ -27,6 +27,8 @@ const galleryImages = [
 
 export default function EventsPage() {
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isGalleryOpen, setIsGalleryOpen] = useState(false);
+    const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
     return (
         <>
@@ -106,121 +108,35 @@ export default function EventsPage() {
                             </h2>
                         </div>
 
-                        {/* Masonry Grid with Lightbox - 2 columns mobile, 3 columns tablet+ */}
-                        <GalleryLightbox images={galleryImages}>
-                            <div className="columns-2 md:columns-3 gap-3 sm:gap-4 md:gap-6 space-y-3 sm:space-y-4 md:space-y-6">
-                                {/* All Gallery Images */}
-                                <div className="break-inside-avoid mb-3 sm:mb-4 md:mb-6">
-                                    <div className="overflow-hidden rounded-xl sm:rounded-2xl group">
+                        {/* Masonry Grid with FullScreenGallery - 2 columns mobile, 3 columns tablet+ */}
+                        <div className="columns-2 md:columns-3 gap-3 sm:gap-4 md:gap-6 space-y-3 sm:space-y-4 md:space-y-6">
+                            {/* All Gallery Images */}
+                            {galleryImages.map((image, index) => (
+                                <div key={image.id} className="break-inside-avoid mb-3 sm:mb-4 md:mb-6">
+                                    <div 
+                                        className="overflow-hidden rounded-xl sm:rounded-2xl group cursor-pointer"
+                                        onClick={() => {
+                                            setSelectedImageIndex(index);
+                                            setIsGalleryOpen(true);
+                                        }}
+                                    >
                                         <img
-                                            src="/gallery/Gallery_1.jpg"
-                                            alt="Gallery 1"
+                                            src={image.src}
+                                            alt={image.alt || `Gallery ${index + 1}`}
                                             className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-[1.02]"
                                         />
                                     </div>
                                 </div>
-
-                                <div className="break-inside-avoid mb-3 sm:mb-4 md:mb-6">
-                                    <div className="overflow-hidden rounded-xl sm:rounded-2xl group">
-                                        <img
-                                            src="/gallery/Gallery_2.jpg"
-                                            alt="Gallery 2"
-                                            className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-[1.02]"
-                                        />
-                                    </div>
-                                </div>
-
-                                <div className="break-inside-avoid mb-3 sm:mb-4 md:mb-6">
-                                    <div className="overflow-hidden rounded-xl sm:rounded-2xl group">
-                                        <img
-                                            src="/gallery/Gallery_3.jpg"
-                                            alt="Gallery 3"
-                                            className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-[1.02]"
-                                        />
-                                    </div>
-                                </div>
-
-                                <div className="break-inside-avoid mb-3 sm:mb-4 md:mb-6">
-                                    <div className="overflow-hidden rounded-xl sm:rounded-2xl group">
-                                        <img
-                                            src="/gallery/Gallery_4.jpg"
-                                            alt="Gallery 4"
-                                            className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-[1.02]"
-                                        />
-                                    </div>
-                                </div>
-
-                                <div className="break-inside-avoid mb-3 sm:mb-4 md:mb-6">
-                                    <div className="overflow-hidden rounded-xl sm:rounded-2xl group">
-                                        <img
-                                            src="/gallery/Gallery_5.jpg"
-                                            alt="Gallery 5"
-                                            className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-[1.02]"
-                                        />
-                                    </div>
-                                </div>
-
-                                <div className="break-inside-avoid mb-3 sm:mb-4 md:mb-6">
-                                    <div className="overflow-hidden rounded-xl sm:rounded-2xl group">
-                                        <img
-                                            src="/gallery/Gallery_6.jpg"
-                                            alt="Gallery 6"
-                                            className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-[1.02]"
-                                        />
-                                    </div>
-                                </div>
-
-                                <div className="break-inside-avoid mb-3 sm:mb-4 md:mb-6">
-                                    <div className="overflow-hidden rounded-xl sm:rounded-2xl group">
-                                        <img
-                                            src="/gallery/Gallery_7.jpg"
-                                            alt="Gallery 7"
-                                            className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-[1.02]"
-                                        />
-                                    </div>
-                                </div>
-
-                                <div className="break-inside-avoid mb-3 sm:mb-4 md:mb-6">
-                                    <div className="overflow-hidden rounded-xl sm:rounded-2xl group">
-                                        <img
-                                            src="/gallery/Gallery_8.jpg"
-                                            alt="Gallery 8"
-                                            className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-[1.02]"
-                                        />
-                                    </div>
-                                </div>
-
-                                <div className="break-inside-avoid mb-3 sm:mb-4 md:mb-6">
-                                    <div className="overflow-hidden rounded-xl sm:rounded-2xl group">
-                                        <img
-                                            src="/gallery/Gallery_9.jpg"
-                                            alt="Gallery 9"
-                                            className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-[1.02]"
-                                        />
-                                    </div>
-                                </div>
-
-                                <div className="break-inside-avoid mb-3 sm:mb-4 md:mb-6">
-                                    <div className="overflow-hidden rounded-xl sm:rounded-2xl group">
-                                        <img
-                                            src="/gallery/Gallery_10.jpg"
-                                            alt="Gallery 10"
-                                            className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-[1.02]"
-                                        />
-                                    </div>
-                                </div>
-
-                                <div className="break-inside-avoid mb-3 sm:mb-4 md:mb-6">
-                                    <div className="overflow-hidden rounded-xl sm:rounded-2xl group">
-                                        <img
-                                            src="/gallery/Gallery_11.jpg"
-                                            alt="Gallery 11"
-                                            className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-[1.02]"
-                                        />
-                                    </div>
-                                </div>
-                            </div>
-                        </GalleryLightbox>
+                            ))}
+                        </div>
+                        
+                        {/* FullScreenGallery Component */}
+                        <FullScreenGallery
+                            images={galleryImages}
+                            initialIndex={selectedImageIndex}
+                            isOpen={isGalleryOpen}
+                            onClose={() => setIsGalleryOpen(false)}
+                        />
 
                         {/* <div className="flex justify-center mt-6 sm:mt-8">
                             <Link href="/gallery" className="rounded-full border border-my-black px-4 sm:px-6 py-2 sm:py-3 hover:bg-my-black hover:text-white transition-colors font-semibold text-sm sm:text-base">

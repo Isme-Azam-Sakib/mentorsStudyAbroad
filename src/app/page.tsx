@@ -547,10 +547,6 @@ export default function HomePage() {
       </LazySection>
 
 
-      {/* events section */}
-
-
-
       {/* Video Section */}
       <LazySection delay={0.2}>
         <ClientOnly>

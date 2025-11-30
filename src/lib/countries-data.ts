@@ -52,20 +52,24 @@ export const countriesData: Record<string, Country> = {
  
     whyChoose: [
       { 
-        title: "Top-Ranked Universities", 
-        content: "Learn from prestigious institutions recognized worldwide for academic excellence and research innovation." 
+        title: "Highest number of top-ranked universities globally", 
+        content: "The widest range of quality institutions in the world." 
       },
       { 
-        title: "Cultural Diversity & Global Network", 
-        content: "Join a vibrant international community and build lifelong connections across the globe." 
+        title: "Unmatched academic flexibility", 
+        content: "Ability to switch majors, take interdisciplinary courses, and customize degree plans." 
       },
       { 
-        title: "Abundant Scholarships", 
-        content: "Benefit from a wide range of scholarships designed to make quality education more affordable." 
+        title: "Cutting-edge innovation", 
+        content: "Home to Silicon Valley, NASA, major biomedical hubs, ideal for tech, engineering, and research-driven students." 
       },
       { 
-        title: "Flexible Programs & Work Opportunities", 
-        content: "Choose from adaptable study pathways while gaining valuable work experience during and after your studies." 
+        title: "Massive scholarship availability", 
+        content: "Especially at liberal arts colleges and private universities." 
+      },
+      { 
+        title: "Diverse campus culture", 
+        content: "Exposure to global peers, ideas, and extracurricular opportunities." 
       }
     ],
     popularSubjects: [1, 9, 2, 10, 11],
@@ -116,20 +120,24 @@ export const countriesData: Record<string, Country> = {
  
     whyChoose: [
       { 
-        title: "Scholarship Opportunities", 
-        content: "Access a variety of scholarships that make studying abroad more affordable and rewarding." 
+        title: "Shorter degree duration", 
+        content: "3-year bachelor's and 1-year master's mean lower overall cost." 
       },
       { 
-        title: "Post-Graduation Work Permit", 
-        content: "Build your career with international work experience after completing your degree." 
+        title: "Globally recognized qualifications", 
+        content: "UK degrees carry strong prestige, especially in business, law, engineering, and humanities." 
       },
       { 
-        title: "Part-Time Job Opportunities During Study", 
-        content: "Earn while you learn with flexible part-time work options to support your living expenses." 
+        title: "Strong academic tradition", 
+        content: "Critical thinking, research skills, and analytical writing are deeply embedded." 
       },
       { 
-        title: "Fastest Visa Process with High Visa Grant Ratio", 
-        content: "Benefit from a smooth, efficient visa process with a strong success rate for international students." 
+        title: "Excellent student support services", 
+        content: "Universities offer mental health, academic writing, and career coaching support." 
+      },
+      { 
+        title: "Cultural diversity & easy travel", 
+        content: "Rich history, plus Europe is easily accessible." 
       }
     ],
     popularSubjects: [3, 12, 1, 2, 13],
@@ -171,20 +179,20 @@ export const countriesData: Record<string, Country> = {
    
     whyChoose: [
       { 
-        title: "World-Class Education", 
-        content: "Study at globally recognized universities known for academic excellence and innovative teaching."
+        title: "Globally respected universities", 
+        content: "A high number of world-class institutions."
       },
       { 
-        title: "Wide Variety of Courses", 
-        content: "Choose from a broad range of programs tailored to your interests and career goals."
+        title: "English-speaking environment", 
+        content: "Smooth academic and cultural transition."
       },
       { 
-        title: "Friendly and Inclusive Culture", 
-        content: "Experience a welcoming environment that embraces diversity and supports international students."
+        title: "Friendly, close-knit society", 
+        content: "Irish campuses are known for their warmth and community vibe."
       },
       { 
-        title: "Opportunities for Part-Time Work", 
-        content: "Work alongside your studies to gain practical experience and help cover living expenses."
+        title: "Strong links to industry", 
+        content: "Curriculum often tied closely with industry needs and real-world projects."
       }
     ],
     popularSubjects: [15, 16, 3, 2, 17],
@@ -252,20 +260,24 @@ export const countriesData: Record<string, Country> = {
   
     whyChoose: [
       { 
-        title: "Renowned Colleges & Universities", 
-        content: "Study at globally recognized institutions known for quality education and strong industry links." 
+        title: "Practical, industry-aligned learning", 
+        content: "Australian universities emphasize hands-on learning, internships, and real-world projects." 
       },
       { 
-        title: "Diverse and Welcoming Culture", 
-        content: "Experience a vibrant multicultural environment that makes international students feel at home." 
+        title: "High employability reputation", 
+        content: "Australian degrees are globally valued across business, IT, engineering, nursing, and more." 
       },
       { 
-        title: "Scholarship Opportunities", 
-        content: "Access a wide range of scholarships and financial aid to support your education journey." 
+        title: "Safe, multicultural cities", 
+        content: "Welcoming environment with strong Bangladeshi communities for smoother adaptation." 
       },
       { 
-        title: "Post-Study Work Permit", 
-        content: "Gain valuable international work experience with generous post-study work opportunities." 
+        title: "Strong research output", 
+        content: "World-class research facilities and opportunities to work with leading academics." 
+      },
+      { 
+        title: "Flexible education pathways", 
+        content: "Foundation, diploma-to-degree, and vocational pathways for all academic backgrounds." 
       }
     ],
     popularSubjects: [1, 2, 3, 4, 5, 6],
@@ -330,23 +342,27 @@ export const countriesData: Record<string, Country> = {
     name: "Canada",
     description: "A welcoming, multicultural destination offering high-quality education and strong post-study career pathways.",
     heroImage: "/country-heros/canada.png",
-    stats: { universities: "430+", annualTuitionFees: "-", postStudyWork: "3 years" },
+    stats: { universities: "250+", annualTuitionFees: "CAD 15K - 45K", postStudyWork: "3 years" },
     whyChoose: [
       { 
-        title: "Affordable Tuition Fees", 
-        content: "Study at globally recognized institutions without the heavy financial burden." 
+        title: "Affordable compared to other Western countries", 
+        content: "Lower tuition and living costs." 
       },
       { 
-        title: "Easy Visa Process", 
-        content: "Enjoy a straightforward and student-friendly visa application procedure." 
+        title: "High-quality public education system", 
+        content: "Most universities are publicly funded, ensuring consistent quality." 
       },
       { 
-        title: "Post-Graduation Work Permit", 
-        content: "Gain practical international work experience after completing your studies." 
+        title: "Student-friendly environment", 
+        content: "Known worldwide for safety, inclusivity, and international student support." 
       },
       { 
-        title: "Pathway Programs", 
-        content: "Access flexible entry routes that help you meet admission requirements and transition smoothly into your chosen degree." 
+        title: "Co-op programs", 
+        content: "Integrated work placements in fields like engineering, IT, and business." 
+      },
+      { 
+        title: "Clear academic progression routes", 
+        content: "College-to-university pathways for students with varied GPA profiles." 
       }
     ],
     popularSubjects: [1, 3, 2, 7, 8],
@@ -406,24 +422,28 @@ export const countriesData: Record<string, Country> = {
     name: "Malaysia",
     description: "Discover globally recognized, affordable education in one of Asia’s fastest-growing academic hubs.",
     heroImage: "/country-heros/malaysia.png",
-    stats: { universities: "18", annualTuitionFees: "-", postStudyWork: "-" },
+    stats: { universities: "18", annualTuitionFees: "RM 28,000 - 137,251", postStudyWork: "" },
 
     whyChoose: [
       { 
-        title: "Affordable Education", 
-        content: "Benefit from low tuition fees and living costs compared to many other destinations." 
+        title: "Budget-friendly option", 
+        content: "Low tuition and affordable living costs with good-quality education." 
       },
       { 
-        title: "Smooth Visa Process", 
-        content: "High visa success rate, with acceptance of study gaps, GED, and even past visa refusals." 
+        title: "World-ranked branch campuses", 
+        content: "Campuses of Monash, Nottingham, Curtin, and others." 
       },
       { 
-        title: "Global Recognition", 
-        content: "Earn degrees recognized worldwide with strong academic standards." 
+        title: "Cultural familiarity", 
+        content: "Halal food everywhere, friendly culture, and a comfortable environment for Bangladeshi students." 
       },
       { 
-        title: "Safe & Multicultural", 
-        content: "Experience a welcoming, diverse, and secure environment for international students." 
+        title: "Strategic hub for Asia", 
+        content: "Great exposure to Southeast Asian markets and industries." 
+      },
+      { 
+        title: "Flexible entry pathways", 
+        content: "Foundation and diploma programs for students with varied academic readiness." 
       }
     ],
     popularSubjects: [3, 1, 2, 18, 19, 20],
@@ -480,27 +500,31 @@ export const countriesData: Record<string, Country> = {
     description: "Learn in a safe, inclusive environment that embraces lifelong learning and real-world experience.",
     heroImage: "/country-heros/newzealand.png",
     stats: {
-      universities: "14",
+      universities: "08",
       annualTuitionFees: "NZD 22K – 45K",
       postStudyWork: "1-3 years"
     },
 
     whyChoose: [
       {
-        title: "Safe & Peaceful Living",
-        content: "Enjoy life in a welcoming country known for its safety, stability, and high living standards."
+        title: "High-quality, research-driven universities",
+        content: "All eight NZ universities rank in the top global tiers."
       },
       {
-        title: "Globally Recognized Universities",
-        content: "Study at top-ranked institutions that are respected worldwide for academic excellence."
+        title: "Safe, peaceful environment",
+        content: "One of the safest countries in the world with a relaxed lifestyle."
       },
       {
-        title: "Post-Study Work Opportunities",
-        content: "Build your career with up to 3 years of post-study work options after graduation."
+        title: "Strong focus on sustainability and innovation",
+        content: "Excellent for environmental science, agriculture, engineering, and biotech."
       },
       {
-        title: "Scholarships for International Students",
-        content: "Benefit from a variety of scholarships that make quality education more affordable."
+        title: "Small class sizes",
+        content: "More personalized learning and direct interaction with professors."
+      },
+      {
+        title: "Excellent for outdoor and balanced living",
+        content: "Nature, adventure, and work-life balance appeal to many students."
       }
     ],
     popularSubjects: [1, 3, 2, 4, 14],

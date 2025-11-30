@@ -64,7 +64,7 @@ const countries: CountryCard[] = [
     id: 'europe',
     name: 'Europe',
     displayName: 'Europe',
-    image: '/countries/Europe.png',
+    image: '/countries/europee.png',
     href: '/countries/europe'
   }
 ];
