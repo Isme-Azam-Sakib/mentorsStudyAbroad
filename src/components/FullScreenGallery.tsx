@@ -211,7 +211,7 @@ const FullScreenGallery: React.FC<FullScreenGalleryProps> = ({
   // Note: Thumbnail strip scrolls naturally - we detect scroll position via scroll event
   // and update the active image based on which thumbnail is centered
   
-  const handleDragEnd = (e: any, { offset, velocity }: PanInfo) => {
+  const handleDragEnd = (_e: MouseEvent | TouchEvent | PointerEvent, { offset, velocity }: PanInfo) => {
     const swipeConfidenceThreshold = 10000;
     const swipePower = Math.abs(offset.y) * velocity.y;
     if (swipePower < -swipeConfidenceThreshold) {
