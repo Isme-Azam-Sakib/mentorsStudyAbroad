@@ -67,7 +67,15 @@ export default function GalleryPage() {
 
             {/* Mentors&apos; Videos Section */}
             <ClientOnly>
-                <VideoSection />
+                <VideoSection
+                title={
+                    <>
+                        Our <span className="text-my-accent relative">Podcasts</span>
+                    </>
+                }
+                subtitle="Watch our informative podcasts and find our more about studying abroad"
+                className="text-left"
+                />
             </ClientOnly>
 
 

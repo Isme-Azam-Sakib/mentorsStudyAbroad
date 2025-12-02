@@ -9,10 +9,13 @@ export type ApiEvent = {
   location: string;
   date: string;
   time: string;
-  // Optional gallery fields (for hybrid approach)
-  hasGallery?: boolean;           // Quick check if gallery exists
-  galleryThumbnails?: string[];     // Exactly 3 images for album card
-  galleryImageCount?: number;       // Total count for display
+  meta_title?: string;
+  meta_description?: string;
+  event_galleries?: string[]; // Array of gallery image URLs from the API
+  
+  hasGallery?: boolean;           
+  galleryThumbnails?: string[];   
+  galleryImageCount?: number;      
 };
 
 export type ApiResponse = {

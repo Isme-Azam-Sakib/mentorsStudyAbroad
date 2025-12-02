@@ -9,6 +9,12 @@ const nextConfig: NextConfig = {
         port: '',
         pathname: '/vi/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'cms.mentors.com.bd',
+        port: '',
+        pathname: '/**',
+      },
     ],
   },
 };

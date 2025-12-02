@@ -64,7 +64,7 @@ const defaultAlbums: Album[] = [
   }
 ];
 
-// Internal Album Card Component
+// Album Card Component
 function AlbumCard({ album }: { album: Album }) {
   const [image1, image2, image3] = album.images;
 
@@ -197,16 +197,16 @@ const transformEventsToAlbums = (events: ApiEvent[]): Album[] => {
   
   return events
     .filter(event => {
-      // Only past events with galleries
+      // Only past events with galleries (using event_galleries from API)
       const eventDate = new Date(event.date);
       const isPast = eventDate.getTime() < currentTime;
-      return isPast && event.hasGallery && event.galleryThumbnails && event.galleryThumbnails.length >= 3;
+      return isPast && event.event_galleries && event.event_galleries.length >= 3;
     })
     .map(event => ({
       id: event.id,
       title: event.title,
-      images: event.galleryThumbnails!.slice(0, 3), // Use first 3 thumbnails
-      imageCount: event.galleryImageCount,
+      images: event.event_galleries!.slice(0, 3), // Use first 3 images from event_galleries
+      imageCount: event.event_galleries!.length, // Use actual count from event_galleries
       date: formatAlbumDate(event.date),
       eventId: event.id,
     }))
@@ -254,7 +254,7 @@ export default function BrowseAlbums({ albums, maxAlbums = 3 }: BrowseAlbumsProp
   };
 
   return (
-    <section className="py-12 sm:py-16 lg:py-20 bg-my-white">
+    <section className="py-6 sm:py-8 lg:py-8 bg-my-white">
       {/* SVG Definitions for Clip Paths */}
       <svg width="0" height="0" className="absolute">
         <defs>
@@ -272,13 +272,13 @@ export default function BrowseAlbums({ albums, maxAlbums = 3 }: BrowseAlbumsProp
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold">
             Browse <span className="text-my-accent">Albums</span>
           </h2>
-          <Link
+          {/* <Link
             href="/gallery"
             className="flex items-center gap-2 text-my-black hover:text-my-accent transition-colors duration-300 font-medium text-sm sm:text-base"
           >
             <span>View All</span>
             <i className="fi fi-sr-arrow-right text-xs sm:text-sm"></i>
-          </Link>
+          </Link> */}
         </div>
 
         {/* Loading State */}

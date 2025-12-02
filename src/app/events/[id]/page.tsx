@@ -8,6 +8,8 @@ import { getEventsApiUrl } from '@/lib/config';
 import { ApiEvent, ApiResponse } from '@/lib/events-api-types';
 import FilterableEventsSection from '@/components/FilterableEventsSection';
 import LazySection from '@/components/LazySection';
+import FullScreenGallery, { GalleryImage } from '@/components/FullScreenGallery';
+import EventDetailsSkeleton from '@/components/EventDetailsSkeleton';
 
 // Component Types
 type EventDetails = {
@@ -19,6 +21,7 @@ type EventDetails = {
     datetimeISO: string;
     datetimeDisplay: string;
 };
+
 
 // API Service
 const fetchEvents = async (): Promise<ApiEvent[]> => {
@@ -119,6 +122,10 @@ export default function EventDetailsPage() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const [calendarAnimation, setCalendarAnimation] = useState<object | null>(null);
+    
+    // Gallery state
+    const [isGalleryOpen, setIsGalleryOpen] = useState(false);
+    const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
     // Set current time on client mount to avoid hydration mismatch
     useEffect(() => {
@@ -164,6 +171,83 @@ export default function EventDetailsPage() {
         return apiEvent ? transformApiEventToEventDetails(apiEvent) : null;
     }, [events, id]);
 
+    const apiEvent = useMemo(() => {
+        return events.find(e => e.id === id);
+    }, [events, id]);
+
+    useEffect(() => {
+        if (apiEvent) {
+            const metaTitle = apiEvent.meta_title || apiEvent.title;
+            const metaDescription = apiEvent.meta_description || apiEvent.description;
+
+            // Update document title
+            document.title = metaTitle;
+
+            // Update or create meta title tag
+            let titleMeta = document.querySelector('meta[property="og:title"]') || document.querySelector('meta[name="title"]');
+            if (!titleMeta) {
+                titleMeta = document.createElement('meta');
+                titleMeta.setAttribute('name', 'title');
+                document.head.appendChild(titleMeta);
+            }
+            titleMeta.setAttribute('content', metaTitle);
+
+            // Update or create Open Graph title
+            let ogTitle = document.querySelector('meta[property="og:title"]');
+            if (!ogTitle) {
+                ogTitle = document.createElement('meta');
+                ogTitle.setAttribute('property', 'og:title');
+                document.head.appendChild(ogTitle);
+            }
+            ogTitle.setAttribute('content', metaTitle);
+
+            // Update or create meta description
+            let metaDesc = document.querySelector('meta[name="description"]');
+            if (!metaDesc) {
+                metaDesc = document.createElement('meta');
+                metaDesc.setAttribute('name', 'description');
+                document.head.appendChild(metaDesc);
+            }
+            metaDesc.setAttribute('content', metaDescription);
+
+            // Update or create Open Graph description
+            let ogDesc = document.querySelector('meta[property="og:description"]');
+            if (!ogDesc) {
+                ogDesc = document.createElement('meta');
+                ogDesc.setAttribute('property', 'og:description');
+                document.head.appendChild(ogDesc);
+            }
+            ogDesc.setAttribute('content', metaDescription);
+
+            // Update or create Open Graph image
+            if (apiEvent.image) {
+                let ogImage = document.querySelector('meta[property="og:image"]');
+                if (!ogImage) {
+                    ogImage = document.createElement('meta');
+                    ogImage.setAttribute('property', 'og:image');
+                    document.head.appendChild(ogImage);
+                }
+                ogImage.setAttribute('content', apiEvent.image);
+            }
+
+            // Update or create Open Graph URL
+            if (typeof window !== 'undefined') {
+                let ogUrl = document.querySelector('meta[property="og:url"]');
+                if (!ogUrl) {
+                    ogUrl = document.createElement('meta');
+                    ogUrl.setAttribute('property', 'og:url');
+                    document.head.appendChild(ogUrl);
+                }
+                ogUrl.setAttribute('content', window.location.href);
+            }
+        }
+
+        // Cleanup function to reset title on unmount
+        return () => {
+            document.title = 'Mentors Study Abroad';
+        };
+    }, [apiEvent]);
+
     // Transform all events for upcoming events section
     const allEvents = useMemo(() => 
         events.map(transformApiEventToEventDetails), 
@@ -183,15 +267,27 @@ export default function EventDetailsPage() {
         [days, hours, minutes, seconds]
     );
 
+    // Check if event is past
+    const isPastEvent = useMemo(() => {
+        if (!event) return false;
+        const eventDate = new Date(event.datetimeISO);
+        return eventDate.getTime() < Date.now();
+    }, [event]);
+
+    // Transform gallery images for FullScreenGallery
+    const galleryImageObjects = useMemo((): GalleryImage[] => {
+        if (!apiEvent || !apiEvent.event_galleries || apiEvent.event_galleries.length === 0) {
+            return [];
+        }
+        return apiEvent.event_galleries.map((src, index) => ({
+            id: index + 1,
+            src,
+            alt: `${apiEvent.title} - Image ${index + 1}`,
+        }));
+    }, [apiEvent]);
+
     if (loading) {
-        return (
-            <div className="max-w-4xl mx-auto px-4 py-24">
-                <div className="text-center">
-                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-my-accent mx-auto mb-4"></div>
-                    <p className="text-gray-600">Loading event details...</p>
-                </div>
-            </div>
-        );
+        return <EventDetailsSkeleton />;
     }
 
     if (error) {
@@ -318,34 +414,76 @@ export default function EventDetailsPage() {
                 </div>
             </div>
 
-            {/* Google Map Section */}
-            <div className="py-16 bg-my-white">
-                <div className="max-w-7xl mx-auto px-4">
-                    <div className="text-center mb-10">
-                        <h2 className="text-3xl lg:text-4xl font-bold text-my-black mb-4">
-                            Event <span className="text-my-accent relative">Location</span>
-                        </h2>
-                        <p className="text-gray-600 text-lg">Find us at the event venue</p>
-                    </div>
-                    
-                    <div className="bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-200">
-                        <div className="h-[400px] sm:h-[600px] md:aspect-video w-full">
-                            <iframe
-                                width="100%"
-                                height="100%"
-                                style={{ border: 0 }}
-                                loading="lazy"
-                                allowFullScreen
-                                referrerPolicy="no-referrer-when-downgrade"
-                                src={`https://maps.google.com/maps?q=${encodeURIComponent(event.location)}&t=&z=13&ie=UTF8&iwloc=&output=embed`}
-                                title={`Map showing ${event.location}`}
-                                className="w-full h-full"
+            {/* Gallery/map Section  */}
+            {isPastEvent && galleryImageObjects.length > 0 ? (
+                <LazySection delay={0.2}>
+                    <div className="py-12 sm:py-16 lg:py-20 bg-my-white">
+                        <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6">
+                            <div className="text-center mb-6 sm:mb-8">
+                                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-my-black">
+                                    Event <span className="text-my-accent relative">Gallery</span>
+                                </h2>
+                            </div>
+
+                            {/* Masonry Grid with FullScreenGallery - 2 columns mobile, 4 columns tablet, 5 columns desktop */}
+                            <div className="columns-2 md:columns-4 lg:columns-5 gap-3 sm:gap-4 md:gap-6 space-y-3 sm:space-y-4 md:space-y-6">
+                                {galleryImageObjects.map((image, index) => (
+                                    <div key={image.id} className="break-inside-avoid mb-3 sm:mb-4 md:mb-6">
+                                        <div 
+                                            className="overflow-hidden rounded-xl sm:rounded-2xl group cursor-pointer"
+                                            onClick={() => {
+                                                setSelectedImageIndex(index);
+                                                setIsGalleryOpen(true);
+                                            }}
+                                        >
+                                            <img
+                                                src={image.src}
+                                                alt={image.alt || `Gallery ${index + 1}`}
+                                                className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+                                            />
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                            
+                            {/* FullScreenGallery Component */}
+                            <FullScreenGallery
+                                images={galleryImageObjects}
+                                initialIndex={selectedImageIndex}
+                                isOpen={isGalleryOpen}
+                                onClose={() => setIsGalleryOpen(false)}
                             />
                         </div>
+                    </div>
+                </LazySection>
+            ) : (
+                <div className="py-16 bg-my-white">
+                    <div className="max-w-7xl mx-auto px-4">
+                        <div className="text-center mb-10">
+                            <h2 className="text-3xl lg:text-4xl font-bold text-my-black mb-4">
+                                Event <span className="text-my-accent relative">Location</span>
+                            </h2>
+                            <p className="text-gray-600 text-lg">Find us at the event venue</p>
+                        </div>
                         
+                        <div className="bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-200">
+                            <div className="h-[400px] sm:h-[600px] md:aspect-video w-full">
+                                <iframe
+                                    width="100%"
+                                    height="100%"
+                                    style={{ border: 0 }}
+                                    loading="lazy"
+                                    allowFullScreen
+                                    referrerPolicy="no-referrer-when-downgrade"
+                                    src={`https://maps.google.com/maps?q=${encodeURIComponent(event.location)}&t=&z=13&ie=UTF8&iwloc=&output=embed`}
+                                    title={`Map showing ${event.location}`}
+                                    className="w-full h-full"
+                                />
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
+            )}
 
             <LazySection delay={0.2}>
                 <FilterableEventsSection title="Browse Other Events" />

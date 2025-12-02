@@ -15,13 +15,13 @@ export default function NotFound() {
   return (
     <div className="relative">
       {/* Hero Background */}
-      <div 
+      <div
         className="absolute inset-0 w-full h-auto bg-cover bg-center bg-no-repeat"
         style={{
           backgroundImage: "url('/hero background.png')"
         }}
       />
-      
+
       {/* Hero Content */}
       <div className="relative z-10 flex items-center min-h-screen">
         <div className="max-w-7xl mx-auto px-4">
@@ -39,14 +39,14 @@ export default function NotFound() {
                 )}
               </div>
             </div>
-            
+
             {/* Error Message */}
             <div className="mb-12">
               <h2 className="text-4xl lg:text-5xl font-bold text-my-black mb-6 leading-tight">
                 Oops! Page Not Found
               </h2>
               <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
-                The page you&apos;re looking for seems to have wandered off to study abroad! 
+                The page you&apos;re looking for seems to have wandered off to study abroad!
                 Don&apos;t worry, we&apos;ll help you find your way back to the right destination.
               </p>
             </div>
@@ -54,10 +54,10 @@ export default function NotFound() {
             {/* Action Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
               <Link href="/" className="btn-std">
-                🏠 Back to Home
+                Back to Home
               </Link>
               <Link href="/countries" className="btn-std bg-my-accent text-white border-my-accent hover:bg-my-black hover:border-my-black">
-                🌍 Explore Countries
+                Explore Countries
               </Link>
             </div>
           </div>

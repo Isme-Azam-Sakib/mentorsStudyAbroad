@@ -1,10 +1,10 @@
 "use client";
 
-import { useEffect, useState } from 'react';
-import { useParams, useRouter } from 'next/navigation';
+import { useEffect, useState, useMemo } from 'react';
+import { useParams } from 'next/navigation';
 import Link from 'next/link';
-import { getEventsApiUrl, getEventGalleryApiUrl } from '@/lib/config';
-import { ApiEvent, ApiResponse, GalleryApiResponse } from '@/lib/events-api-types';
+import { getEventsApiUrl } from '@/lib/config';
+import { ApiEvent, ApiResponse } from '@/lib/events-api-types';
 import FullScreenGallery from '@/components/FullScreenGallery';
 import LazySection from '@/components/LazySection';
 
@@ -20,21 +20,6 @@ const fetchEvents = async (): Promise<ApiEvent[]> => {
   } catch (error) {
     console.error('Error fetching events:', error);
     return [];
-  }
-};
-
-const fetchEventGallery = async (eventId: number): Promise<string[]> => {
-  try {
-    const response = await fetch(getEventGalleryApiUrl(eventId));
-    if (!response.ok) {
-      throw new Error('Failed to fetch gallery');
-    }
-    const data: GalleryApiResponse = await response.json();
-    return data.data?.images || [];
-  } catch (error) {
-    console.error('Error fetching gallery:', error);
-    // Fallback to static images for now
-    return getStaticGalleryImages();
   }
 };
 
@@ -71,7 +56,6 @@ const getStaticGalleryImages = (): string[] => {
 
 export default function EventGalleryPage() {
   const params = useParams();
-  const router = useRouter();
   const eventId = params?.id ? parseInt(params.id as string, 10) : null;
 
   const [event, setEvent] = useState<ApiEvent | null>(null);
@@ -93,30 +77,26 @@ export default function EventGalleryPage() {
         setLoading(true);
         setError(null);
 
-        // Fetch event details
+        // Fetch events (which includes gallery data)
         const events = await fetchEvents();
-        
-        // For now, use static gallery images (will be replaced with API call later)
-        const images = getStaticGalleryImages();
-
         const foundEvent = events.find((e) => e.id === eventId);
         
-        // For preview: use a default event if not found, so we can see the gallery
         if (!foundEvent) {
-          setEvent({
-            id: eventId,
-            title: 'Event Gallery',
-            description: '',
-            image: '',
-            location: '',
-            date: new Date().toISOString(),
-            time: '',
-          });
-        } else {
-          setEvent(foundEvent);
+          setError('Event not found');
+          setLoading(false);
+          return;
         }
+
+        setEvent(foundEvent);
         
-        setGalleryImages(images);
+        // Use event_galleries from API, fallback to static images if empty
+        const galleryImagesFromApi = foundEvent.event_galleries || [];
+        if (galleryImagesFromApi.length > 0) {
+          setGalleryImages(galleryImagesFromApi);
+        } else {
+          // Fallback to static images if no gallery images in API
+          setGalleryImages(getStaticGalleryImages());
+        }
       } catch (err) {
         console.error('Error loading gallery:', err);
         setError('Failed to load gallery');
@@ -127,6 +107,80 @@ export default function EventGalleryPage() {
 
     loadData();
   }, [eventId]);
+
+  // Update page metadata dynamically
+  useEffect(() => {
+    if (event) {
+      const metaTitle = event.meta_title || `${event.title} - Gallery`;
+      const metaDescription = event.meta_description || `View photos from ${event.title}`;
+
+      // Update document title
+      document.title = metaTitle;
+
+      // Update or create meta title tag
+      let titleMeta = document.querySelector('meta[property="og:title"]') || document.querySelector('meta[name="title"]');
+      if (!titleMeta) {
+        titleMeta = document.createElement('meta');
+        titleMeta.setAttribute('name', 'title');
+        document.head.appendChild(titleMeta);
+      }
+      titleMeta.setAttribute('content', metaTitle);
+
+      // Update or create Open Graph title
+      let ogTitle = document.querySelector('meta[property="og:title"]');
+      if (!ogTitle) {
+        ogTitle = document.createElement('meta');
+        ogTitle.setAttribute('property', 'og:title');
+        document.head.appendChild(ogTitle);
+      }
+      ogTitle.setAttribute('content', metaTitle);
+
+      // Update or create meta description
+      let metaDesc = document.querySelector('meta[name="description"]');
+      if (!metaDesc) {
+        metaDesc = document.createElement('meta');
+        metaDesc.setAttribute('name', 'description');
+        document.head.appendChild(metaDesc);
+      }
+      metaDesc.setAttribute('content', metaDescription);
+
+      // Update or create Open Graph description
+      let ogDesc = document.querySelector('meta[property="og:description"]');
+      if (!ogDesc) {
+        ogDesc = document.createElement('meta');
+        ogDesc.setAttribute('property', 'og:description');
+        document.head.appendChild(ogDesc);
+      }
+      ogDesc.setAttribute('content', metaDescription);
+
+      // Update or create Open Graph image
+      if (event.image) {
+        let ogImage = document.querySelector('meta[property="og:image"]');
+        if (!ogImage) {
+          ogImage = document.createElement('meta');
+          ogImage.setAttribute('property', 'og:image');
+          document.head.appendChild(ogImage);
+        }
+        ogImage.setAttribute('content', event.image);
+      }
+
+      // Update or create Open Graph URL
+      if (typeof window !== 'undefined') {
+        let ogUrl = document.querySelector('meta[property="og:url"]');
+        if (!ogUrl) {
+          ogUrl = document.createElement('meta');
+          ogUrl.setAttribute('property', 'og:url');
+          document.head.appendChild(ogUrl);
+        }
+        ogUrl.setAttribute('content', window.location.href);
+      }
+    }
+
+    // Cleanup function to reset title on unmount
+    return () => {
+      document.title = 'Mentors Study Abroad';
+    };
+  }, [event]);
 
   // Transform gallery images to GalleryImage format
   const galleryImageObjects = galleryImages.map((src, index) => ({

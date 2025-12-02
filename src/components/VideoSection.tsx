@@ -281,14 +281,14 @@ export function VideoSection({
     }
 
     return (
-        <section className={`py-12 sm:py-16 ${className}`}>
+        <section className={`py-6 sm:py-8 ${className.replace('text-left', '').trim()}`}>
             <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6">
-                <div className="text-center mb-8 sm:mb-10 lg:mb-12">
+                <div className={`mb-8 sm:mb-10 lg:mb-12 ${className.includes('text-left') ? 'text-left' : 'text-center'}`}>
                     <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-my-black mb-3 sm:mb-4">
                         {title} 
                     </h2>
                     {subtitle && (
-                        <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto px-2">
+                        <p className={`text-base sm:text-lg text-gray-600 ${className.includes('text-left') ? 'max-w-2xl' : 'max-w-2xl mx-auto'} px-2`}>
                             {subtitle}
                         </p>
                     )}
