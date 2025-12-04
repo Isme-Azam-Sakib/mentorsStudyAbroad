@@ -30,7 +30,7 @@ export const branchesData: Branch[] = [
     googleMapsUrl: 'https://maps.app.goo.gl/LMiGETkcsEd3odGWA',
     contact: {
       education: ['09610883388'],
-      studyAbroad: null,
+      studyAbroad: ['09610883388'],
       email: 'info@mentors.com.bd'
     },
     type: 'branch'

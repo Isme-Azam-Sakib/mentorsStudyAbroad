@@ -212,9 +212,9 @@ export default function HomePage() {
                     </Button>
                   </Link>
 
-                  <button className="bg-my-black text-my-white border border-my-white px-4 py-3 hover:bg-my-white hover:text-my-black hover:border-my-black hover:border-1 rounded-full transition-all duration-300 text-sm sm:text-base">
+                  {/* <button className="bg-my-black text-my-white border border-my-white px-4 py-3 hover:bg-my-white hover:text-my-black hover:border-my-black hover:border-1 rounded-full transition-all duration-300 text-sm sm:text-base">
                     Download Brochure <i className="fi fi-sr-file-pdf"></i>
-                  </button>
+                  </button> */}
                 </div>
               </div>
 

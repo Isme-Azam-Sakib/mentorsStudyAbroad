@@ -51,10 +51,10 @@ export default function TestimonialsSection({ className = "" }: TestimonialsSect
     return (
       <div className={`py-16 bg-gray-50 ${className}`}>
         <div className="max-w-7xl mx-auto px-4 text-center">
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-my-black mb-3 md:mb-4">
+          <h2 className="text-xl md:text-3xl lg:text-4xl font-bold text-my-black mb-3 md:mb-4">
             What <span className="text-my-accent relative">Students</span> Say About Us
           </h2>
-          <p className="text-base md:text-lg text-gray-600 mb-8">
+          <p className="text-sm md:text-lg text-gray-600 mb-8">
             Loading testimonials...
           </p>
         </div>
@@ -67,10 +67,10 @@ export default function TestimonialsSection({ className = "" }: TestimonialsSect
       <div className="max-w-7xl mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-8 md:mb-12">
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-my-black mb-3 md:mb-4">
+          <h2 className="text-xl md:text-3xl lg:text-4xl font-bold text-my-black mb-3 md:mb-4">
             What <span className="text-my-accent relative">Students</span> Say About Us
           </h2>
-          <p className="text-base md:text-lg text-gray-600 max-w-3xl mx-auto px-4">
+          <p className="sm:text-base md:text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto px-4">
             Hear from our successful students who have achieved their dreams of studying abroad
           </p>
         </div>

@@ -104,19 +104,19 @@ export default function Navbar() {
           {/* Mobile/Tablet Layout */}
           <div className="lg:hidden flex items-center justify-between w-full gap-2">
             {/* Logo Section */}
-            <div className="flex items-center gap-2 sm:gap-3">
-              <Link href="/">
-                <Image src={logo} alt="logo" height={60} width={180} className="h-[40px] w-auto sm:h-[50px] sm:w-auto" priority quality={100} unoptimized={false} />
+            <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
+              <Link href="/" className="flex-shrink-0">
+                <Image src={logo} alt="logo" height={60} width={180} className="h-[40px] w-auto md:h-[50px] sm:w-auto object-contain" priority quality={100} unoptimized={false} />
               </Link>
             </div>
 
             {/* Right side - Consultation Button and Hamburger Menu */}
-            <div className="flex items-center gap-1.5 sm:gap-2">
+            <div className="flex items-center gap-1.5 sm:gap-1">
               {/* Mobile Consultation Button */}
               <Link href="/contact">
-                <Button variant="secondary" className="text-xs sm:text-sm px-2 sm:px-3 py-1.5 sm:py-2 whitespace-nowrap">
+                <Button variant="secondary" className="text-xs sm:text-sm px-2 sm:px-2 py-1.5 sm:py-2 whitespace-nowrap">
                   <span className="hidden sm:inline">Book A Free Consultation</span>
-                  <span className="sm:hidden">Book A Free Consultation</span>
+                  <span className="sm:hidden">Free Consultation</span>
                   <i className="fi fi-sr-meeting-alt ml-1"></i>
                 </Button>
               </Link>
@@ -130,7 +130,7 @@ export default function Navbar() {
                   <i className="fi fi-br-cross w-6 h-6 text-xl"></i>
                 ) : (
                   <span className="flex items-center justify-center bg-my-black rounded-full w-10 h-10">
-                    <i className="fi fi-br-menu-burger text-my-white text-xl flex items-center justify-center h-full"></i>
+                    <i className="fi fi-br-menu-burger text-my-white text-sm flex items-center justify-center h-full"></i>
                   </span>
                 )}
               </button>
@@ -140,9 +140,9 @@ export default function Navbar() {
           {/* Desktop Layout */}
           <div className="hidden lg:flex items-center justify-between w-full">
             {/* Logo Section */}
-            <div className="flex items-center gap-2 sm:gap-3 z-50">
-              <Link href="/">
-                <Image src={logo} alt="logo" height={60} width={180} className="h-[40px] w-auto sm:h-[60px] sm:w-auto" priority quality={100} unoptimized={false} />
+            <div className="flex items-center gap-2 sm:gap-3 z-50 flex-shrink-0">
+              <Link href="/" className="flex-shrink-0">
+                <Image src={logo} alt="logo" height={60} width={180} className="h-[40px] w-auto sm:h-[60px] sm:w-auto object-contain" priority quality={100} unoptimized={false} />
               </Link>
             </div>
 
@@ -213,8 +213,8 @@ export default function Navbar() {
             }`}>
             {/* Menu Header */}
             <div className="flex items-center justify-between p-6 border-b border-gray-200">
-              <div className="flex items-center gap-3">
-                <Image src={logo} alt="logo" height={40} width={120} className="h-8 w-auto" priority quality={100} unoptimized={false} />
+              <div className="flex items-center gap-3 flex-shrink-0">
+                <Image src={logo} alt="logo" height={40} width={120} className="h-8 w-auto object-contain" priority quality={100} unoptimized={false} />
               </div>
               <button
                 onClick={() => setIsMobileMenuOpen(false)}
@@ -305,7 +305,7 @@ export default function Navbar() {
             {/* Menu Items */}
             <div className="p-6 space-y-1">
               {/* Countries Dropdown */}
-              <div className="px-4 py-3">
+              <div>
                 <div className="flex items-center justify-between w-full px-4 py-3 text-lg font-medium text-gray-900 hover:bg-gray-100 rounded-xl transition-all duration-300">
                   <Link
                     href="/countries"
@@ -332,7 +332,7 @@ export default function Navbar() {
                 {/* Countries Dropdown Menu */}
                 <div className={`overflow-hidden transition-all duration-300 ${isCountriesDropdownOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
                   }`}>
-                  <div className="space-y-2 pl-4 pt-2">
+                  <div className="space-y-2 pt-2">
                     <Link
                       href="/countries/australia"
                       className="block px-4 py-2 text-base text-gray-600 hover:bg-gray-100 hover:text-black rounded-lg transition-all duration-300"

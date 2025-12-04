@@ -26,9 +26,12 @@ export default function Footer() {
     setEmail(e.target.value);
   };
 
-  const handleLinkClick = () => {
-    // Scroll to top immediately when clicking footer links
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    const href = e.currentTarget.getAttribute('href');
+    // Only scroll to top if the link doesn't have a hash (for section navigation)
+    if (!href || !href.includes('#')) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   };
 
   return (
@@ -52,9 +55,9 @@ export default function Footer() {
                 <li><Link href="/" onClick={handleLinkClick} className="hover:text-black text-sm sm:text-base">Home</Link></li>
                 <li><Link href="/about" onClick={handleLinkClick} className="hover:text-black text-sm sm:text-base">About</Link></li>
                 <li><Link href="/success-stories" onClick={handleLinkClick} className="hover:text-black text-sm sm:text-base">Success Stories</Link></li>
-                <li><Link href="/countries" onClick={handleLinkClick} className="hover:text-black text-sm sm:text-base">Top Universities</Link></li>
-                {/* <li><Link href="/services" onClick={handleLinkClick} className="hover:text-black text-sm sm:text-base">Visa Processing</Link></li>
-                <li><Link href="/resources/sop" onClick={handleLinkClick} className="hover:text-black text-sm sm:text-base">How to write SOP</Link></li> */}
+                <li><Link href="/countries" onClick={handleLinkClick} className="hover:text-black text-sm sm:text-base">Top Destinations</Link></li>
+                <li><Link href="/contact#our-branches" onClick={handleLinkClick} className="hover:text-black text-sm sm:text-base">Our Branches</Link></li>
+                {/*<li><Link href="/resources/sop" onClick={handleLinkClick} className="hover:text-black text-sm sm:text-base">How to write SOP</Link></li> */}
               </ul>
             </div>
 

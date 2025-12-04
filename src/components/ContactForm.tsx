@@ -263,7 +263,7 @@ export function ContactForm({
               <select 
                 value={formData.country}
                 onChange={(e) => handleInputChange('country', e.target.value)}
-                className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-300 rounded-lg sm:rounded-xl focus:outline-none focus:border-gray-500 transition-colors appearance-none bg-white text-sm sm:text-base"
+                className={`w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-300 rounded-lg sm:rounded-xl focus:outline-none focus:border-gray-500 transition-colors appearance-none bg-white text-sm sm:text-base ${!formData.country ? 'text-gray-400' : ''}`}
                 required
               >
                 <option value="">Select a country (required)</option>
@@ -283,7 +283,7 @@ export function ContactForm({
               <select 
                 value={formData.country2}
                 onChange={(e) => handleInputChange('country2', e.target.value)}
-                className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-300 rounded-lg sm:rounded-xl focus:outline-none focus:border-gray-500 transition-colors appearance-none bg-white text-sm sm:text-base"
+                className={`w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-300 rounded-lg sm:rounded-xl focus:outline-none focus:border-gray-500 transition-colors appearance-none bg-white text-sm sm:text-base ${!formData.country2 ? 'text-gray-400' : ''}`}
               >
                 <option value="">Select a second country (optional)</option>
                 {secondaryCountryOptions.map((country) => (
@@ -299,7 +299,7 @@ export function ContactForm({
               <select 
                 value={formData.studyLevel}
                 onChange={(e) => handleInputChange('studyLevel', e.target.value)}
-                className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-300 rounded-lg sm:rounded-xl focus:outline-none focus:border-gray-500 transition-colors appearance-none bg-white text-sm sm:text-base"
+                className={`w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-300 rounded-lg sm:rounded-xl focus:outline-none focus:border-gray-500 transition-colors appearance-none bg-white text-sm sm:text-base ${!formData.studyLevel ? 'text-gray-400' : ''}`}
                 required
               >
                 <option value="">Select desired study level (required)</option>
@@ -326,7 +326,7 @@ export function ContactForm({
                     handleInputChange('nearestOffice', '');
                   }
                 }}
-                className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-300 rounded-lg sm:rounded-xl focus:outline-none focus:border-gray-500 transition-colors appearance-none bg-white text-sm sm:text-base"
+                className={`w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-300 rounded-lg sm:rounded-xl focus:outline-none focus:border-gray-500 transition-colors appearance-none bg-white text-sm sm:text-base ${!formData.consultationMode ? 'text-gray-400' : ''}`}
                 required
               >
                 <option value="">Select a consultation mode</option>
@@ -341,7 +341,7 @@ export function ContactForm({
                 <select 
                   value={formData.nearestOffice}
                   onChange={(e) => handleInputChange('nearestOffice', e.target.value)}
-                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-300 rounded-lg sm:rounded-xl focus:outline-none focus:border-gray-500 transition-colors appearance-none bg-white text-sm sm:text-base"
+                  className={`w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-300 rounded-lg sm:rounded-xl focus:outline-none focus:border-gray-500 transition-colors appearance-none bg-white text-sm sm:text-base ${!formData.nearestOffice ? 'text-gray-400' : ''}`}
                   required
                 >
                   <option value="">Select nearest Mentors&apos; office (required)</option>

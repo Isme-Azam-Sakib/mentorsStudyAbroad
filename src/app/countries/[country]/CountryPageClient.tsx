@@ -1,6 +1,8 @@
 "use client";
 
 import { useState, useEffect, useMemo, useRef } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
 import { AdmissionProcess } from '../../../components/AdmissionProcess';
 import { ProcessCard } from '@/components/ProcessCard';
 import { ContactForm } from '@/components/ContactForm';
@@ -17,7 +19,6 @@ import {
   CanadaVisaSuccess,
   MalaysiaVisaSuccess
 } from '@/components/(visa-success)';
-import Link from 'next/link';
 import { countriesData, AdmissionStep } from '@/lib/countries-data';
 import { AdmissionIntake } from '@/components/AdmissionIntake';
 import { EntryRequirements } from '@/components/EntryRequirements';
@@ -40,6 +41,13 @@ interface CountryPageClientProps {
   countryKey: string;
 }
 
+interface EuropeCountryCard {
+  id: string;
+  name: string;
+  displayName: string;
+  image: string;
+}
+
 export default function CountryPageClient({ country, countryKey }: CountryPageClientProps) {
   const whyChooseItems = country?.whyChoose || [];
   const [, setIsPageLoaded] = useState(false);
@@ -48,6 +56,42 @@ export default function CountryPageClient({ country, countryKey }: CountryPageCl
   const admissionProcessRef = useRef<HTMLDivElement>(null);
   const partnerUniversitiesRef = useRef<HTMLDivElement>(null);
   const isEurope = countryKey.toLowerCase() === 'europe';
+
+  const europeCountries: EuropeCountryCard[] = useMemo(
+    () => [
+      {
+        id: 'sweden',
+        name: 'Sweden',
+        displayName: 'Sweden',
+        image: '/countries/sweden.png'
+      },
+      {
+        id: 'finland',
+        name: 'Finland',
+        displayName: 'Finland',
+        image: '/countries/finland.png'
+      },
+      {
+        id: 'denmark',
+        name: 'Denmark',
+        displayName: 'Denmark',
+        image: '/countries/denmark.png'
+      },
+      {
+        id: 'netherland',
+        name: 'Netherland',
+        displayName: 'Netherland',
+        image: '/countries/netherland.png'
+      },
+      {
+        id: 'hungary',
+        name: 'Hungary',
+        displayName: 'Hungary',
+        image: '/countries/hungary.png'
+      }
+    ],
+    []
+  );
 
   useEffect(() => {
     setIsMounted(true);
@@ -172,10 +216,10 @@ export default function CountryPageClient({ country, countryKey }: CountryPageCl
                     </button>
                   </Link>
 
-                  <button className="bg-black text-white px-6 py-2 sm:px-8 sm:py-4 rounded-full hover:bg-gray-800 transition-all duration-300 text-sm sm:text-base font-semibold flex items-center justify-center gap-2 sm:gap-3 hover:text-my-black hover:bg-my-white">
+                  {/* <button className="bg-black text-white px-6 py-2 sm:px-8 sm:py-4 rounded-full hover:bg-gray-800 transition-all duration-300 text-sm sm:text-base font-semibold flex items-center justify-center gap-2 sm:gap-3 hover:text-my-black hover:bg-my-white">
                     <span>Download Brochure</span>
                     <i className="fi fi-sr-file-pdf"></i>
-                  </button>
+                  </button> */}
                 </div>
               </div>
             </div>
@@ -330,11 +374,43 @@ export default function CountryPageClient({ country, countryKey }: CountryPageCl
 
       {isEurope && (
         <LazySection delay={0.2}>
-          <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 py-12 sm:py-16 lg:py-20 w-full flex justify-center">
-            <div className="w-full lg:w-2/3 text-center">
-              <h2 className="text-my-black lg:text-[30px] sm:text-lg lg:text-xl leading-relaxed text-center">
-                Different countries have different processes. Our counselors will guide you accordingly.
+          <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 py-12 sm:py-16 lg:py-20">
+            {/* <div className="w-full lg:w-2/3 text-center mx-auto mb-10 sm:mb-12">
+              <h2 className="text-3xl lg:text-4xl font-bold text-my-black mb-4">
+                Choose your dream <span className="text-my-accent">European destination</span>
               </h2>
+            </div> */}
+
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 lg:gap-6 xl:gap-8">
+              {europeCountries.map((item) => (
+                <div key={item.id} className="group cursor-pointer">
+                  <div className="bg-white rounded-[40px] lg:rounded-[50px] sm:rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 sm:hover:-translate-y-2 aspect-square">
+                    <div className="relative h-full">
+                      <Image
+                        src={item.image}
+                        alt={item.name}
+                        fill
+                        className="object-cover"
+                        priority
+                      />
+
+                      <div className="absolute inset-0 bg-my-black/40 group-hover:bg-my-black/60 transition-colors duration-300" />
+
+                      <div className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
+                        <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-white text-center px-2">
+                          {item.displayName}
+                        </h3>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="w-full lg:w-2/3 text-center mx-auto mt-10 sm:mt-12">
+              <p className="text-my-black lg:text-[24px] mt-4 sm:text-base leading-relaxed">
+                Different countries have different process. Our counselors will guide you accordingly.
+              </p>
             </div>
           </div>
         </LazySection>

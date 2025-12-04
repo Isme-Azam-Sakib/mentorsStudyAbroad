@@ -48,7 +48,7 @@ export const countriesData: Record<string, Country> = {
     name: "United States",
     description: "Home to the world’s leading universities and unmatched innovation across every field of study.",
     heroImage: "/country-heros/usa.png",
-    stats: { universities: "60+", annualTuitionFees: "USD 10K – 45K", postStudyWork: "Up to 3 Years" },
+    stats: { universities: "3000+", annualTuitionFees: "USD 10K to 45K", postStudyWork: "Up to 3 Years" },
  
     whyChoose: [
       { 
@@ -115,7 +115,7 @@ export const countriesData: Record<string, Country> = {
     name: "United Kingdom",
     description: "A country steeped in academic heritage, where centuries of tradition meet global opportunity.",
     heroImage: "/country-heros/uk.png",
-    stats: { universities: "40+ ", annualTuitionFees: "GBP 11K – 24K ", postStudyWork: "2 - 3 years" 
+    stats: { universities: "150+ ", annualTuitionFees: "GBP 11K to 24K ", postStudyWork: "1.5 to 3 years" 
     },
  
     whyChoose: [
@@ -175,7 +175,7 @@ export const countriesData: Record<string, Country> = {
     name: "Ireland",
     description: "Experience world-class education in a friendly country known for its warmth and innovation.",
     heroImage: "/country-heros/ireland.png",
-    stats: { universities: "15+", annualTuitionFees: "€10K - €55K", postStudyWork: "2 years" },
+    stats: { universities: "10+", annualTuitionFees: "€10K to €55K", postStudyWork: "2 years" },
    
     whyChoose: [
       { 
@@ -256,7 +256,7 @@ export const countriesData: Record<string, Country> = {
     name: "Australia",
     description: " A global education powerhouse combining academic excellence with an unbeatable quality of life.",
     heroImage: "/country-heros/australia.png",
-    stats: { universities: "40+", annualTuitionFees: "AUD 22K – 50K", postStudyWork: "4+ years" },
+    stats: { universities: "40+", annualTuitionFees: "AUD 22K to 50K", postStudyWork: "2 to 5 years" },
   
     whyChoose: [
       { 
@@ -342,7 +342,7 @@ export const countriesData: Record<string, Country> = {
     name: "Canada",
     description: "A welcoming, multicultural destination offering high-quality education and strong post-study career pathways.",
     heroImage: "/country-heros/canada.png",
-    stats: { universities: "250+", annualTuitionFees: "CAD 15K - 45K", postStudyWork: "3 years" },
+    stats: { universities: "150+", annualTuitionFees: "CAD 15K to 45K", postStudyWork: "3 years" },
     whyChoose: [
       { 
         title: "Affordable compared to other Western countries", 
@@ -422,7 +422,7 @@ export const countriesData: Record<string, Country> = {
     name: "Malaysia",
     description: "Discover globally recognized, affordable education in one of Asia’s fastest-growing academic hubs.",
     heroImage: "/country-heros/malaysia.png",
-    stats: { universities: "18", annualTuitionFees: "RM 28,000 - 137,251", postStudyWork: "" },
+    stats: { universities: "90+", annualTuitionFees: "RM 25K to 120K", postStudyWork: "" },
 
     whyChoose: [
       { 
@@ -501,8 +501,8 @@ export const countriesData: Record<string, Country> = {
     heroImage: "/country-heros/newzealand.png",
     stats: {
       universities: "08",
-      annualTuitionFees: "NZD 22K – 45K",
-      postStudyWork: "1-3 years"
+      annualTuitionFees: "NZD 22K to 45K",
+      postStudyWork: "1 to3 years"
     },
 
     whyChoose: [

@@ -29,7 +29,7 @@ const CTA: React.FC<CTAProps> = ({
   };
 
   return (
-    <div className={`relative h-64 md:h-60 lg:h-80 max-w-7xl sm:py-24  mx-auto rounded-4xl overflow-hidden my-8 px-16 bg-my-accent ${className}`}>
+    <div className={`relative h-64 md:h-60 lg:h-80 max-w-7xl sm:py-48 md:py-32 lg:py-48  mx-auto rounded-4xl overflow-hidden my-8 px-16 bg-my-accent ${className}`}>
       {/* Background with overlay image */}
       <div className="absolute inset-0">
         <Image
@@ -44,13 +44,13 @@ const CTA: React.FC<CTAProps> = ({
       {/* Content */}
       <div className="relative z-10 flex flex-col items-center justify-center h-full px-4 text-center">
         {/* Main title */}
-        <h2 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-white mb-2 md:mb-4 leading-tight">
+        <h2 className="text-xl md:text-2xl lg:text-4xl xl:text-5xl font-bold text-white mb-2 md:mb-4 leading-tight">
           {title}
         </h2>
 
         {/* Subtitle (optional) */}
         {subtitle && (
-          <p className="text-base md:text-base lg:text-base text-white mb-6 md:mb-8 font-normal">
+          <p className="text-sm md:text-base lg:text-base text-white mb-6 md:mb-8 font-normal">
             {subtitle}
           </p>
         )}

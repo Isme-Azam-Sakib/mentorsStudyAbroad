@@ -185,10 +185,10 @@ export default function AboutPage() {
                     </button>
                   </Link>
 
-                  <button className="bg-my-black text-my-white px-6 py-2 sm:px-8 sm:py-4 rounded-full hover:bg-my-white hover:text-my-black hover:border-my-black hover:border-1 transition-all duration-300 text-sm sm:text-base flex items-center justify-center gap-2 sm:gap-3">
+                  {/* <button className="bg-my-black text-my-white px-6 py-2 sm:px-8 sm:py-4 rounded-full hover:bg-my-white hover:text-my-black hover:border-my-black hover:border-1 transition-all duration-300 text-sm sm:text-base flex items-center justify-center gap-2 sm:gap-3">
                     <span>Download Brochure</span>
                     <i className="fi fi-sr-file-pdf"></i>
-                  </button>
+                  </button> */}
                 </div>
               </div>
             </div>

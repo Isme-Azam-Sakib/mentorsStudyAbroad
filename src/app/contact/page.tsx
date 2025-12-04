@@ -77,7 +77,7 @@ export default function ContactPage() {
 
             {/* Branches Section */}
             <LazySection delay={0.2}>
-                <div className="py-16 bg-my-white">
+                <div id="our-branches" className="py-16 bg-my-white scroll-mt-20">
                     <div className="max-w-7xl mx-auto px-4">
                         <div className="text-center mb-12">
                             <h2 className="text-3xl lg:text-4xl font-bold text-my-black mb-4">
