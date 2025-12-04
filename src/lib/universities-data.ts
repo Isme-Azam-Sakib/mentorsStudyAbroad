@@ -839,7 +839,7 @@ export const universitiesData: University[] = [
         showOnHomepage: false,
     },
     {
-        id: 99,
+        id: 79,
         name: "Carleton University",
         country: "canada",
         logo: "/universities/canada/Carleton_University.png",
@@ -849,7 +849,7 @@ export const universitiesData: University[] = [
         showOnHomepage: false,
     },
     {
-        id: 100,
+        id: 80,
         name: "Dalhousie University",
         country: "canada",
         logo: "/universities/canada/Dalhousie_University.png",
@@ -859,7 +859,7 @@ export const universitiesData: University[] = [
         showOnHomepage: false,
     },
     {
-        id: 101,
+        id: 81,
         name: "International Business University",
         country: "canada",
         logo: "/universities/canada/International_Business_University.png",
@@ -869,7 +869,7 @@ export const universitiesData: University[] = [
         showOnHomepage: false,
     },
     {
-        id: 102,
+        id: 82,
         name: "NYIT Vancouver",
         country: "canada",
         logo: "/universities/canada/NYIT_Vancouver.png",
@@ -879,7 +879,7 @@ export const universitiesData: University[] = [
         showOnHomepage: false,
     },
     {
-        id: 103,
+        id: 83,
         name: "University Of Alberta",
         country: "canada",
         logo: "/universities/canada/University_Of_Alberta.png",
@@ -889,7 +889,7 @@ export const universitiesData: University[] = [
         showOnHomepage: false,
     },
     {
-        id: 104,
+        id: 84,
         name: "University Of Fraser Valley",
         country: "canada",
         logo: "/universities/canada/University_Of_Fraser_Valley.png",
@@ -899,7 +899,7 @@ export const universitiesData: University[] = [
         showOnHomepage: false,
     },
     {
-        id: 105,
+        id: 85,
         name: "University Of Guelph",
         country: "canada",
         logo: "/universities/canada/University_Of_Guelph.png",
@@ -909,7 +909,7 @@ export const universitiesData: University[] = [
         showOnHomepage: false,
     },
     {
-        id: 106,
+        id: 86,
         name: "University Of New Brunswick",
         country: "canada",
         logo: "/universities/canada/University_Of_New_Brunswick.png",
@@ -919,7 +919,7 @@ export const universitiesData: University[] = [
         showOnHomepage: false,
     },
     {
-        id: 107,
+        id: 87,
         name: "University Of Victoria",
         country: "canada",
         logo: "/universities/canada/University_Of_Victoria.png",
@@ -929,7 +929,7 @@ export const universitiesData: University[] = [
         showOnHomepage: false,
     },
     {
-        id: 108,
+        id: 88,
         name: "Cape Breton University",
         country: "canada",
         logo: "/universities/canada/Cape_Breton_University.png",
@@ -939,7 +939,7 @@ export const universitiesData: University[] = [
         showOnHomepage: false,
     },
     {
-        id: 109,
+        id: 89,
         name: "Brock University",
         country: "canada",
         logo: "/universities/canada/Brock_University.png",
@@ -949,7 +949,7 @@ export const universitiesData: University[] = [
         showOnHomepage: false,
     },
     {
-        id: 79,
+        id: 90,
         name: "Taylor's University",
         country: "malaysia",
         logo: "/universities/malaysia/Taylors_University.png",
@@ -960,7 +960,7 @@ export const universitiesData: University[] = [
         homepageOrder: 16,
     },
     {
-        id: 80,
+        id: 91,
         name: "Asia Pacific University of Technology & Innovation (APU)",
         country: "malaysia",
         logo: "/universities/malaysia/Asia_Pacific_University.png",
@@ -970,7 +970,7 @@ export const universitiesData: University[] = [
         showOnHomepage: false,
     },
     {
-        id: 81,
+        id: 92,
         name: "University Of Wollongong Malaysia",
         country: "malaysia",
         logo: "/universities/malaysia/University_Of_Wollongong_Malaysia.png",
@@ -980,7 +980,7 @@ export const universitiesData: University[] = [
         showOnHomepage: false,
     },
     {
-        id: 82,
+        id: 93,
         name: "Curtin University Malaysia",
         country: "malaysia",
         logo: "/universities/malaysia/Curtin_University_Malaysia.png",
@@ -990,7 +990,7 @@ export const universitiesData: University[] = [
         showOnHomepage: false,
     },
     {
-        id: 83,
+        id: 94,
         name: "Kuala Lumpur University of Science and Infrastructure",
         country: "malaysia",
         logo: "/universities/malaysia/Kuala_Lumpur_University_Of_Science_And_Infrastructure.png",
@@ -1000,7 +1000,7 @@ export const universitiesData: University[] = [
         showOnHomepage: false,
     },
     {
-        id: 84,
+        id: 95,
         name: "Universiti Teknologi Malaysia",
         country: "malaysia",
         logo: "/universities/malaysia/Universiti_Teknologi_Malaysia.png",
@@ -1010,7 +1010,7 @@ export const universitiesData: University[] = [
         showOnHomepage: false,
     },
     {
-        id: 85,
+        id: 96,
         name: "Swinburne University of Technology Malaysia",
         country: "malaysia",
         logo: "/universities/malaysia/Swinburne_University_Of_Technology_Malaysia.jpg",
@@ -1020,7 +1020,7 @@ export const universitiesData: University[] = [
         showOnHomepage: false,
     },
     {
-        id: 86,
+        id: 97,
         name: "University Of Southampton",
         country: "malaysia",
         logo: "/universities/malaysia/University_Of_Southampton.png",
@@ -1030,7 +1030,7 @@ export const universitiesData: University[] = [
         showOnHomepage: false,
     },
     {
-        id: 87,
+        id: 98,
         name: "Sunway University",
         country: "malaysia",
         logo: "/universities/malaysia/Sunway_University.png",
@@ -1040,7 +1040,7 @@ export const universitiesData: University[] = [
         showOnHomepage: false,
     },
     {
-        id: 88,
+        id: 99,
         name: "Heriot Watt University",
         country: "malaysia",
         logo: "/universities/malaysia/Heriot_Watt_University.png",
@@ -1050,7 +1050,7 @@ export const universitiesData: University[] = [
         showOnHomepage: false,
     },
     {
-        id: 89,
+        id: 100,
         name: "INTI International University",
         country: "malaysia",
         logo: "/universities/malaysia/INTI_International_University.png",
@@ -1060,7 +1060,7 @@ export const universitiesData: University[] = [
         showOnHomepage: false,
     },
     {
-        id: 90,
+        id: 101,
         name: "Yoobee",
         country: "newzealand",
         logo: "/universities/newzealand/Yoobeee.png",
@@ -1070,7 +1070,7 @@ export const universitiesData: University[] = [
         showOnHomepage: false,
     },
     {
-        id: 91,
+        id: 102,
         name: "University Of Waikato",
         country: "newzealand",
         logo: "/universities/newzealand/University_Of_Waikato.png",
@@ -1080,7 +1080,7 @@ export const universitiesData: University[] = [
         showOnHomepage: false,
     },
     {
-        id: 92,
+        id: 103,
         name: "Auckland University Of Technology",
         country: "newzealand",
         logo: "/universities/newzealand/Auckland_University_Of_Technology.png",
@@ -1090,7 +1090,7 @@ export const universitiesData: University[] = [
         showOnHomepage: false,
     },
     {
-        id: 93,
+        id: 104,
         name: "Massey University",
         country: "newzealand",
         logo: "/universities/newzealand/Massey_University.png",
@@ -1100,7 +1100,7 @@ export const universitiesData: University[] = [
         showOnHomepage: false,
     },
     {
-        id: 94,
+        id: 105,
         name: "Lincoln University",
         country: "newzealand",
         logo: "/universities/newzealand/Lincoln_University.png",
@@ -1110,7 +1110,7 @@ export const universitiesData: University[] = [
         showOnHomepage: false,
     },
     {
-        id: 95,
+        id: 106,
         name: "University Of Auckland",
         country: "newzealand",
         logo: "/universities/newzealand/University_Of_Auckland.png",
@@ -1120,7 +1120,7 @@ export const universitiesData: University[] = [
         showOnHomepage: false,
     },
     {
-        id: 96,
+        id: 107,
         name: "University Of Canterbury",
         country: "newzealand",
         logo: "/universities/newzealand/University_Of_Canterbury.png",
@@ -1130,7 +1130,7 @@ export const universitiesData: University[] = [
         showOnHomepage: false,
     },
     {
-        id: 97,
+        id: 108,
         name: "University Of Otago",
         country: "newzealand",
         logo: "/universities/newzealand/University_Of_Otago.png",
@@ -1140,7 +1140,7 @@ export const universitiesData: University[] = [
         showOnHomepage: false,
     },
     {
-        id: 98,
+        id: 109,
         name: "New Zealand Tertiary College",
         country: "newzealand",
         logo: "/universities/newzealand/New_Zealand_Tertiary_College.png",
