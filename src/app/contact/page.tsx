@@ -167,23 +167,25 @@ export default function ContactPage() {
                                         </div>
 
                                         {/* Education Phone */}
-                                        <div className="flex items-start gap-3 mb-3">
-                                            <i className="fi fi-sr-phone-call text-my-accent text-lg mt-0.5 flex-shrink-0"></i>
-                                            <div>
-                                                <p className="text-my-black text-sm font-medium">Education</p>
-                                                <div className="flex flex-wrap gap-2">
-                                                    {branch.contact.education.map((phone, index) => (
-                                                        <a 
-                                                            key={index}
-                                                            href={`tel:${phone}`}
-                                                            className="text-my-black text-sm hover:text-my-accent transition-colors duration-300"
-                                                        >
-                                                            {phone}
-                                                        </a>
-                                                    ))}
+                                        {branch.contact.education && branch.contact.education.length > 0 && (
+                                            <div className="flex items-start gap-3 mb-3">
+                                                <i className="fi fi-sr-phone-call text-my-accent text-lg mt-0.5 flex-shrink-0"></i>
+                                                <div>
+                                                    <p className="text-my-black text-sm font-medium">Education</p>
+                                                    <div className="flex flex-wrap gap-2">
+                                                        {branch.contact.education.map((phone, index) => (
+                                                            <a 
+                                                                key={index}
+                                                                href={`tel:${phone}`}
+                                                                className="text-my-black text-sm hover:text-my-accent transition-colors duration-300"
+                                                            >
+                                                                {phone}
+                                                            </a>
+                                                        ))}
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        )}
 
                                         {/* Study Abroad Phone */}
                                         {branch.contact.studyAbroad && branch.contact.studyAbroad.length > 0 && (

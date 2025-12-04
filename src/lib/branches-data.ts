@@ -30,7 +30,7 @@ export const branchesData: Branch[] = [
     googleMapsUrl: 'https://maps.app.goo.gl/LMiGETkcsEd3odGWA',
     contact: {
       education: ['09610883388'],
-      studyAbroad: ['09610883388'],
+      studyAbroad: ['01713243421'],
       email: 'info@mentors.com.bd'
     },
     type: 'branch'
@@ -47,7 +47,7 @@ export const branchesData: Branch[] = [
     googleMapsUrl: 'https://maps.app.goo.gl/GuQdwvXwYALkjJDy5',
     contact: {
       education: ['09610883388'],
-      studyAbroad: ['01713243438', '0171384398'],
+      studyAbroad: ['01713384397', '01713384398'],
       email: 'info@mentors.com.bd'
     },
     type: 'campus'
@@ -81,7 +81,7 @@ export const branchesData: Branch[] = [
     googleMapsUrl: 'https://maps.app.goo.gl/53NqpFzL4FmYGsi29',
     contact: {
       education: ['09610883388'],
-      studyAbroad: null,
+      studyAbroad: ['01713243416', '01713243420'],
       email: 'info@mentors.com.bd'
     },
     type: 'branch'
@@ -98,7 +98,7 @@ export const branchesData: Branch[] = [
     googleMapsUrl: 'https://maps.app.goo.gl/LFLPrzwsKDQDB7n97',
     contact: {
       education: ['09610883388'],
-      studyAbroad: ['01713243415'],
+      studyAbroad: ['01713243415', '01713243431'],
       email: 'info@mentors.com.bd'
     },
     type: 'branch'
@@ -116,7 +116,7 @@ export const branchesData: Branch[] = [
     googleMapsUrl: 'https://maps.app.goo.gl/3rRBYdijzoTGq7Yp9',
     contact: {
       education: ['09610883388'],
-      studyAbroad: ['01713243437', '01701215957'],
+      studyAbroad: ['01713243437'],
       email: 'info@mentors.com.bd'
     },
     type: 'branch'
@@ -133,7 +133,7 @@ export const branchesData: Branch[] = [
     googleMapsUrl: 'https://maps.app.goo.gl/PfiM72z9mTbNDGpQ9',
     contact: {
       education: ['09610883388'],
-      studyAbroad: null,
+      studyAbroad: ['01713243409', '01713243406'],
       email: 'info@mentors.com.bd'
     },
     type: 'branch'
@@ -151,8 +151,8 @@ export const branchesData: Branch[] = [
     },
     googleMapsUrl: 'https://maps.app.goo.gl/wLs1QqHJds8gbusE9',
     contact: {
-      education: ['01329640894'],
-      studyAbroad: null,
+      education: [],
+      studyAbroad: ['01329640864'],
       email: 'info@mentors.com.bd'
     },
     type: 'branch'
@@ -168,8 +168,8 @@ export const branchesData: Branch[] = [
     },
     googleMapsUrl: 'https://maps.app.goo.gl/8DtPwiAhWuzEDtTS9',
     contact: {
-      education: ['01321207484'],
-      studyAbroad: null,
+      education: [],
+      studyAbroad: ['01321207484'],
       email: 'info@mentors.com.bd'
     },
     type: 'branch'
@@ -185,8 +185,8 @@ export const branchesData: Branch[] = [
     },
     googleMapsUrl: 'https://maps.app.goo.gl/SEE59Zj8id8zX4vq7',
     contact: {
-      education: ['01713243432'],
-      studyAbroad: null,
+      education: [],
+      studyAbroad: ['01688454545'],
       email: 'info@mentors.com.bd'
     },
     type: 'branch'
@@ -202,8 +202,8 @@ export const branchesData: Branch[] = [
       lng: 91.8611
     },
     contact: {
-      education: ['01713243426'],
-      studyAbroad: null,
+      education: [],
+      studyAbroad: ['01713243426'],
       email: 'info@mentors.com.bd'
     },
     type: 'branch'
@@ -219,8 +219,8 @@ export const branchesData: Branch[] = [
     },
     googleMapsUrl: 'https://maps.app.goo.gl/vx4ATdF9PE9CYnNd9',
     contact: {
-      education: ['01713384393'],
-      studyAbroad: null,
+      education: [],
+      studyAbroad: ['01713384393'],
       email: 'info@mentors.com.bd'
     },
     type: 'campus'
@@ -235,8 +235,8 @@ export const branchesData: Branch[] = [
       lng: 89.8320
     },
     contact: {
-      education: ['01329640895'],
-      studyAbroad: null,
+      education: [],
+      studyAbroad: ['01329640895'],
       email: 'info@mentors.com.bd'
     },
     type: 'branch'
@@ -252,8 +252,8 @@ export const branchesData: Branch[] = [
     },
     googleMapsUrl: 'https://maps.app.goo.gl/TJNvsJKxGc2weYGX8',
     contact: {
-      education: ['01329640872'],
-      studyAbroad: null,
+      education: [],
+      studyAbroad: ['01973892592'],
       email: 'info@mentors.com.bd'
     },
     type: 'branch'
@@ -269,8 +269,8 @@ export const branchesData: Branch[] = [
     },
     googleMapsUrl: 'https://maps.app.goo.gl/dWRqjpCouqcCpJQb7',
     contact: {
-      education: ['01713384393'],
-      studyAbroad: null,
+      education: [],
+      studyAbroad: ['01713384393'],
       email: 'info@mentors.com.bd'
     },
     type: 'campus'
@@ -286,8 +286,8 @@ export const branchesData: Branch[] = [
     },
     googleMapsUrl: 'https://maps.app.goo.gl/fXPpuHoX4r9EvXXt6',
     contact: {
-      education: ['01713384392'],
-      studyAbroad: null,
+      education: [],
+      studyAbroad: ['01712328734'],
       email: 'info@mentors.com.bd'
     },
     type: 'branch'
@@ -303,9 +303,25 @@ export const branchesData: Branch[] = [
     },
     googleMapsUrl: 'https://maps.app.goo.gl/wqiiRohrW1BAk67o6',
     contact: {
-      education: ['01713384394'],
-      studyAbroad: null,
+      education: [],
+      studyAbroad: ['01713384394'],
       email: 'info@mentors.com.bd'
+    },
+    type: 'branch'
+  },
+  {
+    id: 'noakhali',
+    name: 'Noakhali Branch',
+    location: 'Noakhali, Noakhali Sadar Upazila, Bangladesh',
+    address: 'Noakhali, Noakhali Sadar Upazila, Bangladesh',
+    coordinates: {
+      lat: 22.8692,
+      lng: 91.0968
+    },
+    contact: {
+      education: [],
+      studyAbroad: ['01321207486', '01746-735616'],
+      email: 'mentorsnoakhali@gmail.com'
     },
     type: 'branch'
   }
